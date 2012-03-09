@@ -1,0 +1,30 @@
+<ul id="slide_menu" style="position:absolute;">
+<style type="text/css">
+#slide_menu{ border:#ccc solid 1px; padding:3px; line-height:20px; background:#fff;}
+#slide_menu a{ background:none; padding:0px; font-size:12px; color:#0099EE;}
+</style>
+	<!--{if $manage_lock === false}-->
+	<!--{loop $_FANWE['authoritys'][$module] $action $action_val}-->
+	<!--{if $action == 'edit'}-->
+	<li>
+	<a class="manage_{$action}" target="blank" href="{$_FANWE[site_root]}manage/manage.php?m={$module}&a={$action}&id={$id}">{echo lang('template','manage_'.$action)}</a>
+	</li>
+	<!--{elseif $action == 'delete'}-->
+	<li>
+	<a href="javascript:;" onClick="if(confirm('{lang manage_delete_confirm}')){$.ManageHandler('{$module}','{$action}',{$id},$(this).parent().parent().parent().parent().parent(),del_share_callback);}">{echo lang('template','manage_'.$action)}</a>
+	</li>
+	<!--{else}-->
+	<li>
+	<a href="javascript:;" onClick="$.ManageHandler('{$module}','{$action}',{$id},this)">{echo lang('template','manage_'.$action)}</a>
+	</li>
+	<!--{/if}-->
+	<!--{/loop}-->
+	<!--{else}-->
+	<li>
+	<span class="manage_lock">
+		<a href="{u u/index uid=$manage_lock['uid']}" target="_blank">{$manage_lock['user_name']}</a>，
+		{echo sprintf(lang('manage','manage_lock'),fToDate($manage_lock['time']))}
+	</span>
+	</li>
+	<!--{/if}-->
+</ul>

@@ -1,0 +1,31 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/clear')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<td>
+			<ul class="tipslis">
+				<li>{%SYSTEM_TIPS1}</li>
+				<li>{%SYSTEM_TIPS2}</li>
+				<li>{%SYSTEM_TIPS3}</li>
+				<li>{%SYSTEM_TIPS4}</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-left:30px;">
+			<label><input type="checkbox" name="is_admin" value="1" />&nbsp;<span>{%ADMIN_CACHE}</span></label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="is_data" value="1" />&nbsp;<span>{%DATA_CACHE}</span></label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="is_tpl" value="1" />&nbsp;<span>{%TPL_CACHE}</span></label>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-left:30px;">
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+			<input type="hidden" name="type" value="system" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

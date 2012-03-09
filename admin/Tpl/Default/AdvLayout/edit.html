@@ -1,0 +1,43 @@
+<tagLib name="fanwe" /><include file="Public:header" /><script type="text/javascript" src="__TMPL__Static/Js/adv.js"></script><div class="handle-btns">	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" /></div>
+<form method='post' id="form" name="form" action="{:u('AdvLayout/update')}" >
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+<tr>
+	<td class="first" width="120">{%TMPL}：</td>
+	<td class="tLeft" >
+		{$vo.tmpl}
+		<input type="hidden" name="tmpl" class="textinput" value="{$vo.tmpl}" />
+	</td>
+</tr>
+<tr>
+	<td class="first" width="120">{%LAYOUT_ID}：</td>
+	<td class="tLeft" >
+		{$vo.layout_id}
+		<input type="hidden" name="layout_id" class="textinput" value="{$vo.layout_id}" />
+	</td>
+</tr> 
+<tr>
+	<td class="first" width="120">{%REC_ID}：</td>
+	<td class="tLeft" >
+		<select name="rec_id" id="rec_id" >
+			<foreach name="adv" item="adv">			<option value="{$adv.id}" <if condition="$adv['id'] eq $vo['rec_id']">selected="selected"</if>>{$adv.name}</option>			</foreach>
+		</select>
+	</td>
+</tr> 
+<tr rel="AdvPosition">
+	<td class="first" >指定到：</td>
+	<td class="tLeft" >
+        <input type="text" name="target_id" class="textinput" value="{$vo.target_id}"/>
+	</td>
+</tr>
+<tr>
+	<td class="first" width="120">{%ITEM_LIMIT}：</td>
+	<td class="tLeft" >
+		<input type="text" class="textinput" name="item_limit" value="{$vo.item_limit}" />
+	</td>
+</tr> 
+<tr class="act">	<th>&nbsp;</th>
+	<td>
+	<input type="hidden" value="{$vo.id}" name="id" />
+	<input type="submit" class="submit_btn" value="{%SUBMIT}" />	<input type="reset" class="reset_btn" value="{%RESET}" /> </td>
+</tr></table>
+</form><include file="Public:footer" />

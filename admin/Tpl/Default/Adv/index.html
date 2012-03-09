@@ -1,0 +1,34 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="addData" name="addData" value="{%ADD}" click="addData(this,'checkList')" />
+	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList')" />
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />
+	<form action="__APP__">
+		<span>{%NAME}</span>
+		<input class="textinput" type="text" value="{$name}" name="name" size="20" />
+		<small></small>
+		<span>{%POSITION_ID}</span>
+		<select name="position_id">
+			<option value="0">{%POSITION_ALL}</option>
+			<foreach name="ap_list" item="ap_item">
+			<option value="{$ap_item.id}" <if condition="$position_id eq $ap_item['id']">selected="selected"</if>>{$ap_item.name}</option>
+			</foreach>
+		</select>
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="item" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50,name:{%NAME}|~left:textEdit|id,position_name:{%POSITION_ID},status|getStatusImg:{%STATUS}|50:toggleStatus|id,sort:{%SORT}|100:textEdit|id" 
+	actionlist="editData:{%EDIT}:id,removeData:{%REMOVE}:id" action_width="80" />
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

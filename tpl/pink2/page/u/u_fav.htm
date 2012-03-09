@@ -1,0 +1,22 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/tweetlist.css';
+	$css_list[0]['url'][] = './tpl/css/zone.css';
+	$js_list[0] = './tpl/js/zone.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="homews_hd"></div>
+	<div class="homews_bd clearfix">
+		<div id="content" class="fl" style="width:730px;">
+			<!--{template inc/u/u_menu}-->
+			<div class="content fr" style="width:595px;">
+				{$share_list_html}
+			</div>
+		</div>
+		<div id="sidebar" class="fr pl15" style="width:215px;">
+			<!--{subtemplate inc/u/u_fav}-->
+		</div>
+	</div>
+	<div class="homews_ft"></div>
+</div>
+<!--{template inc/footer}-->

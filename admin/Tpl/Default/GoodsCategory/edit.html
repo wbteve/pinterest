@@ -1,0 +1,95 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="180">{%CATE_NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="cate_name" value="{$vo.cate_name}"/></td>
+	</tr>
+	<tr>
+		<th>{%PARENT_ID}</th>
+		<td>
+			<fanwe:select id='parent_id' name='parent_id' first='{%ROOT_ID}' selected="vo['parent_id']" textfield='cate_name' valuefield='cate_id' options='cate_list' />
+		</td>
+	</tr>
+	<tr>
+		<th>{%CATE_CODE}</th>
+		<td><input type="text" class="textinput" name="cate_code" value="{$vo.cate_code}"/></td>
+	</tr>
+	<tr>
+		<th>{%SHORT_NAME}</th>
+		<td><input type="text" class="textinput" name="short_name" value="{$vo.short_name}"/></td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td>
+			<label><input type="checkbox" name="is_root" value="1" <if condition="$vo['is_root'] eq 1">checked="checked"</if>/><span>{%IS_ROOT}</span></label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="is_index" value="1" <if condition="$vo['is_index'] eq 1">checked="checked"</if>/><span>{%IS_INDEX}</span></label>
+		</td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td>
+			<p><span>{%IS_ROOT_TIPS}</span></p>
+		</td>
+	</tr>
+	<tr>
+		<th>{%CATE_ICON}</th>
+		<td>
+			<input type="file" class="fileinput" name="cate_icon" size="30" />
+			<if condition="$vo['cate_icon'] neq ''">
+				<a href="__ROOT__/{$vo.cate_icon}" target="_blank" >{%VIEW}</a>
+			</if>
+		</td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td><input type="text" class="textinput" size="5" name="sort" value="{$vo.sort}"/></td>
+	</tr>
+	<tr>
+		<th>{%DESC}</th>
+		<td>
+			<textarea name="desc" class="textinput areainput" rows="3">{$vo.desc}</textarea>
+		</td>
+	</tr>
+	<tr>
+		<th>{%SEO_KEYWORDS}</th>
+		<td>
+			<textarea name="seo_keywords" class="textinput areainput" rows="3">{$vo.seo_keywords}</textarea>
+		</td>
+	</tr>
+	<tr>
+		<th>{%SEO_DESC}</th>
+		<td>
+			<textarea name="seo_desc" class="textinput areainput" rows="3">{$vo.seo_desc}</textarea>
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="cate_id" value="{$vo.cate_id}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+function dblTag(obj)
+{
+	if(obj.getAttribute('rel') == 0)
+	{
+		obj.setAttribute('rel',1);
+		$(obj).prependTo($("#category_tag_list"));
+	}
+	else
+	{
+		obj.setAttribute('rel',0);
+		document.getElementById("tag_list").appendChild(obj);
+	}
+}
+</script>
+<include file="Public:footer" />

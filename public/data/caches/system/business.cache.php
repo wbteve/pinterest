@@ -1,0 +1,80 @@
+<?php
+$data['business'] = array (
+  'taobao' => 
+  array (
+    'id' => '3',
+    'class' => 'taobao',
+    'domain' => 'http://item.taobao.com,http://item.tmall.com',
+    'status' => '1',
+    'name' => '淘宝',
+    'url' => 'http://www.taobao.com',
+    'icon' => './public/upload/business/taobao.gif',
+    'logo' => '',
+    'content' => '淘宝应用用于获取淘宝商品、店铺信息，可到 http://open.taobao.com/ 点击 申请成为合作伙伴 ',
+    'sort' => '100',
+    'app_key' => '',
+    'app_secret' => '',
+    'tk_pid' => '',
+  ),
+  'paipai' => 
+  array (
+    'id' => '4',
+    'class' => 'paipai',
+    'domain' => 'http://auction1.paipai.com',
+    'status' => '1',
+    'name' => '拍拍',
+    'url' => 'http://www.paipai.com',
+    'icon' => './public/upload/business/paipai.gif',
+    'logo' => '',
+    'content' => '拍拍应用用于获取拍拍商品、店铺信息，可到 http://pop.paipai.com/ 点击 申请成为合作伙伴 ',
+    'sort' => '100',
+    'uin' => '',
+    'spid' => '',
+    'token' => '',
+    'seckey' => '',
+  ),
+  'dangdang' => 
+  array (
+    'id' => '5',
+    'class' => 'dangdang',
+    'domain' => 'http://product.dangdang.com',
+    'status' => '1',
+    'name' => '当当',
+    'url' => 'http://www.dangdang.com/',
+    'icon' => './public/upload/business/dangdang.png',
+    'logo' => '',
+    'content' => '使用正则式获取商品信息，如果因当当页面结构调整无法获取，请先禁用此商品采集模块，提交问题给我们进行处理，也可自行修改core\\class\\sharegoods\\dangdang_sharegoods.class.php文件中的正则规则',
+    'sort' => '100',
+    'from' => '',
+  ),
+  'vancl' => 
+  array (
+    'id' => '6',
+    'class' => 'vancl',
+    'domain' => 'http://item.vancl.com,http://item.vjia.com',
+    'status' => '1',
+    'name' => '凡客',
+    'url' => 'http://www.vancl.com/',
+    'icon' => './public/upload/business/vancl.png',
+    'logo' => '',
+    'content' => '使用正则式获取商品信息，如果因凡客页面结构调整无法获取，请先禁用此商品采集模块，提交问题给我们进行处理，也可自行修改core\\class\\sharegoods\\vancl_sharegoods.class.php文件中的正则规则',
+    'sort' => '100',
+    'Source' => '',
+  ),
+  'jdbuy' => 
+  array (
+    'id' => '7',
+    'class' => 'jdbuy',
+    'domain' => 'http://www.360buy.com',
+    'status' => '1',
+    'name' => '京东',
+    'url' => 'http://www.360buy.com/',
+    'icon' => './public/upload/business/360buy.png',
+    'logo' => '',
+    'content' => '使用正则式获取商品信息，如果因京东页面结构调整无法获取，请先禁用此商品采集模块，提交问题给我们进行处理，也可自行修改core\\class\\sharegoods\\jdbuy_sharegoods.class.php文件中的正则规则，现只支持 http://www.360buy.com/product/***.html格式的商品',
+    'sort' => '100',
+    'unionId' => '',
+  ),
+);
+
+?>

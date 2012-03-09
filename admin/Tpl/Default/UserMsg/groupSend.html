@@ -1,0 +1,115 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<link href="__TMPL__Static/Js/DatePicker/jquery.ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="__TMPL__Static/Js/jquery.ui.core.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/lang/jquery.ui.datepicker-{$default_lang}.js"></script>
+<div class="tabs-title">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/groupList')}" />
+	<div class="tt-item active" rel="1"><p><a href="javascript:;">{%MSG_COUNT}</a></p></div>
+	<div class="tt-item" rel="2"><p><a href="javascript:;">{%MSG_USER}</a></p></div>
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/saveSend')}">
+<div class="tabs-body">
+	<table cellpadding="4" cellspacing="0" border="0" class="table-form tabs-item tabs-active" rel="1">
+		<tr>
+			<th width="150">{%TITLE}</th>
+			<td>
+				<input type="text" class="textinput requireinput" name="title" id="title" size="60" />
+			</td>
+		</tr>
+		<tr>
+			<th>{%END_TIME}</th>
+			<td>
+				<input type="text" class="textinput" name="end_time" id="end_time" value="" />
+			</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td>
+				{%END_TIME_TIP}
+			</td>
+		</tr>
+		
+		<tr>
+			<th>{%CONTENT}</th>
+			<td>
+				<fanwe:editor id="message" name="message" type="CKEDITOR" width="96%" height="130px" />
+			</td>
+		</tr>
+	</table>
+	<table cellpadding="4" cellspacing="0" border="0" class="table-form tabs-item" rel="2">
+		<tr>
+			<th width="150">&nbsp;</th>
+			<td style="line-height:1.5em;">
+				{%USER_TIPS}
+			</td>
+		</tr>
+		<tr>
+			<th>{%USER_GROUP}</th>
+			<td>
+				<select id="user_group_select" multiple="multiple" size="6" style="width:258px;">
+					<foreach name="group_list" key="gid" item="gname">
+					<option value="{$gid}">{$gname}</option>
+					</foreach>
+				</select>
+				<input type="hidden" name="user_group" id="user_group" />
+			</td>
+		</tr>
+		<tr>
+			<th>{%USER_YES}</th>
+			<td><textarea name="user_yes" class="areainput" rows="5" id="user_yes"></textarea></td>
+		</tr>
+		<tr>
+			<th>{%USER_NO}</th>
+			<td><textarea name="user_no" class="areainput" rows="5"></textarea></td>
+		</tr>
+	</table>
+</div>
+<table cellpadding="4" cellspacing="0" border="0" class="table-form" style="border-top:none;">
+	<tr class="act">
+		<th width="200">&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+var TITLE_REQUIRE = "{:getLang('TITLE_REQUIRE','UserMsg')}";
+var CONTENT_REQUIRE = "{:getLang('CONTENT_REQUIRE','UserMsg')}";
+var USER_REQUIRE = "{:getLang('USER_REQUIRE','UserMsg')}";
+jQuery(function($){
+	$("#end_time").datepicker();
+	
+	$("#form").submit(function(){
+		if(this.title.value == '')
+		{
+			alert(TITLE_REQUIRE);
+			return false;	
+		}
+		
+		var oEditor = CKEDITOR.instances.message_editor;
+		if(oEditor.getData() == '')
+		{
+			alert(CONTENT_REQUIRE);
+			return false;	
+		}
+		
+		var user_group = new Array();
+		$("#user_group_select option:selected").each(function(){
+			user_group.push(this.value);
+		});
+		
+		if(this.user_yes.value == '' && user_group.length == 0)
+		{
+			alert(USER_REQUIRE);
+			return false;	
+		}
+		
+		this.user_group.value = user_group.join(',');
+	});
+});
+</script>
+<include file="Public:footer" />

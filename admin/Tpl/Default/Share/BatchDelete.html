@@ -1,0 +1,135 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<load href="__TMPL__Static/Js/share.js" />
+<link href="__TMPL__Static/Js/DatePicker/jquery.ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="__TMPL__Static/Js/jquery.ui.core.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/lang/jquery.ui.datepicker-{$default_lang}.js"></script>
+<script type="text/javascript">
+var CONFIRM_ERROR = "{%CONFIRM_ERROR}";
+var CONFIRM_DELETE = "{%CONFIRM_DELETE}";
+</script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:Cookie::get('returnUrl')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/doBatchDelte')}" onsubmit="return BatchDeleteSubmit()">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%KEYWORD}</td>
+		<td>
+			<input type="text" class="textinput" name="keywords" id="keywords" value="" />
+		</td>
+	<tr>
+	<tr>
+		<th width="150">{%USER_NAME}</td>
+		<td>
+			<input type="text" class="textinput" name="user_name" id="user_name" value="" />
+		</td>
+	<tr>
+		<tr>
+		<th width="150">{%EMAIL}</td>
+		<td>
+			<input type="text" class="textinput" name="email" id="email" value="" />
+		</td>
+	<tr>
+	<tr>
+		<th>IP地址</td>
+		<td>
+			<input type="text" class="textinput" name="ip" id="ip" value="" />
+		</td>
+	<tr>
+	<tr>
+		<th>{%CREATE_TIME}</td>
+		<td>
+			<input type="text" class="textinput" name="start_time" id="start_time" value="" />
+			{%TO}
+			<input type="text" class="textinput" name="end_time" id="end_time" value="" />
+		</td>
+	<tr>
+	<tr>
+		<th>{%SHARE_TYPE}</td>
+		<td>
+		<select name="type">
+			<option value="all">{:l("SHARE_ALL")}</option>
+			<option value="default">{:l("SHARE_DEFAULT")}</option>
+			<option value="ask">{:l("SHARE_ASK")}</option>
+			<!--<option value="ershou">{:l("SHARE_ERSHOU")}</option>-->
+			<option value="fav">{:l("SHARE_FAV")}</option>
+			<!--<option value="comments">{:l("SHARE_COMMENTS")}</option>-->
+			<option value="ask_post">{:l("SHARE_ASK_POST")}</option>
+			<option value="bar">{:l("SHARE_BAR")}</option>
+			<option value="bar_post">{:l("SHARE_BAR_POST")}</option>
+			<option value="album">{:l("SHARE_ALBUM")}</option>
+			<option value="album_item">{:l("SHARE_ALBUM_ITEM")}</option>
+			<option value="album_best">{:l("SHARE_ALBUM_BEST")}</option>
+		</select>
+		</td>
+	<tr>
+	<tr>
+		<th>{%SHARE_DATA}</td>
+		<td>
+		<select name="share_data">
+			<option value="all">{:l("SHARE_ALL")}</option>
+			<option value="default" >{:l("SHARE_DATA_DEFAULT")}</option>
+			<option value="img">{:l("SHARE_DATA_IMG")}</option>
+			<option value="goods">{:l("SHARE_DATA_GOODS")}</option>
+			<option value="photo">{:l("SHARE_DATA_PHOTO")}</option>
+			<option value="goods_photo">{:l("SHARE_DATA_GOODS_PHOTO")}</option>
+			
+		</select>
+		</td>
+	<tr>
+	<tr>
+		<th>{%STATUS}</td>
+		<td>
+			<select name="status">
+				<option value="">不限</option>
+				<option value="0">否</option>
+				<option value="1">是</option>
+			</select>
+		</td>
+	<tr>
+	<tr>
+		<th>{%SHARE_CATEGORY}</th>
+		<td>
+			<table class="fl">
+				<tr>
+					<td>
+						<select multiple="multiple" class="selectmul" name="cate" style="width:260px; height:200px;">
+							<foreach name="category" item="cate">
+								<option value="{$cate.cate_id}">{$cate.cate_name}</option>
+							</foreach>
+						</select>
+					</td>
+					<td width=30>
+						<input type="button" value=">>" name="add" class="formbutton" />
+						<div class="blank9"></div>
+						<input type="button" value="<<" name="remove" class="formbutton" />
+					</td>
+					<td>
+						<select multiple="multiple" class="selectmul" name="share_cate" style="width:260px; height:200px;">
+							
+						</select>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="share_id" value="{$share_id}" />
+			<input type="hidden" value="" name="share_cates">
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+jQuery(function($){
+	$("#start_time").datepicker();
+	$("#end_time").datepicker();
+});
+</script>
+<include file="Public:footer" />

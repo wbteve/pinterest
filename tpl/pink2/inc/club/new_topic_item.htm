@@ -1,0 +1,35 @@
+<!--{loop $best_list $best_item}-->
+<li class="f_ili">
+	<!--{loop $best_item $topic_list}-->
+	<!--{eval $topic_first = true;}-->
+	<!--{eval $topic_index = 0;}-->
+	<!--{loop $topic_list $topic}-->
+	<!--{if $topic_index == 0}-->
+	<div class="f_i_d">
+		<div class="f_i_t">
+			<p><a href="{$topic['url']}" class="s_t" target="_blank">{cutstr $topic['title'] 44}</a></p>
+			<p><span class="s_t2">{cutstr $topic['content'] 56}</span></p>
+		</div>
+		<div class="f_i_img">
+			<a href="{$topic['url']}" target="_blank"><img src="{getimg $topic['imgs'][0]['img'] 90 70 1}"/></a>
+		</div>
+	</div>
+	<ul class="f_i_ll">
+	<!--{else}-->
+		<li>
+			<span></span>
+			<a href="{$topic['url']}" target="_blank">{cutstr $topic['title'] 40}</a>
+		</li>
+	<!--{/if}-->
+	<!--{eval $topic_index++;}-->
+	<!--{/loop}-->
+	<!--{if count($topic_list) > 0}-->
+	</ul>
+	<!--{/if}-->
+	<!--{if $topic_first}-->
+	<div style="height:40px;"></div>
+	<!--{eval $topic_first = false;}-->
+	<!--{/if}-->
+	<!--{/loop}-->
+</li>
+<!--{/loop}-->

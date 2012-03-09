@@ -1,0 +1,31 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/save')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">&nbsp;</th>
+		<td><p>{%IMPORT_TIPS}</p></td>
+	</tr>
+	<tr>
+		<th>{%WORD_FILE}</th>
+		<td><input type="file" class="fileinput" name="word_file" size="30" /></td>
+	</tr>
+	<tr>
+		<th>{%CID}</th>
+		<td>
+			<fanwe:select options="type_list" name="cid" id="cid" first="{%CID_DEFAULT}" firstvalue="0" textfield="name" valuefield="id" />
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

@@ -1,0 +1,79 @@
+<? if(!defined('IN_FANWE')) exit('Access Denied'); ?>
+<?php 
+$css_list[0]['url'] = './tpl/css/setting.css';
+$js_list[0] = './public/js/city.js';
+ include template('inc/header'); ?><div id="body" class="fm960">
+<div class="piece1">
+<div class="piece1_hd"></div>
+<div class="piece1_bd clearfix">
+<div id="content" style="width:960px;"><? include template('inc/settings/settings_menu'); ?><div id="setting_box" class="fl">
+<div id="setting_form" class="setting_basic">
+<form action="<?php echo FU('settings/savepersonal',array()); ?>" method="post" name="personal">
+<? if(!empty($msg)) { ?>
+<div class="green_alert_l"><?=$msg?></div>
+<? } ?>
+<dl>
+<dd>昵称：</dd>
+<? if($_FANWE['user']['edit_name_count'] == 0) { ?>
+<dt class="unick">
+<input type="text" name="user_name" value="<?=$_FANWE['user']['user_name']?>" />
+<div class="iner"><span>*</span>昵称只能修改一次哦^_^</div>
+</dt>
+<? } else { ?>
+<dt style="padding-top:5px;"><?=$_FANWE['user']['user_name']?></dt>
+<? } ?>
+<dd>邮箱：</dd>
+<? if(empty($_FANWE['user']['email'])) { ?>
+<dt class="email">
+<input name="email" type="text" value="<?=$_FANWE['user']['email']?>" style="height: 24px;width: 200px;" />
+</dt>
+<? } else { ?>
+<dt style="padding-top:5px;"><?=$_FANWE['user']['email']?></dt>
+<? } ?>
+<dd>个人博客：</dd>
+<dt class="weibo">
+<input name="weibo" type="text" value="<?=$_FANWE['user']['weibo']?>" />
+</dt>
+<dd>性别：</dd>
+<dt class="sex">
+<input<? if($_FANWE['user']['gender'] == 0) { ?> checked<? } ?> name="gender" type="radio" value="0" >
+女
+<input<? if($_FANWE['user']['gender'] == 1) { ?> checked<? } ?> name="gender" value="1" type="radio" >
+男
+</dt>
+<dd>所在地：</dd>
+<dt class="location">
+<select id="province" name="province">
+</select>
+&nbsp;&nbsp;
+<select id="city" name="city">
+</select>
+</dt>
+<dd>自我介绍：</dd>
+<dt>
+<textarea id="introduce" name="introduce" id="" rows="10" ><? if(empty($_FANWE['user']['introduce'])) { ?>随便写点什么，让大家了解你吧。<? } else { ?><?=$_FANWE['user']['introduce']?><? } ?></textarea>
+</dt>
+<dd>&nbsp;&nbsp;</dd>
+<dt>
+<input type="hidden" name="action" value="savepersonal" />
+<input class="green_button" type="submit" value="确定">
+</dt>
+</dl>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="piece1_ft"></div>
+</div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+<? if(empty($_FANWE['user']['introduce'])) { ?>
+$("#introduce").one('focus',function(){
+this.value = '';
+});
+<? } ?>
+$.Bind_City("#province","#city","<?=$_FANWE['user']['reside_province']?>","<?=$_FANWE['user']['reside_city']?>");
+});
+</script><? include template('inc/footer'); ?>

@@ -1,0 +1,74 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<link href="__TMPL__Static/Js/DatePicker/jquery.ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="__TMPL__Static/Js/user.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/jquery.ui.core.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/lang/jquery.ui.datepicker-{$default_lang}.js"></script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="200">{%UID}</th>
+		<td>
+			<select name="uid" id="userSelect">
+				<option value="{$vo.uid}">{$user_name}</option>
+			</select>&nbsp;
+			<input type="text" class="textinput" size="8" id="userName" />&nbsp;
+			<input class="submit_btn" type="button" value="{%SEARCH}" onclick="searchUser('#userSelect','#userName');" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%IMG}</th>
+		<td>
+			<input type="file" class="fileinput" name="img_file" size="30" />
+			<if condition="$vo['img'] neq ''">
+				<a href="__ROOT__/{$vo.img}" target="_blank" >{%VIEW}</a>
+			</if>
+		</td>
+	</tr>
+	<tr>
+		<th>{%INDEX_IMG}</th>
+		<td>
+			<input type="file" class="fileinput" name="index_img_file" size="30" />
+			<if condition="$vo['index_img'] neq ''">
+				<a href="__ROOT__/{$vo.index_img}" target="_blank" >{%VIEW}</a>
+			</if>
+		</td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td>
+			<label><input type="checkbox" name="is_best" value="1" <if condition="$vo['is_best'] eq 1">checked="checked"</if>/><span>&nbsp;{%IS_BEST}</span></label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="is_index" value="1" <if condition="$vo['is_index'] eq 1">checked="checked"</if>/><span>&nbsp;{%IS_INDEX}</span></label>
+		</td>
+	</tr>
+	<tr>
+		<th>{%DAY_TIME}</th>
+		<td><input type="text" class="textinput" name="day_time" id="day_time" value="{:toDate($vo['day_time'],'Y-m-d')}" /></td>
+	</tr>
+	<tr>
+		<th>{%REASON}</th>
+		<td>
+			<textarea name="reason" class="areainput" rows="5">{$vo.reason}</textarea>
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+var EMPTY_USER = "{:getLang('EMPTY_USER','User')}";
+jQuery(function($){
+	$("#day_time").datepicker();
+});
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,74 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<link href="__TMPL__Static/Js/DatePicker/jquery.ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="__TMPL__Static/Js/user.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/jquery.ui.core.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/lang/jquery.ui.datepicker-{$default_lang}.js"></script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:Cookie::get('returnUrl')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%NAME}</th>
+		<td><input type="text" class="textinput" name="name" value="{$vo.name}" style="width:400px;" /></td>
+	</tr>
+	<tr>
+		<th>{%SID}</th>
+		<td>
+			<select name="sid">
+				<foreach name="second_list" item="second_item">
+				<option value="{$second_item.sid}" <if condition="$vo['sid'] eq $second_item['sid']">selected="selected"</if>>{$second_item.name}</option>
+				</foreach>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>{%CITY_ID}</th>
+		<td>
+			<select name="city_id">
+				<foreach name="city_list" item="city_item">
+				<option value="{$city_item.id}" <if condition="$vo['city_id'] eq $city_item['id']">selected="selected"</if>>{$city_item.name}</option>
+				</foreach>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>{%NUM}</th>
+		<td><input type="text" class="textinput" name="num" value="{$vo.num}" size="10" /></td>
+	</tr>
+	<tr>
+		<th>{%price}</th>
+		<td><input type="text" class="textinput" name="price" value="{$vo.price}" size="10" /></td>
+	</tr>
+	<tr>
+		<th>{%transport_fee}</th>
+		<td><input type="text" class="textinput" name="transport_fee" value="{$vo.transport_fee}" size="10" /></td>
+	</tr>
+	<tr>
+		<th>{%valid_time}</th>
+		<td><input type="text" class="textinput" name="valid_time" id="valid_time" value="{:toDate($vo['valid_time'],'Y-m-d')}" /></td>
+	</tr>
+	<tr>
+		<th>{%CONTENT}</th>
+		<td>
+			<textarea class="areainput" name="content" rows="5">{$vo.content}</textarea>
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="gid" value="{$vo.gid}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+jQuery(function($){
+	$("#valid_time").datepicker();
+});
+</script>
+<include file="Public:footer" />

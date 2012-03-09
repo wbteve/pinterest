@@ -1,0 +1,47 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<load href="__TMPL__Static/Js/role.js" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="230" style="border-right:solid 1px #CCC;">{%NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="name" /></td>
+	</tr>
+	<tr>
+		<th style="border-right:solid 1px #CCC;">{%ACCESS}</th>
+		<td><p>{%ACCESS_TIPS}</p></td>
+	</tr>
+	<tr>
+		<td class="first tc" style="border-right:solid 1px #CCC;"><p>{%MODULE_NAME}</p></td>
+		<td class="tc"><p>{%ACTION_NAME}</p></td>
+	</tr>
+	<foreach name="access_list" item="module" >
+	<tr class="access-item">
+		<td class="first tr" style="border-right:solid 1px #CCC;">
+			<p><label><input class="module-item" type="checkbox" name="access_node[]" value="{$module.id}" /><span>&nbsp;{$module.module_name}&nbsp;</span></label></p>
+		</td>
+		<td>
+			<p>
+				<if condition="isset($module['actions'])">
+				<label><input class="select-all" type="checkbox" />&nbsp;<span>{%SELECT_ALL}</span></label>&nbsp;
+				</if>
+				<foreach name="module.actions" item="action" >
+				<label><input class="action-item" type="checkbox" name="access_node[]" value="{$action.id}" /><span>&nbsp;{$action.action_name}</span></label>&nbsp;&nbsp;
+				</foreach>&nbsp;
+			</p>
+		</td>
+	</tr>
+	</foreach>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

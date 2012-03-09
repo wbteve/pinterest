@@ -1,0 +1,75 @@
+<div class="manage_menu">
+	<!--{if $manage_lock === false}-->
+	<div>
+		<strong>杂志社操作</strong>
+		<!--{loop $_FANWE['authoritys']['album'] $action $action_val}-->
+		<?php
+			$action_lang = lang('template','manage_'.$action);
+		?>
+		<!--{if $action == 'edit'}-->
+		<span class="mm_jg">&nbsp;|&nbsp;</span>
+		<a class="mm_action manage_{$action}" target="_blank" href="{$_FANWE[site_root]}manage/manage.php?m=album&a={$action}&id={$rec_object['id']}">{$action_lang}</a>
+		<!--{elseif $action == 'delete'}-->
+		<span class="mm_jg">&nbsp;|&nbsp;</span>
+		<a class="mm_action" href="javascript:;" onClick="if(confirm('{lang manage_delete_confirm}')){$.ManageHandler('album','{$action}',{$rec_object['id']},this);}">{$action_lang}</a>
+		<!--{elseif $action != 'share_best'}-->
+		<?php
+			switch($action)
+			{
+				case 'index';
+					$action_lang = lang('template','manage_'.$action.'_'.$rec_object['is_index']);
+				break;
+
+				case 'best';
+					$action_lang = lang('template','manage_'.$action.'_'.$rec_object['is_best']);
+				break;
+
+				case 'flash';
+					$action_lang = lang('template','manage_'.$action.'_'.$rec_object['is_flash']);
+				break;
+			}
+		?>
+		<span class="mm_jg">&nbsp;|&nbsp;</span>
+		<a class="mm_action" href="javascript:;" onClick="$.ManageHandler('album','{$action}',{$rec_object['id']},this)">{$action_lang}</a>
+		<!--{/if}-->
+		<!--{/loop}-->
+	</div>
+	<!--{if $manage_object['share_id'] != $rec_object['share_id']}-->
+	<div>
+		<strong>　分享操作</strong>
+		<!--{loop $_FANWE['authoritys']['share'] $action $action_val}-->
+		<?php
+			$action_lang = lang('template','manage_'.$action);
+		?>
+		<!--{if $action == 'edit'}-->
+		<span class="mm_jg">&nbsp;|&nbsp;</span>
+		<a class="mm_action manage_{$action}" target="_blank" href="{$_FANWE[site_root]}manage/manage.php?m=share&a={$action}&id={$id}">{$action_lang}</a>
+		<!--{elseif $action == 'delete'}-->
+		<span class="mm_jg">&nbsp;|&nbsp;</span>
+		<a class="mm_action" href="javascript:;" onClick="if(confirm('{lang manage_delete_confirm}')){$.ManageHandler('share','{$action}',{$id},this);}">{$action_lang}</a>
+		<!--{elseif $action != 'share_best'}-->
+		<?php
+			switch($action)
+			{
+				case 'index';
+					$action_lang = lang('template','manage_'.$action.'_'.$manage_object['is_index']);
+				break;
+
+				case 'status';
+					$action_lang = lang('template','manage_'.$action.'_'.$manage_object['status']);
+				break;
+			}
+		?>
+		<span class="mm_jg">&nbsp;|&nbsp;</span>
+		<a class="mm_action" href="javascript:;" onClick="$.ManageHandler('share','{$action}',{$id},this)">{$action_lang}</a>
+		<!--{/if}-->
+		<!--{/loop}-->
+	</div>
+	<!--{/if}-->
+	<!--{else}-->
+	<span class="manage_lock">
+		<a href="{u u/index uid=$manage_lock['uid']}" target="_blank">{$manage_lock['user_name']}</a>，
+		{echo sprintf(lang('manage','manage_lock'),fToDate($manage_lock['time']))}
+	</span>
+	<!--{/if}-->
+</div>

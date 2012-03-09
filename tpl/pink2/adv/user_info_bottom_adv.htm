@@ -1,0 +1,25 @@
+<div class="pink_hot_topic">
+	<ul>
+		{eval $idx=1;}
+		<!--{loop $adv_list $adv}-->
+		{if $idx<=2}
+		<li>
+			<img src="{getimg $adv['small'] 32 22 1}" class="fl" />
+			<a href="{$adv[turl]}" target="_blank" title="{$adv['name']}" class="tit fl">{cutstr $adv['name'] 30}</a>
+			<a href="{$adv[turl]}" target="_blank" class="tuser">{$adv['desc']}</a>
+		</li>
+        {elseif $idx>=3}
+        <li>
+        <a href="{$adv[turl]}" target="_blank" title="{$adv['name']}">{cutstr $adv['name'] 18}</a>
+		</li>
+		{/if}
+		{eval $idx++;}
+        {if $idx==3}
+    </ul>
+ </div>
+ <div class="pink_hot_event clearfix">
+    <ul>
+        {/if}
+		<!--{/loop}-->
+	</ul>
+</div>

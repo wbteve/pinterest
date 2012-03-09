@@ -1,0 +1,11 @@
+<tagLib name="fanwe" /><include file="Public:header" /><script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script><div class="handle-btns">	<fanwe:imageBtn id="addData" name="addData" value="{%ADD}" click="addData(this,'checkList')" />	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList')" />	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />	</div><fanwe:list 
+	id="checkList" 
+	name="layout" 
+	style="list" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	child="true" 
+	show="id:{$Think.lang.ID}|80,layout_id:{%LAYOUT_ID},tmpl:{%TMPL}" 
+	actionlist="editData:{%EDIT}:id,removeData:{%REMOVE}:id" action_width="80" /> <div class="pager">{$page}</div><include file="Public:footer" />
+

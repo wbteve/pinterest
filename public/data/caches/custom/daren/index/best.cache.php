@@ -1,0 +1,5 @@
+<?php
+$data['best'] = array (
+);
+
+?>

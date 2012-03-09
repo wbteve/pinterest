@@ -1,0 +1,17 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList')" />
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="item" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50,code:{%CODE}|100,name:{%NAME}|160:textEdit|id,short_name:{%SHORT_NAME}|80:textEdit|id,sort:{%SORT}|100:textEdit|id,status|getStatusImg:{%STATUS}|50:toggleStatus|id,desc:{%DESC}|~left" 
+	actionlist="editData:{%EDIT}:id" action_width="60" />
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

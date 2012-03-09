@@ -1,0 +1,28 @@
+body{background:#fff; font-size:14px;}
+
+input.formbutton{border-top:#9397ae 1px solid;border-left: #9397ae 1px solid;width: auto; background: #6a7080; letter-spacing: 0.1em; color: #fff; overflow: visible;  cursor: pointer; border-bottom:#2a2f51 1px solid;border-right:#2a2f51 1px solid;_width:0;padding:4px 1.5em 2px 1.5em; * padding: 4px 1.5em 0 1.5em; font-size:12px; font-weight:bold; font-family:'宋体';}
+
+.manage_edit{padding:10px; }
+.manage_title{border:solid 1px #9CB8CC; line-height:18px; padding:8px 8px 6px 8px;}
+.manage_fileinput{border:1px solid #9CB8CC;padding:2px;}
+.manage_unlock{border:solid 1px #9CB8CC; background:#FFC; margin:8px 0; padding:8px 8px 6px 8px; line-height:18px;}
+.manage_unlock a{color:#F00;}
+.manage_unlock a:hover{color:#00F;}
+
+.manage_tooltip{text-align:center;}
+.manage_tooltip p{width:500px; border:solid 1px #9CB8CC; line-height:18px; padding:30px; text-align:center; background:#FFC; margin:80px auto 0 auto;}
+
+/*表单*/
+.table-form{width:100%;table-layout:fixed; border-spacing:1px; border-collapse:separate; background:#9CB8CC;}
+.table-form th,
+.table-form td{background:#fff;}
+.table-form th{vertical-align:middle;padding:12px 10px;padding-left:0; font-weight:normal; color:#333; text-align:right;}
+.table-form td{padding:12px 8px; text-align:left;}
+.table-form td .textinput{padding:4px 2px;}
+.table-form td p{line-height:1.5em; font-family:Tahoma;}
+.table-form td.tc{text-align:center;}
+.table-form td.tr{text-align:right;}
+.table-form td a{color:#00F; text-decoration:underline;}
+.table-form td a:hover{color:#f00;}
+.table-form td .textinput{border:solid 1px #333;}
+.table-form td textarea{width:90%; height:100px; border:solid 1px #333; padding:8px;}

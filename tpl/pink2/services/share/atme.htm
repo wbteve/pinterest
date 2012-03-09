@@ -1,0 +1,22 @@
+<form method="post" id="lb_forward">
+	<div class="lb_bd">
+		<div class="fw_pub_area">
+			<div class="fwpa_tool">
+				<a href="javascript:;" onclick="$.Show_Expression(this,80)" class="fl"><img src="./tpl/images/add_face_c.png" w="fw" style="margin-top:5px" class="fl add_face"></a>
+				<span class="fw_count">{sprintf char_check1 140}</span>
+			</div>
+			<textarea class="fw_content PUB_TXT" id="atme_content" name="content" style="width: 394px; height: 81px;" length="140" position="0"></textarea>
+			<div class="fw_submit_box">
+				<div class="sub_div">
+					<a class="fw_submit" href="javascript:;" onclick="$.AtMe_Share_Save(this)"><img src="./tpl/images/confirm_btn.png"></a>
+					<a href="javascript:;" class="fw_cancel" onclick="$.weeboxs.close();">{lang clear}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+jQuery(function($){
+	$.Pub_Count_Bind($("#atme_content").get(0));
+});
+</script>

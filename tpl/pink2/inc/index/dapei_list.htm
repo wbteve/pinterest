@@ -1,0 +1,19 @@
+<!--{if $dapei_list}-->
+<div class="piece1 mb20">
+	<div class="piece1_hd"></div>
+	<div class="piece1_bd plr10">
+		<h1 class="piece_title"><em>搭配秀</em>身边的时尚，每日精彩LOOK!</h1>
+		<ul class="looks">
+			<!--{loop $dapei_list $share}-->
+			<li class="looks_feed s ">
+				<a class="pic" target="_blank" href="{$share['url']}">
+					<img original="{getimg $share['img'] 150 170 1}" src="./tpl/images/lazyload.gif" class="lazyload">
+				</a>
+				<div class="looks_name"><!--{getuser $share['uid'] 0 '' 'icard gc'}--></div>
+			</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="piece1_ft"></div>
+</div>
+<!--{/if}-->

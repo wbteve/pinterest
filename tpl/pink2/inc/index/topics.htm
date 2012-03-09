@@ -1,0 +1,74 @@
+<div class="club-title">
+	<b>{lang club}Club</b>
+</div>
+<div class="piece1_bd">
+	<div class="bar_list">
+		<ul>
+			<!--{eval $forum_index = 0;}-->
+			<!--{loop $_FANWE['cache']['forums']['root'] $fid}-->
+			<!--{eval $forum = $_FANWE['cache']['forums']['all'][$fid];}-->
+			<li>
+				<a href="{u club/forum fid=$fid}" target="_blank">
+					<img class="fl" src="{$forum['logo']}">
+				</a>
+				<a target="_blank" href="{u club/forum fid=$fid}">{$forum['name']}</a>
+				<br>Total:{$forum['thread_count']}
+			</li>
+			<!--{if $forum_index > 10}-->
+			<!--{eval break;}-->
+			<!--{/if}-->
+			<!--{eval $forum_index++;}-->
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="bar_jg"></div>
+	<div class="fl bar_box_l">
+		<div class="piece_title_s">{lang new_ask}</div>
+		<ul class="topic_list_new">
+			<!--{loop $ask_list $ask}-->
+			<li class="tl_f">
+				<div class="tl_c">
+					<a target="_blank" href="{$ask['url']}"><img height="32" original="{getimg $ask['imgs'][0]['img'] 100 100}" src="./tpl/images/lazyload.gif" class="pic lazyload"></a>
+					<p class="ct">
+						<a target="_blank" href="{$ask['url']}" class="tit">{cutstr $ask['title'] 42}</a><br>
+						<!--{getuser $ask['uid'] 0 '' 'n gc'}-->
+						<!--{if !empty($ask['lastposter'])}-->
+						<span class="p_time">
+							{lang last_post2} : <!--{getuser $ask['lastposter'] 0 '' 'n'}-->
+							{$ask['last_time']}
+						</span>
+						<!--{/if}-->
+					</p>
+				</div>
+				<div class="count">{$ask['post_count']}</div>
+				<a target="_blank" class="all" href="{$ask['url']}">{lang view_full_text}</a>
+			</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="fr bar_box_r">
+		<div class="piece_title_s">{lang new_topic}</div>
+		<ul class="topic_list_new">
+			<!--{loop $new_list $topic}-->
+			<li class="tl_f">
+				<div class="tl_c">
+					<a target="_blank" href="{$topic['url']}"><img height="32" original="{getimg $topic['imgs'][0]['img'] 100 100}" src="./tpl/images/lazyload.gif" class="pic lazyload"></a>
+					<p class="ct">
+						<a target="_blank" href="{$topic['url']}" class="tit">{cutstr $topic['title'] 42}</a><br>
+						<!--{getuser $topic['uid'] 0 '' 'n gc'}-->
+						<!--{if !empty($topic['lastposter'])}-->
+						<span class="p_time">
+							{lang last_post} : <!--{getuser $topic['lastposter'] 0 '' 'n'}-->
+							{$topic['last_time']}
+						</span>
+						<!--{/if}-->
+					</p>
+				</div>
+				<div class="count">{$topic['post_count']}</div>
+				<a target="_blank" class="all" href="{$topic['url']}">{lang view_full_text}</a>
+			</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="blank9"></div>
+</div>

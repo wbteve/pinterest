@@ -1,0 +1,118 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/topic.css';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd clearfix">
+			<div id="content" style="width:960px;">
+				<form id="topic_form" action="{u club/donewtopic}" method="post">
+					<div id="topic_create">
+						<div id="topic_nav">
+							<a href="{u club/index}">{lang club_ba}</a>&nbsp;&gt;&nbsp;
+							<a href="{u club/forum fid=$root_forum['fid']}">{$root_forum['name']}</a>&nbsp;&gt;&nbsp;
+							{lang club_create}
+						</div>
+						<div id="topic_edit_box">
+							<div id="topic_con" class="fl">
+								<dl>
+									<dt>{lang topic_title}</dt>
+									<dd>
+										<input type="text" name="title"  class="text" value="" />
+									</dd>
+									<!--{if isset($root_forum['childs'])}-->
+									<dt>{lang topic_fid}</dt>
+									<dd>
+										<!--{loop $root_forum['childs'] $childid}-->
+										<!--{eval $child_forum = $_FANWE['cache']['forums']['all'][$childid];}-->
+										<input type="radio" style="vertical-align:middle;" name="fid" id="cate_{$childid}" value="{$childid}"{if $childid == $current_fid} checked="checked"{/if}/><label for="cate_{$childid}">{$child_forum['name']}</label>
+										<!--{/loop}-->
+									</dd>
+									<!--{else}-->
+									<input type="hidden" name="fid" value="{$current_fid}" />
+									<!--{/if}-->
+									<dt class="PUB_SHARE_TAG_BOX" style="display:none;">{lang tag}</dt>
+									<dd class="PUB_SHARE_TAG_BOX" style="display:none;">
+										<input type="text" name="tags"  class="text PUB_SHARE_TAG" value="" title="{sprintf share_tag_tip $_FANWE['setting']['share_tag_count']}"/>
+									</dd>
+									<dt>{lang topic_content}</dt>
+									<dd>
+										<textarea cols="30" rows="10" name="content" class="PUB_TXT" position="0"></textarea>
+									</dd>
+								</dl>
+								<div id="postOption" class="fl">
+									<span class="fl">{lang add}：</span>
+									<a href="javascript:;" class="add_face fl" w="newtpk" onclick="$.Show_Expression(this)">{lang face}</a>
+									<a href="javascript:;" class="add_goods fl" onclick="$.Goods_Add(this)" w="newtpk">{lang goods}</a>
+									<a href="javascript:;" class="add_pic fl" onclick="$.Pic_Add(this)" w="newtpk">{lang photo}</a>
+								</div>
+								<div class="pub_out fr">
+									<input type="checkbox" checked="checked" name="pub_out_check" value="1">
+									<label for="pub_out_check">同步</label>
+									 （<a href="{u settings/bind}" target="_blank">{lang settings}</a>）
+			                    </div>
+								<div class="clear"></div>
+								<div class="pub_box clr" style="margin-left: 45px; width: 505px;">
+									<ul class="pub_img PUB_IMG"></ul>
+								</div>
+								<div class="clear"></div>
+								<div id="topic_new_toolbar">
+									<input type="submit" class="green_button" value="{lang create}"/>
+									<a href="{u club/forum fid=$forum_id}">{lang clear}</a>
+									<input name="rhash" value="<!--{dynamic getRHash}-->" type="hidden"/>
+									<input name="action" value="donewtopic" type="hidden"/>
+								</div>
+							</div>
+							<div id="topic_setting" class="fl">
+								
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+	$('.PUB_IMG li').live('mousedown',function(){
+		$('.PUB_IMG').dragsort();
+	});
+	
+	$("#topic_form").submit(function(){
+		var title = $.trim(this.title.value);
+		<!--{if isset($root_forum['childs'])}-->
+		var fid = $("input[name='fid']:checked").val();
+		<!--{else}-->
+		var fid = this.fid.value;
+		<!--{/if}-->
+		fid = parseInt(fid);
+		var content = $.trim(this.content.value);
+		
+		if(title == '')
+		{
+			alert(LANG.title_require);
+			this.title.focus();
+			return false;
+		}
+		
+		if(fid == 0 || isNaN(fid))
+		{
+			alert(LANG.cid_require);
+			return false;
+		}
+		
+		if(content == '')
+		{
+			alert(LANG.content_require);
+			this.content.focus();
+			return false;
+		}
+		
+		$.Pub_Img_Sort(this);
+	});
+});
+</script>
+<!--{template inc/footer}-->

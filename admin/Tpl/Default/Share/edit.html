@@ -1,0 +1,160 @@
+<tagLib name="fanwe" />
+<php>
+	function getTypeName($type)
+	{
+		return l("SHARE_".strtoupper($type));
+	}
+	function getShareData($data)
+	{
+		return l("SHARE_DATA_".strtoupper($data));
+	}
+</php>
+<include file="Public:header" />
+<load href="__TMPL__Static/Js/share.js" />
+<script type="text/javascript">
+var CONFIRM_ERROR = "{%CONFIRM_ERROR}";
+var CONFIRM_DELETE = "{%CONFIRM_DELETE}";
+</script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:Cookie::get('returnUrl')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<if condition="$share['type'] eq 'bar_post'">
+	<tr>
+		<th width="150">{%SHARE_BAR_REC}</th>
+		<td><p><a href="{:U('ForumThread/edit',array('tid'=>$share['rec_id']))}" target="_blank">{$share.title}</a></p></td>
+	</tr>
+	<tr>
+		<th>{%SHARE_CONTENT}</th>
+		<td>
+			<textarea class="areainput" name="content" rows="8">{$share.content}</textarea>
+		</td>
+	</tr>
+	<elseif condition="$share['type'] eq 'ask_post'"/>
+	<tr>
+		<th width="150">{%SHARE_ASK_REC}</th>
+		<td><p><a href="{:U('AskThread/edit',array('tid'=>$share['rec_id']))}" target="_blank">{$share.title}</a></p></td>
+	</tr>
+	<tr>
+		<th>{%SHARE_CONTENT}</th>
+		<td>
+			<textarea class="areainput" name="content" rows="8">{$share.content}</textarea>
+		</td>
+	</tr>
+	<else/>
+	<tr>
+		<th width="150">{%SHARE_TITLE}</th>
+		<td><input type="text" class="textinput" name="title" id="title" value="{$share.title}" style="width:90%"/></td>
+	</tr>
+	<tr>
+		<th>{%SHARE_CONTENT}</th>
+		<td>
+			<textarea class="areainput" name="content" rows="8">{$share.content}</textarea>
+		</td>
+	</tr>
+	</if>
+	<tr>
+		<th>{%SHARE_TYPE}</th>
+		<td>
+			{$share.type|getTypeName}
+		</td>
+	</tr>
+	<if condition="$share['share_data'] neq 'default'">
+	<tr>
+		<th>{%SHARE_TAGS}</th>
+		<td>
+			<input type="text" class="textinput" name="tags" value="{$share.share_tags}" style="width:90%" />
+		</td>
+	</tr>	
+	<tr>
+		<th>&nbsp;</th>
+		<td>
+			{%SP_BY_QUOTE}
+		</td>
+	</tr>
+	</if>
+	<if condition="$share['share_photo']">
+	<tr>
+		<th>{%SHARE_PHOTO}</th>
+		<td>
+			<foreach name="share.share_photo" item="photo">		
+				<div class="img_list">		
+				<img src="{$photo.img|getImgName=100,100,1,true}" />
+				<div class="blank9"></div>
+				<a href="javascript:void(0);" onclick="del_photo({$photo.photo_id},this);">{%DELETE}</a>
+				</div>
+			</foreach>
+		</td>
+	</tr>	
+	</if>
+	<if condition="$share['share_goods']">
+	<tr>
+		<th>{%SHARE_GOODS}</th>
+		<td>
+			<foreach name="share.share_goods" item="goods">		
+				<div class="img_list">		
+				<img src="{$goods.img|getImgName=100,100,1,true}" title="{$goods.name} {$goods.price|priceFormat}" alt="{$goods.name} {$goods.price|priceFormat}" />
+				<div class="blank9"></div>
+				<span title="{$goods.name} {$goods.price|priceFormat}">{$goods.name|msubstr=0,7}</span>
+				<div class="blank9"></div>
+				<a href="javascript:void(0);" onclick="del_goods({$goods.goods_id},this);">{%DELETE}</a>
+				<a href="{:u("ShareGoods/edit",array('goods_id'=>$goods['goods_id']))}">{%EDIT}</a>
+				</div>
+			</foreach>
+		</td>
+	</tr>	
+	</if>
+	<tr>
+		<th>{%INDEX_IMG}</th>
+		<td>
+			<input type="file" class="fileinput" name="index_img" size="30">
+			<if condition="$share['index_img'] neq ''">
+				<span><a href="__ROOT__/{$share.index_img}" target="_blank" >{%VIEW}</a>
+				<a href="javascript:void(0);" onclick="del_index_photo({$share.share_id},this);">{%DELETE}</a></span>
+			</if>
+		</td>
+	</tr>
+	<if condition="$share['share_data'] neq 'default'">
+	<tr>
+		<th>{%SHARE_CATEGORY}</th>
+		<td>
+			<table class="fl">
+				<tr>
+					<td>
+						<select multiple="multiple" class="selectmul" name="cate" style="width:260px; height:200px;">
+							<foreach name="category" item="cate">
+								<option value="{$cate.cate_id}">{$cate.cate_name}</option>
+							</foreach>
+						</select>
+					</td>
+					<td width=30>
+						<input type="button" value=">>" name="add" class="formbutton" />
+						<div class="blank9"></div>
+						<input type="button" value="<<" name="remove" class="formbutton" />
+					</td>
+					<td>
+						<select multiple="multiple" class="selectmul" name="share_cate" style="width:260px; height:200px;">
+							<foreach name="share_category" item="cate">
+								<option value="{$cate.cate_id}">{$cate.cate_name}</option>
+							</foreach>
+						</select>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</if>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="share_cates" value="<foreach name="share_category" item="cate" key="key"><if condition="$key gt 0">,</if>{$cate.cate_id}</foreach>" />
+			<input type="hidden" name="share_id" value="{$share.share_id}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+
+<include file="Public:footer" />

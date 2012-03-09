@@ -1,0 +1,57 @@
+<div class="manage_menu">
+	<strong>操作</strong>
+	<!--{if $manage_lock === false}-->
+	<!--{loop $_FANWE['authoritys'][$module] $action $action_val}-->
+	<?php
+		$action_lang = lang('template','manage_'.$action);
+	?>
+	<!--{if $action == 'edit'}-->
+	<span class="mm_jg">&nbsp;|&nbsp;</span>
+	<a class="mm_action manage_{$action}" target="_blank" href="{$_FANWE[site_root]}manage/manage.php?m={$module}&a={$action}&id={$id}">{$action_lang}</a>
+	<!--{elseif $action == 'delete'}-->
+	<span class="mm_jg">&nbsp;|&nbsp;</span>
+	<a class="mm_action" href="javascript:;" onClick="if(confirm('{lang manage_delete_confirm}')){$.ManageHandler('{$module}','{$action}',{$id},this);}">{$action_lang}</a>
+	<!--{elseif $action == 'share_best'}-->
+	<!--{if $old_module == 'dapei'}-->
+	<?php
+		$action_lang = lang('template','manage_'.$action.'_'.$manage_object['is_best']);
+	?>
+	<span class="mm_jg">&nbsp;|&nbsp;</span>
+	<a class="mm_action" href="javascript:;" onClick="$.ManageHandler('{$module}','{$action}',{$id},this)">{$action_lang}</a>
+	<!--{/if}-->
+	<!--{else}-->
+	<?php
+		switch($action)
+		{
+			case 'best';
+				$action_lang = lang('template','manage_'.$action.'_'.$manage_object['is_best']);
+			break;
+
+			case 'top';
+				$action_lang = lang('template','manage_'.$action.'_'.$manage_object['is_top']);
+			break;
+
+			case 'hot';
+				$action_lang = lang('template','manage_'.$action.'_'.$manage_object['is_hot']);
+			break;
+
+			case 'index';
+				$action_lang = lang('template','manage_'.$action.'_'.$manage_object['is_index']);
+			break;
+
+			case 'status';
+				$action_lang = lang('template','manage_'.$action.'_'.$manage_object['status']);
+			break;
+		}
+	?>
+	<span class="mm_jg">&nbsp;|&nbsp;</span>
+	<a class="mm_action" href="javascript:;" onClick="$.ManageHandler('{$module}','{$action}',{$id},this)">{$action_lang}</a>
+	<!--{/if}-->
+	<!--{/loop}-->
+	<!--{else}-->
+	<span class="manage_lock">
+		<a href="{u u/index uid=$manage_lock['uid']}" target="_blank">{$manage_lock['user_name']}</a>，
+		{echo sprintf(lang('manage','manage_lock'),fToDate($manage_lock['time']))}
+	</span>
+	<!--{/if}-->
+</div>

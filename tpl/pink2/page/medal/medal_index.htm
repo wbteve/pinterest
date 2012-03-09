@@ -1,0 +1,90 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/medal.css';
+?>
+<!--{template inc/header}-->
+<link href="http://www.shopshare.com/tpl/uu43/css/medal.css" rel="stylesheet" type="text/css"/>
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd">
+			<div class="medal_title clearfix">
+				<div class="medal_logo"><img src="./tpl/images/medal.png"></div>
+			</div>
+			<div class="medal_tabs">
+				<ul>
+					<!--{if $medal_uid > 0}-->
+					<li{if ACTION_NAME == 'u'} class="current"{/if}><a href="{u medal/u uid=$medal_uid}">{$medal_names['short']}的勋章</a></li>
+					<!--{/if}-->
+					<li{if ACTION_NAME == 'index' && $type == 0} class="current"{/if}><a href="{u medal/index uid=$medal_uid}">全部勋章</a></li>
+					<li{if ACTION_NAME == 'index' && $type == 1} class="current"{/if}><a href="{u medal/index type=1,uid=$medal_uid}">自动勋章</a></li>
+					<li{if ACTION_NAME == 'index' && $type == 2} class="current"{/if}><a href="{u medal/index type=2,uid=$medal_uid}">可申请勋章</a></li>
+				</ul>
+			</div>
+			<div class="medal_list">
+				<ul>
+					<!--{loop $medal_list $medal}-->
+					<li class="medal_item" mid="{$medal['mid']}">
+						<img src="{$medal['big_img']}">
+						<span class="w">{$medal['name']}</span>
+						<!--{if $medal['is_award'] == 1}-->
+						<span class="img_receive">已领取</span>
+						<!--{elseif $medal['is_allow'] == 1 && $medal['give_type'] == 1 && $medal['is_apply'] == 0}-->
+						<span class="img_apply">可申请</span>
+						<!--{/if}-->
+				  	</li>
+					<!--{/loop}-->
+				</ul>
+          </div>
+		  <div class="blank12"></div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<div id="medal_info_hide" class="hide">
+	<!--{loop $medal_list $medal}-->
+	<div id="medal_item_{$medal['mid']}"><!--{subtemplate inc/medal/medal_show}--></div>
+	<!--{/loop}-->
+</div>
+<div id="medal_info_show" style="position:absolute; display:none;">
+	<div class="medal_pop">
+		<div class="medal_pop_angle"><span></span></div>
+		<div id="medal_pop_cont" class="medal_pop_cont"></div>
+	</div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+	$(".medal_item").hover(function(){
+		clearTimeout(FANWE.MEDAL_TIME_OUT);
+		$("#medal_info_show").hide();
+		var w = 302;
+		var mid = this.getAttribute('mid');
+		var offset = $(this).offset();
+		var c = offset.left + $(this).width() / 2;
+		var left = c - w / 2;
+		var top = offset.top + $(this).height() + 3;
+		var width = $(document).width() - 30;
+		
+		if(left + w > width)
+			left = width - w;
+		else if(left < 30)
+			left = 30;
+		c = c - left - 6;
+		var html = $("#medal_item_"+mid).html();
+		$("#medal_pop_cont").html(html);
+		$("#medal_info_show").css({"top":top,"left":left}).slideDown();
+		$(".medal_pop_angle span").css({"margin-left":c});
+	},function(){
+		var fun = function(){
+			$("#medal_info_show").hide();
+		};
+		FANWE.MEDAL_TIME_OUT = setTimeout(fun,500);
+	});
+	
+	$("#medal_info_show").hover(function(){
+		clearTimeout(FANWE.MEDAL_TIME_OUT);
+	},function(){
+		$("#medal_info_show").hide();
+	});
+});
+</script>
+<!--{template inc/footer}-->

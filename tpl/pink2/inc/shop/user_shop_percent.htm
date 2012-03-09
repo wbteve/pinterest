@@ -1,0 +1,14 @@
+<div class="shops psb bt1 bb1">
+	<h2><a>{$user_lang}{lang share_shop}</a></h2>
+	<span class="shops_c">
+		<span class="gc">{$user['user_name']}</span>{lang total_share}<b style="color:#690">{$user['goods']}</b>{lang jian_goods}，{lang from}<b style="color:#690">{$shops['total']}</b>{lang jia_shop}
+	</span>
+	<dl class="shops_per">
+		<dt class="t">{lang percent}</dt>
+		<dd class="t">{lang shop}</dd>
+		<!--{loop $shops['list'] $shop}-->
+		<dt>$shop['percent']</dt>
+		<dd> <a href="{u shop/show id=$shop['shop_id']}" target="_blank">{cutstr $shop['shop_name'] 30}</a> </dd>
+		<!--{/loop}-->
+	</dl>
+</div>

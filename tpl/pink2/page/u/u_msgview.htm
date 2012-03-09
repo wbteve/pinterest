@@ -1,0 +1,192 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/zone.css';
+	$js_list[0] = './tpl/js/zone.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="homens_hd"></div>
+	<div class="homens_bd clearfix">
+		<div id="content" class="clearfix" style="width:960px;">
+			<!--{template inc/u/u_menu}-->
+			<div class="content fr" style="width:820px;">
+				<div class="zone_head" style="margin:0 20px 20px 20px; height:auto;">
+					<div>
+						<h1 class="zone_title">共有 <span>{$mlist['num']}</span> 封与 <a href="{$mlist['msg_tuser']['url']}" class="GUID" uid="{$mlist['tuid']}">{$mlist['msg_tuser']['user_name']}</a> 的交流信件</h1>
+					</div>
+				</div>
+				<ul class="msg_view clearfix" id="msgView">
+					<!--{loop $msg_list $msg}-->
+					<li>
+                        <!--{if $msg['uid'] == $_FANWE['uid']}-->
+						<a class="msg_user"><img src="{avatar $home_uid m $home_user['server_code'] 1}" height="38" /></a>
+                        <!--{else}-->
+                        <a href="{$mlist['msg_tuser']['url']}" class="msg_user"><img src="{avatar $mlist['tuid'] m $mlist['msg_tuser']['server_code'] 1}" height="38" /></a>
+                        <!--{/if}-->
+						<div class="inf">
+							<div class="title">
+								<p class="fl">
+								<!--{if $msg['uid'] == $_FANWE['uid']}-->
+								我
+								<!--{else}-->
+								<a href="{$mlist['msg_tuser']['url']}" class="GUID" uid="{$mlist['tuid']}">{$mlist['msg_tuser']['user_name']}</a>
+								<!--{/if}-->
+								</p>
+								<span>{$msg['time']}</span>
+								<span><a href="javascript:;" style="color:#06C;" miid="{$msg['miid']}" class="deleteMsg">删除</a></span>
+							</div>
+							<div class="msg">
+								{nl2br $msg['message']}
+							</div>
+						</div>
+					</li>
+					<!--{/loop}-->
+				</ul>
+				<div class="pagination mt20">
+					<!--{subtemplate inc/pages}--> 
+				</div>
+				<div class="clear"></div>
+				<form id="msgForm" name="msgForm" style="padding:20px 0 0 10px;">
+				<div class="msg_item">
+					<label style="padding:0 10px 0 0">
+						<img src="{avatar $home_uid m $home_user['server_code'] 1}" width="38" alt="{$home_user['user_name']}" style="border:solid 1px #ccc;" />
+					</label>
+					<textarea name="message" class="PUB_TXT r3" id="msg_message" rows="6" position="0" check="0"></textarea>
+					<input type="hidden" name="lid" value="{$mlist['mlid']}" />
+				</div>
+				<div class="msg_item">
+					<span class="fl" style="margin-left:48px;">{lang add}：</span>
+					<a w="pub" href="javascript:;" onclick="$.Show_Expression(this)" style="background-position:-2px -3px;" class="add_face">表情</a>
+				</div>
+				<div class="msg_item">
+					<div class="msg_tip" id="msg_message_tip" style="margin-left:48px;"></div>
+				</div>
+				<div class="msg_btn">
+					<input type="submit" value="发送" class="r5" id="msg_send_btn" />
+					<div class="msg_loading" id="msg_send_loading" style="width:200px; padding:0 0 0 22px; margin-top:3px;">发送中，请稍候...</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="homews_ft"></div>
+</div>
+<div class="hide" id="msgViewItem">
+	<li>
+		<a href="javascript:;" class="msg_user"><img src="{avatar $home_uid m $home_user['server_code'] 1}" height="38" /></a>
+		<div class="inf">
+			<div class="title">
+				<p class="fl">
+				我
+				</p>
+				<span>###TIME###</span>
+				<span><a href="javascript:;" style="color:#06C;" miid="###MIID###" class="deleteMsg">删除</a></span>
+			</div>
+			<div class="msg">
+				###MESSAGE###
+			</div>
+		</div>
+	</li>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+	$("#msg_message").bind("blur change",function(){
+		var message = $.trim(this.value);
+		var len = $.getStringLength(message);
+		if(len < 2 || len >200)
+		{
+			$("#msg_message").attr('check',0);
+			$("#msg_message_tip").show().html('内容由2到200个字符组成，一个汉字两个字符');
+		}
+		else
+		{
+			$("#msg_message").attr('check',1);
+			$("#msg_message_tip").hide();
+		}
+	});
+	
+	$("#msgForm").submit(function(){
+		var form = this;
+		$(".msg_tip").hide();
+		$(".msg_loading").hide();
+		
+		var message = $.trim(this.message.value);
+		var len = $.getStringLength(message);
+		if(len < 2 || len >200)
+		{
+			$("#msg_message_tip").show().html('内容由2到200个字符组成，一个汉字两个字符');
+			return false;
+		}
+		
+		$("#msg_send_btn").attr('disabled',true);
+		$("#msg_send_loading").show();
+		
+		$.ajax({
+			url: SITE_PATH+"services/service.php?m=user&a=replymsg",
+			type: "POST",
+			data:$(this).serialize(),
+			dataType: "json",
+			success: function(result){
+				if(result.status > 0)
+				{
+					var html = $("#msgViewItem").html();
+					html = html.replace('###MIID###',result.status);
+					html = html.replace('###TIME###',result.time);
+					html = html.replace('###MESSAGE###',result.message);
+					var msg_item = $(html).css({"display":"none"});
+					$("#msgView").append(msg_item);
+					msg_item.slideDown("slow");
+					form.message.value = '';
+				}
+				else
+				{
+					alert('回复信件失败，请稍候重新发送');
+				}
+				
+				$("#msg_send_loading").hide();
+				$("#msg_send_btn").attr('disabled',false);
+			},
+			error:function(){
+				alert('回复信件失败，请稍候重新发送');
+				$("#msg_send_loading").hide();
+				$("#msg_send_btn").attr('disabled',false);
+			}
+		});
+		
+		return false;
+	});
+	
+	$(".deleteMsg").live('click',function(){
+		var miid = this.getAttribute("miid");
+		if(miid != null)
+		{
+			var obj = this;
+			$(obj).attr('disabled',true);
+			var query = new Object();
+			query.miid = miid;
+			$.ajax({
+				url: SITE_PATH+"services/service.php?m=user&a=deletemsg",
+				type: "POST",
+				data:query,
+				dataType: "json",
+				success: function(result){
+					if(result.status > 0)
+					{
+						$(obj).parent().parent().parent().parent().slideUp("slow");
+						$(obj).parent().parent().parent().parent().remove();
+					}
+					else
+					{
+						alert('删除信件失败，请稍候重新删除');
+						$(obj).attr('disabled',false);
+					}
+				},
+				error:function(){
+					alert('删除信件失败，请稍候重新删除');
+					$(obj).attr('disabled',false);
+				}
+			});
+		}
+	});
+});
+</script>
+<!--{template inc/footer}-->

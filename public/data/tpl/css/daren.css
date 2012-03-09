@@ -1,0 +1,42 @@
+#body { margin:30px auto 0; width:960px; }
+.daren_title { margin-top:10px; }
+.daren_title h1 { font-size:30px; font-weight:bold; color:#f36; padding:0 15px 0 25px; float:left; }
+.daren_logo { width:131px; height:35px; float:left; padding:0 10px 0 20px; }
+.daren_tag { float:left; padding-top:15px; color:#e1e1e1; }
+.daren_tag a { font-size:14px; padding:0 10px; color:#00b8e6; font-weight:bold; }
+.daren_tag a.c { margin-left:6px; color:#333; padding-left:8px; background:url('/tpl/pink2/images/bar_right_arrow.png') no-repeat 0 4px; }
+.daren_wall { clear:both; font-size:12px; margin:20px auto 0; min-height:300px; padding:0 25px; width:910px; overflow:hidden; }
+.daren_wall .col1, .daren_wall .col2, .daren_wall .col3 { width:280px; margin-right:35px; float:left; }
+.daren_wall .col3 { margin-right:0; }
+.d_w_i { margin-bottom:40px; }
+.d_w_i .pic { position:relative; zoom:1; width:280px;}
+.d_w_i .user { padding:0 5px; line-height:33px; bottom:0; left:0; width:270px; position:absolute; height:33px; background-color:rgba(255, 255, 255, 0.7); filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr=#B2FFFFFF, endcolorstr=#B2FFFFFF);
+}
+.d_w_i .user .locate { position:absolute; right:10px; *bottom:0;
+}
+.user .n { font-weight:bold; }
+.user .addfollow { margin-left:10px; }
+.user .addfollow img { _margin:7px 2px; vertical-align:middle; }
+.user .fo_ok { vertical-align:-5px; _margin:7px 0; }
+.d_w_i .info { height:34px; line-height:34px; }
+.info span { color:#000; padding-left:10px; }
+.info a { color:#09c; }
+.info a.fav { color:#f36; text-decoration:none; }
+.d_w_i .u_intro { position:relative; border-top:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; }
+.u_intro .m_r { position:absolute; right:0; bottom:18px; }
+.d_w_i .intro { padding:15px 15px 15px 10px; line-height:20px; }
+.daren_jian { position:absolute; right:3px; top:3px; background:url('/tpl/pink2/images/today_reccomed_83x83.png') no-repeat; width:83px; height:83px; _background-image:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/tpl/pink2/images/today_reccomed_83x83.png', sizingMethod='scale');
+}
+.be_daren { background-color:#f6f6f6; padding:15px 18px 5px; margin-bottom:30px; *padding-bottom:20px;
+}
+.be_daren p { line-height:24px; margin:0 0 10px; padding-top:10px; }
+.be_daren img { vertical-align:middle; padding-right:5px; margin:4px 0; }
+.be_daren a { margin:0 auto 15px; display:block; width:150px; }
+
+.daren_apply{padding:30px;}
+.da_tips{font-size:14px;}
+.da_item{clear:both; padding:15px 0 0 0;}
+.da_item label{float:left; width:76px; font-size:14px;}
+.da_item input{float:left;}
+.da_item .da_file{border:solid 1px #ccc; padding:3px;} 
+.da_item textarea{float:left; border:solid 1px #ccc;}

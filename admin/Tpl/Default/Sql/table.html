@@ -1,0 +1,15 @@
+<tagLib name="fanwe" />
+<table cellpadding="4" cellspacing="1" border="0" width="100%" style="table-layout:fixed;">
+	<tr>
+		<foreach name="fields" item="field" >
+		<td>{$field}</td>
+		</foreach>
+	</tr>
+	<foreach name="val_list" item="vals" >
+	<tr>
+		<foreach name="vals" item="val" >
+		<td>{$val}</td>
+		</foreach>
+	</tr>
+	</foreach>
+</table>

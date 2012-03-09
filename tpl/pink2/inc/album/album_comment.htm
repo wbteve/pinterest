@@ -1,0 +1,46 @@
+<div class="i_w_f i_cmt">
+	<div class="hd"></div>
+	<div class="bd">
+		<div class="pub_box_all clearfix">
+			<form>
+			<div style="padding:0 10px">
+				<h2>评论...</h2>
+				<textarea class="txt PUB_TXT" name="content" position="0"></textarea>
+				<div class="pub_bottom clearfix">
+					<a class="fl" onclick="$.Show_Expression(this);" href="javascript:;"><img class="fl add_face" w="album_rpl" onclick="return false;" src="./tpl/images/add_face_c.png"></a>
+					<input class="txt_btn r3 fr" type="button" value="评论" onclick="$.Add_Share_Comment(this,'#albumCommentList')"/>
+					<input type="hidden" name="comment_type" value="album" />
+					<input type="hidden" name="parent_id" value="0" />
+					<input type="hidden" name="share_id" value="{$album_share['share_id']}" />
+				</div>
+			</div>
+			<ul class="txt_c" id="albumCommentList">
+				<!--{loop $album_comments $comment}-->
+				<li>
+					<div class="pic_n">
+						<!--{getuser $comment['uid'] 0 's,24' ',avt icard fl r3 lazyload'}-->
+					</div>
+					<p>
+						<!--{getuser $comment['uid'] 0 '' 'n icard fl'}-->：{$comment['content']}
+					</p>
+					<a class="rpl fr" href="javascript:;" uname="{$comment['user']['user_name']}" cid="{$comment['comment_id']}" onclick="$.Reply_Comment(this);">回复</a>
+				</li>
+				<!--{/loop}-->
+			</ul>
+			<!--{if $album_share['comment_count'] > 5}-->
+			<a class="see_all fr" href="{$album_share['url']}" target="_blank">全部{$album_share['comment_count']}条</a>
+			<!--{/if}-->
+			</form>
+		</div>
+	</div>
+	<div class="ft"></div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+	$("#albumCommentList li").live('mouseover',function(){
+		$(".rpl",this).show();
+	}).live('mouseout',function(){
+		$(".rpl",this).hide();
+	});
+});
+</script>

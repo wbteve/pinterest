@@ -1,0 +1,54 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<load href="__TMPL__Static/Js/admin.js" />
+<script type="text/javascript">
+var CONFIRM_ERROR = "{%CONFIRM_ERROR}";
+</script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="200">{%ADMIN_NAME}</th>
+		<td><p>{$vo.admin_name}</p></td>
+	</tr>
+	<tr>
+		<th>{%ADMIN_PWD}</th>
+		<td><input type="password" class="textinput" name="admin_pwd" id="admin_pwd" /></td>
+	</tr>
+	<tr>
+		<th>{%CONFIRM_PWD}</th>
+		<td><input type="password" class="textinput" name="confirm_pwd" id="confirm_pwd" /></td>
+	</tr>
+	<tr>
+		<th>{%ROLE_ID}</th>
+		<td>
+			<fanwe:select options="role_list" selected="vo['role_id']" name="role_id" id="role_id" />
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+jQuery(function($){
+	$("#form").submit(function(){
+		if($.checkRequire($("#admin_pwd").val()))
+		{
+			if($("#admin_pwd").val() != $("#confirm_pwd").val())
+			{
+				alert(CONFIRM_ERROR);
+				return false;
+			}
+		}
+	});
+});
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,93 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/loginreg.css';
+	$js_list[0] = './tpl/js/loginreg.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd clearfix">
+			<div id="content" style="width:960px;">
+				<div id="register_box">
+					<div id="register_left">
+						<h1>{lang reg_tip_1}</h1>
+						<span>{sprintf reg_tip_2 $_FANWE['setting']['site_name']}</span>
+						<div id="register_center">
+							<div id="register_form">
+								<form action="{u user/ajax_register}" method="post" id="registerForm">
+									<div class="ipt_mail">
+										<span>{lang email}：</span>
+										<input type="text" maxlength="36" name="email" id="reg_email" class="text" value="" istip="0" rel=".err_email" check="0"/>
+									</div>
+									<div class="ipt_ulike">
+										<span>{lang nickname}：</span>
+										<input style="*margin-left:-1px;" maxlength="36" type="text" name="user_name" id="reg_user_name" class="text" value="" istip="0" rel=".err_ulike" check="0"/>
+									</div>
+									<div class="ipt_sex">
+										<span>{lang gender}：</span>
+										<div class="rdo">
+											<input type="radio" name="gender" value="0" checked="checked" class="ck">{lang user/gender_0}
+											<input style="margin-left:10px" type="radio" name="gender" value="1" class="ck">{lang user/gender_1}
+										</div>
+									</div>
+									<div class="ipt_password">
+										<span>{lang password}：</span>
+										<input style="*margin-left:-1px;" maxlength="36" type="password" name="password" id="reg_password" class="text" istip="0" rel=".err_password" check="0"/>
+									</div>
+									<div class="ipt_respassword">
+										<span>{lang cpassword}：</span>
+										<input type="password" maxlength="36" name="confirm_password" id="reg_cpassword" class="text" istip="0" rel=".err_rstpassword" check="0"/>
+									</div>
+									<div class="ipt_check">
+                                        <span>{lang checkcode}：</span>
+                                        <input class="check" type="text" maxlength="10" name="checkcode">
+                                        <img id="img_checkcode" alt="验证码" src="{$_FANWE['site_root']}misc.php?action=verify&rhash=<!--{dynamic getRHash}-->">
+                                        <a id="checkcode_change" href="javascript:void(0);">换一张</a>
+                                    </div>
+									<div class="ipt_box">
+										<input class="box fl" type="checkbox" name="agreement" id="reg_agreement" checked="checked" value="1" />
+										<!--{eval $agreement_url = FU('user/agreement');}-->
+										<span class="fl">{sprintf reg_tip_3 $agreement_url,$_FANWE['setting']['site_name']}</span>
+									</div>
+									<div class="ipt_sub">
+										<input type="submit" class="sub" id="reg_submit" value=" "/>
+										<div class="lg_reg_loading">
+											<span style="font-size:13px;">{lang reg_loading}</span>
+										</div>
+										<div class="lg_reg_check">
+											<span style="font-size:13px; color:#f00;">{lang reg_check}</span>
+										</div>
+									</div>
+									<input name="rhash" id="regRHash" value="<!--{dynamic getRHash}-->" type="hidden"/>
+									<input name="refer" value="{u u/index}" type="hidden"/>
+									<input name="action" value="ajax_register" type="hidden"/>
+								</form>
+							</div>
+							<div id="register_error">
+								<div class="err_email">{lang reg_tip_5}</div>
+								<div class="err_ulike">{lang reg_tip_6}</div>
+								<div class="err_password">{lang reg_tip_7}</div>
+								<div class="err_rstpassword">{lang reg_tip_8}</div>
+							</div>
+						</div>
+					</div>
+					<div id="register_right">
+						<div class="rst_login">
+							<span>{sprintf reg_tip_4 $_FANWE['setting']['site_name']}</span>
+							<a href="{u user/login}"></a>
+						</div>
+						<div class="other_login">
+							<span>{lang other_login}：</span>
+							<!--{loop $login_modules $login_module}-->
+							<a class="o_icon" href="{$login_module['login_url']}" style="background:url({$login_module['icon_img']}) no-repeat left center;">{$login_module['name']}</a>
+							<!--{/loop}-->
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<!--{template inc/footer}-->

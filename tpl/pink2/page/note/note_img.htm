@@ -1,0 +1,135 @@
+<div class="shw">
+	<div class="shw_head"> </div>
+	<div class="shw_body">
+		<div class="image" >
+			<!--<a class="flow_left" href="javascript:;"></a>
+			<a class="flow_right" href="javascript:;"></a>-->
+			<!--{if $current_type == 'bao'}-->
+			<a class="add_to_album_btn" href="javascript:;" style="display: none;" onclick="$.Show_Rel_Album($current_obj['id'],'goods');"></a>
+			<!--{else}-->
+			<a class="add_to_album_btn" href="javascript:;" style="display: none;" onclick="$.Show_Rel_Album($current_obj['id'],'photo');"></a>
+			<!--{/if}-->
+			<a href="{if $current_type == 'bao'}$current_obj['to_url']{else}{$current_obj['img']}{/if}" target="_blank" class="show_big"><img src="{getimg $current_obj['img'] 468 468}" /></a>&nbsp;
+		</div>
+		<!--{if $current_type == 'bao'}-->
+		<div class="shop_info">
+			<a href="$current_obj['to_url']" target="_blank">
+				<span class="nii_p">{cutstr $current_obj['name'] 32}</span>
+			</a>
+			<span class="price">$current_obj['price_format']</span>
+			<a href="$current_obj['to_url']" target="_blank" class="buy_url"></a>
+		</div>
+		<!--{else}-->
+		<div class="big_img"><a href="$current_obj['img']" target="_blank" class="alibm">{lang show_old_price}</a></div>
+		<!--{/if}-->
+		<!--{if !empty($share_detail['imgs']) && count($share_detail['imgs']) > 1}-->
+		<div class="small_image">
+			<ul class="nt_pic_list">
+				<!--{loop $share_detail['imgs'] $share_detail_img}-->
+				<!--{if $share_detail_img['type'] == 'g'}-->
+				<li keys="$share_detail_img['id']" tp="good" class="{if $current_type == 'bao' && $share_detail_img['id'] == $current_obj['id']}c{/if}">
+					<div><a href="$share_detail_img['url']"><img src="{getimg $share_detail_img['img'] 100 100}"></a></div>
+					<span>$share_detail_img['price_format']</span>
+				</li>
+				<!--{else}-->
+				<li tp="image" keys="$share_detail_img['id']" class="{if $current_type == 'photo' && $share_detail_img['id'] == $current_obj['id']}c{/if}">
+					<div><a href="$share_detail_img['url']"><img src="{getimg $share_detail_img['img'] 100 100}"></a></div>
+					<span>&nbsp;</span>
+				</li>
+				<!--{/if}-->
+				<!--{/loop}-->
+			</ul>
+		</div>
+		<!--{/if}-->
+		<input type="hidden" value="{$pns['prev']}" id="user_share_prev" />
+		<input type="hidden" value="{$pns['next']}" id="user_share_next" />
+	</div>
+	<div class="shw_foot"> </div>
+</div>
+<div class="blank9"></div>
+<div id="SHARE_TAGS_{$share_detail['share_id']}" class="fashion">
+	<!--{if $is_eidt_tag}-->
+	<div class="ed_fashion SHARE_TAG_EDIT_BOX">
+		<div class="fa_title">
+			<div class="fsl"><span>时尚元素</span>&nbsp;&nbsp;{sprintf share_tag_tip $_FANWE['setting']['share_tag_count']}</div>
+			<div class="fsr"><a onclick="$.ShareTagClose('{$share_detail['share_id']}',this)" href="javascript:;">关闭</a></div>
+		</div>
+		<div class="fa_inp">
+            <?php
+                $tags_val = array();
+                foreach($share_tags as $share_tag)
+                {
+                    $tags_val[] = $share_tag['tag_name'];
+                }
+                $tags_val = implode(' ',$tags_val);
+            ?>
+			<input type="text" value="{$tags_val}" class="SHARE_TAG text">
+			<a onclick="$.ShareTagSave('{$share_detail['share_id']}',this)" href="javascript:;" style="text-align:center; line-height:30px; font-size:14px; color:#fff;">提交</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!--{/if}-->
+	<div class="sw_fashion SHARE_TAG_SHOW_LIST">
+		<span>时尚元素：</span>
+		<!--{if empty($share_tags)}-->
+		<!--{if $is_eidt_tag}-->
+        <span class="SHARE_TAG_LIST"></span>
+		<span class="edit"><a onclick="$.ShareTagEdit('{$share_detail['share_id']}',this)" href="javascript:;">添加</a></span>
+		<!--{/if}-->
+		<!--{else}-->
+        <span class="SHARE_TAG_LIST">
+		<!--{loop $share_tags $share_tag}-->
+		<a href="{$share_tag['url']}" target="_blank">$share_tag['tag_name']</a>
+		<!--{/loop}-->
+        </span>
+		<!--{if $is_eidt_tag}-->
+		<span class="edit"><a onclick="$.ShareTagEdit('{$share_detail['share_id']}',this)" href="javascript:;">编辑</a></span>
+		<!--{/if}-->
+		<!--{/if}-->
+	</div>
+</div>
+<div class="note_who_like">
+	<div style="overflow:hidden;zoom:1;padding-bottom:10px;">
+		<a href="javascript:;" class="fl" onclick="$.Fav_Share({$share_detail['share_id']},this,32,'#note_{$share_detail['share_id']}');"><img class="fl add_fav_new" src="./tpl/images/like.png" /></a>
+		<span class="nwl_cfav"><span class="SHARE_FAV_COUNT">{$share_detail['collect_count']}</span><i></i></span>
+		<a href="javascript:;" onclick="$.Relay_Share($share_detail['share_id']);" class="nwl_forward">转发({$share_detail['relay_count']})</a>
+	</div>
+	<div class="SHARE_FAV_BOX nwl_img{if count($share_detail['collects']) == 0} hidden{/if}">
+		<span>她们喜欢这个分享</span>
+		<ul class="SHARE_FAV_LIST u_like">
+			<!--{loop $share_detail['collects'] $collect_uid}-->
+			<li><!--{getuser $collect_uid 0 'm' ',icard r3'}--></li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+</div>
+<ul class="t_l pt40">
+	<li style="border-bottom:0; border-top:1px solid #ebede3;"  class="t_f" id="shareInfobox">
+		<div class="hd"><!--{getuser $share_user['uid'] 0 'm,48' ',avt icard r5'}--></div>
+		<div class="tk">
+			<div class="inf">
+				<!--{getuser $share_user['uid'] 0 '' 'icard n gc'}-->
+				<a class="t fr" target="_blank">{$share_detail['time']}</a>
+				<span>
+					<!--{if $share_detail['type'] == 'ask'}-->
+					创建《<a target="_blank" title="{$share_detail['title']}" class="from" href="{u ask/detail tid=$share_detail['rec_id']}">{cutstr $share_detail['title'] 40}</a>》
+					<!--{elseif $share_detail['type'] == 'bar'}-->
+					创建《<a target="_blank" title="{$share_detail['title']}" class="from" href="{u club/detail tid=$share_detail['rec_id']}">{cutstr $share_detail['title'] 40}</a>》
+					<!--{elseif $share_detail['type'] == 'ask_post'}-->
+					回应《<a target="_blank" title="{$share_detail['title']}" class="from" href="{u ask/detail tid=$share_detail['rec_id']}">{cutstr $share_detail['title'] 40}</a>》
+					<!--{elseif $share_detail['type'] == 'bar_post'}-->
+					回应《<a target="_blank" title="{$share_detail['title']}" class="from" href="{u club/detail tid=$share_detail['rec_id']}">{cutstr $share_detail['title'] 40}</a>》
+					<!--{elseif $share_detail['type'] == 'album_best'}-->
+					推荐{lang common/album}<a target="_blank" title="{$share_detail['title']}" href="{u album/show id=$share_detail['rec_id']}">《{cutstr $share_detail['title'] 40}》</a>
+					<!--{elseif $share_detail['type'] == 'album_item'}-->
+					加入{lang common/album}<a target="_blank" title="{$share_detail['title']}" href="{u album/show id=$share_detail['rec_id']}">《{cutstr $share_detail['title'] 40}》</a>
+					<!--{if $share_detail['rec_uid'] > 0}-->
+					收入自 @<!--{getuser $share_detail['rec_uid'] 0}-->
+					<!--{/if}-->
+					<!--{/if}-->
+				</span>
+			</div>
+			<p class="sms">{$share_detail['content']}</p>
+		</div>
+	</li>
+</ul>

@@ -1,0 +1,116 @@
+<div class="piece1 mt30 albumhead">
+	<div class="piece1_hd"></div>
+	<div class="piece1_bd">
+		<div class="album_share">
+			<div class="album_s_p r5" id="albumIndexFlash">
+				<ul class="pic_s">
+					<!--{eval $list_index = 0;}-->
+					<!--{loop $flash_album $album}-->
+					<li rel="{$list_index}">
+						<!--{if $list_index == 0}-->
+						<img class="c" src="./tpl/images/album_left_icon.png" />
+						<div style="display:none"></div>
+						<!--{else}-->
+						<div></div>
+						<!--{/if}-->
+						<img src="{getimg $album['img']['img'] 150 71 1}"/>
+					</li>
+					<!--{eval $list_index++;}-->
+					<!--{/loop}-->
+				</ul>
+				<div class="pic_b">
+					<ul class="pic_big">
+						<!--{eval $list_index = 0;}-->
+						<!--{loop $flash_album $album}-->
+						<!--{if $list_index == 0}-->
+						<li rel="{$list_index}" shareID="{$album['share_id']}">
+						<!--{else}-->
+						<li rel="{$list_index}" shareID="{$album['share_id']}" style="display:none;">
+						<!--{/if}-->
+							<div class="pic_b_bg">
+								<div class="bg_left">
+									<!--{getuser $album['uid'] 0 'm,48' ',icard avt r3'}-->
+									<div class="bg_left_p">
+										<!--{getuser $album['uid'] 0 '' 'icard'}-->
+										<div class="followdiv">
+											<!--{getfollow $album['uid'] inc/getfollow/album}-->
+										</div>
+									</div>
+									<p>
+										<a href="{$album['url']}" target="_blank">{cutstr $album['title'] 36}</a></a> <br />
+										<a style="font-size:12px;">{cutstr $album['content'] 56}</a>
+									</p>
+								</div>
+							</div>
+							<a href="{$album['url']}" target="_blank"><img src="{getimg $album['img']['img'] 527 215 1}" /></a>
+						</li>
+						<!--{eval $list_index++;}-->
+						<!--{/loop}-->
+					</ul>
+				</div>
+			</div>
+			<div class="album_new"> <span class="album_new_bg"><a target="_blank" href="{u album/create}">创建专辑</a></span> <span class="album_yaya"> </span> </div>
+		</div>
+	</div>
+	<!-- /piece1_bd -->
+	<div class="piece1_ft"></div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+	<!--{if getIsManage('album')}-->
+	$('#albumIndexFlash .pic_big li').hover(function(){
+		var shareID = this.getAttribute('shareID');
+		if(shareID)
+			$.GetManageMenu('album',shareID,this);
+	},function(){});
+	<!--{/if}-->
+
+	if($("#albumIndexFlash .pic_s li").length > 1)
+	{
+		$("#albumIndexFlash .pic_s li").click(function(){
+			FANWE.ALBUM_FLASH_HOVER = true;
+			FANWE.ALBUM_FLASH_INDEX = this.getAttribute('rel');
+			if(FANWE.ALBUM_FLASH_INDEX > 0)
+				FANWE.ALBUM_FLASH_INDEX--;
+			else
+				FANWE.ALBUM_FLASH_INDEX = FANWE.ALBUM_FLASH_COUNT;
+			indexFlashScroll();
+		});
+		
+		$("#albumIndexFlash").hover(function(){
+			FANWE.ALBUM_FLASH_HOVER = true;
+			clearTimeout(FANWE.ALBUM_FLASH_TIMEOUT);
+		},function(){
+			FANWE.ALBUM_FLASH_HOVER = false;
+			FANWE.ALBUM_FLASH_TIMEOUT = setTimeout(indexFlashScroll,FANWE.ALBUM_FLASH_TIME);
+		});
+		
+		indexFlashInit();
+	}
+});
+
+function indexFlashInit()
+{
+	FANWE.ALBUM_FLASH_TIME = 3000;
+	FANWE.ALBUM_FLASH_COUNT = $("#albumIndexFlash .pic_s li").length - 1;
+	FANWE.ALBUM_FLASH_INDEX = 0;
+	FANWE.ALBUM_FLASH_HOVER = false;
+	FANWE.ALBUM_FLASH_TIMEOUT = setTimeout(indexFlashScroll,FANWE.ALBUM_FLASH_TIME);
+}
+
+function indexFlashScroll()
+{
+	FANWE.ALBUM_FLASH_INDEX++;
+	if(FANWE.ALBUM_FLASH_INDEX > FANWE.ALBUM_FLASH_COUNT)
+		FANWE.ALBUM_FLASH_INDEX = 0;
+	
+	$("#albumIndexFlash .pic_s li div").show();
+	var active = $("#albumIndexFlash .pic_s li").eq(FANWE.ALBUM_FLASH_INDEX);
+	$('div',active).hide();
+	$("#albumIndexFlash .pic_big li").hide();
+	$("#albumIndexFlash .pic_big li").eq(FANWE.ALBUM_FLASH_INDEX).show();
+	 
+	if(!FANWE.ALBUM_FLASH_HOVER)
+		FANWE.ALBUM_FLASH_TIMEOUT = setTimeout(indexFlashScroll,FANWE.ALBUM_FLASH_TIME);
+}
+</script>

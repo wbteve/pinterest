@@ -1,0 +1,100 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/club.css';
+	$js_list[0][] = './public/js/jquery.slides.js';
+	$js_list[0][] = './tpl/js/club.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="bar_title">
+		<div class="piece_bd" style="background:url('{$root_forum['img']}') no-repeat ;">
+			<div class="b_info r5">
+				<img src="{$root_forum['logo']}" alt="" class="fl">
+				<div class="b_n">
+					<h1 class="bar_title">{$root_forum['name']}</h1>
+					{lang caeate_yu}：{date $root_forum['create_time'] 'Y-m-d'}
+				</div>
+			</div>
+			<ul class="b_tab">
+				<li><a href="{u club/forum fid=$root_forum['fid']}" class="f_b{if $is_root} c{/if}">{lang all_topic}</a></li>
+				<li>
+					<a href="{u club/best fid=$forum['fid']}" class="f_b{if $is_best} c{/if}">{lang editor_best}</a>
+					<div class="bar_tj"></div>
+				</li>
+				<!--{loop $root_forum['childs'] $childid}-->
+				<!--{eval $child_forum = $_FANWE['cache']['forums']['all'][$childid];}-->
+				<li><a href="{u club/forum fid=$childid}" class="f_b{if $childid == $forum_id} c{/if}">{$child_forum['name']}</a></li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+	</div>
+	<div style="background-color:#fff;" class="clearfix pb40">
+		<div id="content" class="fl">
+			<div class="bar_c r10" >
+				<!--{if !empty($root_forum['desc'])}-->
+				<pre class="bar_intro r5">{$root_forum['desc']}</pre>
+				<!--{/if}-->
+				<a href="{u club/newtopic fid=$forum_id}" class="pub_topic"><img src="./tpl/images/pub_newtopic.png" alt="" /></a> </div>
+			<div class="s_tp">
+				<a{if $sort == 'post'} class="c"{else} href="{u club/forum fid=$forum_id,sort=post}"{/if}>{lang last_post1}</a> / <a{if $sort != 'post'} class="c"{else} href="{u club/forum fid=$forum_id,sort=tid}"{/if}>{lang create_time} </a>
+			</div>
+			<ul class="topic_list">
+				<!--{loop $topic_list $topic}-->
+				<li class="tl_f" topicID="{$topic['tid']}">
+					<div class="tl_c">
+						<!--{if $topic['is_best'] == 1}-->
+						<div class="img_tj"></div>
+						<!--{/if}-->
+						<!--{if isset($topic['imgs'])}-->
+						<a target="_blank" href="{$topic['url']}"><img height="32" src="{getimg $topic['imgs'][0]['img'] 100 100}" class="pic"></a>
+						<div class="show_big_img">
+							<!--{loop $topic['imgs'] $img}-->
+							<img timgsrc="{getimg $img['img'] 100 100}" class="show">
+							<!--{/loop}-->
+						</div>
+						<!--{else}-->
+						<div class="no_pic" style=" "></div>
+						<!--{/if}-->
+						<p class="ct">
+							<a class="tit fl" target="_blank" href="{$topic['url']}">
+								<!--{if $topic['is_top'] == 1}-->
+								<span class="top fl">[{lang topic_top}]</span> 
+								<!--{/if}-->
+								{cutstr $topic['title'] 60}
+							</a><br />
+							<!--{getuser $topic['uid'] 0 '' 'n'}-->
+							<span class="p_time">
+								<!--{if !empty($topic['lastposter'])}-->
+								{lang last_post} : <!--{getuser $topic['lastposter'] 0 '' 'n'}-->
+								{$topic['last_time']}
+								<!--{/if}-->
+							</span>
+						</p>
+					</div>
+					<div class="count">{$topic['post_count']}</div>
+					<a class="all" target="_blank"  href="{$topic['url']}">{lang view_full_text}</a>
+				</li>
+				<!--{/loop}-->
+			</ul>
+			<div class="pagination mt40">
+				<!--{subtemplate inc/pages}-->
+			</div>
+		</div>
+		<div id="sidebar" class="fr" style="width:260px;background-color:#fff;padding-right:30px;">
+			<!--{dynamic getBestFlashs args=$root_forum['fid']}-->
+			<div class="bar_member"> </div>
+			<!--{dynamic getBestTopics}-->
+		</div>
+	</div>
+	<div class="piece1_ft"></div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+<!--{if getIsManage('club')}-->
+	$('.topic_list .tl_f').hover(function(){
+		var topicID = this.getAttribute('topicID');
+		$.GetManageMenu('club',topicID,this);
+	},function(){});
+<!--{/if}-->
+});
+</script>
+<!--{template inc/footer}-->

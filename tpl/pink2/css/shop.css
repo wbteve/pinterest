@@ -1,0 +1,65 @@
+.top_shop_cat { width:165px; float:left; margin:20px 0 0 0;}
+.top_shop_cat .cat_name,
+.top_shop_cat .cat_name:hover { display:block; height:32px; margin:5px 0; padding-left:15px; line-height:32px; font-weight:bold; font-size:14px; text-decoration:none }
+.top_shop_cat .cat_current,
+.top_shop_cat .cat_current:hover { background:url(../images/cat_bg1.jpg) no-repeat; color:white }
+.top_shop_cat .sub_cat_name { width:65px; float:left; margin:5px 10px 5px 0; overflow:hidden; _display:inline }
+.top_shop_cat .sub_cat_name a,
+.top_shop_cat .sub_cat_name a:hover { color:#f69; float:left; display:block; padding:1px 2px; font-size:12px }
+.top_shop_cat .sub_cat_current a { background:#333; color:white }
+.top_shop_list { width:715px; float:right; overflow:hidden; margin:20px 15px 0 0;}
+.top_shop_list .shop_item { width:346px; height:205px; background:url(../images/shop_bg.jpg) no-repeat; position:relative; float:left; margin:5px; _display:inline }
+.top_shop_list .shop_item a { font-size:12px }
+.top_shop_list .shop_item .title { color:#f69; padding:15px 20px 10px; font-weight:bold; font-size:14px; overflow:hidden }
+.top_shop_list .shop_item .stat { padding:0 20px; line-height:18px }
+.top_shop_list .shop_item .goods_list { margin:10px 0 0 20px }
+.top_shop_list .shop_item .goods_list img { width:90px; height:90px; margin-right:12px }
+.top_shop_list .shop_item .link_btn,
+.top_shop_list .shop_item .click_area { width:340px; height:199px; border:3px solid #f36; cursor:pointer; display:block; position:absolute; left:0; top:0 }
+.top_shop_list .shop_item .click_area { background:white; filter:alpha(opacity=0); opacity:0 }
+.top_shop_body #twitter_show_list_foot_pageNum { margin-left:225px }
+.shopDarenbot { margin:5px 0 }
+.shopDarenbot .shopDarenbot_title { margin:10px 0px 10px 15px; padding-top:10px; border-bottom:none }
+.shopDarenbot_title span { float:right }
+.shopDarenbot_title span a { font-size:12px; color:#999; font-weight:normal }
+.shop_daren { width:710px; height:auto; border-width:1px; border-style:solid; border-color:#E4E4E4; margin-top:5px; padding-bottom:15px; overflow:hidden }
+.shop_daren .darenShare { width:710px; padding-top:15px; }
+.shop_daren .darenShare li { width:120px; height:120px; border:1px solid #E4E4E4; list-style:none; float:left; margin:0 5px 0 12px; display:inline; overflow:hidden; }
+.shop_daren .darenShare li img { width:120px; height:120px; }
+.follow_brand { width:700px; border:1px solid #e4e4e4; border-top:none; background:#F2F2F2; padding:5px; overflow:hidden; }
+.follow_brand a { font-size:12px; padding:0 4px; }
+.follow_brand a:hover,
+.follow_detail a:hover { color:#f69 }
+.follow_detail { border:1px solid #e4e4e4; background:#F2F2F2; color:#999; line-height:18px; padding:6px; overflow:hidden; margin-top:10px }
+.follow_detail a { font-size:12px; color:#999; text-decoration:underline }
+.shop_ad { width:712px; height:90px; margin:10px auto 0; overflow:hidden; }
+.shop_ad iframe { width:712px; height:90px; overflow:hidden; }
+.box_shadow{background:#fff; *border:1px solid #ddd;
+box-shadow:0 1px 3px rgba(34, 25, 25, 0.2); -webkit-box-shadow:rgba(34, 25, 25, 0.2) 0px 1px 3px; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; *overflow:hidden;padding: 13px;}
+.shop_sidebar { width:223px; float:left; overflow:hidden;}
+.shop_sidebar .shop_summary { height:187px; padding:15px; background:url(../images/shop_summary_bg2.jpg) no-repeat; text-align:center; font-size:12px; margin:0 0 0 5px;}
+.shop_sidebar .shop_summary a { font-size:12px }
+.shop_sidebar .shop_summary .title { height:32px; margin:15px 0; overflow:hidden }
+.shop_sidebar .section { margin-bottom:20px }
+.shop_sidebar .section_title { border-bottom:1px solid black; font-weight:bold; font-size:13px; margin-bottom:10px; padding:2px 0 }
+.shop_sidebar .section_title span { float:right; }
+.shop_sidebar .section_title span a { font-size:12px; color:#333; font-weight:normal; }
+.shop_sidebar .section_title span a:hover { color:#09c }
+.shop_sidebar .shop_topic .item { display:block; float:left; margin:5px 15px 5px 0; padding:2px; color:white; background:#f36; font-size:12px; white-space:nowrap }
+.shop_sidebar .relative_shop .item { width:80px; height:120px; float:left; margin-top:10px; text-align:center; overflow:hidden }
+.shop_sidebar .relative_shop .item .link {height:31px; display:block; margin-top:5px; overflow:hidden; word-wrap:break-word; line-height:16px;}
+.shop_sidebar .attr_list .attr { width:42px; height:20px; line-height:20px; float:left; margin-right:15px; font-size:12px; overflow:hidden }
+.shop_body { width:665px; float:right; }
+.shop_body .twitter_pic { width:182px; height:220px; float:left; margin-right:44px; overflow:hidden; _display:inline }
+.shop_body .twitter_pic .goods_pic { width:180px; height:180px; border:1px solid #ccc; float:left; overflow:hidden }
+.shop_body .twitter_pic .goods_pic img { width:180px; height:180px }
+.shop_body .twitter_display_type { float:right; margin-top:5px }
+.clear-fix{ clear:both; display:block; overflow:hidden; visibility:hidden; width:0; height:0; }
+
+.c_tab{height:28px; background:url(../images/tab_bg.jpg) repeat-x; margin-bottom:15px }
+.c_tab_btn,
+.c_tab_btn:hover,
+.c_tab_btn_current,
+.c_tab_btn_current:hover { float:left; height:19px; margin-left:7px; padding:7px 10px 0; border:1px solid #C8C8C8; text-align:center; text-decoration:none; background-image:url(../images/new_tab_bg.jpg); cursor:pointer; }
+.c_tab_btn_current,
+.c_tab_btn_current:hover { border-bottom:1px solid white; color:#f36; background:white; }

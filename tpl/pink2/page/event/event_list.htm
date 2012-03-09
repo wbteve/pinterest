@@ -1,0 +1,64 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/tweetlist.css';
+	$css_list[0]['url'][] = './tpl/css/topic.css';
+	$css_list[0]['url'][] = './tpl/css/event.css';
+?>
+<!--{template inc/header}-->
+
+<div id="body" class="fm960">
+	<div id="content" class="fl">
+		<div class="piece2">
+			<div class="piece2_hd"></div>
+			<div class="piece2_bd">
+				<div class="event-nav clearfix">
+					<em {if $type=='new'}class="cur"{/if}><a href="{u event/list type=new}">最新话题</a></em>
+					<em {if $type=='hot'}class="cur"{/if}><a href="{u event/list type=hot}">热门话题</a></em>
+					{if intval($_FANWE['uid'])>0}
+					<em {if $type=='me'}class="cur"{/if}><a href="{u event/list type=me}">我发起的话题</a></em>
+					<em {if $type=='reply'}class="cur"{/if}><a href="{u event/list type=reply}">我参加过的话题</a></em>
+					{/if}
+					<!--{if intval($_FANWE['uid'])>0 && ($type=='me' || $type=='reply')}-->
+					<div class="order fr">
+						<a href="{u event/list type=$type,order=time}" {if $order=='time'}class="cur"{/if}>按时间排序</a>
+						|
+						<a href="{u event/list type=$type,order=pop}" {if $order=='pop'}class="cur"{/if}>按人气排序</a>
+					</div>
+					<!--{/if}-->
+				</div>
+				<div class="event-list-box">
+					<ul>
+						<!--{loop $detaillist $item}-->
+						<li class="clearfix" eventID="{$item['id']}">
+							<span class="title fl"><a target="_blank" href="{u event/detail id=$item['id']}" title="{$item['title']}">{cutstr $item['title'] 40}</a></span>
+							<span class="author fl">发起：<!--{getuser $item['uid'] 0}--></span>
+							<span class="post fl">讨论：<a target="_blank" href="{u event/detail id=$item['id']}">{$item['thread_count']}</a>条</span>
+							<span class="time fl">{echo getBeforeTimelag($item['create_time'])}</span>
+						</li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+				<div class="blank20"></div>
+				<div class="pagination" style="padding:40px 0 0 0;"> 
+					<!--{subtemplate inc/pages}-->
+				</div>
+			</div>
+			<div class="piece2_ft"></div>
+		</div>
+	</div>
+	<div id="sidebar" class="fr">
+		<!--{template inc/event/event_right}-->
+	</div>
+	<div class="clear"></div>
+</div>
+<!--{if getIsManage('event')}-->
+<script type="text/javascript">
+jQuery(function($){
+	$('.event-list-box li').hover(function(){
+		var eventID = this.getAttribute('eventID');
+		if(eventID)
+			$.GetManageMenu('event',eventID,this);
+	},function(){});
+});
+</script>
+<!--{/if}-->
+<!--{template inc/footer}-->

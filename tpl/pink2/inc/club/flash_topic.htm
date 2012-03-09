@@ -1,0 +1,35 @@
+<!--{if !empty($best_list)}-->
+<div class="pic_fix">
+	<div class="pic_ps">
+		<div id="pic_tpk_tj" class="pic_tpk_tj">
+			<ul>
+				<!--{loop $best_list $topic}-->
+				<li class="pic_tpk_tj_f">
+					<a target="_blank" href="{$topic['url']}"><img src="$topic['imgs'][0]['img']"></a>
+					<div class="title">
+						<a target="_blank" href="{$topic['url']}">{cutstr $topic['title'] 34}</a>
+					</div>
+				</li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+		<div id="pic_tpk_tj_btn" class="pic_tpk_tj_btn">
+			<div></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+	$("#pic_tpk_tj ul").carouFredSel({
+		curcular: false,
+		infinite: false,
+		auto : true,
+		pauseDuration:3000,
+		pagination: "#pic_tpk_tj_btn div",
+		scroll: {
+			pauseOnHover: true
+		}
+	});
+});
+</script>
+<!--{/if}-->

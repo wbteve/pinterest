@@ -1,0 +1,62 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/zone.css';
+	$js_list[0] = './tpl/js/zone.js';
+?>
+<!--{template inc/header}-->
+<link rel="stylesheet" type="text/css" href="./tpl/uu43/css/zone.css" />
+<div id="body" class="fm960">
+	<div class="homens_hd"></div>
+	<div class="homens_bd clearfix">
+		<div id="content" class="clearfix" style="width:960px;">
+			<!--{template inc/u/u_menu}-->
+			<div class="content fr" style="width:820px;">
+				<div class="zone_head myalbum_title">
+					<div class="mb15">
+						<h1 class="zone_title">{$_FANWE['home_user_names']['short']}的{lang common/album}</h1>
+						<a href="{u album/create}" class="zone_pub" >创建{lang common/album}</a> </div>
+					<div>
+						<div class="zone_cat fl">
+							<a href="{u u/album uid=$home_uid,type=1}"{if $type == 1} class="c"{/if}>{$_FANWE['home_user_names']['short']}发表的</a><span>|</span> <a href="{u u/album uid=$home_uid,type=2}"{if $type == 2} class="c"{/if}>关注的人</a><span>|</span> <a href="{u u/album uid=$home_uid,type=3}"{if $type == 3} class="c"{/if}>{$_FANWE['home_user_names']['short']}推荐的</a>
+						</div>
+					</div>
+				</div>
+				<!--{if empty($album_list)}-->
+				<div class="empty">
+					<img alt="" class="fl" src="./tpl/images/fanwe4.png">
+					<span>呼~~这里还是空的~~</span>
+				</div> 
+				<!--{else}-->
+				<ul class="album_all_pic clearfix">
+					<!--{loop $album_list $album}-->
+					<li class="all_list" >
+						<div class="album_title">
+							<a href="{$album['url']}">{cutstr $album['title'] 30}</a> <span class="pic_n"> <span>{$album['img_count']}&nbsp;图</span> <i></i> </span>
+						</div>
+						<ul class="all_pic_s">
+							<!--{eval $list_img_counts = array(0,0,0,0,0,0);}-->
+							<!--{loop $list_img_counts $imgkey $imgindex}-->
+							<!--{eval $img = $album['imgs'][$imgkey];}-->
+							<!--{if !empty($img)}-->
+							<li><a target="_blank" href="{$album['url']}"><img src="{getimg $img['img'] 100 100}" /></a></li>
+							<!--{else}-->
+							<li><a target="_blank" class="add_img" href="{$album['url']}"><img src="./tpl/images/none_pic.png" /></a></li>
+							<!--{/if}-->
+							<!--{/loop}-->
+						</ul>
+						<!--{if $type > 1}-->
+						<!--{getuser $album['uid'] 1 '' 'icard name gc'}-->
+						<!--{/if}-->
+						<p>{cutstr $album['content'] 98}</p>
+					</li>
+					<!--{/loop}-->
+				</ul>
+				<div class="pagination pt15">
+					<!--{subtemplate inc/pages}--> 
+				</div>
+				<!--{/if}-->
+			</div>
+		</div>
+	</div>
+	<div class="homews_ft"></div>
+</div>
+<!--{template inc/footer}-->

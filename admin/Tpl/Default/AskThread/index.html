@@ -1,0 +1,39 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList','tid')" />
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />
+	<form action="__APP__">
+		<span>{%TITLE}</span>
+		<input class="textinput" type="text" value="{$keyword}" name="keyword" size="12" />
+		<small></small>
+		<span>{%USER_NAME}</span>
+		<input class="textinput" type="text" value="{$uname}" name="uname" id="user_name" size="8" />
+		<small></small>
+		<span>{%ASK_ID}</span>
+		<select name="aid">
+			<option value="0">{%ASK_ALL}</option>
+			<foreach name="cate_tree" item="cate_item">
+			<option value="{$cate_item.aid}" <if condition="$aid eq $cate_item['aid']">selected="selected"</if>>{$cate_item.name}</option>
+			</foreach>
+		</select>
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<div class="search-box">
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="thread" 
+	pk="tid" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="tid:{%ID}|50,title:{%TITLE}|~left,aname:{%ASK_ID}|100,user_name:{%USER_NAME}|100,share_id|getRelateShare:{%CHECK_RELATE_SHARE}|150,is_top|getStatusImg:{%IS_TOP}|50:toggleStatus|tid,is_best|getStatusImg:{%IS_BEST}|50:toggleStatus|tid,post_count|getPostCount=$thread['tid']:{%POST_COUNT}|100,create_time|toDate:{%POST_TIME}|150" 
+	actionlist="editData:{%EDIT}:tid,removeData:{%REMOVE}:tid" action_width="80" />
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

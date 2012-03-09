@@ -1,0 +1,45 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList','gid')" />
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />
+	<form action="__APP__">
+		<span>{%NAME}</span>
+		<input class="textinput" type="text" value="{$keyword}" name="keyword" size="12" />
+		<small></small>
+		<span>{%USER_NAME}</span>
+		<input class="textinput" type="text" value="{$uname}" name="uname" id="user_name" size="8" />
+		<small></small>
+		<span>{%SID}</span>
+		<select name="sid">
+			<option value="0">{%SECOND_ALL}</option>
+			<foreach name="second_list" item="second_item">
+			<option value="{$second_item.sid}" <if condition="$sid eq $second_item['sid']">selected="selected"</if>>{$second_item.name}</option>
+			</foreach>
+		</select>
+		<small></small>
+		<span>{%CITY_ID}</span>
+		<select name="city_id">
+			<option value="0">{%CITY_ALL}</option>
+			<foreach name="city_list" item="city_item">
+			<option value="{$city_item.id}" <if condition="$city_id eq $city_item['id']">selected="selected"</if>>{$city_item.name}</option>
+			</foreach>
+		</select>
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="thread" 
+	pk="gid" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="gid:{%ID}|50,name:{%NAME}|~left,page:{%PAGES}|170,sname:{%SID}|100,user_name:{%USER_NAME}|100,share_id|getRelateShare:{%CHECK_RELATE_SHARE}|150,create_time|toDate:{%CREATE_TIME}|150,status|getStatusImg:{%STATUS}|50:toggleStatus|gid" 
+	actionlist="editData:{%EDIT}:gid,removeData:{%REMOVE}:gid" action_width="80" nosort="share_id,name" />
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

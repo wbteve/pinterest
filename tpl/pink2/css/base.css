@@ -1,0 +1,119 @@
+.r3 { border-radius:3px; }
+.r5 { border-radius:5px; }
+.r10 { border-radius:10px; }
+.rt3 { border-radius:3px 3px 0 0; }
+.rt5 { border-radius:5px 5px 0 0; }
+.rt10 { border-radius:10px 10px 0 0; }
+.rb3 { border-radius:0 0 3px 3px; }
+.rb5 { border-radius:0 0 5px 5px; }
+.rb10 { border-radius:0 0 10px 10px; }
+.rl3 { border-radius:3px 0 0 3px; }
+.rl5 { border-radius:5px 0 0 5px; }
+.rl10 { border-radius:10px 0 0 10px; }
+.rr3 { border-radius:0 3px 3px 0; }
+.rr5 { border-radius:0 5px 5px 0; }
+.rr10 { border-radius:0 10px 10px 0; }
+.fl { float:left; display:inline; }
+.fr { float:right; display:inline; }
+.mt0 { margin-top:0; }
+.mt5 { margin-top:5px; }
+.mt10 { margin-top:10px; }
+.mt15 { margin-top:15px; }
+.mt20 { margin-top:20px; }
+.mt25 { margin-top:25px; }
+.mt30 { margin-top:30px; }
+.mt35 { margin-top:35px; }
+.mt40 { margin-top:40px; }
+.mr0 { margin-right:0; }
+.mr5 { margin-right:5px; }
+.mr10 { margin-right:10px; }
+.mr15 { margin-right:15px; }
+.mr20 { margin-right:20px; }
+.mr25 { margin-right:25px; }
+.mr30 { margin-right:30px; }
+.mr35 { margin-right:35px; }
+.mr40 { margin-right:40px; }
+.mb0 { margin-bottom:0; }
+.mb5 { margin-bottom:5px; }
+.mb10 { margin-bottom:10px; }
+.mb15 { margin-bottom:15px; }
+.mb20 { margin-bottom:20px; }
+.mb25 { margin-bottom:25px; }
+.mb30 { margin-bottom:30px; }
+.mb35 { margin-bottom:35px; }
+.mb40 { margin-bottom:40px; }
+.ml0 { margin-left:0; }
+.ml5 { margin-left:5px; }
+.ml10 { margin-left:10px; }
+.ml15 { margin-left:15px; }
+.ml20 { margin-left:20px; }
+.ml25 { margin-left:25px; }
+.ml30 { margin-left:30px; }
+.ml35 { margin-left:35px; }
+.ml40 { margin-left:40px; }
+.pt0 { padding-top:0; }
+.pt5 { padding-top:5px; }
+.pt10 { padding-top:10px; }
+.pt15 { padding-top:15px; }
+.pt20 { padding-top:20px; }
+.pt25 { padding-top:25px; }
+.pt30 { padding-top:30px; }
+.pt40 { padding-top:40px; }
+.pr0 { padding-right:0; }
+.pr5 { padding-right:5px; }
+.pr10 { padding-right:10px; }
+.pr15 { padding-right:15px; }
+.pr20 { padding-right:20px; }
+.pr25 { padding-right:25px; }
+.pr30 { padding-right:30px; }
+.pr35 { padding-right:35px; }
+.pr40 { padding-right:40px; }
+.pb0 { padding-bottom:0; }
+.pb5 { padding-bottom:5px; }
+.pb10 { padding-bottom:10px; }
+.pb15 { padding-bottom:15px; }
+.pb20 { padding-bottom:20px; }
+.pb25 { padding-bottom:25px; }
+.pb30 { padding-bottom:30px; }
+.pb35 { padding-bottom:35px; }
+.pb40 { padding-bottom:40px; }
+.pl0 { padding-left:0; }
+.pl5 { padding-left:5px; }
+.pl10 { padding-left:10px; }
+.pl15 { padding-left:15px; }
+.pl20 { padding-left:20px; }
+.pl25 { padding-left:25px; }
+.pl30 { padding-left:30px; }
+.pl35 { padding-left:35px; }
+.pl40 { padding-left:40px; }
+.plr10 { padding:0 10px; }
+.psb { padding:20px 0 15px 25px; }
+.gc { color:#E71F8D; }
+.bc { color:#333; }
+.nc { color:#A3A9B5; }
+.ofh { white-space:nowrap; word-wrap:normal; word-break:normal; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden; }
+.clr { clear:both; }
+.clear_in { overflow:hidden; zoom:1; }
+.clearfix:before, .clearfix:after { content:""; display:table; }
+.clearfix:after { clear:both; }
+.clearfix { zoom:1; }
+.clear { clear:both; display:block; overflow:hidden; visibility:hidden; width:0; height:0; }
+.hide{display:none;}
+.tipcolor{color:#999;}
+.blank3 {clear:both; height:3px; overflow:hidden; display:block;}
+.blank6 {clear:both; height:6px; overflow:hidden; display:block;}
+.blank9 {clear:both; height:9px; overflow:hidden; display:block;}
+.blank12 {clear:both; height:12px; overflow:hidden; display:block;}
+.blank15 {clear:both; height:15px; overflow:hidden; display:block;}
+.blank20 {clear:both; height:20px; overflow:hidden; display:block;}
+
+.message-box{width:522px; border:solid 1px #ddd; padding:0 0 41px 0; margin:120px auto; font-size:13px; background:#fff;}
+.message-box dt{height:36px; background:url(../images/b20.gif) repeat-x 0 0; overflow:hidden;line-height:36px; letter-spacing:2px;border-bottom:solid 1px #ddd; }
+.message-box dt strong{display:block; padding:0 0 0 18px; float:left;font-size:18px; font-family:"微软雅黑", Arial, sans-serif; color:#333;}
+.message-box dd{width:520px;}
+.message-box dd .content{padding:50px 30px 50px 150px; color:#484848;}
+.message-box dd .error{background:url(../images/sys_error.png) no-repeat 50px 45px #fff;}
+.message-box dd .success{background:url(../images/sys_success.png) no-repeat 50px 45px #fff;}
+.message-box dd strong{color:#1e7fde;}
+.message-box dd a{color:#f45b00;}
+.message-box dd .notice{line-height:20px;}

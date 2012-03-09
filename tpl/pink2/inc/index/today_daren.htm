@@ -1,0 +1,22 @@
+<div class="show_girl">
+	<div class="sg_z1">
+		<!--{if $_FANWE['uid'] > 0}-->
+		<div class="wel_u">
+		  <a href="{u u/index}" target="_blank" class="fl avt"><img class="fl" src="{avatar $_FANWE['uid'] m $_FANWE['user']['server_code'] 1}" height="48" /></a>
+		  <div class="fl">
+			<a href="{u u/index}" target="_blank" class="n{if $_FANWE['user']['gender'] == 1} bc{else} gc{/if}">{$_FANWE['user_name']}</a>
+			<p>{lang welcome}{$_FANWE['setting']['site_name']}！</p>
+		  </div>
+		</div>
+		<!--{else}-->
+		<a href="{u user/register}" target="_blank" class="go_reg"></a>
+		<a href="{$_FANWE[site_root]}login.php?mod=qq" target="_blank"><img src="./tpl/images/icon_qq_qq.png"  class="l_qq"></a>
+		<a href="{$_FANWE[site_root]}login.php?mod=sina" target="_blank" ><img src="./tpl/images/icon_sina.png"  class="l_sina"></a>
+		<!--{/if}-->
+		<a href="{$today_daren['user']['url']}" target="_blank" class="sg_name r5">
+			{lang today_daren}<br>
+			<span>@{$today_daren['user']['user_name']}</span>
+		</a>
+	</div>
+	<div class="sg_z0"><img original="{getimg $today_daren['index_img'] 450 293 1}" src="./tpl/images/lazyload.gif" class="lazyload"/></div>
+</div>

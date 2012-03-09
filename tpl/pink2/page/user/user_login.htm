@@ -1,0 +1,77 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/loginreg.css';
+	$js_list[0] = './tpl/js/loginreg.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd clearfix">
+			<div id="content" style="width:960px;">
+				<div class="lg_left">
+					<h1>{lang login}{$_FANWE['setting']['site_name']}</h1>
+					<div class="lg_form">
+						<form id="loginForm" name="loginForm" action="{u user/ajax_login}" method="post">
+							<div class="lg_name">
+								<span>{lang user_name}：</span>
+								<input type="text" value="" tooltip="{lang user_name_tip}" name="email_name" class="text" maxlength="32" />
+							</div>
+							<div class="err_name"><span></span></div>
+							<div class="clear"></div>
+							<div class="lg_pass">
+								<span>{lang user_password}：</span>
+								<input type="password" value="" name="pass" class="text" maxlength="32" />
+							</div>
+							<div class="err_pass"><span></span></div>
+							<div class="clear"></div>
+							<div class="iserror" id="iserror">
+								<div class="war"><img src="./tpl/images/error_02.png"><span>{lang login_error_1}</span></div>
+								<div class="content">
+									{lang login_error_2}
+								</div>
+							</div>
+							<div class="iserror iserror2" id="iserror2">
+								<div class="war"><img src="./tpl/images/error_02.png"><span>{lang login_error_3}</span></div>
+								<div class="content">
+									{lang login_error_4}
+								</div>
+							</div>
+							<div class="lg_remember">
+								<label>
+									<input type="checkbox" name="remember" class="checkbox" checked="checked" value="1209600">
+									<span>{lang user_remember}</span>
+								</label>
+							</div>
+							<div class="lg_login">
+								<input type="submit" value=" " class="sub" id="login_submit" />
+								<a href="{u user/forgetpassword}">{lang forget_password}</a>
+							</div>
+							<div class="clear"></div>
+							<div class="lg_login_loading">
+								<span>{lang login_loading}</span>
+							</div>
+							<input name="rhash" value="<!--{dynamic getRHash}-->" type="hidden"/>
+							<input name="refer" value="<!--{dynamic getUserRefer}-->" type="hidden"/>
+							<input name="action" value="ajax_login" type="hidden"/>
+						</form>
+						<div class="ot_login">
+							<span>{lang other_login}：</span>
+							<div class="ot_btn">
+								<!--{loop $login_modules $login_module}-->
+								<a href="{$login_module['login_url']}" title="{$login_module['name']}"><img src="{$login_module['login_img']}" alt="{$login_module['name']}" /></a>&nbsp;
+								<!--{/loop}-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="lg_right">
+					<h1>{lang register}</h1>
+					<span>{sprintf no_register $_FANWE['setting']['site_name']}</span>
+					<a href="{u user/register}"></a>
+				</div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<!--{template inc/footer}-->

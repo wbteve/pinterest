@@ -1,0 +1,27 @@
+<!--{subtemplate inc/header}-->
+<div id="body" class="fm960">
+<style type="text/css"> 
+#body{margin-top:30px;}
+#flink {margin-top:30px;padding:0 30px;min-height:600px;_height:600px;}
+#flink h2{color:#5A6243;font-size:14px;}
+#flink p {color: #fff;line-height: 30px;line-height: 24px;font-size:20px;margin-top:20px}
+#flink p a{white-space: nowrap;font-size:12px;padding:0 6px;}
+#flink p a:hover{color:#f50}
+#flink p b{display:none;}
+</style>
+    <div class="piece1">
+        <div class="piece1_hd"></div>
+        <div class="piece1_bd clearfix">
+            <div id="flink">
+                <h2>友情链接</h2>
+                <p class="flink">
+                    <!--{loop $_FANWE['cache']['links']['all'] $link}-->
+                    <a href="{$link['url']}" target="_blank">{$link['name']}</a>
+                    <!--{/loop}-->
+                </p>
+            </div>
+        </div>
+        <div class="piece1_ft"></div>
+    </div>
+</div>
+<!--{subtemplate inc/footer}-->

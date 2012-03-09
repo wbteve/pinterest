@@ -1,0 +1,13 @@
+<div class="good_topic">
+	<h2>{lang best_topic}...</h2>
+	<!--{loop $best_list $topic}-->
+	<span>{cutstr $topic['title'] 42}</span>
+	<ul class="show_img">
+		<!--{loop $topic['imgs'] $img}-->
+		<li>
+			<a href="{$topic['url']}"><img src="{getimg $img['img'] 100 100}" /></a>
+		</li>
+		<!--{/loop}-->
+	</ul>
+	<!--{/loop}-->
+</div>

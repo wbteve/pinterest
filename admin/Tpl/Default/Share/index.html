@@ -1,0 +1,88 @@
+<tagLib name="fanwe" />
+<php>
+	function getTypeName($type)
+	{
+		return l("SHARE_".strtoupper($type));
+	}
+	function getShareData($data)
+	{
+		return l("SHARE_DATA_".strtoupper($data));
+	}
+</php>
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/shareList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="editShare" name="editShare" value="{%EDIT}" click="editData(this,'checkList','share_id')" />
+	<fanwe:imageBtn id="removeShare" name="removeShare" value="{%REMOVE}" click="removeData(this,'checkList')" />
+	<fanwe:imageBtn id="ToExamineSelect" name="ToExamineSelect" value="{%TO_EXAMINE_SELECT}" click="ToExamineSelectData(this,'checkList')" />
+	<fanwe:imageBtn id="ToExamineAll" name="ToExamineAll" value="{%TO_EXAMINEALL}" click="ToExamineAllData()" />
+	<fanwe:imageBtn id="ShiftClass" name="ShiftClass" value="{%SHIFT_CLASS}" click="ShiftClassData(this,'checkList')" />
+	<fanwe:imageBtn id="BatchDelete" name="BatchDelete" value="{%BATCH_DELETE}" click="BatchDelete()" />
+</div>
+<div class="search-box">
+    <form action="__APP__">
+		<span>{%SHARE_CONTENT}</span>
+		<input class="textinput" type="text" value="{$keyword}" name="keyword" size="12" />
+		<small></small>
+		<span>{%USER_NAME}</span>
+		<input class="textinput" type="text" value="{$uname}" name="uname" id="user_name" size="8" />
+		<small></small>
+		<span>{%SHARE_TYPE}</span>
+		<select name="type">
+			<option value="all" <if condition="$type eq 'all'">selected="selected"</if> >{:l("SHARE_ALL")}</option>
+			<option value="default" <if condition="$type eq 'default'">selected="selected"</if> >{:l("SHARE_DEFAULT")}</option>
+			<option value="ask" <if condition="$type eq 'ask'">selected="selected"</if> >{:l("SHARE_ASK")}</option>
+			<!--<option value="ershou" <if condition="$type eq 'ershou'">selected="selected"</if> >{:l("SHARE_ERSHOU")}</option>-->
+			<option value="fav" <if condition="$type eq 'fav'">selected="selected"</if> >{:l("SHARE_FAV")}</option>
+			<!--<option value="comments" <if condition="$type eq 'comments'">selected="selected"</if> >{:l("SHARE_COMMENTS")}</option>-->
+			<option value="ask_post" <if condition="$type eq 'ask_post'">selected="selected"</if> >{:l("SHARE_ASK_POST")}</option>
+			<option value="bar" <if condition="$type eq 'bar'">selected="selected"</if> >{:l("SHARE_BAR")}</option>
+			<option value="bar_post" <if condition="$type eq 'bar_post'">selected="selected"</if> >{:l("SHARE_BAR_POST")}</option>
+			<option value="album" <if condition="$type eq 'album'">selected="selected"</if> >{:l("SHARE_ALBUM")}</option>
+			<option value="album_item" <if condition="$type eq 'album_item'">selected="selected"</if> >{:l("SHARE_ALBUM_ITEM")}</option>
+			<option value="album_best" <if condition="$type eq 'album_best'">selected="selected"</if> >{:l("SHARE_ALBUM_BEST")}</option>
+		</select>
+		<small></small>
+		<span>{%SHARE_DATA}</span>
+		<select name="share_data">
+			<option value="default" <if condition="$share_data eq 'default'">selected="selected"</if> >{:l("SHARE_DATA_DEFAULT")}</option>
+			<option value="img" <if condition="$share_data eq 'img'">selected="selected"</if> >{:l("SHARE_DATA_IMG")}</option>
+			<option value="goods" <if condition="$share_data eq 'goods'">selected="selected"</if> >{:l("SHARE_DATA_GOODS")}</option>
+			<option value="photo" <if condition="$share_data eq 'photo'">selected="selected"</if> >{:l("SHARE_DATA_PHOTO")}</option>
+			<option value="goods_photo" <if condition="$share_data eq 'goods_photo'">selected="selected"</if> >{:l("SHARE_DATA_GOODS_PHOTO")}</option>
+			
+		</select>
+		<small></small>
+		<span>{%SHARE_CATEGORY}</span>
+		<select name="cate_id">
+			<option value="0" <if condition="$cate_id eq 0">selected="selected"</if> >{:l("SHARE_ALL")}</option>
+			<option value="-1" <if condition="$cate_id eq -1">selected="selected"</if> >无分类</option>
+			<foreach name="cate_list" item="cate_item">
+			<option value="{$cate_item.cate_id}" <if condition="$cate_id eq $cate_item['cate_id']">selected="selected"</if> >{$cate_item.cate_name}</option>
+			</foreach>
+		</select>
+		<small></small>
+		<span>{%STATUS}</span>
+		<select name="status">
+			<option value="-1" <if condition="$status eq -1">selected="selected"</if> >{%SHARE_ALL}</option>
+			<option value="0" <if condition="$status eq 0">selected="selected"</if> >{%STATUS_0}</option>
+			<option value="1" <if condition="$status eq 1">selected="selected"</if> >{%STATUS_1}</option>
+		</select>
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="share" 
+	pk="share_id" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="share_id:{%ID}|50,content:{%SHARE_CONTENT}|~left,cate_name:{%SHARE_CATEGORY}|100,user_name:{%USER_NAME}|100,create_time|toDate:{%CREATE_TIME}|100,collect_count:{%COLLECT_COUNT}|30,relay_count:{%RELAY_COUNT}|30,comment_count|getCommentCount=$share['share_id']:{%COMMENT_COUNT}|90,type|getTypeName:{%SHARE_TYPE}|90,share_data|getShareData:{%SHARE_DATA}|90,is_index|getStatusImg:{%IS_INDEX}|60:toggleStatus|share_id,status|getStatusImg:{%STATUS}|60:toggleStatus|share_id,sort:{%SORT}|80:numberEdit|share_id" 
+	actionlist="editData:{%EDIT}:share_id,removeData:{%REMOVE}:share_id" action_width="80" />
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

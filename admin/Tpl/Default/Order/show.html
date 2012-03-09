@@ -1,0 +1,71 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<div style="font-size:14px; padding:10px 0 0 10px;"><strong>{%GOODS_STATUS}：{$order.goods_status_name}</strong></div>
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%DATA_NAME}</th>
+		<td colspan="3">{$order.data_name}</td>
+	</tr>
+	<tr>
+		<th>{%SN}</th>
+		<td width="200">{$order.sn}</td>
+		<th>{%CREATE_TIME}</th>
+		<td>{$order.create_time|toDate}</td>
+	</tr>
+	<tr>
+		<th>{%ORDER_SCORE}</th>
+		<td colspan="3">{$order.order_score}</td>
+	</tr>
+	<if condition="$goods.goods_type eq 0">
+	<tr>
+		<th>{%ADDRESS}</th>
+		<td colspan="3">{$order.address}&nbsp;</td>
+	</tr>
+	<tr>
+		<th>{%EMAIL}</th>
+		<td width="200">{$order.email}</td>
+		<th>{%ZIP}</th>
+		<td>{$order.zip}</td>
+	</tr>
+	<tr>
+		<th>{%MOBILE_PHONE}</th>
+		<td width="200">{$order.mobile_phone}</td>
+		<th>{%FAX_PHONE}</th>
+		<td>{$order.fax_phone}</td>
+	</tr>
+	<tr>
+		<th>{%FIX_PHONE}</th>
+		<td width="200">{$order.fix_phone}</td>
+		<th>{%QQ}</th>
+		<td>{$order.qq}</td>
+	</tr>
+	<tr>
+		<th>{%MEMO}</th>
+		<td colspan="3">{$order.memo}&nbsp;</td>
+	</tr>
+	</if>
+	<tr>
+		<th>{%ADM_MEMO}</th>
+		<td colspan="3"><textarea name="adm_memo" class="textinput areainput" rows="5">{$order.adm_memo}</textarea></td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<if condition="$order.goods_status eq 0">
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="hidden" name="status" value="1" />
+			<input type="hidden" name="id" value="{$order.id}" />
+			</if>
+			<if condition="$order.goods_status eq 1">
+			<input type="submit" class="submit_btn" value="{%CLEAR}" />
+			<input type="hidden" name="status" value="2" />
+			<input type="hidden" name="id" value="{$order.id}" />
+			</if>
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

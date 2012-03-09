@@ -1,0 +1,56 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="200">{%TIPS}</th>
+		<td>
+			<p>{%ROLENODE_TIPS}</p>
+		</td>
+	</tr>
+	<tr>
+		<th>{%ACTION}</th>
+		<td><input type="text" class="textinput" name="action" />&nbsp;<span>{%ACTION_TIPS}</span></td>
+	</tr>
+	<tr>
+		<th>{%ACTION_NAME}</th>
+		<td><input type="text" class="textinput" name="action_name" /></td>
+	</tr>
+	<tr>
+		<th>{%MODULE}</th>
+		<td><input type="text" class="textinput requireinput" name="module" />&nbsp;<span>{%MODULE_TIPS}</span></td>
+	</tr>
+	<tr>
+		<th>{%MODULE_NAME}</th>
+		<td><input type="text" class="textinput" name="module_name" /></td>
+	</tr>
+	<tr>
+		<th>{%NAV_ID}</th>
+		<td>
+			<fanwe:select options="nav_list" first="{%SELECT_NAV_ID}" name="nav_id" id="nav_id" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%IS_SHOW}</th>
+		<td>
+			<label><input type="radio" name="is_show" value="1" checked="checked" /><span>{%YES}</span></label>
+			<label><input type="radio" name="is_show" value="0"/><span>{%NO}</span></label>
+		</td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td><input type="text" class="textinput" name="sort" size="4" value="10"/></td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

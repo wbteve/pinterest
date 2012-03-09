@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html>
+<head>
+<title>方维分享系统  -- 更新向导</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<load href ="__TMPL__Public/css/style.css" />
+<load href ="__TMPL__Public/js/jquery.js" />
+<load href ="__TMPL__Public/js/jquery.json.js" />
+<load href ="__TMPL__Public/js/script.js" />
+<script language="JavaScript">
+<!--
+//指定当前组模块URL地址 
+var URL = '__URL__';
+var ROOT_PATH = '__ROOT__';
+var APP	 =	 '__APP__';
+var VAR_MODULE = '{:c('VAR_MODULE')}';
+var VAR_ACTION = '{:c('VAR_ACTION')}';
+//-->
+</script>
+</head>
+<body><div class="install">
+<form name="install" action="{:u('Index/doupdate')}" method="POST" id="install">
+<div class="header">
+	<h1></h1>
+</div>
+<div class="main">
+	<h2 class="title" style="margin-left:30px;">更新设置</h2>
+	<table class="tb" style="margin:20px 0 20px 30px; width:600px;" cellspacing="1">
+		<tr>
+			<td><nobr>UCENTER URL:</nobr/></td>
+			<td><input type="text" name="uc_url" value="" size="20" class="txt"></td>
+			<td>
+				<span style="color:#f00;">UCENTER 默认在bbs/uc_server目录下，结尾请不要加"/"，例：http://www.wtuan.com/bbs/uc_server</span>；
+			</td>
+		</tr>
+	</table>
+	<div class="center" style="padding:0 0 20px 0;">
+		<input type="submit" value="开始更新" class="formbutton" />
+	</div>
+	<div class="center footer">
+		方维分享系统
+	</div>
+</div>
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+IIS6规则和组件在rewrite目录下。
+IIS7规则 web.config。
+apache规则 .htaccess
+nginx规则 nginx.conf

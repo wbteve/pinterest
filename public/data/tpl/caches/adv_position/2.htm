@@ -1,0 +1,74 @@
+<script>
+
+var IndexFlashLength = 0;
+var IntvalIndexFlashTimeout = null;
+var IndexFlashTime = 5;
+var IndexNowRel = 1;
+function initIndexFlashAdv(obj){
+IndexFlashLength = $("#"+obj+" #LIST li").length;
+if(IndexFlashLength==0)
+return ;
+initChangeIndexAdv(obj);
+initInvalTimeIndex(obj);
+}
+
+function initChangeIndexAdv(obj){
+$("#"+obj+" #BTNS li").hover(function(){
+clearTimeout(IntvalIndexFlashTimeout);
+$("#"+obj+" #BTNS li").removeClass("cur");
+$(this).addClass("cur");
+var rel=$(this).attr("rel");
+$("#"+obj+" #LIST li").each(function(){
+if ($(this).attr("rel") == rel) {
+$(this).show();
+}
+else 
+$(this).hide();
+});
+},function(){
+IndexNowRel = $(this).attr("rel");
+initInvalTimeIndex(obj);
+});
+}
+
+function initInvalTimeIndex(obj){
+clearTimeout(IntvalIndexFlashTimeout);
+IndexFlashLength = $("#"+obj+" #LIST li").length;
+if(IndexNowRel >IndexFlashLength)
+IndexNowRel = 1;
+
+$("#"+obj+" #LIST li").each(function(){
+if ($(this).attr("rel") == IndexNowRel) {
+$(this).show();
+}
+else 
+$(this).hide();
+});
+
+$("#"+obj+" #BTNS li").each(function(){
+if ($(this).attr("rel") == IndexNowRel)
+$(this).addClass("cur");
+else
+$(this).removeClass("cur");
+});
+IndexNowRel++;
+IntvalIndexFlashTimeout = setTimeout("initInvalTimeIndex('"+obj+"')",IndexFlashTime*1000);
+}
+
+
+</script>
+<div class="index_flash fl" id="INDEX_FLASH_BOX">
+<ul class="btns clearfix" id="BTNS"><?php $idx = 1; if(is_array($adv_list)) foreach($adv_list as $adv) { ?><li rel="<?=$idx?>" <? if($idx==1) { ?>class="cur"<? } ?>>
+<a href="<?php  echo urldecode($adv[url]);  ?>">
+<img src="<?=$adv['small']?>" />
+<h3><?=$adv['name']?></h3>
+<p><?=$adv['desc']?></p>
+</a>
+</li><?php $idx++; } ?>
+</ul>
+<ul class="box clearifx" id="LIST"><?php $idx = 1; if(is_array($adv_list)) foreach($adv_list as $adv) { ?><li rel="<?=$idx?>" <? if($idx==1) { ?>style="display:block"<? } ?>><?=$adv['html']?></li><?php $idx++; } ?>
+</ul>
+<script>
+initIndexFlashAdv("INDEX_FLASH_BOX");
+</script>
+</div>

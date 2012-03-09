@@ -1,0 +1,39 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<php>
+	function getCateName($id)
+	{
+		$cate_name = D("GoodsCategory")->where("cate_id=".$id)->getField("cate_name");
+		if($cate_name)
+		{
+			return $cate_name;
+		}
+		else
+		{
+			return l("NO_CATE");
+		}
+	}
+	function getUrlShow($url)
+	{
+		return "<a href='".$url."' target='_blank'>".msubstr($url,0,50)."</a>";
+	}
+</php>
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList','goods_id')" />
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />
+</div>
+<div class="search-box">
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="share_goods" 
+	pk="goods_id" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="goods_id:{%ID}|50,name:{%GOODS_NAME}|~left,url|getUrlShow:{%GOODS_URL}|~left,cate_id|getCateName:{%CATE_NAME}|150,price|priceFormat:{%GOODS_PRICE}|100" 
+	actionlist="editData:{%EDIT}:goods_id,removeData:{%REMOVE}:goods_id" action_width="80" />
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

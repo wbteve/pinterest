@@ -1,0 +1,96 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<link href="__TMPL__Static/Js/DatePicker/jquery.ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/jquery.ui.core.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/lang/jquery.ui.datepicker-{$default_lang}.js"></script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="name" value="" size="80"/></td>
+	</tr>
+	<tr>
+		<th>{%GOODS_TYPE}</th>
+		<td>
+			<select name="goods_type">
+				<option value="0">{%GOODS_TYPE_0}</option>
+				<option value="1">{%GOODS_TYPE_1}</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>{%IMG}</th>
+		<td>
+			<input type="file" class="fileinput" name="img" size="30" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%INTEGRAL}</th>
+		<td>
+			<input type="text" class="textinput" name="integral" value="0" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%STOCK}</th>
+		<td>
+			<input type="text" class="textinput" name="stock" value="1" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%USER_NUM}</th>
+		<td>
+			<input type="text" class="textinput" name="user_num" value="1" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%IS_BEST}</th>
+		<td>
+			<label><input type="radio" name="is_best" value="1">{%YES}</label>
+			<label><input type="radio" name="is_best" value="0" checked="checked">{%NO}</label>
+		</td>
+	</tr>
+	<tr>
+		<th>{%BEGIN_TIME}</th>
+		<td>
+			<input class="textinput" type="text" name="begin_time" id="begin_time" size="10" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%END_TIME}</th>
+		<td>
+			<input class="textinput" type="text" name="end_time" id="end_time" size="10" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td>
+			<input type="text" class="textinput" name="sort" size="10" value="100" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%CONTENT}</th>
+		<td>
+			<fanwe:editor id="content" name="content" type="CKEDITOR" width="96%" height="130px" />
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+jQuery(function($){
+	$("#begin_time").datepicker();
+	$("#end_time").datepicker();
+});
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,24 @@
+<!--{template inc/header}-->
+<!--{if $jump_url != -1}-->
+<meta http-equiv="refresh" content="{$wait};URL={$jump_url}" />
+<!--{/if}-->
+<dl class="message-box">
+	<dt><strong>{$title}</strong></dt>
+	<dd>
+		<div class="content error">
+			<div class="notice">
+				<p>{$message}</p>
+			</div>
+		</div>
+	</dd>
+</dl>
+<!--{if $jump_url == -1}-->
+<script type="text/javascript">
+var fun = function(){
+	history.go(-1);
+}
+var wait = parseInt("{$wait}");
+setTimeout(fun,wait * 1000);
+</script>
+<!--{/if}-->
+<!--{template inc/footer}-->

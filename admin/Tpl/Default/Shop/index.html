@@ -1,0 +1,36 @@
+<tagLib name="fanwe" />
+<php>
+	function getCateName($cate_id)
+	{
+		$cate_name = M("ShopCategory")->where("id=".$cate_id)->getField("name");
+		if($cate_name)
+			return $cate_name;
+		else
+			return l("NO_CATE");
+	}
+	function getUrlShow($url)
+	{
+		return "<a href='".$url."' target='_blank'>".msubstr($url,0,50)."</a>";
+	}
+</php>
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="addData" name="addData" value="{%ADD}" click="addData(this,'checkList')" />
+	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList','shop_id')" />
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />
+</div>
+<div class="search-box">
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="shop" 
+	pk="shop_id" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="shop_id:{%ID}|50,shop_name:{%SHOP_NAME}|~left,cate_id|getCateName:{%CATE_NAME}|200,shop_url|getUrlShow:{%SHOP_URL}|300,recommend_count:{%RECOMMEND_COUNT}|80,sort:{%SORT}|100:textEdit|shop_id" 
+	actionlist="editData:{%EDIT}:shop_id,removeData:{%REMOVE}:shop_id" action_width="80" />
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

@@ -1,0 +1,65 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/medal.css';
+?>
+<!--{subtemplate inc/header}-->
+<link href="http://www.shopshare.com/tpl/uu43/css/medal.css" rel="stylesheet" type="text/css"/>
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd">
+			<div class="medal_title clearfix">
+				<div class="medal_logo"><img src="./tpl/images/apply-medal.png"></div>
+			</div>
+			<div class="medal_apply">
+				<form id="medalForm" action="{u medal/save}" method="post">
+					<div class="ma_tips">
+						申请认证周期为1-7个工作日不等<br/>
+						请在申请期间，多多贡献相关内容，有助于通过申请。
+					</div>
+					<div class="ma_item">
+						<label><span>勋章名称</span></label>
+						<select name="mid" id="medal_list">
+							<!--{loop $medal_list $medal}-->
+							<option value="{$medal['mid']}" img="{$medal['big_img']}" desc="{echo rawurlencode(nl2br($medal['desc']))}"{if $medal['mid'] == $mid} selected="selected"{/if}>{$medal['name']}</option>
+							<!--{/loop}-->
+						</select>
+					</div>
+					<div class="ma_item">
+						<label>&nbsp;</label>
+						<img src="{$current_medal['big_img']}" id="medal_img" class="fl"/>
+					</div>
+					<div class="ma_item">
+						<label>&nbsp;</label>
+						<p class="fl" id="medal_desc">{nl2br $current_medal['desc']}</p>
+					</div>
+					<div class="ma_item">
+						<label><span>申请陈述</span></label>
+						<textarea name="reason" rows="8" cols="100"></textarea>
+					</div>
+					<div class="ma_item">
+						<label>&nbsp;</label>
+						<input type="image" src="./tpl/images/confirm_btn.png" />
+					</div>
+					<input type="hidden" name="action" value="save" />
+				</form>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<script type="text/javascript">
+jQuery(function(){
+	$("#medalForm").submit(function(){
+		if(!$.Check_Login())
+			return false;
+	});
+	
+	$("#medal_list").change(function(){
+		var option = $("#medal_list option:selected").get(0);
+		$("#medal_img").attr('src',option.getAttribute('img'));
+		$("#medal_desc").html(decodeURI(option.getAttribute('desc')));
+	});
+});
+</script>
+<!--{subtemplate inc/footer}-->

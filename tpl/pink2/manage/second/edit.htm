@@ -1,0 +1,78 @@
+<!--{subtemplate manage/header}-->
+<div class="manage_edit">
+	<div class="manage_title">
+		<span>编辑二手商品：{$goods['name']}</span>
+	</div>
+	<div class="manage_unlock">
+		<span>当前已锁定此二手商品，其他管理员将不能对其进行操作，解锁请占击</span>
+		<a href="javascript:;" onclick="$.UnManageLock('second',{$goods['gid']},this)">【取消锁定】</a>
+		<span>，解锁后将关闭编辑页面</span>
+	</div>
+	<form method='post' id="form" name="form" action="{$_FANWE[site_root]}manage/manage.php">
+	<table class="table-form">
+		<tr>
+			<th width="100">名称：</th>
+			<td><input type="text" size="80" class="textinput requireinput" name="name" value="{$goods['name']}" /></td>
+		</tr>
+		<tr>
+			<th>相关分享</th>
+			<td>
+				<a href="{$_FANWE['site_root']}manage/manage.php?m=share&a=edit&id={$goods['share_id']}" target="_blank">编辑分享</a>
+			</td>
+		</tr>
+		<tr>
+			<th>分类</th>
+			<td>
+				<select name="sid">
+				<!--{loop $_FANWE['cache']['seconds'] $second}-->
+				<option value="{$second['id']}"{if $second['sid'] == $goods['sid']} selected="selected"{/if}>{$second['name']}</option>
+				<!--{/loop}-->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>城市</th>
+			<td>
+				<select name="city_id">
+				<!--{loop $_FANWE['cache']['citys']['province'] $cityid}-->
+				<!--{eval $city = $_FANWE['cache']['citys']['all'][$cityid];}-->
+				<option value="{$city['id']}"{if $city['id'] == $goods['city_id']} selected="selected"{/if}>{$city['name']}</option>
+				<!--{/loop}-->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>数量</th>
+			<td><input type="text" size="10" class="textinput" name="num" value="{$goods['num']}" /></td>
+		</tr>
+		<tr>
+			<th>单价</th>
+			<td><input type="text" size="10" class="textinput" name="price" value="{$goods['price']}" /></td>
+		</tr>
+		<tr>
+			<th>运费</th>
+			<td><input type="text" size="10" class="textinput" name="transport_fee" value="{$goods['transport_fee']}" /></td>
+		</tr>
+		<tr>
+			<th>有效期</th>
+			<td><input type="text" class="textinput" name="valid_time" value="{date $goods['valid_time'] 'Y-m-d'}" /></td>
+		</tr>
+		<tr>
+			<th>描述</th>
+			<td>
+				<textarea name="content" class="pub_txt">{$goods['content']}</textarea>
+			</td>
+		</tr>
+		<tr class="act">
+			<th>&nbsp;</th>
+			<td>
+				<input type="hidden" name="id" value="{$goods['gid']}" />
+				<input type="hidden" name="m" value="second" />
+				<input type="hidden" name="a" value="update" />
+				<input type="submit" class="formbutton" value="提交" />
+			</td>
+		</tr>
+	</table>
+	</form>
+</div>
+<!--{subtemplate manage/footer}-->

@@ -1,0 +1,83 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/tweetlist.css';
+	$css_list[0]['url'][] = './tpl/css/zone.css';
+	$js_list[0] = './tpl/js/zone.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="homews_hd"></div>
+		<div class="homews_bd clearfix">
+			<div id="content" class="fl" style="width:730px;">
+			<!--{template inc/u/u_menu}-->
+			<div class="content fr" style="width:595px;">
+				<div class="zone_head" style="margin:0 10px;">
+					<div class="mb15">
+						<h1 class="zone_title">{$_FANWE['home_user_names']['short']}的主题</h1>
+					</div>
+					<div> 
+						<div class="zone_cat fl">
+							<a href="{u u/topic uid=$home_uid}"{if ACTION_NAME == 'topic'} class="c"{/if}>{$_FANWE['home_user_names']['short']}发表的</a>
+							<span>|</span>
+							<a href="{u u/maybe uid=$home_uid}"{if ACTION_NAME == 'maybe'} class="c"{/if}>{$_FANWE['home_user_names']['short']}关注的人</a>
+							<span>|</span>
+							<a href="{u u/ask uid=$home_uid}"{if ACTION_NAME == 'ask'} class="c"{/if}>{$_FANWE['home_user_names']['short']}的问题</a>
+							<span>|</span>
+							<a href="{u u/attention uid=$home_uid}"{if ACTION_NAME == 'attention'} class="c"{/if}>{$_FANWE['home_user_names']['short']}关注的</a>
+							<span>|</span>
+							<a href="{u u/feed uid=$home_uid}"{if ACTION_NAME == 'feed'} class="c"{/if}>{$_FANWE['home_user_names']['short']}回应的</a>
+						</div>
+					</div>
+				</div>
+				<!--{if empty($thread_list)}-->
+				<div class="empty">
+					<img alt="" class="fl" src="./tpl/images/fanwe4.png">
+					<span>呼~~这里还是空的~~</span>
+				</div> 
+				<!--{else}-->
+				<div class="topic_full_list">
+					<ul>
+						<!--{loop $thread_list $thread}-->
+						<li class="tfl_feed">
+							<div class="tflf_hd clear_in">
+								<div style="margin-left:60px; width:478px;">
+									<h1><a target="_blank" href="{$thread['url']}">{cutstr $thread['title'] 46}</a></h1>
+								</div>
+							</div>
+							<div class="tflf_bd">
+								<!--{if !empty($thread['imgs'])}-->
+								<div class="cover">
+									<a href="{$thread['url']}" target="_blank" class="cover_image" style="background-image: url({getimg $thread['imgs'][0]['img'] 468 468})"></a>
+									<!--{if $thread['post_count'] > 0}-->
+									<div class="fb"> <em class="fl">{$thread['post_count']}</em> 回应 <span class="fb_r"></span> </div>
+									<!--{/if}-->
+								</div>
+								<!--{/if}-->
+								<pre class="content">{cutstr $thread['content'] 300}</pre>
+							</div>
+							<div class="tflf_ft">
+								<a href="{$thread['url']}" target="_blank" class="more">查看主题</a>
+								<!--{if empty($thread['imgs']) && $thread['post_count'] > 0}-->
+								<span class=" fl fb_txt">回应({$thread['post_count']})</span>
+								<!--{/if}-->
+								<div class="fr">
+									<span class="time">{$thread['time']}</span>
+									<a href="{$thread['cate']['url']}" target="_blank" class="from">[{$thread['cate']['name']}]</a>
+								</div>
+							</div>
+						</li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+				<div class="pagination pt15">
+					<!--{subtemplate inc/pages}--> 
+				</div>
+				<!--{/if}-->
+			</div>
+		</div>
+		<div id="sidebar" class="fr pl15" style="width:215px;">
+			<!--{template inc/u/u_topic}-->
+		</div>
+	</div>
+	<div class="homews_ft"></div>
+</div>
+<!--{template inc/footer}-->

@@ -1,0 +1,111 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/daren.css';
+?>
+<!--{subtemplate inc/header}-->
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd">
+			<div class="daren_title clearfix">
+				<div class="daren_logo"><img src="./tpl/images/logo-daren.png"></div>
+				<div class="daren_tag">
+					<a{if $is_best} class="c"{/if} href="{u daren/index}">热荐达人</a>/ <a{if $is_all} class="c"{/if} href="{u daren/all}" >所有达人</a></div>
+			</div>
+			<div id="daren_imagewall" class="daren_wall">
+				<div class="col1 clear_in">
+					<!--{loop $list[0] $daren}-->
+					<div class="d_w_i" darenID="{$daren['id']}">
+						<div class="pic">
+							<!--{if $daren['today_best']}-->
+							<div class="daren_jian"></div>
+							<!--{/if}-->
+							<a target="_blank" href="{$daren['url']}" ><img src="{$daren['img']}" width="280"></a>
+							<div class="user">
+								<a class="gc n">{$daren['user_name']}</a>
+								<!--{getfollow {$daren['uid']} inc/getfollow/daren}-->
+								<span class="locate">{$daren['city']}</span>
+							</div>
+						</div>
+						<div class="info"> <span>粉丝：</span><a >{$daren['fans']}</a> <span>微博：</span><a >{$daren['shares']}</a> <span>宝贝：</span><a class="fav" >{$daren['goods']}</a> </div>
+						<div class="u_intro clearfix">
+							<p class="intro fl" > <img src="./tpl/images/mark_left.png" > {$daren['reason']} </p>
+							<img class="m_r" src="./tpl/images/mark_right.png"> </div>
+					</div>
+					<!--{/loop}-->
+				</div>
+				<div class="col2 clear_in">
+					<!--{loop $list[1] $daren}-->
+					<div class="d_w_i" darenID="{$daren['id']}">
+						<div class="pic">
+							<!--{if $daren['today_best']}-->
+							<div class="daren_jian"></div>
+							<!--{/if}-->
+							<a target="_blank" href="{$daren['url']}" ><img src="{$daren['img']}" width="280"></a>
+							<div class="user">
+								<a class="gc n">{$daren['user_name']}</a>
+								<!--{getfollow {$daren['uid']} inc/getfollow/daren}-->
+								<span class="locate">{$daren['city']}</span>
+							</div>
+						</div>
+						<div class="info"> <span>粉丝：</span><a >{$daren['fans']}</a> <span>微博：</span><a >{$daren['shares']}</a> <span>宝贝：</span><a class="fav" >{$daren['goods']}</a> </div>
+						<div class="u_intro clearfix">
+							<p class="intro fl" > <img src="./tpl/images/mark_left.png" > {$daren['reason']} </p>
+							<img class="m_r" src="./tpl/images/mark_right.png"> </div>
+					</div>
+					<!--{/loop}-->
+				</div>
+				<div class="col3 clear_in">
+					<div class="be_daren">
+						<p> <img src="./tpl/images/back_to_bar.png" class="arrow"/>热爱购物？喜欢分享？爱一切扮靓的秘笈！快来申请做达人吧！ <img src="./tpl/images/daren_icon.png" alt="达人" /> </p>
+						<a href="{u daren/apply}" ><img src="./tpl/images/be_daren_green.png" alt="我要做达人" /></a>
+					</div>
+					<!--{loop $list[2] $daren}-->
+					<div class="d_w_i" darenID="{$daren['id']}">
+						<div class="pic">
+							<!--{if $daren['today_best']}-->
+							<div class="daren_jian"></div>
+							<!--{/if}-->
+							<a target="_blank" href="{$daren['url']}" ><img src="{$daren['img']}" width="280"></a>
+							<div class="user">
+								<a class="gc n">{$daren['user_name']}</a>
+								<!--{getfollow {$daren['uid']} inc/getfollow/daren}-->
+								<span class="locate">{$daren['city']}</span>
+							</div>
+						</div>
+						<div class="info"> <span>粉丝：</span><a >{$daren['fans']}</a> <span>微博：</span><a >{$daren['shares']}</a> <span>宝贝：</span><a class="fav" >{$daren['goods']}</a> </div>
+						<div class="u_intro clearfix">
+							<p class="intro fl" > <img src="./tpl/images/mark_left.png" > {$daren['reason']} </p>
+							<img class="m_r" src="./tpl/images/mark_right.png"> </div>
+					</div>
+					<!--{/loop}-->
+				</div>
+			</div>
+			<div class="pagination" style="padding-bottom:10px; padding-top:20px;">
+				<!--{subtemplate inc/pages}-->
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<script type="text/javascript">
+function UpdateUserFollow(obj,result)
+{
+	if(result.status == 1)
+	{
+		$(obj).before('<img class="fo_ok" src="./tpl/images/followed_daren.png">');
+		$(obj).remove();
+	}
+}
+</script>
+<!--{if getIsManage('daren')}-->
+<script type="text/javascript">
+jQuery(function($){
+	$('.d_w_i').hover(function(e){
+		var darenID = this.getAttribute('darenID');
+		if(darenID)
+			$.GetManageMenu('daren',darenID,this,e);
+	},function(){});
+});
+</script>
+<!--{/if}-->
+<!--{subtemplate inc/footer}-->

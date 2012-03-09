@@ -1,0 +1,28 @@
+<div class="fl box hot_event">
+	<div class="box_head">
+		<strong>{lang uu_hot_event}</strong>
+		<a href="{u event/index}" class="fr">{lang more}>></a>
+	</div>
+	<div class="img_box">
+		<!--{if !empty($img_event)}-->
+		<a href="{$img_event['url']}" target="_blank" class="topic_img"><img alt="{$img_event['title']}" height="70" class="lazyload" original="{getimg $img_event['imgs'][0]['img'] 90 70 1}" src="./tpl/images/lazyload.gif"></a>
+		<div class="inf">
+			<a href="{$img_event['url']}" target="_blank" class="topic_title">{cutstr $img_event['title'] 40}</a>
+			<p class="sms">{$img_event['content']}</p>
+			<p class="time_post">{$img_event['time']}&nbsp;&nbsp;<span>{$img_event['thread_count']}</span>{lang post}</p>
+		</div>
+		<!--{/if}-->
+	</div>
+	<div class="list_box">
+		<ul>
+			<!--{eval $ne_index = 1;}-->
+			<!--{loop $new_topics $topic}-->
+			<li class="li_{$ne_index}">
+				<a href="{$topic['url']}" target="_blank" title="{$topic['title']}">{cutstr $topic['title'] 40}</a>
+				<span>{$topic['time']}</span>
+			</li>
+			<!--{eval $ne_index++;}-->
+			<!--{/loop}-->
+		</ul>
+	</div>
+</div>

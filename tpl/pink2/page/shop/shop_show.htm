@@ -1,0 +1,74 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/tweetlist.css';
+	$css_list[1]['url'] = './tpl/css/shop.css';
+	$js_list[0] = './tpl/js/shop.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960"> 
+	<div class="shop_wrapper">
+		<h1 style="float: none; font-size: 24px; padding: 13px 10px;">{$shop['shop_name']}</h1>
+		<div class="shop_sidebar box_shadow">
+			<div class="shop_summary">
+				<div>
+					<!--{if !empty($shop['shop_logo'])}-->
+					<a href="{$shop['to_url']}" target="_blank"><img width="80" height="80" style="border: 1px solid #e0e0e0;" src="{$shop['shop_logo']}"/></a>
+					<!--{/if}-->
+				</div>
+				<div class="title">{$shop['shop_name']}</div>
+				<a href="{$shop['to_url']}" target="_blank">去这家店逛逛</a> </div>
+			<div class="section">
+				<h3 class="section_title">店铺看点</h3>
+				<div class="shop_topic" style="width: 220px; height: 60px; overflow: hidden;">
+					<!--{loop $shop['tags'] $tag}-->
+					<a class="item" href="{echo FU('book/shopping',array('tag'=>urlencode($tag)))}" target="_blank">{$tag}</a>
+					<!--{/loop}-->
+					<div class="clear-fix"></div>
+				</div>
+			</div>
+			<div class="section">
+				<h3 class="section_title">
+					<span><a href="{u shop/index}" target="_blank">更多>></a></span>推荐这家店铺的人还在逛
+				</h3>
+				<div class="relative_shop">
+					<!--{loop $shops_tags['shops'] $shop_item}-->
+					<div class="item" >
+						<a href="{$shop_item['url']}" target="_blank" title="{$shop_item['shop_name']}"><img width="80" height="80" src="{$shop_item['shop_logo']}"/></a><br/>
+						<a href="{$shop_item['url']}" class="link red" target="_blank" title="{$shop_item['shop_name']}">{cutstr $shop_item['shop_name'] 26}</a>
+					</div>
+					<!--{/loop}-->
+					<div class="clear-fix"></div>
+				</div>
+			</div>
+			<div class="section">
+				<h3 class="section_title">
+					<span><a href="{u book/shopping}" target="_blank">更多>></a></span>推荐这家店铺的人还在看
+				</h3>
+				<div class="attr_list" style="width: 230px;">
+					<!--{loop $shops_tags['tags'] $tag}-->
+					<a class="attr" href="{echo FU('book/shopping',array('tag'=>urlencode($tag)))}" target="_blank">{$tag}</a>
+					<!--{/loop}-->
+					<div class="clear-fix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="shop_body box_shadow">
+			<div class="c_tab" style="margin-bottom: 15px;">
+				<a style="margin-left: 0;" class="c_tab_btn_current">大家推荐的</a>
+			</div>
+			<!--{subtemplate inc/u/u_share_list}-->
+		</div>
+	</div>
+	<div class="clear-fix"></div>
+</div>
+<!--{template inc/footer}-->
+<script type="text/javascript">
+jQuery(function(){
+	<!--{if getIsManage('share')}-->
+	$('#SHARE_DETAIL_LiST .t_f').hover(function(){
+		var shareID = this.getAttribute('shareID');
+		if(shareID)
+			$.GetManageMenu('share',shareID,this);
+	},function(){});
+	<!--{/if}-->
+});
+</script>

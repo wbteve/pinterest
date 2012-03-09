@@ -1,0 +1,19 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_CATEGORY_LIST}" href="{:U('StyleCategory/index')}" />
+	<fanwe:linkBtn text="{%STYLECATEGORYTAGS_SETTING}" href="{:U(MODULE_NAME.'/setting')}" />
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />
+	<form action="__APP__">
+		<span>{%TAG_NAME}</span>
+		<input class="textinput" type="text" value="{$tag_name}" name="tag_name" size="20" />
+		<small></small>
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<fanwe:list id="checkList" pk="tag_id" style="list" name="tags" checkbox="true" action="true" datasource="list" show="tag_name:{%TAG_NAME}|~left,sort:{%SORT}|80:numberEdit|tag_id" actionlist="removeData:{%REMOVE}:tag_id" action_width="80"/>
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

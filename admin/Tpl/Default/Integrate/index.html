@@ -1,0 +1,45 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function confirm_redirect(msg, url)
+	{
+	  if (confirm(msg))
+	  {
+	    location.href=url;
+	  }
+	}
+</script>
+<div class="handle-btns" style="height:70px; line-height:1.5em; padding:10px;">
+	使用方法：<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1:如果需要整合其他的用户系统，可以安装适当的版本号插件进行整合。<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2:如果需要更换整合的用户系统，直接安装目标插件即可完成整合，同时自动卸载上一次整合插件。<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3:如果不需要整合任何用户系统，请选择安装 fanwe 插件，即可卸载所有的整合插件。<br>
+</div>
+<table id="list" class="table-list list" cellpadding=0 cellspacing=0>
+	<thead>
+		<tr class="row">
+			<th class="center">名称</th>
+			<th class="center" width="100">关联表字段</th>
+			<th width="80">版本</th>
+			<th width="200">作者</th>
+			<th width="100">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<volist name="modules" id="module" mod="2">
+		<tr class="<eq name="mod" value="0">even</eq>">
+			<td>{$module.name}</td>
+			<td>{$module.user_field}</td>
+			<td>{$module.version}</td>
+			<td>{$module.author}</td>
+			<td>
+				<if condition="$module.installed eq 1">
+				<a href="__APP__?m=Integrate&a=edit&code={$module.code}">设置</a>
+				<else/>
+				<a <if condition="$module.code neq 'fanwe' ">href="javascript:confirm_redirect('您确定要安装该会员数据整合插件吗？', '__APP__?m=Integrate&a=install&code={$module.code}')"<else/>href="__APP__?m=Integrate&a=install&code={$module.code}"</if>>安装</a>
+				</if>
+			</td>
+		</tr>
+		</volist>
+	</tbody>
+</table>

@@ -1,0 +1,8 @@
+.fav_tip { width:118px; height:71px; position:absolute; top:100px; left:100px; text-align:center; font-size:12px; display:none; }
+.fav_tip .fok { width:118px; height:37px; color:#09c; padding-top:34px; background:url(/tpl/pink2/images/fav_bubble_ok.png) no-repeat; _background-image:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/tpl/pink2/images/fav_bubble_ok.png', sizingMethod='scale');
+}
+.fav_tip .ffail { width:118px; height:37px; color:#09c; padding-top:34px; background:url(/tpl/pink2/images/fav_bubble_fail.png) no-repeat; _background-image:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/tpl/pink2/images/fav_bubble_fail.png', sizingMethod='scale');
+}
+.fav_tip span { color:#999; padding-right:5px; }
+.fav_tip a { color:#09c; text-decoration:underline; _position:relative; }
+.fav_fanwe { background:url(/tpl/pink2/images/fav_fanwe.png) no-repeat; width:29px; height:25px; position:absolute; }

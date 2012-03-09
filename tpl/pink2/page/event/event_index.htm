@@ -1,0 +1,39 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/tweetlist.css';
+	$css_list[0]['url'][] = './tpl/css/topic.css';
+	$css_list[0]['url'][] = './tpl/css/event.css';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div id="content" class="fl">
+		<div class="piece2">
+			<div class="piece2_hd"></div>
+			<div class="piece2_bd">
+				<div class="event_list event_hot_list">
+					<h1>热门</h1>
+					<ul class="clearfix">
+						<!--{loop $hot_l_event_list $hot_topic}-->
+						<li eventID="{$hot_topic['id']}"><a target="_blank" href="{u event/detail id=$hot_topic['id']}">{cutstr $hot_topic['title'] 40}</a></li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+				<div class="blank20"></div>
+				<div class="event_list event_new_list">
+					<h1>最新</h1>
+					<ul class="clearfix">
+						<!--{loop $new_l_event_list $new_topic}-->
+						<li eventID="{$hot_topic['id']}"><a target="_blank" href="{u event/detail id=$new_topic['id']}">{cutstr $new_topic['title'] 40}</a></li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+				<div class="blank20"></div>
+			</div>
+			<div class="piece2_ft"></div>
+		</div>
+	</div>
+	<div id="sidebar" class="fr">
+		<!--{template inc/event/event_right}-->
+	</div>
+	<div class="clear"></div>
+</div>
+<!--{template inc/footer}-->

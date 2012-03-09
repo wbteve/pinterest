@@ -1,0 +1,35 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<form action="__APP__" style="float:left;">
+		<span>{%DUMP_NAME}</span>
+		<input class="textinput" type="text" name="sql_file_name" value="{$name}" size="20" />
+		<input class="submit_btn" type="submit" value="{%DUMP}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="dump" />
+	</form>
+</div>
+<div style="width:100%; float:left;border-top:solid 1px #c6c6c6;border-bottom:solid 1px #c6c6c6;"><p style="padding:10px;line-height:1.5em;">{%DUMP_TIPS}</p></div>
+<table id="checkList" class="table-list list" cellpadding="0" cellspacing="0" border="0">
+	<thead>
+		<tr>
+			<th><span>{%DUMP_NAME}</span></th>
+			<th width="140"><span>{%DUMP_TIME}</span></th>
+			<th width="100">{%HANDLE}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<foreach name="sql_list" item="sql_item">
+		<tr <if condition="$key % 2 eq 1">class="even"</if>>
+			<td style="text-align:left;">{$sql_item.filename}</td>
+			<td>{$sql_item.filedate}</td>
+			<td>
+				<a href="{:U('DataBase/restore',array('dir'=>$sql_item['filename']))}">{%RESTORE}</a>&nbsp;
+				<a href="{:U('DataBase/delete',array('dir'=>$sql_item['filename']))}">{%REMOVE}</a>
+			</td>
+		</tr>
+		</foreach>
+	</tbody>
+</table>
+<include file="Public:footer" />

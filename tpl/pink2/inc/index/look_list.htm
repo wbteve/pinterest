@@ -1,0 +1,22 @@
+<!--{if $look_list}-->
+<div class="piece1 mt20">
+	<div class="piece1_hd"></div>
+	<div class="piece1_bd plr10">
+		<h1 class="piece_title">
+			<em>晒货报告</em>
+			<a class="more_in" target="_blank" href="{u book/look}">点击进入</a>
+		</h1>
+		<ul class="looks">
+			<!--{loop $look_list $share}-->
+			<li class="looks_feed s ">
+				<a class="pic" target="_blank" href="{$share['url']}">
+					<img original="{getimg $share['img'] 150 170 1}" src="./tpl/images/lazyload.gif" class="lazyload">
+				</a>
+				<div class="looks_name"><!--{getuser $share['uid'] 0 '' 'icard gc'}--></div>
+			</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="piece1_ft"></div>
+</div>
+<!--{/if}-->

@@ -1,0 +1,26 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%ALBUM_DEFAULT_TAGS}</th>
+		<td><input type="text" class="textinput" name="ALBUM_DEFAULT_TAGS" size="80" value="{$settings.ALBUM_DEFAULT_TAGS}" /></td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td><p>{%ALBUM_DEFAULT_TAGS_TIPS}</p></td>
+	</tr>
+	<tr>
+		<th>{%ALBUM_TAG_COUNT}</th>
+		<td><input type="text" class="textinput" name="ALBUM_TAG_COUNT" size="10" value="{$settings.ALBUM_TAG_COUNT}" /></td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

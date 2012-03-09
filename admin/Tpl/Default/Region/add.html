@@ -1,0 +1,31 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="180">{%NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="name" /></td>
+	</tr>
+	<tr>
+		<th>{%PARENT_ID}</th>
+		<td>
+			<fanwe:select id='parent_id' name='parent_id' first='{%PARENT_ID_0}' textfield='name' valuefield='id' options='list' />
+		</td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td><input type="text" class="textinput" size="5" name="sort" value="100"/></td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

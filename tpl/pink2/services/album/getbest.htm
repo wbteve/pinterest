@@ -1,0 +1,25 @@
+<div id="lb_album_add">
+	<div class="lb_hd">
+		<span class="lb_title">推荐{lang common/album}</span><a class="lb_close" href="javascript:;" onclick="$.weeboxs.close()"></a>
+	</div>
+	<div class="lb_bd">
+		<div class="txt">
+			<form>
+			<textarea id="best_form_content" class="content_test PUB_TXT" name="content" length="140" position="0">{lang common/album}《{$album['title']}》很赞，偶喜欢[鼓掌]</textarea>
+			<div class="bottom clearfix mt10">
+				<a href="javascript:;" class="fl add_face" onclick="$.Show_Expression(this)"><img src="./tpl/images/add_face_c.png"></a>
+			</div>
+			<div class="btm_sub">
+				<a class="submit r3" href="javascript:;" onclick="$.Save_Best_Album(this);">确定</a>
+				<div class="sub_loading fl r3">保存中</div>
+			</div>
+			<div class="pub_out fl">
+				<input type="hidden" name="albumid" class="PUB_ALBUM_ID" value="{$aid}" />
+				<input type="checkbox" checked="checked" name="pub_out_check" value="1" id="box_share">
+				<label class="share_lab" for="box_share">{lang sync}<a href="{u settings/bind}" target="_blank">（{lang settings}）</a></label>
+			</div>
+			</form>
+			<div class="blank12"></div>
+		</div>
+	</div>
+</div>

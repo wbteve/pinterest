@@ -1,0 +1,80 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="removeMsg" name="removeMsg" value="{%REMOVE}" click="delByMiid(this,'checkList')" />
+</div>
+<fanwe:list id="checkList" style="list" name="msg" pk='miid' checkbox="true" action="true" datasource="list" show="miid:{%ID}|80,user_name:{%AUTHOR_ID}|100,message:{%CONTENT}|~left,dateline|toDate:{%TIME}|140" actionlist="delByMiid:{%REMOVE}:miid" action_width="100"  />
+<div class="pager">{$page}</div>
+<script type="text/javascript">
+function delByMiid(obj,id,pk)
+{
+	var ids =  new Array();
+	var mlid = {$mlid};
+	if(isNaN(id))
+	{
+		$("#" + id + " input:checked[name='key']").each(function(){
+			ids.push(this.value);
+		});
+	}
+	else
+	{
+		ids.push(id);
+		var parent = $(obj).parent().parent();
+		id = parent.parent().parent().attr('id');
+	}
+	
+	ids = ids.join(',');
+	if(ids == '')
+		return false;
+	
+	if(!window.confirm(CONFIRM_DELETE))
+		return false;
+	
+	var query = new Object();
+	query.id = ids;
+	query.mlid = mlid;
+	
+	$.ajax({
+		url: APP + '?' + VAR_MODULE + '=' + CURR_MODULE + '&' + VAR_ACTION + '=delByMiid',
+		type:"POST",
+		cache: false,
+		data:query,
+		dataType:"json",
+		success: function(result){
+			if(result.isErr == 0)
+			{
+				$("#" + id + " tbody tr input[name='key']").each(function(){
+					if((',' + ids + ',').indexOf(',' + this.value + ',') != -1)
+					{
+						parent = $(this).parent().parent();
+						this.checked = false;
+						$('td span,td a',parent).each(function(){
+							if (typeof(this.onclick) == 'function' && this.onclick.toString() != '')
+							{
+								if(this.onclick.toString().indexOf('toggleStatus') != -1)
+								{
+									var img = $('img',this).get(0);
+									img.src = img.src.replace('status','disabled');
+								}
+								
+								this.onclick = '';
+							}
+						});
+						
+						parent.attr({"disabled":true,"title":ALREADY_REMOVE});
+						$("td",parent).attr({"disabled":true}).addClass('disabled');
+						$("td *",parent).attr({"disabled":true}).addClass('disabled');
+					}
+					
+					if($("#" + id + " tbody tr:not([disabled])").length == 0)
+						location.reload(true);
+				});
+			}
+			else
+				$.ajaxError(result.content);
+		}
+	});
+}
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,36 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList','gid')" />
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />
+	<form action="__APP__">
+		<span>{%NAME}</span>
+		<input class="textinput" type="text" value="{$keyword}" name="keyword" size="12" />
+		<small></small>
+		<span>{%USER_NAME}</span>
+		<input class="textinput" type="text" value="{$uname}" name="uname" id="user_name" size="8" />
+		<small></small>
+		<span>{%CID}</span>
+		<select name="cid">
+			<option value="0">{%CATEGORY_ALL}</option>
+			<foreach name="category_list" item="category_item">
+			<option value="{$category_item.id}" <if condition="$cid eq $category_item['id']">selected="selected"</if>>{$category_item.name}</option>
+			</foreach>
+		</select>
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="album" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50,title:{%TITLE}|~left,cname:{%CID}|100,user_name:{%USER_NAME}|100,share_count:{%SHARE_COUNT}|70,create_time|toDate:{%CREATE_TIME}|150,is_index|getStatusImg:{%IS_INDEX}|70:toggleStatus|id,is_flash|getStatusImg:{%IS_FLASH}|70:toggleStatus|id,is_best|getStatusImg:{%IS_BEST}|50:toggleStatus|id" 
+	actionlist="editData:{%EDIT}:id,removeData:{%REMOVE}:id" action_width="80" />
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

@@ -1,0 +1,57 @@
+<!--{if $_FANWE['uid'] > 0}-->
+<div class="fr" style="margin-top:20px">
+	<div class="my_btn">
+		<a href="{u u/me}" class="mb_bd{if $_FANWE['user']['gender'] == 1} b{/if}">
+			<img class="mb_avt" src="{avatar $_FANWE['uid'] s $_FANWE['user']['server_code'] 1}" height="24">
+			<span class="mb_name{if $_FANWE['user']['gender'] == 1} bc{else} gc{/if}">{$_FANWE['user_name']}</span>
+		</a>
+		<span class="mb_rb">
+			<a class="myalbum" href="{u u/album}">{lang common/album}</a>
+			<a href="{u u/fav uid=$_FANWE['uid']}" class="myfavs">{lang fav}</a>
+		</span>
+	</div>
+	<div class="my_shotcuts">
+		<a href="{u settings/personal}" class="setting">{lang settings}</a>
+		<a href="javascript:;" class="message{if $_FANWE['user_notice']['all'] > 0} h{/if}">{lang message_tip}{if $_FANWE['user_notice']['all'] > 0}({$_FANWE['user_notice']['all']}){/if}</a>
+		<a href="{u invite}" class="setting">邀请</a>
+		<a href="{u user/logout}" >{lang logout}</a>
+	</div>
+    <div class="notice_menu_box fl">
+        <ul id="notice_menu" class="s_m">
+            <li>
+				<a href="{u u/talk uid=$_FANWE['uid']}">我发表的</a>
+            </li>
+            <li>
+            	<a href="{u u/comments uid=$_FANWE['uid']}">评论我的{if $_FANWE['user_notice'][3] >0}<span>({$_FANWE['user_notice'][3]})</span>{/if}</a>
+            </li>
+            <li>
+            	<a href="{u u/fans uid=$_FANWE['uid']}">关注我的{if $_FANWE['user_notice'][1] >0}<span>({$_FANWE['user_notice'][1]})</span>{/if}</a>
+            </li>
+			<li>
+            	<a href="{u u/atme uid=$_FANWE['uid']}">提到我的{if $_FANWE['user_notice'][4] >0}<span>({$_FANWE['user_notice'][4]})</span>{/if}</a>
+            </li>
+            <li>
+            	<a href="{u u/atme uid=$_FANWE['uid'],type=faved}">喜欢我的{if $_FANWE['user_notice'][2] >0}<span>({$_FANWE['user_notice'][2]})</span>{/if}</a>
+            </li>
+            <li>
+            	<a href="{u u/message uid=$_FANWE['uid']}">我的信件{if $_FANWE['user_notice'][5] >0}<span>({$_FANWE['user_notice'][5]})</span>{/if}</a>
+            </li>
+        </ul>
+	</div>
+</div>
+<!--{else}-->
+<ul class="l">
+	<li class="o_l">
+		<span><img class="fl" src="./tpl/images/icon_sina.png"><a class="fl" href="{$_FANWE[site_root]}login.php?mod=sina">{lang signsina}</a></span>
+		<span><img class="fl" src="./tpl/images/icon_qq_qq.png"><a class="fl" href="{$_FANWE[site_root]}login.php?mod=qq">{lang signqq}</a></span>
+		<span><img class="fl" src="./tpl/images/tao.png"><a class="fl" href="{$_FANWE[site_root]}login.php?mod=taobao">{lang signtaobao}</a></span>
+        <span><img class="fl" src="./tpl/images/icon_qq.png"><a class="fl" href="{$_FANWE[site_root]}login.php?mod=tqq">{lang signtqq}</a></span>
+	</li>
+	<li class="f">
+		<a href="{u user/login}">{lang login}</a>
+	</li>
+	<li class="login">
+		<a href="{u user/register}" target="_blank">{lang register}</a>
+	</li>
+</ul>
+<!--{/if}-->

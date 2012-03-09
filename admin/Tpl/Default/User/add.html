@@ -1,0 +1,117 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/user.js"></script>
+<div class="tabs-title">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+	<div class="tt-item active" rel="1"><p><a href="javascript:;">{%TAB_1}</a></p></div>
+	<div class="tt-item" rel="2"><p><a href="javascript:;">{%TAB_2}</a></p></div>
+	<div class="tt-item" rel="4"><p><a href="javascript:;">{%TAB_4}</a></p></div>
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}" enctype="multipart/form-data">
+<div class="tabs-body">
+	<table cellpadding="4" cellspacing="0" border="0" class="table-form tabs-item tabs-active" rel="1">
+		<tr>
+			<th width="200">{%USER_NAME}</th>
+			<td><input type="text" class="textinput requireinput" name="user_name" id="user_name" /></td>
+		</tr>
+		<tr>
+			<th>{%EMAIL}</th>
+			<td><input type="text" class="textinput requireinput" name="email" id="email" /></td>
+		</tr>
+		<tr>
+			<th>{%PASSWORD}</th>
+			<td>
+				<input type="password" class="textinput requireinput" name="password" id="password" />
+			</td>
+		</tr>
+		<tr>
+			<th>{%CONFIRM_PWD}</th>
+			<td>
+				<input type="password" class="textinput requireinput" name="confirm_password" id="confirm_password" />
+			</td>
+		</tr>
+		<tr>
+			<th>{%AVATAR}</th>
+			<td>
+				<input type="file" class="fileinput" name="avatar_img" size="30" />
+			</td>
+		</tr>
+		<tr>
+			<th>{%GID}</th>
+			<td>
+				<select name="gid" id="user_group">
+					<foreach name="group_list" key="gid" item="gname">
+					<option value="{$gid}">{$gname}</option>
+					</foreach>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>{%CREDITS}</th>
+			<td><input type="text" class="textinput" name="credits" value="0" /></td>
+		</tr>
+	</table>
+	<table cellpadding="4" cellspacing="0" border="0" class="table-form tabs-item" rel="2">
+		<tr>
+			<th width="200">{%GENDER}</th>
+			<td>
+				<label><input type="radio" name="up[gender]" value="0" checked="checked" /> <span>{%GENDER_0}</span></label>&nbsp;
+				<label><input type="radio" name="up[gender]" value="1" /> <span>{%GENDER_1}</span></label>
+			</td>
+		</tr>
+		<tr>
+			<th>{%WEIBO}</th>
+			<td><input type="text" class="textinput" name="up[weibo]" /></td>
+		</tr>
+		<tr>
+			<th>{%RESIDE}</th>
+			<td>
+				<select name="up[reside_province]" id="province" onchange="getCitys('#province','#city');">
+					<foreach name="province_list" key="province_id" item="province_name">
+					<option value="{$province_id}">{$province_name}</option>
+					</foreach>
+				</select>&nbsp;
+				<select name="up[reside_city]" id="city">
+					<foreach name="city_list" key="city_id" item="city_name">
+					<option value="{$city_id}">{$city_name}</option>
+					</foreach>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>{%INTRODUCE}</th>
+			<td>
+				<textarea name="up[introduce]" class="areainput" rows="5"></textarea>
+			</td>
+		</tr>
+	</table>
+	<table cellpadding="4" cellspacing="0" border="0" class="table-form tabs-item" rel="4">
+		<tbody id="user_authoritys">
+			<foreach name="authoritys" key='mkey' item="module" >
+			<tr class="access-item">
+				<th class="first tr" width="200">
+					{$module.name}
+				</th>
+				<td>
+					<p>
+						<foreach name="module.actions" item="action">
+						<label><input class="action-item" type="checkbox" name="access_node[{$mkey}][]" value="{$action}"/><span>&nbsp;{:L('ACTION_'.$action)}</span></label>&nbsp;&nbsp;
+						</foreach>&nbsp;
+					</p>
+				</td>
+			</tr>
+			</foreach>
+		</tbody>
+	</table>
+</div>
+<table cellpadding="4" cellspacing="0" border="0" class="table-form" style="border-top:none;">
+	<tr class="act">
+		<th width="200">&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

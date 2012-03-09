@@ -1,0 +1,32 @@
+<form method="post" id="lb_forward">
+	<div class="lb_bd">
+		<p class="fw_root">{cutstr $title 300}</p>
+		<div class="fw_pub_area">
+			<div class="fwpa_tool">
+				<a href="javascript:;" onclick="$.Show_Expression(this,80)" class="fl"><img src="./tpl/images/add_face_c.png" w="fw" style="margin-top:5px" class="fl add_face"></a>
+				<span class="fw_count">{sprintf char_check1 140}</span>
+			</div>
+			<textarea class="fw_content PUB_TXT" id="share_relay_content" name="content" style="width: 394px; height: 81px;" length="140" position="0">{$content}</textarea>
+			<div class="fw_submit_box">
+				<input id="fw_tweet" type="checkbox" name="is_comment_parent" checked="checked" value="1" />
+				<label for="fw_tweet">{lang also_comment_ge} {$parent_user['user_name']}</label>
+				<!--{if $is_base}-->
+				<br>
+				<input type="checkbox" name="is_comment_base" checked="checked" value="1" id="fw_root_tweet">
+				<label for="fw_root_tweet">{lang also_comment_yw} {$base_user['user_name']}</label>
+				<!--{/if}--> 
+				<br>
+				<div class="sub_div">
+					<input type="hidden" value="$parent_data['share_id']" name="share_id" />
+					<a class="fw_submit" href="javascript:;" onclick="$.Add_Share_Relay(this)"><img src="./tpl/images/forword_btn.png"></a>
+					<a href="javascript:;" class="fw_cancel" onclick="$.weeboxs.close();">{lang clear}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+jQuery(function($){
+	$.Pub_Count_Bind($("#share_relay_content").get(0));
+});
+</script>

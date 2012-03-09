@@ -1,0 +1,53 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/daren.css';
+?>
+<!--{subtemplate inc/header}-->
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd">
+			<div class="daren_title clearfix">
+				<div class="daren_logo"><img src="./tpl/images/apply-daren.png"></div>
+			</div>
+			<div class="daren_apply">
+				<form id="darenForm" action="{u daren/save}" method="post" enctype="multipart/form-data">
+					<div class="da_tips">
+						1、申请时，个人页需具备一定量的精彩分享。<br/>
+						2、申请时请简要介绍一下自己的风格特色，以及自荐理由。举例：我很懂欧美风搭配、我会做手工、我会编发、我......<br/>
+						3、申请时，请附个人街拍照，更容易入选噢。<br/>
+						4、申请时，附上首页达人照(450宽x300高)，更容易在首页封面显示噢。<br/>
+						友情提示，请勿重复反复申请，申请一次就OK啦
+					</div>
+					<div class="da_item">
+						<label><span>个人街拍照</span></label>
+						<input type="file" name="img" class="da_file" size="30" />
+					</div>
+					<div class="da_item">
+						<label><span>首页达人照</span></label>
+						<input type="file" name="index_img" class="da_file" size="30" />
+					</div>
+					<div class="da_item">
+						<label><span>自荐理由</span></label>
+						<textarea name="reason" rows="8" cols="100"></textarea>
+					</div>
+					<div class="da_item">
+						<label>&nbsp;</label>
+						<input type="image" src="./tpl/images/confirm_btn.png" />
+					</div>
+					<input type="hidden" name="action" value="save" />
+				</form>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<script type="text/javascript">
+jQuery(function(){
+	$("#darenForm").submit(function(){
+		if(!$.Check_Login())
+			return false;
+	});
+});
+</script>
+<!--{subtemplate inc/footer}-->

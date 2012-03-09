@@ -1,0 +1,47 @@
+.event_list{width:100%}
+.event_list h1{ padding-left: 12px;}
+.event_list ul{ margin: 10px 5px 0 0; padding:0 15px}
+.event_list ul li{ float:left;width:49%; padding:4px 0}
+.event_list ul li a{ color:#0099EE}
+.event_list ul li a:hover{ color:#fff; background:#0099EE}
+
+#topic_head {border-top:none;margin-top: 0px;}
+
+.topic_list_sidebar h2{ }
+.topic_list_sidebar h2 span{font-weight:border}
+.topic_list_sidebar h2 a{ color:#666;font-size:12px}
+.me_event_list{}
+.me_event_list h2{padding-left: 12px; padding-right:8px}
+.me_event_list h2 span{font-weight:border}
+.me_event_list h2 a{ color:#666;font-size:12px}
+.me_event_list ul{  margin: 10px 5px 0 0; padding:0 15px}
+.me_event_list li{border-bottom:1px dashed #ccc; padding:3px 0}
+.me_event_list li a{ color:#0099EE}
+.me_event_list li a:hover{ color:#fff; background:#0099EE}
+
+.me_join_event{}
+.me_join_event h2{padding-left: 12px; padding-right:8px}
+.me_join_event h2 span{font-weight:border}
+.me_join_event h2 a{ color:#666;font-size:12px}
+.me_join_event ul{  margin: 10px 5px 0 0; padding:0 15px}
+.me_join_event li{border-bottom:1px dashed #ccc; padding:3px 0}
+.me_join_event li a{ color:#0099EE}
+.me_join_event li a:hover{ color:#fff; background:#0099EE}
+
+.event-nav{ border-bottom:1px solid #ccc;line-height: 26px;
+padding-top: 5px; height:28px; margin:0 8px; padding-left:8px; _overflow:hidden;}
+.event-nav  em{position:relative;border:1px solid #fff; border-bottom:1px solid #ccc; bottom:-1px; float:left; font-style:normal;  line-height:26px; display:block; height:26px; padding:0 15px}
+.event-nav  em a{ font-size:14px; color:#333}
+.event-nav  em.cur{border:1px solid #DDD; background:#F0F2F2;border-bottom:1px solid #F0F2F2;}
+.event-nav  em.cur a{font-weight:bolder;color:#0099EE}
+.event-nav .order { padding-top:5px;}
+.event-nav .order a.cur{ color:#0099EE}
+
+.event-list-box{ margin:0 16px;}
+.event-list-box li{ line-height:40px; height:40px; border-bottom:1px dashed #ccc}
+.event-list-box li span{ color:#333}
+.event-list-box li span a{color:#0099EE}
+.event-list-box li span.title{ width:230px}
+.event-list-box li span.author{ width:135px}
+.event-list-box li span.post{ width:130px}
+.event-list-box li span.time{ width:120px; text-align:right;}

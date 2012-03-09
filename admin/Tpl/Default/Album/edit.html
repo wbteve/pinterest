@@ -1,0 +1,100 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:Cookie::get('returnUrl')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%TITLE}</th>
+		<td><input type="text" class="textinput" name="title" value="{$vo.title}" style="width:400px;" /></td>
+	</tr>
+	<tr>
+		<th>{%CID}</th>
+		<td>
+			<select name="cid">
+				<foreach name="category_list" item="category_item">
+				<option value="{$category_item.id}" <if condition="$vo['cid'] eq $category_item['id']">selected="selected"</if>>{$category_item.name}</option>
+				</foreach>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>{%SHOW_TYPE}</th>
+		<td>
+			<select name="show_type">
+				<option value="1" <if condition="$vo['show_type'] eq 1">selected="selected"</if>>{%SHOW_TYPE_1}</option>
+				<option value="2" <if condition="$vo['show_type'] eq 2">selected="selected"</if>>{%SHOW_TYPE_2}</option>
+				<option value="3" <if condition="$vo['show_type'] eq 3">selected="selected"</if>>{%SHOW_TYPE_3}</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td>
+			<label><input type="checkbox" id="flashCheck" name="is_flash" value="1" <if condition="$vo['is_flash'] eq 1">checked="checked"</if>/><span>{%IS_FLASH}</span></label>&nbsp;&nbsp;
+			<label><input type="checkbox" id="bestCheck" name="is_best" value="1" <if condition="$vo['is_best'] eq 1">checked="checked"</if>/><span>{%IS_BEST}</span></label>
+		</td>
+	</tr>
+	<tr class="flash_img" <if condition="$vo['is_flash'] eq 0">style="display:none;"</if>>
+		<th>{%FLASH_IMG}</th>
+		<td>
+			<input type="file" class="fileinput" name="flash_img" size="30" />
+			<span>
+			<if condition="$vo['flash_img'] neq ''">
+				<a href="__ROOT__/{$vo.flash_img}" target="_blank" >{%VIEW}</a>&nbsp;
+				<a href="javascript:;" onclick="removeImg(this,{$vo.id},'flash_img');">{%REMOVE}</a>
+			</if>
+			</span>
+		</td>
+	</tr>
+	<tr class="best_img" <if condition="$vo['is_best'] eq 0">style="display:none;"</if>>
+		<th>{%BEST_IMG}</th>
+		<td>
+			<input type="file" class="fileinput" name="best_img" size="30" />
+			<span>
+			<if condition="$vo['best_img'] neq ''">
+				<a href="__ROOT__/{$vo.best_img}" target="_blank" >{%VIEW}</a>&nbsp;
+				<a href="javascript:;" onclick="removeImg(this,{$vo.id},'best_img');">{%REMOVE}</a>
+			</if>
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<th>{%TAGS}</th>
+		<td><input type="text" class="textinput" name="tags" value="{$vo.tags}" size="60" /></td>
+	</tr>
+	<tr>
+		<th>{%CONTENT}</th>
+		<td>
+			<textarea class="areainput" name="content" rows="5">{$vo.content}</textarea>
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+jQuery(function($){
+	$("#flashCheck").change(function(){
+		if(this.checked)
+			$(".flash_img").show();
+		else
+			$(".flash_img").hide();
+	});
+	
+	$("#bestCheck").change(function(){
+		if(this.checked)
+			$(".best_img").show();
+		else
+			$(".best_img").hide();
+	});
+});
+</script>
+<include file="Public:footer" />

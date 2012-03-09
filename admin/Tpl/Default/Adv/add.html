@@ -1,0 +1,72 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/adv.js"></script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="name" size="60" /></td>
+	</tr>
+	<tr>
+		<th>{%TYPE}</th>
+		<td>
+			<select name="type" onchange="changAdvType(this);">
+				<option value="1">{%TYPE_1}</option>
+				<option value="2">{%TYPE_2}</option>
+				<option value="3">{%TYPE_3}</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>{%POSITION_ID}</th>
+		<td>
+			<fanwe:select options="ap_list" name="position_id" textfield="name" valuefield="id" />
+		</td>
+	</tr>
+	<tr id="urlTr">
+		<th>{%URL}</th>
+		<td>
+			<input type="text" class="textinput" name="url" size="60" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%SMALL}</th>
+		<td><input type="file" class="fileinput" name="small" size="30" /></td>
+	</tr>
+	<tr>
+		<th>{%CODE}</th>
+		<td id="codeTd">
+			<input type="file" class="fileinput" name="code" size="30" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%TARGET_KEY}</th>
+		<td>
+			<input type="text" class="textinput" name="target_key" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td>
+			<input type="text" class="textinput" name="sort" value="100" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%DESC}</th>
+		<td>
+			<textarea name="desc" class="textinput areainput" rows="3"></textarea>
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

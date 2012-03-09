@@ -1,0 +1,74 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<load href="__TMPL__Static/Js/sharegoods.js" />
+<script type="text/javascript">
+var CONFIRM_ERROR = "{%CONFIRM_ERROR}";
+var NO_SHOP	= "{%NO_SHOP}";
+var PLEASE_INPUT_KW = "{%PLEASE_INPUT_KW}";
+var NO_SEARCH_SHOP = "{%NO_SEARCH_SHOP}";
+var RESULT_TOO_MUCH = "{%RESULT_TOO_MUCH}";
+</script>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%SHARE_DATA}</th>
+		<td> <a href="{:u("Share/edit",array("share_id"=>$vo['share_id']))}">{%BACK_SHARE}</a> </td>
+	</tr>
+	<tr>
+		<th width="150">{%GOODS_NAME}</th>
+		<td><input type="text" class="textinput" name="name" id="name" value="{$vo.name}" style="width:400px;" /></td>
+	</tr>
+	<tr>
+		<th>{%GOODS_URL}</th>
+		<td>
+			<input type="text" class="textinput" name="url" id="url" value="{$vo.url}" style="width:400px;"  />
+		</td>
+	</tr>
+	<tr>
+		<th>{%TAOKE_URL}</th>
+		<td>
+			<input type="text" class="textinput" name="taoke_url" id="taoke_url" value="{$vo.taoke_url}" style="width:400px;"  />
+		</td>
+	</tr>
+	<tr>
+		<th>{%GOODS_PRICE}</th>
+		<td>
+			<input type="text" class="textinput" name="price" id="price" value="{$vo.price}" />
+		</td>
+	</tr>
+	<!--<tr>
+		<th>{%CATE_NAME}</th>
+		<td>
+			<select name="cate_id">
+				<option value="0" <if condition="$vo['cate_id'] eq 0">selected="selected"</if>>{%NO_CATE}</option>
+				<foreach name="category" item="cate">
+					<option value="{$cate.cate_id}" <if condition="$vo['cate_id'] eq $cate['cate_id']">selected="selected"</if>>{$cate.cate_name}</option>
+				</foreach>
+			</select>
+		</td>
+	</tr>-->
+	<tr>
+		<th>{%GOODS_SHOP}</th>
+		<td>
+			<input type="text" name="search_shop" class="textinput" /> <input type="button" name="share_btn" class="formbutton" value="{%SEARCH}" />
+			<select name="shop_id">
+				<option value="0">{%NO_SHOP}</option>
+				<if condition="$shop">
+					<option value="{$shop.shop_id}" selected="selected">{$shop.shop_name}</option>
+				</if>
+			</select>
+		</td>
+	</tr>
+
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="goods_id" value="{$vo.goods_id}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+
+<include file="Public:footer" />

@@ -1,0 +1,100 @@
+#head { padding-bottom:25px; }
+#body { padding-top:20px; }
+#setting_box { font-size:14px; width:650px}
+#setting_box .head_bd { border:3px solid #e3e3e3; margin-right:15px; vertical-align:top; }
+#setting_box h1 { font-size:18px; color:#82af00; line-height:130%; }
+#setting_bar { margin:25px 0 0 45px; font-size:14px; width:200px; }
+#setting_bar h1 { font-size:18px; line-height:130%; }
+#setting_bar a { color:#09e; padding:0 10px; line-height:28px; font-size:14px; }
+#setting_bar a.c { font-weight:bold; }
+#setting_bar .base_info { margin-bottom:20px; }
+#setting_form { margin-top:30px; }
+#setting_form dl{float:left; width:700px;}
+#setting_form dd { float:left; width:120px; text-align:right; line-height:26px; vertical-align:middle; }
+#setting_form dt { margin-bottom:22px; width:530px; float:left;}
+#setting_form .green_button { width:66px; height:26px; font-size:16px; }
+.setting_basic .gray_text { height:24px; line-height:24px; width:274px; color:#999; padding:0 5px; font-size:14px; }
+.setting_basic select { border:1px solid #999; height:22px; vertical-align:middle; }
+.setting_basic .unick input { height:24px; width:200px; }
+.setting_basic .unick span { color:#f00; margin-left:10px; margin-right:5px; font-weight:bold; }
+.setting_basic .unick { font-size:12px; }
+.iner { _padding-top:-50px; display:inline; *vertical-align:10px;
+}
+.setting_basic .weibo input { height:24px; width:200px; }
+.setting_basic .sex input { height:24px; vertical-align:middle; }
+.setting_basic .location select { width:70px; }
+.setting_basic .birthday select { width:60px; }
+.setting_basic .birthday input { width:54px; color:#333; }
+.setting_basic textarea { height:120px; width:450px; border:1px solid #999; color:#999; padding:5px; }
+.setting_password .gray_text { height:24px; line-height:24px; width:194px; padding:0 5px; font-size:14px; }
+.setting_avartar dt { font-size:12px; }
+.setting_avartar span { color:#82af00; }
+.setting_avartar .tfile { position:absolute; filter:alpha(opacity=0); opacity:0; left:255px; left:250px\9; _left:90px; top:0; height:26px; display:none; }
+.setting_avartar .gray_button { width:65px; height:26px; display:inline; color:#333; font-size:16px; }
+.setting_avartar .gray_text { width:244px; height:24px; margin-right:2px; }
+.setting_avartar .avartar_confirm, .setting_avartar .preview { display:none; }
+#user_auth { color:#666; margin-top:30px; }
+#user_auth h1 { font-size:14px; font-weight:bold; line-height:120%; }
+#user_auth p { line-height:180%; font-size:14px; color:#333; margin-top:10px; padding-left:10px; }
+#user_auth p.notice { color:#690; font-size:12px; }
+#user_auth p span { color:#82af00; font-weight:bold; }
+.buyer_auth_step { margin:30px 0 0 10px; }
+.buyer_auth_step dd { float:left; clear:both; line-height:30px; }
+.buyer_auth_step dd img { margin:2px 15px 0 0; }
+.buyer_auth_step dt { float:none; color:#333; line-height:30px; font-size:14px; padding-bottom:40px; padding-left:40px; }
+.buyer_auth_step dt b { color:#333; }
+.buyer_auth_step dt span { background-color:#ffffe2; }
+.buyer_auth_step dt a { text-decoration:underline; color:#326bdd; }
+.buyer_auth_step dt a span { background-color:#fff; text-decoration:underline; color:#326bdd; font-size:12px; }
+.buyer_auth_step .green_button { color:#fff; text-decoration:none; height:24px; line-height:24px; width:220px; margin-top:10px; }
+.buyer_auth_step .gray_text { height:28px; line-height:28px; width:362px; margin-top:5px; font-size:18px; padding-left:10px; }
+.buyer_auth_step .pink_alert_m span { font-weight:bold; background-color:#ffe1e9; color:#da1153; }
+#user_auth .auth_success { width:385px; height:50px; line-height:50px; background-color:#f2f9e0; font-size:14px; padding-left:15px; color:#333; margin:15px 0; }
+#user_auth .auth_success b { color:#5b8105; }
+#user_auth .auth_success span { font-size:12px; }
+.mobile_auth { height:400px; }
+.mobile_auth dl { margin:20px 0 0 40px; line-height:24px; }
+.mobile_auth dd { float:left; display:inline; clear:both; width:100px; text-align:right; font-size:14px; }
+.mobile_auth dt { margin-bottom:10px; height:26px; }
+.mobile_auth dt .green_text { height:24px; line-height:24px; width:200px; padding:0 5px; }
+.mobile_auth dt .green_button { height:26px; font-size:14px; margin-right:10px; }
+.mobile_auth .resent { color:#999; }
+.account_bind .bind_logo { margin-top:35px; overflow:hidden; zoom:1; }
+.account_bind .bind_help { font-size:12px; color:#09e; }
+.account_bind .bind_web { margin-left:15px; float:left; }
+.account_bind .bind_logo li { overflow:hidden; font-size:12px; text-align:center; padding-bottom:30px; line-height:180%; color:#999; float:left; clear:both; }
+.account_bind .bind_logo li.mr0 { margin-right:0; }
+.account_bind .bind_logo .checkType { margin-top:5px; float:left; }
+.account_bind .bind_logo .checkType input { padding-top:5px; vertical-align:middle; }
+.account_bind .bind_logo li img { width:61px; height:61px; margin-bottom:4px; float:left; }
+.account_bind .bind_logo li span { color:#333; float:left; }
+.account_bind .bind_logo li span { color:#333; float:left; }
+.account_bind .bind_logo li span.unbind { color:#999; }
+.account_bind .bind_logo li a { color:#09e; float:left; }
+.account_bind .bind_logo li a.binded { color:#5e7d08; }
+.account_bind .bind_logo li a.binded { color:#5e7d08; }
+.account_bind .bind_logo .bind_web .addSync { background:url(/tpl/pink2/images/addSync.png); display:block; width:91px; height:23px; margin-top:10px; clear:both; }
+.account_bind .bind_logo .bind_web .addSuccess { color:#690; line-height:23px; padding-left:12px; padding-top:10px; }
+.account_bind p { font-size:12px; line-height:180%; margin-top:40px; color:#333; }
+.bind_box { width:274px; height:118px; font-size:12px; background-color:#f5f5f5; margin-top:10px; position:absolute; display:none; }
+.bind_box .top_r { background:url(/tpl/pink2/images/top_r.png) no-repeat scroll; height:4px; font-size:0; }
+.bind_box .bottom_r { background:url(/tpl/pink2/images/bottom_r.png) no-repeat scroll; height:4px; }
+.bind_box.succ { display:block; }
+.bind_box .bind_arrow { position:absolute; left:0; top:-10px; width:12px; height:11px; _height:5px; background:#fff url(/tpl/pink2/images/renren_arrow.png) no-repeat; }
+.bind_box .bind_close { text-align:right; height:25px; line-height:25px; padding-right:10px; }
+.bind_box .bind_close a { color:#666; font-size:12px; float:right; }
+.bind_box dd { color:#333; width:75px; text-align:right; clear:both; }
+.bind_box dt { margin-bottom:8px; }
+.bind_box .text { width:173px; height:23px; line-height:23px; border:1px solid #55c1e0; padding:0; }
+.bind_box .checkbox { vertical-align:middle; margin:0 3px 0 0; margin:0 0 0 -2px\9; *margin:0 0 0 -3px;
+}
+.bind_box label { color:#333; }
+.bind_box .button { background-color:#55c1e0; border:1px solid #0992ba; color:#fff; height:24px; width:82px; padding-bottom:5px; padding-top:1px\9; }
+.bind_box .bind_tips { width:320px; height:70px; padding:10px 0 0 40px; position:absolute; bottom:0; left:0; background-color:#a1eaff; color:#333; font-size:12px; line-height:180%; border-radius:0 0 5px 5px; -khtml-border-radius:0 0 5px 5px; -webkit-border-radius:0 0 5px 5px; -moz-border-radius:0 0 5px 5px; }
+.bind_box .bind_cancel { text-align:center; padding-right:40px; margin-top:20px; line-height:200%; }
+.bind_box .bind_cancel a { color:#09e; font-weight:bold; }
+.bind_box .bind_cancel a:hover { color:#fff; background-color:#09e; }
+.bind_box .bind_login { width:200px; padding-left:20px; float:left; }
+#renren_bind { background:url(/tpl/pink2/images/bind_btn.png); display:block; width:41px; height:23px; }
+#welcome { width:640px; height:100px; background-color:#d4edfe; margin-top:15px; font-size:14px; line-height:30px; padding:5px 45px 0 15px; }
+#welcome img { height:26px; width:26px; vertical-align:middle; }

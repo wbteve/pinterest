@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html>
+<head>
+<title>{%PAGE_MSG}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="__TMPL__Static/Css/style.css" rel="stylesheet" />
+<script type="text/javascript" src="__TMPL__Static/Js/jquery.js"></script>
+</head>
+<body>
+	<div class="fanwe-body">
+		<div class="fb-title"><div><p><span>{%PAGE_MSG}</span></p></div></div>
+		<div class="fb-body">
+			<table class="body-table" cellpadding="0" cellspacing="1" border="0">
+				<tr>
+					<td class="body-table-td">
+						<div class="body-table-div">
+							<table cellpadding="0" cellspacing="0" align="center" class="table-tootip table-tootip-error">
+								<present name="message" >
+								<tr>
+									<th><img src="__TMPL__Static/Images/error.png" /></th>
+									<td>
+										<p>{$msgTitle}</p>
+										<p style="color:#f30;">{$message}</p>
+										<notpresent name="closeWin" >
+										<p>{%SYS_WILL} <strong style="color:blue;" class="wait-second">{$waitSecond}</strong>  {%PAGE_JUMP_TIP} <a href="{$jumpUrl}">{%HERE}</a></p>
+										</notpresent>
+									</td>
+								</tr>
+								</present>
+								<present name="error" >
+								<tr>
+									<th><img src="__TMPL__Static/Images/error.png" /></th>
+									<td>
+										<p>{$msgTitle}</p>
+										<p style="color:#f30;">{$error}</p>
+										<notpresent name="closeWin" >
+										<p>{%SYS_WILL} <strong style="color:blue;" class="wait-second">{$waitSecond}</strong>  {%PAGE_JUMP_TIP} <a href="{$jumpUrl}">{%HERE}</a></p>
+										</notpresent>
+									</td>
+								</tr>
+								</present>
+								<present name="closeWin" >
+								<tr>
+									<th><img src="__TMPL__Static/Images/close.png" /></th>
+									<td>
+										<p>{%SYS_WILL} <strong style="color:blue;" class="wait-second">{$waitSecond}</strong> {%PAGE_CLOSE_TIP} <a href="{$jumpUrl}">{%HERE}</a></p>
+									</td>
+								</tr>
+								</present>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+<if condition="$jumpUrl neq ''">
+var timeout = 0;
+var waitSecond = parseInt({$waitSecond});
+var refreshFun = function(){
+	timeout++;
+	if(waitSecond <= timeout)
+		location.href = "{$jumpUrl}";
+	else
+	{
+		$('.wait-second').html(waitSecond - timeout);
+		setTimeout(refreshFun,1000);
+	}
+};
+setTimeout(refreshFun,1000);
+</if>
+
+jQuery(function($){
+	updateBodyDivHeight();
+	$(window).resize(function(){
+		updateBodyDivHeight();
+	});
+});
+
+function updateBodyDivHeight()
+{
+	jQuery(".body-table-div").height(jQuery(".fanwe-body").height() - 37);
+}
+</script>
+</html>

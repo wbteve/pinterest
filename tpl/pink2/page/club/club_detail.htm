@@ -1,0 +1,250 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/tweetlist.css';
+	$css_list[0]['url'][] = './tpl/css/topic.css';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div id="content" class="fl">
+		<div class="piece2">
+			<div class="piece2_hd"></div>
+			<div class="piece2_bd">
+				<div id="topic_nav">
+					<a href="{u club/index}">{lang club_ba}</a>&nbsp;&gt;&nbsp;
+					<a href="{u club/forum fid=$root_forum['fid']}">{$root_forum['name']}</a>&nbsp;&gt;&nbsp;
+					<!--{if !$is_root}-->
+					{$forum['name']}
+					<!--{/if}-->
+					<a class="new_button_new" href="{u club/newtopic fid=$forum_id}"><img src="./tpl/images/topic_create.png"></a>
+				</div>
+				<!--{if $topic['is_best']}-->
+				<div class="topic_tj"></div>
+				<!--{/if}-->
+				<!-- 主题详细 -->
+				<div id="topic_head">
+					<div class="topic_info">
+						<!--{getuser $topic['uid'] 0 'm,64' ',u_name fl'}-->
+						<div>
+							<h1>{$topic['title']}</h1>
+							<br />
+							{lang thread_starter}：<!--{getuser $topic['uid'] 1 '' 'u_name'}--><br />
+							{lang create_yu}：<a href="{$topic['share']['url']}" target="_blank">{$topic['time']}</a> 
+							<span style="padding: 0 10px;">{lang post_count}：<a href="#publish_topic" >{$topic['post_count']}</a></span> 
+							<span style="padding: 0px 10px 0px 0px;">{lang click_count}：{$topic['share']['click_count']}</span> <br />
+						</div>
+					</div>
+					<pre class="topic_intro">{$topic['content']}</pre>
+					<div class="topitter" id="topitter_{$topic['share_id']}">
+						<div class="pics">
+							<!--{loop $topic['share']['imgs'] $img}-->
+							<!--{if $img['type'] == 'm'}-->
+							<div class="SHOW_BIG_PIC r3 img" w="tpc">
+								<a class="add_to_album_btn" href="javascript:;" style="display: none;" onclick="$.Show_Rel_Album($img['id'],'photo');"></a>
+								<div class="tlc">
+									<a href="{$img['img']}" target="_blank" ref="nofollow"><img  src="{getimg $img['img'] 468 468}"></a>
+								</div>
+							</div>
+							<!--{else}-->
+							<div class="r3 g img" w="tpc">
+								<a class="add_to_album_btn" href="javascript:;" style="display: none;" onclick="$.Show_Rel_Album($img['id'],'goods');"></a>
+								<div class="tlc">
+									<a href="{$img['to_url']}" target="_blank"/><img src='{getimg $img['img'] 468 468}' style="width:468px;" alt="{$img['name']}" /></a>
+								</div>
+								<div class="pic_b_hd">
+									<div class="pic_b_hd">
+										<a class="mg_slink ofh" href="{$img['to_url']}" c="" s="" target="_blank" ref="nofollow">{cutstr $img['name'] 30}</a>
+										<div class="g_p"><span>{echo priceFormat($img['price'])}</span></div>
+										<a href="{$img['to_url']}" class="buy_it" target="_blank"/></a>
+									</div>
+								</div>
+							</div>
+							<!--{/if}-->
+							<!--{/loop}-->
+							<br class="clear">
+						</div>
+						<div class="wb_infobar">
+							<a href="javascript:void(0);" class="fw " onclick="$('.TOPIC_RELAY').toggle();">{lang share_relay}</a> 
+							<!--<a w="tpk" href="javascript:;" class="share fr">{lang share}</a> -->
+							<a w="tpk" href="javascript:;" class="fav" onclick="$.Fav_Share({$topic['share_id']},this,32,'#topitter_{$topic['share_id']}');"></a>
+							<div class="favDiv"><span class="favCount SHARE_FAV_COUNT">{$topic['share']['collect_count']}</span><i></i></div>
+						</div>
+						<div class="TOPIC_RELAY cf_b" style="display:none;">
+							<form>
+							<img class="cf_a" src="./tpl/images/commnet_arrow.png">
+							<div class="cf_pub_b r5">
+								<a href="javascript:;" onclick="$.Show_Expression(this);" class="fl"><img w="f" class="add_face fl" src="./tpl/images/add_face_c.png"></a>
+								<textarea class="PUB_TXT pub_txt fl rl3" name="content" position="0"></textarea>
+								<input type="button" class="pub_btn fl rr3" value="{lang share_relay}"  onclick="$.Add_Share_Relay(this)">
+								<div class="cf_opt">
+									<input type="checkbox" class="c_cb" name="is_comment_parent" value="1" checked="checked"><label for="c_cb">{lang also_one_comment}</label>
+								</div>
+								<input type="hidden" name="share_id" value="{$topic['share_id']}" />
+							</div>
+							</form>
+						</div>
+						<ul class="SHARE_FAV_LIST u_like">
+							<!--{loop $user_share_collect $collect_uid}-->
+							<li><!--{getuser $collect_uid 0 's,32' ',icard r3'}--></li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="piece2_ft"></div>
+		</div>
+		<div id="topic_body">
+			<div class="piece2 mt20">
+				<div class="piece2_hd"></div>
+				<div id="topic_discussion_list" class="piece2_bd">
+					<?php
+						$post_topic_tid = $topic['tid'];
+						$post_topic_module = 'topic';
+						$post_topic_action = 'post';
+					?>
+					<!--{template inc/share/topic_publish}-->
+					<!-- 微博列表 -->
+					{$post_html}
+					<!-- 分页  -->
+				</div>
+				<div class="piece2_ft"></div>
+			</div>
+			<div class="piece2 mt20">
+				<div class="piece2_hd"></div>
+				<div class="piece2_bd whocare">
+					<h2><a>{lang who_look_topic}...</a></h2>
+					<ul>
+						<!--{loop $topic_looks $look_uid $temp}-->
+						<li><!--{getuser $look_uid 0 'm,48' ',u_name'}--></li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+				<div class="piece2_ft"></div>
+			</div>
+			<div class="piece2 mt20">
+				<div class="piece2_hd"></div>
+				<div class="piece2_bd topic_relate">
+					<h2><a>{lang related_topic}...</a></h2>
+					<ul class="fl">
+						<!--{loop $forum_new_topics $new_topic}-->
+						<li><!--{getuser $new_topic['uid'] 0 '' 'tr_n icard'}-->：<a target="_blank" class="tr_link" href="{$new_topic['url']}">{cutstr $new_topic['title'] 30}</a></li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+				<div class="piece2_ft"></div>
+			</div>
+		</div>
+	</div>
+	<div id="sidebar" class="fr">
+		<div class="piece3">
+			<div class="piece3_hd"></div>
+			<div class="piece3_bd" id="follow_box">
+				<!--{subtemplate inc/club/follow_user}-->
+			</div>
+			<div class="piece3_ft"></div>
+		</div>
+		<div class="piece3 mt20">
+			<div class="piece3_hd"></div>
+			<div class="piece3_bd rencent_topic">
+				<h2><a class="gc">{$topic['user']['user_name']}</a><a>{lang now_send_topic}...</a></h2>
+				<ul class="frtopic">
+					<!--{loop $user_new_topics $new_topic}-->
+					<li>
+						<a href="{$new_topic['url']}" target="_blank" class="frtitle">{cutstr $new_topic['title'] 42}</a>
+						<a href="{$new_topic['url']}" target="_blank" class="frfeed">({$new_topic['post_count']}{lang post})</a><span>{$new_topic['time']}</span> </li>
+					<!--{/loop}-->
+				</ul>
+			</div>
+			<div class="piece3_ft"></div>
+		</div>
+		<div class="piece3 mt20">
+			<div class="piece3_hd"></div>
+			<div id="topic_hot_sidebar" class="piece3_bd topic_list_sidebar">
+				<h2><a>{lang froum_hot_topic}...</a></h2>
+				<ul>
+					<!--{loop $forum_hot_topics $hot_topic}-->
+					<li><a target="_blank" href="{$hot_topic['url']}">{cutstr $hot_topic['title'] 40}</a></li>
+					<!--{/loop}-->
+				</ul>
+			</div>
+			<div class="piece3_ft"></div>
+		</div>
+		<div class="piece3 mt20">
+			<div class="piece3_hd"></div>
+			<div class="piece3_bd hot_images">
+				<h2><a>{lang froum_best_pic}...</a></h2>
+				<ul class="fl ml10">
+					<!--{loop $forum_hot_pics $hot_pic}-->
+					<li><a target="_blank" href="{$hot_pic['url']}"><img src="{getimg $hot_pic['imgs'][0]['img'] 100 100}"></a></li>
+					<!--{/loop}-->
+				</ul>
+			</div>
+			<div class="piece3_ft"></div>
+		</div>
+		<div class="piece3 mt20">
+			<div class="piece3_hd"></div>
+			<div class="piece3_bd">
+				<div class="tp_event" style="overflow:hidden;zoom:1">
+					<div class="events">
+						<h2><a>{lang new_event_topic}...</a></h2>
+						<ul>
+							<!--{loop $new_events $new_event}-->
+							<li>> <a href="{$new_event['url']}" target="_blank">{cutstr $new_event['title'] 32}</a></li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="piece3_ft"></div>
+		</div>
+		<div class="piece3 mt20">
+			<div class="piece3_hd"></div>
+			<div class="piece3_bd fashion_info">
+				<ul>
+					<!--{eval $best_item_first = true;}-->
+					<!--{loop $best_topics $topic_list}-->
+					<!--{if $best_item_first}-->
+					<li class="fi_feed" style="margin-top:0px;">
+					<!--{else}-->
+					<li class="fi_feed" >
+					<!--{/if}-->
+						<!--{eval $best_item_first = false;}-->
+						<!--{eval $topic_index = 0;}-->
+						<!--{loop $topic_list $best_topic}-->
+						<!--{if $topic_index == 0}-->
+						<p class="fi_topic">
+							<a target="_blank" href="{$best_topic['url']}">{cutstr $best_topic['title'] 44}</a>
+							{cutstr $best_topic['content'] 56}
+						</p>
+						<a target="_blank" href="{$best_topic['url']}" class="mask_90_70"><img class="fi_topic_img" src="{getimg $best_topic['imgs'][0]['img'] 90 70 1}"><p class="mask"></p></a>
+						<!--{else}-->
+						<div class="fi_topic_f">
+							<span></span>
+							&nbsp;<a target="_blank" href="{$best_topic['url']}" class="title">{cutstr $best_topic['title'] 40}</a>
+						</div>
+						<!--{/if}-->
+						<!--{eval $topic_index++;}-->
+						<!--{/loop}-->
+					</li>
+					<!--{/loop}-->
+				</ul>
+			</div>
+			<div class="piece3_ft"></div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+<!--{if getIsManage('club')}-->
+	$('#content .piece2:first').hover(function(e){
+		$.GetManageMenu('club',{$id},this,e);
+	},function(){});
+	
+	$('#SHARE_DETAIL_LiST .t_f').live('mouseover',function(e){
+		var shareID = this.getAttribute('shareID');
+		if(shareID)
+			$.GetManageMenu('share',shareID,this,e);
+	});
+<!--{/if}-->
+});
+</script>
+<!--{template inc/footer}-->

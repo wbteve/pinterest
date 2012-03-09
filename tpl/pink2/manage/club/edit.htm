@@ -1,0 +1,75 @@
+<!--{subtemplate manage/header}-->
+<link type="text/css" rel="stylesheet" href="./tpl/css/weebox.css" />
+<script type="text/javascript" src="./tpl/js/shareutil.js"></script>
+<div class="manage_edit">
+	<div class="manage_title">
+		<span>编辑主题：{$topic['title']}</span>
+	</div>
+	<div class="manage_unlock">
+		<span>当前已锁定此主题，其他管理员将不能对其进行操作，解锁请占击</span>
+		<a href="javascript:;" onclick="$.UnManageLock('club',{$topic['tid']},this)">【取消锁定】</a>
+		<span>，解锁后将关闭编辑页面</span>
+	</div>
+	<form method='post' id="form" name="form" action="{$_FANWE[site_root]}manage/manage.php">
+	<table class="table-form">
+		<tr>
+			<th width="100">标题</th>
+			<td><input type="text" size="80" class="textinput requireinput" name="title" value="{$topic['title']}" /></td>
+		</tr>
+		<tr>
+			<th>相关分享</th>
+			<td>
+				<a href="{$_FANWE[site_root]}manage/manage.php?m=share&a=edit&id={$topic['share_id']}" target="_blank">编辑分享</a>
+			</td>
+		</tr>
+		<tr>
+			<th>所属分类</th>
+			<td>
+				<select name="fid">
+				<!--{loop $_FANWE['cache']['forums']['root'] $rootid}-->
+				<!--{eval $rforum = $_FANWE['cache']['forums']['all'][$rootid];}-->
+				<option value="{$rootid}"{if $rootid == $topic['fid']} selected="selected"{/if}>{$rforum['name']}</option>
+				<!--{loop $rforum['childs'] $childid}-->
+				<!--{eval $cforum = $_FANWE['cache']['forums']['all'][$childid];}-->
+				<option value="{$childid}"{if $childid == $topic['fid']} selected="selected"{/if}>&nbsp;&nbsp;|--&nbsp;{$cforum['name']}</option>
+				<!--{/loop}-->
+				<!--{/loop}-->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td>
+				<label>
+					<input type="checkbox" name="is_best"{if $topic['is_best'] == 1} checked="checked"{/if} value="1"/>
+					<span>推荐</span>
+				</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>
+					<input type="checkbox" name="is_top"{if $topic['is_top'] == 1} checked="checked"{/if} value="1"/>
+					<span>置顶</span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<th>内容</th>
+			<td>
+				<textarea name="content" class="pub_txt PUB_TXT" length="140" position="0">{$topic['content']}</textarea>
+				<input type="hidden" id="position_count" class="pub_count" value="0" />
+				<div style="padding:10px 0 0 0;">
+					<a w="pub" href="javascript:;" class="add_face" id="add_face" onclick="$.Show_Expression(this);">{lang face}</a>
+				</div>
+			</td>
+		</tr>
+		<tr class="act">
+			<th>&nbsp;</th>
+			<td>
+				<input type="hidden" name="tid" value="{$topic['tid']}" />
+				<input type="hidden" name="m" value="club" />
+				<input type="hidden" name="a" value="update" />
+				<input type="submit" class="formbutton" value="提交" />
+			</td>
+		</tr>
+	</table>
+	</form>
+</div>
+<!--{subtemplate manage/footer}-->

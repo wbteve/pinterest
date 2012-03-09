@@ -1,0 +1,57 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%WORD}</th>
+		<td><p>{%WORD_TIPS}</p></td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td><textarea class="areainput" name="words" rows="8"></textarea></td>
+	</tr>
+	<tr>
+		<th>{%TYPE}</th>
+		<td>
+			<select name="type" onchange="replaceToggle(this);">
+				<option value="1">{%TYPE_1}</option>
+				<option value="2">{%TYPE_2}</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td><p>{%TYPE_TIPS}</p></td>
+	</tr>
+	<tr>
+		<th>{%CID}</th>
+		<td>
+			<fanwe:select options="type_list" name="cid" id="cid" first="{%CID_DEFAULT}" firstvalue="0" textfield="name" valuefield="id" />
+		</td>
+	</tr>
+	<tr id="replaceTr" style="display:none;">
+		<th>{%REPLACEMENT}</th>
+		<td><input type="text" class="textinput" name="replacement" value="***" /></td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+function replaceToggle(obj)
+{
+	if(obj.value == 2)
+		$("#replaceTr").show();
+	else
+		$("#replaceTr").hide();
+}
+</script>
+<include file="Public:footer" />

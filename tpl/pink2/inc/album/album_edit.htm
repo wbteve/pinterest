@@ -1,0 +1,76 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/album.css';
+	$js_list[0] = './tpl/js/album.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd">
+			<div id="content" style="width:960px;">
+				<div class="album_create">
+					<h1 class="new_album">编辑{lang common/album}</h1>
+					<div class="album_box">
+						<form id="albumForm" method="post" action="{u album/save}">
+							<dl class="pl30">
+								<dt>标题：</dt>
+								<dd>
+									<input class="album_title r3" type="text" value="{$album['title']}" name="title" id="albumTitle"/>
+									<span class="info_tip">最多30个汉字</span>
+									<img class="ok_icon" src="./tpl/images/ok_01.png">
+									<span class="error_icon"></span>
+								</dd>
+								<dt>分类：</dt>
+								<dd>
+									<select name="cid">
+										<!--{loop $_FANWE['cache']['albums']['category'] $category}-->
+										<option value="{$category['id']}"{if $album['cid'] == $category['id']} selected="selected"{/if}>{$category['name']}</option>
+										<!--{/loop}-->
+									</select>
+								</dd>
+								<dt style="clear:both;">展现方式：</dt>
+								<dd class="columns">
+									<label><input type="radio" value="3" name="show_type"{if $album['show_type'] == 3} checked="checked"{/if}/><span>大图</span></label>
+									<label><input type="radio" value="2" name="show_type"{if $album['show_type'] == 2} checked="checked"{/if}/><span>中图</span></label>
+									<label><input type="radio" value="1" name="show_type"{if $album['show_type'] == 1} checked="checked"{/if}/><span>小图</span></label>
+								</dd>
+								<dt style="clear:both;">时尚元素：</dt>
+								<dd style="padding-bottom:10px">
+									<input class="album_tip r3" type="text" name="tags" id="albumTags" maxCount="{$_FANWE['cache']['albums']['setting']['album_tag_count']}" value="{$album['tags']}"/>
+									<span class="info_tip">最多可以填写{$_FANWE['cache']['albums']['setting']['album_tag_count']}个,以空格隔开</span>
+									<img class="ok_icon" src="./tpl/images/ok_01.png">
+									<span class="error_icon"></span>
+								</dd>
+								<dt style="clear:both;">&nbsp;</dt>
+								<dd class="fashion_element">
+									<!--{loop $_FANWE['cache']['albums']['setting']['album_default_tags'] $tag}-->
+									<span>{$tag}</span>
+									<!--{/loop}-->
+								</dd>
+								<dt style="clear:both;">介绍：</dt>
+								<dd>
+									<textarea class="album_all PUB_TXT r3 fl" type="text" name="content" id="albumContent" position="0">{$album['content']}</textarea>
+									<span class="info_tip" style="float:left; margin-left:10px;">请输入介绍内容，长度不能超过500个汉字</span>
+									<img class="ok_icon" style="float:left; margin-left:10px;" src="./tpl/images/ok_01.png">
+									<span class="error_icon" style="float:left; margin-left:10px;"></span>
+									<div class="album_mana" style="clear:both;"><a href="javascript:;" onclick="$.Show_Expression(this)" class="add_face" w='addalbum'>表情</a> </div>
+							</dl>
+							<div class="next_btn">
+								<input type="hidden" name="action" value="save" />
+								<input type="hidden" name="id" value="{$album['id']}" />
+								<input type="image" src="./tpl/images/confirm_btn.png" value="确定" />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+	$.Pub_Count_Bind($("#albumContent").get(0));
+});
+</script>
+<!--{template inc/footer}-->

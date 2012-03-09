@@ -1,0 +1,36 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="200">{%LOG_MODULE}</th>
+		<td><p>{$vo.log_module}</p></td>
+	</tr>
+	<tr>
+		<th>{%LOG_ACTION}</th>
+		<td><p>{$vo.log_action}</p></td>
+	</tr>
+	<tr>
+		<th>{%DATA_ID}</th>
+		<td><p>{$vo.data_id}</p></td>
+	</tr>
+	<tr>
+		<th>{%ADMIN_ID}</th>
+		<td><p>{:getAdminName($vo['admin_id'])}</p></td>
+	</tr>
+	<tr>
+		<th>{%IP}</th>
+		<td><p>{$vo.ip}</p></td>
+	</tr>
+	<tr>
+		<th>{%LOG_RESULT}</th>
+		<td><p>{:L('LOG_RESULT_'.$vo['log_result'])}</p></td>
+	</tr>
+	<tr>
+		<th>{%LOG_MSG}</th>
+		<td><p>{$vo.log_msg}</p></td>
+	</tr>
+</table>
+<include file="Public:footer" />

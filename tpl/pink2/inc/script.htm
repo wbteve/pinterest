@@ -1,0 +1,23 @@
+<script type="text/javascript">
+var USER_ID = $_FANWE['uid'];
+<?php
+if(!empty($_FANWE['authoritys']))
+{
+	$manages = array_keys($_FANWE['authoritys']);
+	$manages = implode(',',$manages);
+}
+
+$is_image_servers = 0;
+if(FS('Image')->getIsServer())
+	$is_image_servers = 1;
+?>
+var MANAGES = "{$manages}";
+var IS_IMAGE_SERVERS = {$is_image_servers};
+</script>
+<?php
+if(!empty($_FANWE['cookie']['dynamic_script']))
+{
+	echo stripslashes($_FANWE['cookie']['dynamic_script']);
+	fSetCookie('dynamic_script','');
+}
+?>

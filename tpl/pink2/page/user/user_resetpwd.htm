@@ -1,0 +1,58 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/loginreg.css';
+	$js_list[0] = './tpl/js/loginreg.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd clearfix">
+			<div id="content" style="width:960px;">
+				<div id="get_password_box" class="fl">
+					<p>
+						<span>{lang reset_pwd}</span><br />
+						{lang get_pwd_tip1}
+					</p>
+					<!--{if $method != 'post'}-->
+					<div id="get_password_form">
+						<form action="{u user/resetpassword}" method="post" id="resetPwdForm">
+							<dl>
+								<dd>{lang reset_new_pwd}：</dd>
+								<dt>
+									<input name="password" class="text" type="text" />
+									<div class="get_password_fail"></div>
+								</dt>
+								<dd>{lang reset_new_cpwd}：</dd>
+								<dt>
+									<input name="confirm_password" class="text" type="text" />
+									<div class="get_password_fail"></div>
+								</dt>
+								<dd>&nbsp;</dd>
+								<dt>
+									<input type="hidden" name="action" value="resetpassword" />
+									<input type="hidden" name="resethash" value="{$hash}" />
+									<input class="green_button" type="submit" value="{lang submit1}" />
+								</dt>
+							</dl>
+						</form>
+					</div>
+					<!--{elseif $data_error}-->
+					<div id="get_password_result">
+						<span>{lang reset_new_err}</span><br />
+						{lang reset_new_err1}<br />
+						<a href="{u user/resetpassword resethash=$hash}">{lang return_prve}</a>
+					</div>
+					<!--{else}-->
+					<div id="get_password_result">
+						<span>{lang reset_new_ok}</span><br /><br />
+						<a href="{u user/login}">{lang return_login}</a>
+					</div>
+					<!--{/if}-->
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<!--{template inc/footer}-->

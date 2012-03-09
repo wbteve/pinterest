@@ -1,0 +1,63 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/shop.css';
+	$js_list[0] = './tpl/js/shop.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="top_shop_cat box_shadow">
+		<div class="cat">
+			<h3><a href="{u shop}" class="cat_name{if 0 == $cid} cat_current{/if}">全部精选</a></h3>
+		</div>
+		<!--{loop $_FANWE['cache']['shops']['root'] $root_id}-->
+		<!--{eval $root_cate = $_FANWE['cache']['shops']['all'][$root_id];}-->
+		<!--{eval $root_current = in_array($cid,$root_cate['childs']);}-->
+		<div class="cat">
+			<h3><a href="{$root_cate['url']}" class="cat_name{if $root_current || $root_id == $cid} cat_current{/if}">{$root_cate['name']}</a></h3>
+			<div style="padding-left: 13px;">
+				<!--{loop $root_cate['childs'] $child_id}-->
+				<!--{eval $child_cate = $_FANWE['cache']['shops']['all'][$child_id];}-->
+				<div class="sub_cat_name{if $child_id == $cid} sub_cat_current{/if}"> <a href="{$child_cate['url']}">{$child_cate['name']}</a> </div>
+				<!--{/loop}-->
+				<div class="clear-fix"></div>
+			</div>
+		</div>
+		<!--{/loop}-->
+	</div>
+	<div class="top_shop_list box_shadow">
+		<!--{loop $shop_list $shop_item}-->
+		<div class="shop_item" shopID="{$shop_item['shop_id']}">
+			<a href="{$shop_item['url']}" target="_blank" class="click_area"></a>
+			<a href="{$shop_item['url']}" target="_blank" class="link_btn" style="display: none;"></a>
+			<h4 class="title">{cutstr $shop_item['shop_name'] 36}</h4>
+			<div class="stat">
+				推荐人数：<span style="color: #f36;">{$shop_item['recommend_count']}</span><br/>
+				店铺看点：<!--{loop $shop_item['tags'] $tag}--><a href="{echo FU('book/shopping',array('tag'=>urlencode($tag)))}" target="_blank">{$tag}</a> <!--{/loop}-->
+			</div>
+			<div class="goods_list">
+				<!--{loop $shop_item['imgs'] $img}-->
+				<img src="{getimg $img 100 100)}" /> 
+				<!--{/loop}-->
+				<div class="clear-fix"></div>
+			</div>
+		</div>
+		<!--{/loop}-->
+		<div class="clear-fix"></div>
+		<!--{if $pager['page_count'] > 1}-->
+		<div class="pagination mt20"> 
+			<!--{subtemplate inc/pages}--> 
+		</div>
+		<!--{/if}-->
+	</div>
+	<div class="clear-fix"></div>
+</div>
+<!--{if getIsManage('ask')}-->
+<script type="text/javascript">
+jQuery(function($){
+	$('.top_shop_list .shop_item').hover(function(){
+		var shopID = this.getAttribute('shopID');
+		$.GetManageMenu('shop',shopID,this);
+	},function(){});
+});
+</script>
+<!--{/if}-->
+<!--{template inc/footer}-->

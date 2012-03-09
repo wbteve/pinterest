@@ -1,0 +1,130 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/categories.css';
+	$css_list[0]['url'][] = './tpl/css/style.css';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="top_tags" id="cms308"> 
+		<ul style="min-height:180px;" class="top_tags_bd clearfix"> 
+			<li class="style_link">
+				<a href="{u book/dapei}">搭配秀</a>
+				<a href="{u book/look}">晒&nbsp;&nbsp;&nbsp;&nbsp;货</a>
+				<a class="c" href="{u style}">精选搭配</a>
+			</li>
+			<!--{eval $tag_index = 1;}-->
+			<!--{loop $category_tags $key $cate}-->
+			<li{if $tag_index == 2} class="w17"{/if}>
+				<span>$cate['cate_name']</span>
+				<p>
+					<!--{loop $cate['tags'] $k $tag}--> 
+					<a href="$tag['url']" {if $tag['is_hot'] == 1}class="h"{/if}>$tag['tag_name']</a> 
+					<!--{/loop}-->
+				</p>
+			</li>
+			<!--{eval $tag_index++;}-->
+			<!--{/loop}-->
+			<li style="right:40px;" class="share"> 
+				<div class="show_style new_style">
+					<a href="{u u/me}" style="left:20px;"><img src="./tpl/images/pub_my_style.png"></a>
+				</div>
+			</li> 
+		</ul> 
+		<div class="top_tags_ft"></div> 
+	</div>
+	<div class="piece1 mt20 ml10">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd clearfix">
+			<div id="content" class="fl">
+				<div class="with_title">
+					<a href="{u style}" class="tlogo"></a>
+					<div class="descption">{$title}</div>
+				</div>
+				<div class="sort">
+					<a {if $pop_url['act'] == 1}class="ac"{/if} href="$pop_url['url']">朝流</a>
+					&nbsp;<span>|</span>&nbsp;
+					<a {if $new_url['act'] == 1}class="ac"{/if} href="$new_url['url']">NEW</a>
+					&nbsp;<span>|</span>&nbsp;
+					<a {if $hot7_url['act'] == 1}class="ac"{/if} href="$hot7_url['url']">一周人气</a>
+					&nbsp;<span>|</span>&nbsp;
+					<a {if $hot30_url['act'] == 1}class="ac"{/if} href="$hot30_url['url']">本月最热</a>
+				</div>
+				<ul class="mstyle">
+					<!--{loop $share_list $share}-->
+					<li style="border:0;padding-top:0;" class="mogu_content clearfix" shareID="{$share['share_id']}" id="share_item_{$share['share_id']}">
+						<div class="image">
+							<a target="_blank" href="{$share['dapei_imgs'][0]['url']}" ><img class="lazyload" original="{getimg $share['dapei_imgs'][0]['img'] 468 468)}" src="./tpl/images/lazyload.gif" width="320" /></a>
+						</div>
+						<div class="twict">
+							<div class="uname">
+								<!--{getuser $share['uid'] 1 '' 'icard gc'}-->
+								<!--{getfollow $share['uid'] inc/getfollow/style_index}-->
+							</div>
+							<p><img src="./tpl/images/mark_left.png" />{$share['content']}<img src="./tpl/images/mark_right.png" /></p>
+							<!--{if !empty($share['tags']['user'])}-->
+							<div class="fashion">
+								<div class="sw_fashion">
+								<span>时尚元素：</span>
+									<!--{loop $share['tags']['user'] $share_tag}-->
+									<a href="{$share_tag['url']}" target="_blank">$share_tag['tag_name']</a>
+									<!--{/loop}-->
+								</div>
+							</div>
+							<!--{/if}-->
+							<div class="forward">{$share['time']}&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" onclick="$.Relay_Share($share['share_id']);" class="mgs_forward">转发({$share['relay_count']})</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{$share['url']}" class="replcae" target="_blank">评论({$share['comment_count']})</a> </div>
+							<div class="note_who_like">
+								<div style="overflow:hidden;zoom:1;padding-bottom:10px;">
+									<a href="javascript:;" class="add_fav" onclick="$.Fav_Share({$share['share_id']},this,39,'#share_item_{$share['share_id']}');"> <img class="fl add_fav_new" src="./tpl/images/like.png"> </a> <span class="nwl_cfav"><span class="SHARE_FAV_COUNT">{$share['collect_count']}</span><i></i></span>
+								</div>
+								<div class="nwl_img">
+									<ul class="u_like SHARE_FAV_LIST">
+										<!--{loop $share['collects'] $collect_uid}-->
+										<li><!--{getuser $collect_uid 0 's,20' ',icard r3 GUID lazyload'}--></li>
+										<!--{/loop}-->
+									</ul>
+								</div>
+							</div>
+						</div>
+					</li>
+					<!--{/loop}-->
+				</ul>
+				<div class="pagination mt20"> 
+					<!--{subtemplate inc/pages}--> 
+				</div>
+				<div class="blank20"></div>
+			</div>
+			<div id="sidebar" class="fr">
+				<div class="style_hotweek mt30">
+					<div class="title">一周最热时尚搭配</div>
+					<ul>
+						<!--{loop $share_week_hots $share}-->
+						<li>
+							<a class="wekhta" href="{$share['dapei_imgs'][0]['url']}" target="_blank"><img src="{getimg $share['dapei_imgs'][0]['img'] 150 170 1}" /></a>
+							<div class="info">
+								<!--{getuser $share['uid'] 0 '' 'icard'}--><span>{$share['collect_count']}</span> 
+							</div>
+						</li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<script type="text/javascript">
+function UpdateUserFollow(obj,result)
+{
+	if(result.status == 1)
+		$(obj).remove();
+}
+
+jQuery(function($){
+	<!--{if getIsManage('share')}-->
+	$('.mogu_content').hover(function(){
+		var shareID = this.getAttribute('shareID');
+		$.GetManageMenu('dapei',shareID,this);
+	},function(){});
+	<!--{/if}-->
+});
+</script>
+<!--{template inc/footer}-->

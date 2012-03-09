@@ -1,0 +1,34 @@
+<div t="cmt" class="SHARE_COMMENT_LIST_BOX cf_b">
+	<form>
+	<img class="cf_a" src="./tpl/images/commnet_arrow.png">
+	<div class="cf_pub_b rt5">
+		<a href="javascript:;" onclick="$.Show_Expression(this);" class="fl"><img w="f" class="add_face fl" src="./tpl/images/add_face_c.png"></a>
+		<textarea class="PUB_TXT pub_txt fl rl3" name="content" style="height: 21px;" position="0"></textarea>
+		<input type="button" class="pub_btn fl rr3" value="评论" onclick="$.Add_Share_Comment(this,'#SHARE_COMMENT_LIST_{$share['share_id']}')" />
+		<div class="cf_opt">
+			<input type="hidden" name="parent_id" value="0" />
+			<input type="hidden" name="share_id" value="{$share['share_id']}" />
+			<label><input type="checkbox" name="is_relay" value="1" checked="checked">转发给我的粉丝</label>
+		</div>
+	</div>
+	<ul class="c_l rb5" id="SHARE_COMMENT_LIST_{$share['share_id']}">
+		<!--{loop $comments $comment}-->
+		<li class="c_f" id="COMMENT_{$comment['comment_id']}">
+			<!--{getuser $comment['uid'] 0 's,36' ',avt icard'}-->
+			<p class="sms"><!--{getuser $comment['uid'] 1 '' 'n icard'}-->：回复{$comment['content']}<span>（{$comment['time']}）</span></p>
+			<div>
+				<!--{if $is_remove_comment}-->
+				<a onclick="$.Delete_Comment($comment['comment_id'],this);" class="del" w="f" href="javascript:void(0);">删除</a>
+				<!--{/if}-->
+				<a class="rpl" w="f" href="javascript:;" uname='{$comment['user']['user_name']}' cid="{$comment['comment_id']}" onclick="$.Reply_Comment(this);">回复</a>
+			</div>
+		</li>
+		<!--{/loop}-->
+		<!--{if $is_more}-->
+		<li class="more">
+            <div>后面还有{$more_count}条评论，<a target="_blank" href="{$share['url']}">点击查看</a></div>
+        </li>
+		<!--{/if}-->
+	</ul>
+	</form>
+</div>

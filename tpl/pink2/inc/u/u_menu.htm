@@ -1,0 +1,71 @@
+<div class="menu fl">
+	<div class="profile">
+		<div class="p_a">
+			<div class="p_da"> <a href="{u u/book uid=$home_uid}" target="_blank"><img src="{avatar $home_uid b $home_user['server_code'] 1}" width="100" alt="{$home_user['user_name']}" /></a></div>
+		</div>
+		<div class="name"><a href="{u u/book uid=$home_uid}" target="_blank" class="bc">{$home_user['user_name']}</a></div>
+		<!--{getfollow $home_uid inc/getfollow/u_menu}-->
+	</div>
+	<ul class="zone_left_tab">
+		<li>
+			<h2>
+				<a class="z_t_a " style="background-position:0 -22px;" href="{u u/book uid=$home_uid}">封面</a>
+				<a class="sc" href="{u settings/custom}" target="_blank">设置</a>
+			</h2>
+		</li>
+		<li{if $current_menu == 'talk' || empty($current_menu)} class="c"{/if}>
+			<h2>
+				<a class="z_t_a" href="{u u/index uid=$home_uid}" style="background-position:0 5px;">动态</a>
+			</h2>
+		</li>
+		<li{if $current_menu == 'album'} class="c"{/if}>
+			<h2>
+				<a class="z_t_a" href="{u u/album uid=$home_uid}" style="background-position:0 -170px;">{lang common/album}</a>
+			</h2>
+		</li>
+		<li{if $current_menu == 'fav'} class="c"{/if}>
+			<h2><a class="z_t_a" href="{u u/fav uid=$home_uid}" style="background-position:0 -49px;">喜欢</a></h2>
+		</li>
+		<li{if $current_menu == 'bao'} class="c"{/if}>
+			<h2>
+				<a class="z_t_a" href="{u u/bao uid=$home_uid}" style="background-position:0 -122px;">宝贝</a>
+			</h2>
+		</li>
+		<li{if $current_menu == 'photo'} class="c"{/if}>
+			<h2>
+				<a class="z_t_a" href="{u u/photo uid=$home_uid}" style="background-position:0 -98px;">相册</a>
+			</h2>
+		</li>
+		<li{if $current_menu == 'topic'} class="c"{/if}>
+			<h2>
+				<a class="z_t_a" href="{u u/topic uid=$home_uid}" style="background-position:0 -195px;">主题</a>
+			</h2>
+		</li>
+		<!--{if $home_uid == $_FANWE['uid']}-->
+		<li{if $current_menu == 'message'} class="c"{/if}>
+			<h2>
+				<a class="z_t_a" href="{u u/message uid=$home_uid}" style="background-position:0 -216px;">信件</a>
+			</h2>
+		</li>
+		<li{if $current_menu == 'exchange'} class="c"{/if}>
+			<h2>
+				<a class="z_t_a" href="{u u/exchange uid=$home_uid}" style="background-position:0 -145px;">兑换</a>
+			</h2>
+		</li>
+		<!--{/if}-->
+	</ul>
+</div>
+<script type="text/javascript">
+function UMenuUpdateUserFollow(obj,result)
+{
+	var parent = $(obj).parent();
+	if(result.status == 1)
+	{
+		parent.html('<span class="followed">已关注</span><div class="followed_border"></div><a onclick="$.User_Follow({$home_uid},this,UMenuUpdateUserFollow);" href="javascript:;" class="follow_del">取消</a>');
+	}
+	else
+	{
+		parent.html('<a onclick="$.User_Follow($home_uid,this,UMenuUpdateUserFollow);" href="javascript:;" class="addfo">加关注</a>');
+	}
+}
+</script>

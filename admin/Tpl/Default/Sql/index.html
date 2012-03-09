@@ -1,0 +1,75 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<style type="text/css">
+#sqlResult .error{color:#f00;}
+#sqlResult table{width:100%; background:#333;}
+#sqlResult table td{background:#fff;}
+</style>
+<form>
+<fieldset id="querybox" style="margin:10px;">
+	<legend>{:sprintf(L('SQL_TIPS1'),$db_name)}</legend>
+	<div style="margin:10px;">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td valign="top">
+					<textarea id="execSql" style="width:100%; font-size:13px; height:212px; line-height:18px;"></textarea>
+				</td>
+				<td width="10">&nbsp;
+					
+				</td>
+				<td width="260" valign="top">
+					<select name="table_name" id="tableName" multiple="multiple" style="width:100%; font-size:13px; height:212px; line-height:18px;">
+						<foreach name="tables" item="table" >
+							<option value="{$table}">{$table}</option>
+						</foreach>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="padding:10px 0 0 0;">
+					<input type="button" class="submit_btn" id="runQuery" value="{%SUBMIT}" />
+					<input type="reset" class="reset_btn" value="{%RESET}" />
+				</td>
+			</tr>
+		</table>
+	</div>
+</fieldset>
+</form>
+<fieldset id="queryBox" style="margin:10px;">
+	<legend>{%SQL_TIPS2} <strong class="blue" id="resultNum"></strong></legend>
+	<div id="sqlResult" style="margin:10px;">
+		
+	</div>
+</fieldset>
+<script type="text/javascript">
+jQuery(function($){
+	$("#runQuery").click(function(){
+		var sql = $.trim($("#execSql").val());
+		if(sql == '')
+			return;
+		
+		$("#runQuery").attr({"disabled":true});
+		$.ajax({
+			url: APP + '?' + VAR_MODULE + '=Sql&' + VAR_ACTION + '=execute',
+			type:"POST",
+			cache: false,
+			data:{"sql":sql},
+			dataType:"json",
+			success: function(result){
+				$("#resultNum").html(result.info);
+				$("#sqlResult").html(result.html);
+				$("#runQuery").attr({"disabled":false});
+			},
+			error:function(){
+				$("#runQuery").attr({"disabled":false});	
+			}
+		});
+	});
+	
+	$("#tableName").dblclick(function(){
+		var sql = $("#execSql").val();
+		$("#execSql").val(sql + ' ' + this.value);
+	});
+});
+</script>
+<include file="Public:footer" />

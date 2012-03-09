@@ -1,0 +1,85 @@
+<div id="lb_login">
+	<div class="login_box">
+		<p class="login_fail" id="ajax_login_fail"></p>
+		<div class="login_form">
+			<form id="ajaxLoginForm">
+				<dl>
+					<dd>{lang user_name}：</dd>
+					<dt>
+						<input type="text" name="email_name" class="text">
+					</dt>
+					<dd>{lang user_password}：</dd>
+					<dt>
+						<input type="password" name="pass" class="text">
+					</dt>
+					<dd>&nbsp;</dd>
+					<dt class="rem">
+						<input type="checkbox" name="remember" class="checkbox" checked="checked" value="1209600">
+						{lang user_remember}
+					</dt>
+					<dd>&nbsp;</dd>
+					<dt>
+						<input type="submit" value="" class="login_btn" id="ajax_login_btn">
+						<a href="{u user/forgetpassword}">{lang forget_password}</a>
+					</dt>
+					<input name="rhash" value="<!--{dynamic getRHash}-->" type="hidden"/>
+				</dl>
+			</form>
+		</div>
+		<div class="reg_or_weibo">
+			<div class="register_box">{sprintf no_register $_FANWE['setting']['site_name']}<a href="{u user/register}" class="reg_btn"></a></div>
+			<div class="l_o">
+				<!--{loop $login_modules $login_module}-->
+				<img src="{$login_module['icon_img']}" height="16"><a href="{$login_module['login_url']}">{sprintf api_login $login_module['short_name']}</a><br>
+				<!--{/loop}-->
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+	$("#ajaxLoginForm").submit(function(){
+		var form = this;
+		$("#ajax_login_fail").html("");
+		var uname = $.trim(this.email_name.value);
+		if(uname == '')
+		{
+			$("#ajax_login_fail").html(LANG.user_name_require);
+			this.email_name.focus();
+			return false;	
+		}
+		
+		if($.trim(this.pass.value) == '')
+		{
+			$("#ajax_login_fail").html(LANG.user_pass_require);
+			this.pass.focus();
+			return false;	
+		}
+		
+		$("#ajax_login_btn").attr("disabled",true);
+		$.ajax({ 
+			url: SITE_PATH+"user.php?action=ajax_login",
+			type: "POST",
+			data:$(form).serialize(),
+			cache:false,
+			dataType:'json',
+			success:function(result){
+				$("#ajax_login_btn").attr("disabled",false);
+				if(result.status == 0)
+					$("#ajax_login_fail").html(LANG.login_error1);
+				else
+				{
+					USER_ID = result.uid;
+					$.weeboxs.close();
+				}
+			},
+			error:function(){
+				$("#ajax_login_btn").attr("disabled",false);
+				$("#ajax_login_fail").html(LANG.login_error);
+			}
+		});
+		
+		return false;
+	});
+});
+</script>

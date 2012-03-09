@@ -1,0 +1,156 @@
+#head { padding-bottom:0; }
+#body { padding:0; }
+.top_tags { width:940px; margin:0 10px; }
+.top_tags_bd { padding:12px 0 3px; background-color:#FFF; }
+.top_tags_ft { background:url(/tpl/pink2/images/r_ft_w_940x3.png) no-repeat; width:940px; height:3px; }
+.top_tags ul { overflow:hidden; zoom:1; padding-bottom:10px; position:relative; }
+.top_tags li { min-height:110px; _height:110px; border-right:1px solid #f1f1f1; float:left; padding:10px 15px 15px 15px; width:84px;}
+.top_tags li.w15 { width:147px; }
+.top_tags li.w20 { width:209px; }
+.top_tags li.share { width:170px; border-right:none; padding:0; text-align:center; line-height:20px; color:#666; right:0; position:absolute; }
+.top_tags li.share .share_bao { display:block; width:86px; height:26px; line-height:26px; margin:6px auto 10px; background:url(/tpl/pink2/images/pink_btn_86x26.png) no-repeat; font-weight:bold; font-size:14px; color:#fff; }
+.top_tags span { font-family:Georgia; color:#f69; font-size:14px; white-space:nowrap; padding-left:5px; }
+.top_tags p { padding-top:10px; line-height:22px; *line-height:16px;
+}
+.top_tags p a { padding:0 5px; white-space:nowrap; color:#666; *float:left;
+}
+.top_tags p a:hover,
+.top_tags .h { color:#E71F8D; }
+.imagewall_sort { width:940px; margin:0 10px; height:75px; line-height:75px; _height:50px; _line-height:50px; }
+.imagewall_sort h1 { font-size:30px; color:#FF6699; }
+.imagewall_sort div { padding-top:30px; _padding-top:20px; }
+.imagewall_sort a { color:#666; font-size:14px; height:18px; line-height:18px; width:43px; display:block; text-align:center; float:left; }
+.imagewall_sort a.c { color:#fff; background:url(/tpl/pink2/images/imgwall_sort_bg.png) no-repeat; }
+.imagewall_sort a.cc { color:#fff; background:url(/tpl/pink2/images/imgwall_sort_bg1.png) no-repeat center; }
+.imagewall_sort .cstyle_btn { display:block; float:right; background:url(/tpl/pink2/images/per_setting.png) 0 0 no-repeat; padding-left:30px; height:23px; line-height:23px; width:69px; color:#727763; font-size:12px; margin-top:30px; }
+.imagewall_nav {width:960px;  }
+.imagewall_tips { width:940px; margin:0 auto; }
+.tips_bg_top { background:url(/tpl/pink2/images/tips-bg-top.png) no-repeat; width:940px; height:5px; font-size:0; }
+.tips_bg_c { width:938px; overflow:hidden; background-color:#fff4ea; border-left:1px solid #fee5cf; border-right:1px solid #fee5cf; }
+.tips_all { width:425px; float:left; padding:10px 20px; position:relative; }
+.tips_all_pic { float:left; padding-right:10px; }
+.tips_all_pic img { padding:3px; border:1px solid #d8d8d8; background-color:#fff; max-width:160px; max-height:160px; }
+.tips_all_content { display:table-cell; overflow:auto; zoom:1; _display:block; }
+.tips_all_content p { height:75px; line-height:150%; overflow:hidden; }
+.tips_all_content p a { color:#09e; }
+.tips_all_user { height:24px; line-height:24px; position:absolute; bottom:15px; }
+.user_name { color:#ef1f8d; font-weight:bold; }
+.user_pic { width:24px; height:24px; padding:2px; background-color:#fff; vertical-align:middle; }
+.tips_bg_bottom { background:url(/tpl/pink2/images/tips-bottom.jpg) no-repeat; width:960px; height:43px; }
+.book_search { padding:10px 15px; overflow:hidden; zoom:1; background-color:#FFF; }
+.book_search .book_sh_l { background:url(/tpl/pink2/images/book_search_left.png) no-repeat; width:5px; height:51px; float:left; }
+.book_search .book_sh_b { background-color:#e7f2cb; height:41px; width:603px; overflow:hidden; float:left; padding:10px 55px 0 45px; }
+.book_search .book_sh_b input { background:#FFF url(/tpl/pink2/images/index_search_box.png) no-repeat; }
+.book_search .book_sh_b .book_s_txt { background-position:left; width:521px; height:31px; line-height:31px; border:none; margin:0; padding:0 5px; color:#999; }
+.book_search .book_sh_b .book_s_btn { background-position:right; border:none; height:31px; width:72px; cursor:pointer; }
+.book_search .book_sh_r { background:url(/tpl/pink2/images/book_search_right.png) no-repeat; width:5px; height:51px; float:left; }
+.book_jiathis { background-color:#f0f4e6; height:31px; float:left; width:175px; border-left:1px solid #fff; padding:20px 0 0 20px; }
+.imagewall_sort .is_go_home { float:left; padding-top:30px; }
+.is_go_home .go_go { text-align:left; width:90px; text-decoration:underline; padding-left:5px; }
+.u_profile .up_info { margin:10px auto; text-align:center; overflow:hidden; }
+.u_profile .up_address { font-size:14px; padding:15px 25px 0 25px; color:#000; text-align:center; }
+.u_profile .up_address p { color:#333; font-size:12px; padding-top:14px; line-height:150%; }
+.u_profile .up_userhome .gohome { background:url(/tpl/pink2/images/book_go_home.png) no-repeat left center; width:102px; height:33px; display:block; color:#fff; font-size:14px; padding:18px 0 0 50px; }
+.u_profile .up_userhome { color:#a9b18e; margin-left:36px; margin-top:10px; }
+.u_profile .up_userhome a { color:#0098ce; margin-left:2px; margin-right:2px; }
+.u_profile .name { font-size:16px; font-weight:bold; line-height:40px; white-space:nowrap; }
+.u_profile .uavatar { display:block; width:100px; height:100px; margin:0 auto; }
+.u_profile .fo_st { background:url('/tpl/pink2/images/info_followed.png') no-repeat; display:block; height:25px; width:91px; margin:0 auto; }
+.u_profile .add_fo { background:url('/tpl/pink2/images/btn_follow.png') no-repeat; display:block; height:25px; width:91px; margin:0 auto; }
+.u_profile .up_title { padding:36px 25px 0; font-size:14px; line-height:20px; color:#6f980b; }
+.u_profile .nt_list { overflow:hidden; zoom:1; }
+.u_profile .nt_list li { float:left; margin:4px 1px 0 0; }
+.u_profile .nt_list a { background:url("/tpl/pink2/images/note_fav.png") no-repeat scroll 0 0 transparent; color:#FFF; display:block; float:left; font-size:14px; line-height:20px; margin-left:2px; padding:0 0 0 4px; white-space:nowrap; }
+.u_profile .nt_list i { background:url("/tpl/pink2/images/note_fav.png") no-repeat scroll left bottom transparent; display:block; float:left; height:20px; width:3px; }
+.u_profile .up_brands { overflow:hidden; }
+.b_u_hd { background:url(/tpl/pink2/images/book_user_hd_225x5.png) no-repeat scroll 0 0 transparent; font-size:0; height:5px; }
+.b_u_bd { background-color:#e7ecd9; border-left:1px solid #d8dfc4; border-right:1px solid #d8dfc4; padding:15px 0 10px; overflow:hidden; zoom:1; }
+.b_u_ft { background:url(/tpl/pink2/images/book_user_ft_225x5.png) no-repeat scroll 0 0 transparent; font-size:0; height:5px; }
+.pd_tb { padding:50px 0 130px; background:url(/tpl/pink2/images/book_happy_pagination.png) no-repeat; width:392px; height:30px; margin:0 auto; }
+.imagewall_sort .add_fo,
+.imagewall_sort .fo_st { display:block; height:25px; margin-top:30px; margin-right:5px; width:91px; background:url(/tpl/pink2/images/btn_follow.png) no-repeat; float:right; }
+.imagewall_sort .fo_st { background:url(/tpl/pink2/images/info_followed.png) no-repeat; }
+.imagewall_sort .fo_st:hover { background:url(/tpl/pink2/images/btn_follow_del.png) no-repeat; }
+.book_myfav { overflow:hidden; position:fixed; bottom:100px; _bottom:auto; _position:absolute; _top:expression((document.compatMode && document.compatMode=='CSS1Compat' ? documentElement.scrollTop+(documentElement.clientHeight - this.clientHeight):document.body.scrollTop+(document.body.clientHeight - this.clientHeight))-100);
+width:60px; left:-100px; }
+.book_myfav .new_fav { background-color:#fff; border:1px solid #d8d8d8; padding:7px 4px; }
+.new_fav img { width:50px; height:50px; margin-bottom:2px; }
+.imagewall_cover { position:relative; background:url('about:blank') center repeat; width:960px; }
+.iwc_ct { height:122px; position:absolute; overflow:hidden; left:15px; top:5px; z-index:111; }
+.iwc_ct h1 { font-size:24px; font-weight:bold; color:#fff; }
+.iwc_ct .lb { background:url(/tpl/pink2/images/imagewall_title_bg.png) top left no-repeat; width:20px; float:left; height:122px; }
+.iwc_ct .bd { background:url(/tpl/pink2/images/imagewall_title_bg.png) bottom repeat-x; float:left; height:104px; padding-top:18px; }
+.iwc_ct .bd p { padding-left:50px; }
+.iwc_ct .avt { float:left; width:40px; height:40px; }
+.iwc_ct .n { color:#fff; font-weight:bold; font-size:14px; }
+.iwc_ct .addr { color:#dcdcdc; display:block; margin-top:10px; }
+.iwc_ct .addfo { display:inline-block; width:51px; height:19px; background:url(/tpl/pink2/images/addfo_alp.png) 0 0 no-repeat; vertical-align:-4px; *vertical-align:-1px;
+margin-left:2px; }
+.iwc_ct .rb { background:url(/tpl/pink2/images/imagewall_title_bg.png) top right no-repeat; width:24px; float:left; height:122px; left:0; }
+.iwc_link { position:absolute; display:block; width:960px; left:0; top:0; z-index:110; }
+.iwc_ct .followed { color:#ccc; line-height:;
+vertical-align:1px; }
+h3 { clear:both; color:#fd5c9a; font-size:14px; line-height:120%; font-weight:bold; }
+.book_more { font-size:12px; color:#fd5c9a; font-weight:normal; position:absolute; right:10px; }
+.fashion_element { padding:0 14px; }
+.fashion_element .elements { line-height:22px; padding:0 5px; margin-top:10px; *text-indent:-0.3em;
+}
+.fashion_element .elements a { font-size:12px; color:#333; padding:0 4px; white-space:nowrap; }
+.fashion_style { padding:0 0 0 14px; }
+.best_style { margin-top:15px; width:205px; }
+.best_style li { float:left; height:125px; text-align:center; color:#333; padding-right:12px; width:90px; overflow:hidden; white-space:nowrap; }
+.best_style img { width:90px; height:90px; }
+.best_style a { display:block; }
+.best_style .style_name { line-height:22px; color:#6e766d; height:20px; overflow:hidden; width:90px; }
+.fashion_love { padding:0 10px; }
+.fav_users { margin:15px 0 25px 10px; }
+.fav_users li { float:left; margin:0 4px 4px 0; }
+.fav_users img { width:32px; height:32px; border-radius:3px; }
+.about_words { line-height:22px; padding:0 5px; margin-top:10px; *text-indent:-0.3em;
+}
+.about_words a { font-size:12px; color:#333; padding:0 4px; white-space:nowrap; }
+.about_words a:hover,
+.about_words .h { color:#E71F8D; }
+.fashion_bars { overflow:hidden; }
+.fashion_bars h3 { padding:0 11px; }
+.fashion_bars .about_bars { padding:14px 0 0 5px; }
+.about_bars li { float:left; width:70px; text-align:center; margin-bottom:8px; }
+.about_bars a { display:block; margin-bottom:5px; }
+.about_topics { border-top:1px solid #ffe6d7; margin:0 10px; padding-top:5px; clear:both; float:left; width:200px; _width:180px; }
+.about_topics li { padding-left:10px; background:url('/tpl/pink2/images/book_topic_list.png') no-repeat left; line-height:24px; width:190px; _width:170px; white-space:nowrap; word-wrap:normal; word-break:normal; overflow:hidden; }
+.about_topics a { color:#666; }
+
+.red { color:#f69; }
+.box_shadow{background:#fff; *border:1px solid #ddd;
+box-shadow:0 1px 3px rgba(34, 25, 25, 0.2); -webkit-box-shadow:rgba(34, 25, 25, 0.2) 0px 1px 3px; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; *overflow:hidden;}
+.catalog_guide_wrapper {height:35px;width:939px;}
+.catalog_guide { width:939px; height:31px; padding:0 2px; }
+.catalog_guide li { height:31px; background:url(/tpl/pink2/images/cata_li1.gif) no-repeat right top; float:left; line-height:24px; position:relative; bottom: -6px; }
+.catalog_guide li span.i { height:31px; background:url(/tpl/pink2/images/i2.gif) no-repeat bottom center; display:inline-block; cursor:pointer; font-weight:bold; color:#f69;}
+.catalog_guide li a { height:30px; background:url(/tpl/pink2/images/category1.png) no-repeat; float:left; margin:0 25px;}
+.catalog_guide li .cata_two a { background:none; margin:0; padding:0 19px 0 0; }
+.catalog_guide .cgoods { background-position:0 1px;padding-left:25px;}
+.catalog_guide .cgoods:hover,
+.catalog_guide .cgoods_1 { background-position:0 -28px;padding-left:25px;}
+.catalog_guide .dress { background-position:0 -56px; }
+.catalog_guide .dress:hover,
+.catalog_guide .dress_1 { background-position:0 -86px; }
+.catalog_guide .shoes { background-position:0 -118px }
+.catalog_guide .shoes:hover,
+.catalog_guide .shoes_1 { background-position:0 -147px; }
+.catalog_guide .bag { background-position:0 -176px; }
+.catalog_guide .bag:hover,
+.catalog_guide .bag_1 { background-position:0 -205px; }
+.catalog_guide .access { background-position:0 -235px; }
+.catalog_guide .access:hover,
+.catalog_guide .access_1 { background-position:0 -265px; }
+.catalog_guide .beauty { background-position:0 -297px; }
+.catalog_guide .beauty:hover,
+.catalog_guide .beauty_1 { background-position:0 -330px; }
+.catalog_guide .jiaju { background-position:0 -363px; }
+.catalog_guide .jiaju:hover,
+.catalog_guide .jiaju_1 { background-position:0 -397px; }
+
+.i_w_f .tkinfo{line-height:20px; display:block;  color:#666; clear:both;}
+.i_w_f .tkinfo a{ color:#666}
+.i_w_f .tkinfo a:hover{ color:#FE5D9B}
