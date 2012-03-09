@@ -1,0 +1,78 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:Cookie::get('returnUrl')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%CODE}</th>
+		<td><p>{$vo.code}</p></td>
+	</tr>
+	<tr>
+		<th>{%NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="name" value="{$vo.name}" /></td>
+	</tr>
+	<tr>
+		<th>{%SHORT_NAME}</th>
+		<td><input type="text" class="textinput" name="short_name" value="{$vo.short_name}" /></td>
+	</tr>
+	<tr>
+		<?php
+			$app_key_code = 'APP_KEY_'.strtoupper($vo['code']);
+			$langs = L();
+			if(isset($langs[$app_key_code]))
+			{
+				echo '<th>'.$langs[$app_key_code].'</th>';
+			}
+			else
+			{
+				echo '<th>'.L('APP_KEY').'</th>';
+			}
+		?>
+		<td>
+			<input type="text" class="textinput" name="app_key" value="{$vo.app_key}" size="60" />
+		</td>
+	</tr>
+	<tr>
+		<?php
+			$app_secret_code = 'APP_SECRET_'.strtoupper($vo['code']);
+			if(isset($langs[$app_secret_code]))
+			{
+				echo '<th>'.$langs[$app_secret_code].'</th>';
+			}
+			else
+			{
+				echo '<th>'.L('APP_SECRET').'</th>';
+			}
+		?>
+		<td>
+			<input type="text" class="textinput" name="app_secret" value="{$vo.app_secret}" size="60" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td>
+			<input type="text" class="textinput" name="sort" id="sort" value="{$vo.sort}"  />
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+function replaceToggle(obj)
+{
+	if(obj.value == 2)
+		$("#replaceTr").show();
+	else
+		$("#replaceTr").hide();
+}
+</script>
+<include file="Public:footer" />

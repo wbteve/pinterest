@@ -1,0 +1,66 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+<fanwe:linkBtn text="返回列表" href="{:u('Integrate/index')}" />
+</div>
+
+	    <form name="theForm" action="{:u('Integrate/save_uc_config')}" method="post">
+	        <table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	          <tr>
+	            <th width="150">UCenter 应用 ID:</th>
+	            <td ><input type="text"  class="textinput" name="cfg[uc_id]" value="{$cfg.uc_id}" /></td>
+	          </tr>
+	          <tr>
+	            <th width="150">UCenter 通信密钥:</th>
+	            <td ><input type="text"  class="textinput" name="cfg[uc_key]" value="{$cfg.uc_key}" style="width:240px"/></td>
+	          </tr>
+	          <tr>
+	            <th width="150">UCenter 访问地址:</th>
+	            <td ><input type="text"  class="textinput" name="cfg[uc_url]" value="{$cfg.uc_url}" style="width:240px"/></td>
+	          </tr>
+         
+			  <tr>
+			      <th width="150">数据库字符集：</th>
+			      <td >
+			      	<input type="text"  class="textinput" name="cfg[db_charset]" value="{$cfg.db_charset}" />
+			      </td>
+		      </tr>	           
+	          <tr>
+	            <th width="150">UCenter 数据库服务器:</th>
+	            <td ><input type="text"  class="textinput" name="cfg[db_host]" value="{$cfg.db_host}" /></td>
+	          </tr>
+	          <tr>
+	            <th width="150">UCenter 数据库用户名:</th>
+	            <td ><input type="text"  class="textinput" name="cfg[db_user]" value="{$cfg.db_user}" /></td>
+	          </tr>
+	          <tr>
+	            <th width="150">UCenter 数据库密码:</th>
+	            <td ><input type="password"  class="textinput" name="cfg[db_pass]" value="{$cfg.db_pass}" /></td>
+	          </tr>
+	          <tr>
+	            <th width="150">UCenter 数据库名:</th>
+	            <td ><input type="text"  class="textinput" name="cfg[db_name]" value="{$cfg.db_name}" /></td>
+	          </tr>
+	          <tr>
+	            <th width="150">UCenter 表前缀:</th>
+	            <td ><input type="text"  class="textinput" name="cfg[db_pre]" value="{$cfg.db_pre}" /></td>
+	          </tr>
+	          
+	          <tr>
+	            <th width="150">关联用户表字段:</th>
+	            <td ><input type="text"  class="textinput" name="user_field" value="{$user_field}" /></td>
+	          </tr>	          
+		    <tr class="act">
+		    <th>&nbsp;</th>
+		      <td>
+		      	<input type="hidden" name="cfg[uc_lang][exchange]" value="{$cfg.uc_lang.exchange}" />
+	            <input type="submit" value="直接保存" class="submit_btn" />
+	            <input type="reset" value="重置" class="submit_btn" />
+	            <input type="hidden" name="code" value="{$code}" />
+		      </td>
+		    </tr>	          
+	        </table>
+	    </form>
+   
+
+<include file="Public:footer" />

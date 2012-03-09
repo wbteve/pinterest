@@ -1,0 +1,52 @@
+<tagLib name="fanwe" /><include file="Public:header" /><script type="text/javascript" src="__TMPL__Static/Js/adv.js"></script><div class="handle-btns">	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" /></div>
+<form method='post' id="form" name="form" action="{:u('AdvLayout/insert')}"><table cellpadding="4" cellspacing="0" border="0" class="table-form">
+<tr>
+	<th width="150">{%TMPL}：</td>
+	<td class="tLeft" >
+		<select name="tmpl" onchange="getPageList();" id="tmpl" >
+			<foreach name="themes" item="theme">
+			<option value="{$theme}">{$theme}</option>
+			</foreach>
+		</select>
+	</td>
+</tr>
+<tr>
+	<th width="150">模板文件：</td>
+	<td class="tLeft" >
+		<select name="page" onchange="getLayoutList();" id="page" >
+		</select>
+	</td>
+</tr> 
+<tr>
+	<th width="150">{%LAYOUT_ID}：</td>
+	<td class="tLeft" >
+		<select name="layout_id"  id="layout_id" >			
+		</select>
+	</td>
+</tr>
+
+<tr>
+	<th width="150">{%REC_ID}：</td>
+	<td class="tLeft" >
+		<select name="rec_id" id="rec_id" >			<foreach name="adv" item="adv">			<option value="{$adv.id}">{$adv.name}</option>			</foreach>
+		</select>
+	</td>
+</tr> 
+<tr rel="AdvPosition">
+	<th width="150">指定到：</td>
+	<td class="tLeft" >
+		<input type="text" class="textinput" name="target_id" />        
+	</td>
+</tr>
+
+<tr>
+	<th width="150">{%ITEM_LIMIT}：</td>
+	<td class="tLeft" >
+		<input type="text" class="textinput" name="item_limit" />
+	</td>
+</tr> 
+<tr class="act">		<th>&nbsp;</th>		<td>			<input type="submit" class="submit_btn" value="{%SUBMIT}" />			<input type="reset" class="reset_btn" value="{%RESET}" />		</td>	</tr>
+</table></form>
+<script type="text/javascript">
+	initLoadLayout();
+</script><include file="Public:footer" />

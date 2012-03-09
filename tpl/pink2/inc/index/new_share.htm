@@ -1,0 +1,33 @@
+<div class="fanwe_talk">
+	<ul>
+		<!--{loop $shares $share}-->
+		<li>
+			<!--{getuser $share['uid'] 0 's,32' 'user_avatar,icard'}-->
+			<div class="inf">
+				<!--{getuser $share['uid'] 1 '' 'icard'}-->
+				<span>{lang now_shou}</span>
+				<p>{date $share['create_time'] 'Y-m-d'}&nbsp;{lang jia_ru}</p>
+			</div>
+			<p class="sms">{$share['content']}</p>
+			<div class="pic">
+				<!--{eval $index = 0;}-->
+				<!--{loop $share['imgs'] $img}-->
+				<!--{if $img['type'] == 'g'}-->
+				<div class="r3 g">
+					<a target="_blank" href="{$img['url']}"><img alt="{$share['name']}" src="{getimg $img['img'] 100 100}" class="fl"></a><img src="./tpl/images/goods_tag.png" class="tag">
+				</div>
+				<!--{else}-->
+				<div class="r3">
+					<a target="_blank" href="{$img['url']}"><img src="{getimg $img['img'] 100 100}" class="fl"></a>
+				</div>
+				<!--{/if}-->
+				<!--{eval $index++;}-->
+				<!--{if $index > 2}-->
+				<!--{eval break;}-->
+				<!--{/if}-->
+				<!--{/loop}-->
+			</div>
+		</li>
+		<!--{/loop}-->
+	</ul>
+</div>

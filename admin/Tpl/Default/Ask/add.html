@@ -1,0 +1,35 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/ask.js"></script>
+<script type="text/javascript">
+var CONFIRM_ERROR = "{%CONFIRM_ERROR}";
+var NAME_EMPTY_TIP = "{%NAME_EMPTY_TIP}";
+</script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%ASK_NAME}</th>
+		<td><input type="text" class="textinput" name="name" id="name" value="" style="width:400px;" /></td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td>
+			<input type="text" class="textinput" name="sort" id="sort" value="100" size="3" />
+		</td>
+	</tr>
+	
+	
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+
+<include file="Public:footer" />

@@ -1,0 +1,24 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns"><p style="padding:10px 0 0 10px;">强烈要求合并会员前，先进行数据备份！</p></div>
+<form action="{:u('Integrate/save_uc_config_first')}" method="post" name="theForm">
+	<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+		<tr>
+			<th width="180">UCenter 的 URL:</th>
+			<td ><input type="text" name="uc_url"  class="textinput" value="" style="width:240px" /></td>
+		</tr>
+		<tr>
+			<th >UCenter 创始人密码:</th>
+			<td ><input type="password"  class="textinput" name="uc_pass" value="" /></td>
+		</tr>
+		<tr class="act">
+			<th>&nbsp;</th>
+			<td><input type="submit" value="下一步"  class="submit_btn" />
+				<input type="reset" value="重置" class="reset_btn" />
+				<input type="hidden" name="code" value="{$code}" />
+				<input type="hidden" name="user_field" value="{$user_field}" />
+				<input type="hidden" name="save" value="0" />
+				<input type="hidden" name="ucconfig" value="" /></td>
+		</tr>
+	</table>
+</form>

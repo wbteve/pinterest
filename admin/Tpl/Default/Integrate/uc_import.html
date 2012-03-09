@@ -1,0 +1,22 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns"><p style="padding:10px 0 0 10px;">会员数据导入到 UCenter</p></div>
+<div class="table-form" style="background:#fff">
+	<form action="{:u('Integrate/import_user')}" method="post" name="theForm">
+	<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+		<tr>
+		  <th width="180">有情提示：</th>
+		  <td >{$user_startid_intro}</td>
+		</tr>
+		<tr class="act">
+			<th>&nbsp;</th>
+		  <td>
+			<input type="submit" value="开始导入" class="submit_btn" onclick="import_start(this)">
+			<input type="hidden" name="user_field" value="{$user_field}" />
+		  </td>
+		</tr>
+	  </table>  
+  </form>
+</div>
+
+

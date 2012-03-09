@@ -1,0 +1,110 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<link href="__TMPL__Static/Css/weebox.css" rel="stylesheet" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/bgiframe.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/weebox.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%RECOVER}" click="removeAward(this,'checkList')" />
+	<fanwe:linkBtn text="{%SEND_MEDAL}" href="{:U(MODULE_NAME.'/send')}" />
+	<form action="__APP__">
+		<span>{%NAME}</span>
+		<select name="mid">
+			<option value="0">{%MEDAL_ALL}</option>
+			<foreach name="medal_list" item="medal_item">
+			<option value="{$medal_item.mid}" <if condition="$mid eq $medal_item['mid']">selected="selected"</if>>{$medal_item.name}</option>
+			</foreach>
+		</select>
+		<small></small>
+		<span>{%SEND_TYPE}</span>
+		<select name="type">
+			<option value="-1">{%SEND_ALL}</option>
+			<option value="0" <if condition="$type eq 0">selected="selected"</if>>{%SEND_TYPE_0}</option>
+			<option value="1" <if condition="$type eq 1">selected="selected"</if>>{%SEND_TYPE_1}</option>
+			<option value="2" <if condition="$type eq 2">selected="selected"</if>>{%SEND_TYPE_2}</option>
+		</select>
+		<small></small>
+		<span>{%USER}</span>
+		<input class="textinput" type="text" value="{$uname}" name="uname" size="12" />
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="user" />
+	</form>
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="item" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	attrs="give_type" 
+	show="user_name:{%USER},name:{%NAME},image|getMedalImg:{%IMAGE},give_type|getTypeName:{%GIVE_TYPE},type|getSendName:{%SEND_ALL},create_time|toDate:{%CREATE_TIME},deadline|toDate:{%EXPIRATION}" 
+	actionlist="id|getRecoverLink=$item" action_width="60" />
+<div class="pager">{$page}</div>
+<script type="text/javascript">
+var RECOVER_MEDAL = "{%RECOVER_MEDAL}";
+
+jQuery(function($){
+	$("tr[give_type='0']").attr('disabled',true);
+});
+
+function removeAward(obj,id)
+{
+	var ids =  new Array();
+	
+	if(isNaN(id))
+	{
+		$("#" + id + " input:checked[name='key']").each(function(){
+			ids.push(this.value);
+		});
+	}
+	else
+	{
+		ids.push(id);
+		var parent = $(obj).parent().parent();
+		id = parent.parent().parent().attr('id');
+	}
+	
+	ids = ids.join(',');
+	if(ids == '')
+		return false;
+	
+	$.weeboxs.open('<div style="padding:8px;"><p style="padding:0 0 8px 0;"><strong>{%BEIZU}</strong></p><textarea class="areainput" id="removeAwardDesc" style="width:252px;resize:none;" rows=5></textarea></div>',{title:RECOVER_MEDAL,onok:function(){
+		var query = new Object();
+		query.id = ids;
+		query.desc = $("#removeAwardDesc").val();
+		
+		$.ajax({
+			url: APP + '?' + VAR_MODULE + '=' + CURR_MODULE + '&' + VAR_ACTION + '=removeAward',
+			type:"POST",
+			cache: false,
+			data:query,
+			dataType:"json",
+			success: function(result){
+				if(result.isErr == 0)
+				{
+					$("#" + id + " tbody tr input[name='key']").each(function(){
+						if((',' + ids + ',').indexOf(',' + this.value + ',') != -1)
+						{
+							parent = $(this).parent().parent();
+							this.checked = false;
+							parent.attr({"disabled":true,"title":ALREADY_REMOVE});
+							$("td",parent).attr({"disabled":true}).addClass('disabled');
+							$("td *",parent).attr({"disabled":true}).addClass('disabled');
+						}
+						
+						if($("#" + id + " tbody tr:not([disabled])").length == 0)
+							location.reload(true);
+					});
+				}
+				else
+					$.ajaxError(result.content);
+					
+				$.weeboxs.close();
+			}
+		});
+	}});
+}
+</script>
+<include file="Public:footer" />

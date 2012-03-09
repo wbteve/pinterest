@@ -1,0 +1,19 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="addData" name="addData" value="{%ADD}" click="addData()" />
+	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList','tag_id')" />
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />
+    <form action="__APP__">
+		<span>{%TAG_NAME}</span>
+		<input class="textinput" type="text" value="{$tag_name}" name="tag_name" size="20" />
+		<small></small>
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<fanwe:list id="checkList" pk="tag_id" style="list" name="tag" checkbox="true" action="true" datasource="list" show="tag_id:{%ID}|50,tag_name:{%TAG_NAME}|~left:textEdit|tag_id,sort:{%SORT}|80:numberEdit|tag_id,count:{%COUNT}|100,is_hot|getStatusImg:{%IS_HOT}|50:toggleStatus|tag_id" actionlist="editData:{%EDIT}:tag_id,removeData:{%REMOVE}:tag_id" action_width="80" action_align="right"/>
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

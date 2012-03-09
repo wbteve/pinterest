@@ -1,0 +1,53 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div style="width:100%; text-align:center;">
+	<div style="width:600px; border:solid 2px #3d97c0; background:#dae7ed; margin:80px auto 0 auto;">
+		<div style="margin:10px; border:solid 1px #F00; background:#FFC; line-height:24px;">
+			{%SYSTEM_TIPS5}
+		</div>
+		<div style="background:url(__TMPL__Static/Images/loading_e.gif) no-repeat center 50px; padding:60px 20px 80px 20px;">
+			<div id="notice" style="padding:20px 0 0 0;">
+				
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript"> 
+	function showmessage(message,isBack)
+	{
+		if(isBack == -2)
+		{
+			document.getElementById('notice').innerHTML = "";
+		}
+		if(isBack == -1)
+		{
+			message = "<span style='color:#f00;'>"+ message +"</span>";
+		}
+		else if(isBack == 1)
+		{
+			message = "<span style='color:#00f;'>"+ message +"</span>";
+		}
+		else if(isBack == 2)
+		{
+			var fun = function(){
+				location.href = message;
+			};
+			
+			setTimeout(fun,10);
+			return false;
+		}
+		else if(isBack == 3)
+		{
+			message = "<span style='color:#00f;'>"+ message +"</span>";
+			var fun = function(){
+				location.href = "{:U('Cache/system')}";;
+			};
+			
+			setTimeout(fun,100);
+			return false;
+		}
+		
+		document.getElementById('notice').innerHTML = message;
+	}
+</script>
+<include file="Public:footer" />

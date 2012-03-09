@@ -1,0 +1,19 @@
+<div class="pink_hot_topic">
+<ul><?php $idx=1; if(is_array($adv_list)) foreach($adv_list as $adv) { if($idx<=2) { ?>
+<li>
+<img src="<?php echo getImgName($adv['small'],32,22,1); ?>" class="fl" />
+<a href="<?=$adv['turl']?>" target="_blank" title="<?=$adv['name']?>" class="tit fl"><?php echo cutStr($adv['name'],30,'...');?></a>
+<a href="<?=$adv['turl']?>" target="_blank" class="tuser"><?=$adv['desc']?></a>
+</li>
+        <? } elseif($idx>=3) { ?>
+        <li>
+        <a href="<?=$adv['turl']?>" target="_blank" title="<?=$adv['name']?>"><?php echo cutStr($adv['name'],18,'...');?></a>
+</li>
+<? } ?><?php $idx++; ?>        <? if($idx==3) { ?>
+    </ul>
+ </div>
+ <div class="pink_hot_event clearfix">
+    <ul>
+        <? } } ?>
+</ul>
+</div>

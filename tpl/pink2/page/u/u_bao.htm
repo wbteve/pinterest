@@ -1,0 +1,44 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/tweetlist.css';
+	$css_list[0]['url'][] = './tpl/css/zone.css';
+	$js_list[0] = './tpl/js/zone.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="homens_hd"></div>
+	<div class="homens_bd clearfix">
+		<div id="content" class="clearfix" style="width:960px;">
+			<!--{template inc/u/u_menu}-->
+			<div class="content fr" style="width:820px;">
+				<div class="zone_head" style="margin:0 20px;">
+					<div class="mb15">
+						<h1 class="zone_title">{$user_names['short']}的宝贝 ($home_user['goods'])</h1>
+					</div>
+				</div>
+				<!--{if empty($goods_list)}-->
+				<div class="empty">
+					<img alt="" class="fl" src="./tpl/images/fanwe4.png">
+					<span>呼~~这里还是空的~~</span>
+				</div> 
+				<!--{else}-->
+				<ul class="bao_olist clearfix">
+					<!--{loop $goods_list $goods}-->
+					<li>
+						<div class="bl_b">
+							<a target="_blank" href="{$goods['url']}" ><img src="{getimg $goods['img'] 100 100}" alt="{$goods['name']}" /></a>
+							<span class="bl_p">{$goods['price']}</span>
+						</div>
+						<div class="b_l_fav"> <span class="b_l_fav_n">{$goods['collect_count']}</span> <i></i></div>
+					</li>
+					<!--{/loop}-->
+				</ul>
+				<div class="pagination mt20">
+					<!--{subtemplate inc/pages}--> 
+				</div>
+				<!--{/if}-->
+			</div>
+		</div>
+	</div>
+	<div class="homews_ft"></div>
+</div>
+<!--{template inc/footer}-->

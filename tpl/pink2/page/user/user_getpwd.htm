@@ -1,0 +1,64 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/loginreg.css';
+	$js_list[0] = './tpl/js/loginreg.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd clearfix">
+			<div id="content" style="width:960px;">
+				<div id="get_password_box" class="fl">
+					<p>
+						<span>{lang get_pwd}</span><br />
+						{lang get_pwd_tip1}
+					</p>
+					<!--{if $method != 'post'}-->
+					<div id="get_password_form">
+						<form action="{u user/forgetpassword}" method="post" id="getPwdForm">
+							<dl>
+								<dd>{lang user_name}：</dd>
+								<dt>
+									<input name="user_name" class="text" type="text" />
+									<div class="get_password_fail"></div>
+								</dt>
+								<dd>{lang reg_email}：</dd>
+								<dt>
+									<input name="email" class="text" type="text" />
+									<div class="get_password_fail"></div>
+								</dt>
+								<dd>&nbsp;</dd>
+								<dt>
+									<input type="hidden" name="action" value="forgetpassword" />
+									<input class="green_button" type="submit" value="{lang send_pwd_email}" />
+								</dt>
+							</dl>
+						</form>
+					</div>
+					<!--{elseif $data_error}-->
+					<div id="get_password_result">
+						<span>{lang get_pwd_err1}</span><br />
+						{lang get_pwd_err2}<br />
+						<a href="{u user/forgetpassword}">{lang return_prve}</a>
+					</div>
+					<!--{elseif $send_error}-->
+					<div id="get_password_result">
+						<span>{lang get_pwd_err5}</span><br />
+						{sprintf get_pwd_err6 $_FANWE['setting']['site_service_email']}<br />
+						<a href="{u user/forgetpassword}">{lang return_prve}</a>
+					</div>
+					<!--{else}-->
+					<div id="get_password_result">
+						<span>{lang get_pwd_err3}</span><br />
+						{lang get_pwd_err4}<br />
+						<a href="{u index}">{lang return_index}</a>
+					</div>
+					<!--{/if}-->
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<!--{template inc/footer}-->

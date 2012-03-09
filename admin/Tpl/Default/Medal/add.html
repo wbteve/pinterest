@@ -1,0 +1,119 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="name" /></td>
+	</tr>
+	<tr>
+		<th>{%IMAGE}</th>
+		<td><input type="text" class="textinput requireinput" name="image" /></td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td><p>{%IMAGE_TIPS}</p></td>
+	</tr>
+	<tr>
+		<th>{%DESC}</th>
+		<td>
+			<textarea name="desc" class="areainput" rows="3"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<th>{%GIVE_TYPE}</th>
+		<td>
+			<label><input class="give_type" type="radio" name="give_type" value="0" checked="checked" /><span>{%GIVE_TYPE_0}</span></label>
+			<label><input class="give_type" type="radio" name="give_type" value="1" /><span>{%GIVE_TYPE_1}</span></label>
+		</td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td><p>{%GIVE_TYPE_TIPS}</p></td>
+	</tr>
+	<tr>
+		<th>{%ALLOW_GROUP}</th>
+		<td class="label_box">
+			<foreach name="user_groups" item="group">
+			<label><input type="checkbox" name="allow_gid[]" value="{$group.gid}" /><span>{$group.name}</span></label>
+			</foreach>
+		</td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td><p>{%ALLOW_GROUP_TIPS}</p></td>
+	</tr>
+	<tr class="auto_type_tr">
+		<th>{%CONDITIONS}</th>
+		<td>
+			<select name="conditions" id="conditions">
+				<option value="continue_login" isContinue='1'>{%CONDITIONS_CONTINUE_LOGIN}</option>
+				<option value="continue_share" isContinue='1'>{%CONDITIONS_CONTINUE_SHARE}</option>
+				<option value="continue_goods" isContinue='1'>{%CONDITIONS_CONTINUE_GOODS}</option>
+				<option value="continue_photo" isContinue='1'>{%CONDITIONS_CONTINUE_PHOTO}</option>
+				<option value="continue_forum" isContinue='1'>{%CONDITIONS_CONTINUE_FORUM}</option>
+				<option value="continue_ask" isContinue='1'>{%CONDITIONS_CONTINUE_ASK}</option>
+				<option value="shares">{%CONDITIONS_SHARE_COUNT}</option>
+				<option value="goods">{%CONDITIONS_GOODS_COUNT}</option>
+				<option value="photos">{%CONDITIONS_PHOTO_COUNT}</option>
+				<option value="forums">{%CONDITIONS_FORUM_COUNT}</option>
+				<option value="ask">{%CONDITIONS_ASK_COUNT}</option>
+				<option value="forum_posts">{%CONDITIONS_FORUM_POST_COUNT}</option>
+				<option value="ask_posts">{%CONDITIONS_ASK_POST_COUNT}</option>
+				<option value="fans">{%CONDITIONS_FANS_COUNT}</option>
+				<option value="collects">{%CONDITIONS_COLLECTS_COUNT}</option>
+				<option value="referrals">{%CONDITIONS_REFERRALS_COUNT}</option>
+			</select>
+			<span style=" font-family:Simsun;margin:0 5px 0 8px; font-weight:700;">>&nbsp;= </span>
+			<input type="text" class="textinput" name="confine" size="6" />
+		</td>
+	</tr>
+	<tr class="auto_type_tr">
+		<th>&nbsp;</th>
+		<td><p>{%CONDITIONS_TIPS}</p></td>
+	</tr>
+	<tr class="manual_type_tr" style="display:none;">
+		<th>{%EXPIRATION}</th>
+		<td>
+			<input type="text" class="textinput" name="expiration" size="6" />&nbsp;{%DAY}&nbsp;{%EXPIRATION_TIPS}
+		</td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td>
+			<input type="text" class="textinput" name="sort" value="100" />
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+jQuery(function(){
+	$(".give_type").change(function(){
+		$(".auto_type_tr").hide();
+		$(".manual_type_tr").hide();
+		if(this.value == 0 && this.checked)
+			$(".auto_type_tr").show();
+		else
+			$(".manual_type_tr").show();
+	});
+	
+	/*$("#conditions").change(function(){
+		var option = $("#conditions option:selected").get(0);
+		if(option.getAttribute('isContinue') == null)
+			$(".continue_tr").hide();
+		else
+			$(".continue_tr").show();
+	});*/
+});
+</script>
+<include file="Public:footer" />

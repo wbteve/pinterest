@@ -1,0 +1,25 @@
+<!--{if $album_list}-->
+{eval $album_idx = 1;}
+<!--{loop $album_list $aitem}-->
+{if $album_idx==1}
+<li class="first clearfix">
+	<a class="pic fl" target="_blank" href="{$aitem['url']}" title="{$aitem['title']}">
+		<img original="{getimg $aitem['img']['img'] 125 128 1}" src="./tpl/images/lazyload.gif" class="lazyload">
+	</a>
+	<div class="info fl">
+		<h2><!--{getuser $aitem['uid'] 0 '' 'icard gc'}-->的杂志《<a href="{$aitem['url']}">{$aitem['title']}</a>》</h2>
+		<div class="detail clearfix">{$aitem['content']}</div>
+		<div class="collect"><span>{$aitem['collect_count']}</span>人关注</div>
+	</div>
+</li>
+{else}
+<li {if $album_idx==6}style="margin-right:0"{/if}>
+	<a class="pic clearfix" target="_blank" href="{$aitem['url']}" title="{$aitem['title']}">
+		<img original="{getimg $aitem['img']['img'] 64 64 1}" src="./tpl/images/lazyload.gif" class="lazyload">
+	</a>
+	<span class="title clearfix"><a href="{$aitem['url']}">{$aitem['title']}</a></span>
+</li>
+{/if}
+{eval $album_idx++;}
+<!--{/loop}-->
+<!--{/if}-->

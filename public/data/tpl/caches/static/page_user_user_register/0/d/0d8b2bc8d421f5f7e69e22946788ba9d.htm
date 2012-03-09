@@ -1,0 +1,227 @@
+<?php
+$_FANWE['CACHE_CSS_SCRIPT_PHP'] = array (
+  'script' => 
+  array (
+    0 => 
+    array (
+      0 => './public/js/jquery.js',
+      1 => './public/js/base.js',
+      2 => './public/js/jquery.easing.js',
+      3 => './public/js/jquery.lazyload.js',
+    ),
+    1 => 
+    array (
+      0 => './public/js/lang.js',
+      1 => './public/js/setting.js',
+      2 => './public/js/jquery.bgiframe.js',
+      3 => './public/js/jquery.weebox.js',
+      4 => './public/js/ajaxfileupload.js',
+      5 => './public/js/jquery.dragsort.js',
+      6 => './public/js/swfobject.js',
+    ),
+    2 => './tpl/js/loginreg.js',
+  ),
+  'css' => 
+  array (
+    0 => 
+    array (
+      0 => './tpl/css/reset.css',
+      1 => './tpl/css/base.css',
+      2 => './tpl/css/globe.css',
+      3 => './tpl/css/publishbox.css',
+      4 => './tpl/css/lightbox.css',
+      5 => './tpl/css/addfav.css',
+    ),
+    1 => './tpl/css/loginreg.css',
+  ),
+);
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>方维购物分享 - FANWE</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="keywords" content="方维,方维购物分享,网购,淘宝网购物,淘宝网导购" />
+<meta name="description" content="方维购物分享是一个纯买家社区，百万网友一起淘宝网购物，挖掘好店、分享网购，您可以获得最可靠的店铺排行和淘宝网购物分享。" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<script src="./public/data/tpl/js/5d98d9beffad167b3ddc982ba24b6882.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="./public/data/tpl/css/00ec5da994f0d6cd40b1685a0c1cbe62.css" media="all"/><link rel="stylesheet" type="text/css" href="./tpl/css/loginreg.css" />
+<script type="text/javascript">
+var SITE_PATH = '/';
+var SITE_URL = 'http://pinter.839.me/';
+var TPL_PATH = '/tpl/pink2/';
+var PUBLIC_PATH	 = '/public/';
+var MODULE_NAME	 = 'User';
+var ACTION_NAME	 = 'register';
+var COOKIE_PRE = "49z8_2132_";
+</script>
+</head>
+<body>
+<div id="head">
+<div id="info_bar">
+<div class="fm960">
+<div class="fl">
+<a href="/index.php?action=index"><img class="logo fl" src="/./logo.gif" /></a>
+</div><!--dynamic getUserInfo--></div>
+</div>
+<div id="nav_bar">
+<div class="fm960">
+<ul class="fl">
+<li class="f"><a href="/index.php?action=index">首页</a></li>
+<li><a href="/book.php?action=shopping">逛街啦！</a></li>
+<li><a href="/album.php?action=index">杂志社</a></li>
+<li><a href="/book.php?action=dapei">搭配秀</a></li>
+<li>
+<a href="/club.php?action=index">主题吧</a>
+<a class="cat" href="/ask.php?action=index">问答</a>
+</li>
+<li><a href="/daren.php?action=index">达人</a></li>
+<li><a href="/second.php?action=index">闲置</a></li>
+<li><a href="/shop.php?action=index">好店</a></li>
+<li><a href="/exchange.php?action=index">积分兑换</a></li>
+</ul>
+
+<div class="fr top_search r5">
+<form action="/book.php?action=search" method="post">
+<input type="text" name="tag" class="ts_txt" value="" tooltip="请输入关键字"/>
+<input type="submit" value=" " class="ts_btn" />
+<input type="hidden" name="action" value="search" />
+<div class="ts_type fl" style="display:none;">
+<input type="radio" name="t" value="8" id="s_h" checked="">
+<label for="s_h">搜商品</label>
+<input type="radio" value="2" name="t" id="s_p">
+<label for="s_p">搜人</label>
+</div>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+<div style="margin:0 auto;width:960px"><!--dynamic advLayoutName args=头部广告位,,--></div>
+<div id="body_wrap"><div id="body" class="fm960">
+<div class="piece1">
+<div class="piece1_hd"></div>
+<div class="piece1_bd clearfix">
+<div id="content" style="width:960px;">
+<div id="register_box">
+<div id="register_left">
+<h1>新会员注册</h1>
+<span>加入方维，发现时尚，分享购物乐趣。</span>
+<div id="register_center">
+<div id="register_form">
+<form action="/user.php?action=ajax_register" method="post" id="registerForm">
+<div class="ipt_mail">
+<span>电子邮箱：</span>
+<input type="text" maxlength="36" name="email" id="reg_email" class="text" value="" istip="0" rel=".err_email" check="0"/>
+</div>
+<div class="ipt_ulike">
+<span>昵称：</span>
+<input style="*margin-left:-1px;" maxlength="36" type="text" name="user_name" id="reg_user_name" class="text" value="" istip="0" rel=".err_ulike" check="0"/>
+</div>
+<div class="ipt_sex">
+<span>性别：</span>
+<div class="rdo">
+<input type="radio" name="gender" value="0" checked="checked" class="ck">女
+<input style="margin-left:10px" type="radio" name="gender" value="1" class="ck">男
+</div>
+</div>
+<div class="ipt_password">
+<span>密码：</span>
+<input style="*margin-left:-1px;" maxlength="36" type="password" name="password" id="reg_password" class="text" istip="0" rel=".err_password" check="0"/>
+</div>
+<div class="ipt_respassword">
+<span>确认密码：</span>
+<input type="password" maxlength="36" name="confirm_password" id="reg_cpassword" class="text" istip="0" rel=".err_rstpassword" check="0"/>
+</div>
+<div class="ipt_check">
+                                        <span>验证码：</span>
+                                        <input class="check" type="text" maxlength="10" name="checkcode">
+                                        <img id="img_checkcode" alt="验证码" src="/misc.php?action=verify&rhash=<!--dynamic getRHash-->">
+                                        <a id="checkcode_change" href="javascript:void(0);">换一张</a>
+                                    </div>
+<div class="ipt_box">
+<input class="box fl" type="checkbox" name="agreement" id="reg_agreement" checked="checked" value="1" /><span class="fl">我已看过并同意《<a href="/user.php?action=agreement" target="_blank">方维网络服务使用协议</a>》</span>
+</div>
+<div class="ipt_sub">
+<input type="submit" class="sub" id="reg_submit" value=" "/>
+<div class="lg_reg_loading">
+<span style="font-size:13px;">注册中，请稍候...</span>
+</div>
+<div class="lg_reg_check">
+<span style="font-size:13px; color:#f00;">请先完善注册信息。</span>
+</div>
+</div>
+<input name="rhash" id="regRHash" value="<!--dynamic getRHash-->" type="hidden"/>
+<input name="refer" value="/u.php?action=index" type="hidden"/>
+<input name="action" value="ajax_register" type="hidden"/>
+</form>
+</div>
+<div id="register_error">
+<div class="err_email">请填写正确的常用邮箱，以便找回密码。比如：excample@excample.com</div>
+<div class="err_ulike">支持中文，不能以数字开头，由2~20个字符组成，中文算两个字符。</div>
+<div class="err_password">6-20个字母、数字或者符号</div>
+<div class="err_rstpassword">这里要重复输入一下你的密码</div>
+</div>
+</div>
+</div>
+<div id="register_right">
+<div class="rst_login">
+<span>已有方维账号？请直接登录</span>
+<a href="/user.php?action=login"></a>
+</div>
+<div class="other_login">
+<span>您也可以用以下方式登录：</span></div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<div class="piece1_ft"></div>
+</div>
+</div>	</div>
+<div id="foot_wrap">
+<div id="foot" class="fm960 mt10">
+<div class="fl"><div class="links fl"><b>网站</b>
+<ul></ul>
+</div>
+<div class="links fl"><b>团队</b>
+<ul></ul>
+</div>
+<div class="links fl"><b>帮助</b>
+<ul></ul>
+</div>
+</div>
+<div class="fr foot_right">     
+ <div class="logos fl">
+<a href="/index.php?action=index"><img class="logo fl" src="/./foot_logo.gif" /></a>
+</div>
+
+</div>
+</div>
+<div class="blank20 mt10"></div>
+<div class="copyright"><p>
+	方维购物分享系统 系统版本：v2.11版权所有&copy; 方维</p>
+<p><a href="http://www.fanwe.com" target="_blank">fanwe.inc</a></p></div>
+</div>
+<div id="back2top"><a href="#"><span class="arrow">▲</span>回顶部</a></div>
+<div id="USER_INFO_TIP" style="display:none;">
+<div class="tip_info">
+<img class="avatar" alt="" src="./tpl/images/loading_60.gif">
+<div>
+<p><a href="#">&nbsp;</a></p>
+<p>获取用户信息...</p>
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="tip_toolbar">&nbsp;</div>
+<div class="tip_arrow"></div>
+</div>
+</body>
+<script src="./public/data/tpl/js/7341df8d07830303a450eecdc7b8f857.js" type="text/javascript" defer="true"></script><script src="./tpl/js/loginreg.js" type="text/javascript"></script>
+<!--dynamic getScript--><script type="text/javascript">
+jQuery(function($){
+$(".lazyload").lazyload({"placeholder":"./tpl/images/lazyload.gif"});
+});
+</script>
+</html>

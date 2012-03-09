@@ -1,0 +1,91 @@
+<!--{if $cate_list}-->
+<?php
+$big_index = array(2,15);
+$share_count = 27;
+$share_index = 0;
+$tag_index = 0;
+$user_index = 0;
+$cate_big_displays = array();
+?>
+<div class="piece1 mb20">
+	<div class="piece1_hd"></div>
+	<div class="piece1_bd" style="padding:5px 25px 15px">
+		<div class="share_title">
+			<em><a target="_blank" href="{u book/shopping}">{$_FANWE['setting']['site_name']}的分享</a></em>
+			<span class="st_key">
+				<a target="_blank" href="{u book/shopping sort=hot7}">热门</a>
+				<a target="_blank" href="{u book/shopping sort=new}">最新</a>
+				<span>|</span>
+				<!--{loop $cate_list['tags'] $tag $encode}-->
+				<a target="_blank" href="{u book/shopping sort=hot7,tag=$encode}">$tag</a>
+				<!--{if $tag_index > 11}-->
+				<!--{eval break;}-->
+				<!--{/if}-->
+				<!--{eval $tag_index++;}-->
+				<!--{/loop}-->
+			</span>
+		</div>
+		<div class="share_tetris" style="height:302px;overflow:hidden">
+			<!--{loop $cate_list['shares'] $sid $share}-->
+			<?php
+			$size = 101;
+			$width = 100;
+			$share_index++;
+			$class = 't1';
+			if($share_index > $share_count)
+				break;
+			
+			$mod_index = $share_index % 9;
+			$top = floor($share_index / 9);
+			
+			if(isset($cate_big_displays[$mod_index]))
+			{
+				unset($cate_big_displays[$mod_index]);
+				unset($big_index[array_search($share_index,$big_index)]);
+				$share_index+=2;
+				$mod_index = $share_index % 9;
+				$top = floor($share_index / 9);
+			}
+			
+			if(in_array($share_index,$big_index))
+			{
+				$width = 200;
+				$share_index++;
+				$cate_big_displays[$mod_index] = 1;
+				$class = 't2';
+			}
+			
+			if($mod_index == 0)
+			{
+				$mod_index = 9;
+				$top--;
+			}
+			
+			$top = $top * $size;
+			$left = ($mod_index - 1) * $size;
+			?>
+			<div class="cate_tag_item {$class}" style="top:{$top}px;left:{$left}px;">
+				<img original="{getimg $share['imgs'][0]['img'] $width $width}" src="./tpl/images/lazyload.gif" class="lazyload">
+				<div class="sk" style="display:none;">
+					<div class="fc"><span>{$share['collect_count']}</span><i></i></div>
+					<a href="{$share['url']}" target="_blank" class="kw">{$share['tag_name']}</a>
+					<!--{getuser $share['uid'] 0 '' '' 'inc/getuser/cate_share'}-->
+					<div class="sk_bg"></div>
+				</div>
+			</div>
+			<!--{/loop}-->
+		</div>
+		<div class="share_who">
+			{lang tamen_share}{$cate_item['short_name']}：
+			<!--{loop $cate_list['uids'] $uid $temp}-->
+			<!--{if $user_index > 20}-->
+			<!--{eval break;}-->
+			<!--{/if}-->
+			<!--{eval $user_index++;}-->
+			<!--{getuser $uid 0 's,24' ',r3 icard lazyload'}-->
+			<!--{/loop}-->
+		</div>
+	</div>
+	<div class="piece1_ft"></div>
+</div>
+<!--{/if}-->

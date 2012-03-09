@@ -1,0 +1,43 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="addData" name="addData" value="{%ADD}" click="addData(this,'checkList')" />
+	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList')" />
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />
+	<fanwe:linkBtn text="{%IMPORT}" href="{:U(MODULE_NAME.'/import')}" />
+	<fanwe:linkBtn text="{%EXPORT}" href="{:U(MODULE_NAME.'/export')}" />
+	<form action="__APP__">
+		<span>{%WORD}</span>
+		<input class="textinput" type="text" value="{$word}" name="word" size="12" />
+		<small></small>
+		<span>{%TYPE}</span>
+		<select name="type">
+			<option value="0">{%TYPE_ALL}</option>
+			<option value="1" <if condition="$type eq 1">selected="selected"</if>>{%TYPE_1}</option>
+			<option value="2" <if condition="$type eq 2">selected="selected"</if>>{%TYPE_2}</option>
+		</select>
+		<small></small>
+		<span>{%CID}</span>
+		<select name="cid">
+			<option value="0">{%CID_ALL}</option>
+			<foreach name="type_list" item="type_item">
+			<option value="{$type_item.id}" <if condition="$cid eq $type_item['id']">selected="selected"</if>>{$type_item.name}</option>
+			</foreach>
+		</select>
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="item" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50,word:{%WORD}|~left:textEdit|id,replacement:{%REPLACEMENT}|~left:textEdit|id,type|getTypeName:{%TYPE}|80:,cname:{%CID}|80,status|getStatusImg:{%STATUS}|50:toggleStatus|id" 
+	actionlist="editData:{%EDIT}:id,removeData:{%REMOVE}:id" action_width="80" />
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

@@ -1,0 +1,26 @@
+<div class="piece1 mt20">
+	<div class="piece1_hd"></div>
+	<div class="piece1_bd" style="padding:10px 10px 20px;">
+		<ul class="topic_grid">
+		<!--{loop $forum_list $forum_item}-->
+			<!--{loop $forum_item $forum}-->
+				<li class="tg_f">
+	             <a target="_blank" href="{u club/forum fid=$forum['fid']}"><img class="tg_cover" src="{$forum['logo']}"></a>
+	                <h2 class="tg_bar"><a target="_blank" href="{u club/forum fid=$forum['fid']}">{$forum['name']}</a><span>({$forum['thread_count']})</span></h2>
+	                <p class="tg_intro">{$forum['desc']}</p>
+	                <ul>
+	                	{eval $topics_idx = 1;}
+	                	<!--{loop $forum[topics] $topic}-->
+						{if $topics_idx<3}
+						<li class="tg_tpk"><a target="_blank" href="{$topic['url']}">{cutstr $topic['title'] 50}</a></li>
+						{eval $topics_idx++;}
+						{/if}
+						<!--{/loop}-->
+	                </ul>
+	            </li>
+			<!--{/loop}-->
+		<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="piece1_ft"></div>
+</div>

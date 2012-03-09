@@ -1,0 +1,42 @@
+<!--{if empty($comment_list)}-->
+<div class="empty">
+	<img alt="" class="fl" src="./tpl/images/fanwe4.png">
+	<span>呼~~这里还是空的~~</span>
+	<br>如果你收到网友的评论，就会显示在这里。 
+</div>
+<!--{else}-->
+<ul class="cmt_me" id="wb_comment_me_list">
+	<!--{loop $comment_list $comment}-->
+	<li class="c_f" id="COMMENT_{$comment['comment_id']}">
+		<div class="avt">
+			<!--{getuser $comment['uid'] 0 'm,48' ',icard r5  b'}-->
+			<!--{getfollow $comment['uid'] inc/getfollow/u_comments_list}-->
+		</div>
+		<div class="ct">
+			<p class="msg">
+				<span><!--{getuser $comment['uid'] 1 '' 'u_name u_g'}-->：{$comment['content']}</span><br>
+				<a href="{$comment['url']}" class="r_a">回复我的微博</a>：{cutstr $comment['scontent'] 160}
+			</p>
+			<div>
+				<a class="fl" href="{$comment['url']}">{$comment['time']}</a> 
+				<a onclick="$.Delete_Comment($comment['comment_id'],this);" class="fr" href="javascript:void(0);">删除</a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</li>
+	<!--{/loop}-->
+</ul>
+<div class="pagination"> 				
+	<!--{subtemplate inc/pages}--> 
+</div>
+<script type="text/javascript">
+function ShareListUpdateUserFollow(obj,result)
+{
+	if(result.status == 1)
+	{
+		$(obj).before('<img src="./tpl/images/add_fo_ok.png" class="fo_ok">');
+		$(obj).remove();
+	}
+}
+</script>
+<!--{/if}-->

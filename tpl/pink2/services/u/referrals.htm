@@ -1,0 +1,12 @@
+<ul class="fans_list">
+	<!--{loop $user_list $user}-->
+	<li uid="{$user['uid']}" uname="{$user['user_name']}" title="{$user['user_name']}">
+		<a href="javascript:;"><img src="{avatar $user['uid'] m $user['server_code'] 1}" /></a>
+		<p>{$user['user_name']}</p>
+	</li>
+	<!--{/loop}-->
+</ul>
+<div class="clear"></div>
+<div class="pagination">
+	<!--{subtemplate inc/pages}--> 
+</div>

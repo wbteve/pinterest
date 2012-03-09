@@ -1,0 +1,90 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/adv.js"></script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:Cookie::get('returnUrl')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="name" size="60" value="{$vo.name}" /></td>
+	</tr>
+	<tr>
+		<th>{%TYPE}</th>
+		<td>
+			<select name="type" onchange="changAdvType(this);">
+				<option value="1" <if condition="$vo['type'] eq 1">selected="selected"</if>>{%TYPE_1}</option>
+				<option value="2" <if condition="$vo['type'] eq 2">selected="selected"</if>>{%TYPE_2}</option>
+				<option value="3" <if condition="$vo['type'] eq 3">selected="selected"</if>>{%TYPE_3}</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>{%POSITION_ID}</th>
+		<td>
+			<fanwe:select options="ap_list" name="position_id" textfield="name" valuefield="id" selected="vo['position_id']"/>
+		</td>
+	</tr>
+	<tr id="urlTr" <if condition="$vo['type'] neq 1">style="display:none;"</if>>
+		<th>{%URL}</th>
+		<td>
+			<input type="text" class="textinput" name="url" size="60" value="{$vo.url}" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%SMALL}</th>
+		<td>
+			<input type="file" class="fileinput" name="small" size="30" />
+			<if condition="$vo['small'] neq ''">
+				<a href="__ROOT__/{$vo.small}" target="_blank" >{%VIEW}</a>
+			</if>
+		</td>
+	</tr>
+	<tr>
+		<th>{%CODE}</th>
+		<td id="codeTd">
+			<if condition="$vo['type'] eq 3">
+			<textarea name="code" class="textinput areainput" rows="10">{$vo.code}</textarea>
+			<else/>
+			<input type="file" class="fileinput" name="code" size="30" />
+			<if condition="$vo['code'] neq ''">
+				<a href="__ROOT__/{$vo.code}" target="_blank" >{%VIEW}</a>
+			</if>
+			</if>
+		</td>
+	</tr>
+	<tr>
+		<th>{%TARGET_KEY}</th>
+		<td>
+			<input type="text" class="textinput" name="target_key" value="{$vo.target_key}"/>
+		</td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td>
+			<input type="text" class="textinput" name="sort" value="{$vo.sort}" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%DESC}</th>
+		<td>
+			<textarea name="desc" class="textinput areainput" rows="3">{$vo.desc}</textarea>
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<if condition="$vo['type'] eq 3">
+			<input type="hidden" value="{$vo.code}" id="textarea_code" />
+			<else/>
+			<input type="hidden" value='<a href="__ROOT__/{$vo.code}" target="_blank" >{%VIEW}</a>' id="file_code" />
+			</if>
+			<input type="hidden" value="{$vo.id}" name="id" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

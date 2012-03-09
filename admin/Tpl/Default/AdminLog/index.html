@@ -1,0 +1,38 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<link href="__TMPL__Static/Js/DatePicker/jquery.ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/jquery.ui.core.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/lang/jquery.ui.datepicker-{$default_lang}.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="addAdmin" name="addAdmin" value="{%ADD}" click="addData()" />
+	<fanwe:imageBtn id="editAdmin" name="editAdmin" value="{%EDIT}" click="editData(this,'checkList')" />
+	<fanwe:imageBtn id="removeAdmin" name="removeAdmin" value="{%REMOVE}" click="removeData(this,'checkList')" />
+	<form action="__APP__" id="formCity">
+		<span>{%LOG_TIME}</span>
+		<input class="textinput" type="text" name="begin_time" value="{$begin_time}" id="begin_time" size="6" />
+		<span>─</span>
+		<input class="textinput" type="text" name="end_time" value="{$end_time}" id="end_time" size="6" />
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<fanwe:imageBtn id="emptyBtn" name="emptyBtn" value="{%EMPTY_LOG}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" id="action_box" value="index" />
+	</form>
+</div>
+<div class="search-box">
+</div>
+<fanwe:list id="checkList" style="list" name="log" checkbox="true" action="true" datasource="list" show="id:{%ID}|80,log_module:{%LOG_MODULE},log_action:{%LOG_ACTION},data_id:{%DATA_ID},admin_id|getAdminName:{%ADMIN_ID},ip:{%IP},log_result|getResult:{%LOG_RESULT},log_time|toDate:{%LOG_TIME}|140" actionlist="editData:{%EDIT}:id,removeData:{%REMOVE}:id" action_width="100" />
+<div class="pager">{$page}</div>
+<script type="text/javascript">
+jQuery(function($){
+	$("#begin_time").datepicker();
+	$("#end_time").datepicker();
+	
+	$("#emptyBtn").click(function(){
+		$("#action_box").val('clear');
+		$("#formCity").submit();
+	});
+});
+</script>
+<include file="Public:footer" />

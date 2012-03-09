@@ -1,0 +1,63 @@
+<!--{subtemplate manage/header}-->
+<link type="text/css" rel="stylesheet" href="./tpl/css/weebox.css" />
+<script type="text/javascript" src="./tpl/js/shareutil.js"></script>
+<div class="manage_edit">
+	<div class="manage_title">
+		<span>编辑商店：{$shop['shop_name']}</span>
+	</div>
+	<div class="manage_unlock">
+		<span>当前已锁定此商店，其他管理员将不能对其进行操作，解锁请占击</span>
+		<a href="javascript:;" onclick="$.UnManageLock('shop',{$shop['shop_id']},this)">【取消锁定】</a>
+		<span>，解锁后将关闭编辑页面</span>
+	</div>
+	<form method='post' id="form" name="form" action="{$_FANWE[site_root]}manage/manage.php" enctype="multipart/form-data">
+	<table class="table-form">
+		<tr>
+			<th width="100">商店名称</th>
+			<td><input type="text" size="80" class="textinput requireinput" name="shop_name" value="{$shop['shop_name']}" /></td>
+		</tr>
+        <tr>
+			<th width="100">商店链接</th>
+			<td><input type="text" size="80" class="textinput requireinput" name="shop_url" value="{$shop['shop_url']}" /></td>
+		</tr>
+		<tr>
+			<th>商户logo</th>
+			<td>
+				<input type="file" name="shop_logo" class="manage_fileinput"/>
+				{if $shop['shop_logo'] <> ''}
+				<span><a href="{$shop['shop_logo']}" target="_blank" >浏览</a>
+				{/if}
+			</td>
+		</tr>
+		<tr>
+			<th>商户分类</th>
+			<td>
+				<select name="cate_id">
+				<!--{loop $_FANWE['cache']['shops']['root'] $rootid}-->
+				<!--{eval $rforum = $_FANWE['cache']['shops']['all'][$rootid];}-->
+				<option value="{$rootid}"{if $rootid == $shop['cate_id']} selected="selected"{/if}>{$rforum['name']}</option>
+				<!--{loop $rforum['childs'] $childid}-->
+				<!--{eval $cforum = $_FANWE['cache']['shops']['all'][$childid];}-->
+				<option value="{$childid}"{if $childid == $shop['cate_id']} selected="selected"{/if}>&nbsp;&nbsp;|--&nbsp;{$cforum['name']}</option>
+				<!--{/loop}-->
+				<!--{/loop}-->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th width="100">排序</th>
+			<td><input type="text"  class="textinput requireinput" name="sort" value="{$shop['sort']}" /></td>
+		</tr>
+		<tr class="act">
+			<th>&nbsp;</th>
+			<td>
+				<input type="hidden" name="shop_id" value="{$shop['shop_id']}" />
+				<input type="hidden" name="m" value="shop" />
+				<input type="hidden" name="a" value="update" />
+				<input type="submit" class="formbutton" value="提交" />
+			</td>
+		</tr>
+	</table>
+	</form>
+</div>
+<!--{subtemplate manage/footer}-->

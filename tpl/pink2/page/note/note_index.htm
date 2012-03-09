@@ -1,0 +1,201 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/tweetlist.css';
+	$css_list[0]['url'][] = './tpl/css/sidebar.css';
+	$css_list[0]['url'][] = './tpl/css/note.css';
+	$js_list[0] = './tpl/js/note.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960" >
+	<div class="home_hd"></div>
+	<div class="home_bd clearfix pb25">
+		<div id="content" class="fl"  style="width:650px;">
+			<!--{dynamic getHomeNav args=$share_detail['uid'],$current_type}-->
+			<div class="note_content" id="note_{$share_detail['share_id']}">
+				<!--{if $current_type == 'other'}-->
+				<!--{subtemplate page/note/note_other}-->
+				<!--{else}-->
+				<!--{subtemplate page/note/note_img}-->
+				<!--{/if}-->
+				<div class="note_comment">
+					<form method="post">
+					<div class="pub_box" id="publish_note">
+						<div class="pub_edit r5">
+							<div><span class="fw_count">{sprintf char_check 140}</span></div>
+							<textarea name="content" class="PUB_TXT pub_txt fl rl5" length="140" position="0"></textarea>
+							<input type="button" value="评论" class="pub_btn fl rr5" onclick="$.Add_Share_Comment(this,'#SHARE_COMMENT_LIST_{$share_detail['share_id']}')">
+							<div class="pub_ext">
+								<div class="pub_opt fl">
+									<span class="fl">{lang add}：</span>
+									<a w="note" onclick="$.Show_Expression(this)" href="javascript:;" style="background-position: 0pt -3px;" class="add_face">{lang face}</a>
+								</div>
+								<div class="pub_out fr">
+									<input id="comment_relay_tweet" type="checkbox" name="is_relay" checked="checked" value="1" />
+									<label for="comment_relay_tweet">{lang js_relay_share}</label>
+									<input type="hidden" value="$share_detail['share_id']" name="share_id" />
+									<input type="hidden" name="parent_id" value="0" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="SHARE_COMMENT_LIST_BOX">
+						<ul id="SHARE_COMMENT_LIST_{$share_detail['share_id']}" class="c_l rb5">
+							<!--{loop $share_detail['comments'] $comment}-->
+							<li class="c_f" id="COMMENT_{$comment['comment_id']}">
+							<!--{getuser $comment['uid'] 0 's' ',avt'}-->
+								<p class="sms"><!--{getuser $comment['uid'] 1 '' 'n icard'}-->：回复{$comment['content']}<span>（{$comment['time']}）</span></p>
+								<div>
+									<!--{if $is_remove_comment}-->
+									<a onclick="$.Delete_Comment($comment['comment_id'],this);" class="del" w="f" href="javascript:void(0);">删除</a>
+									<!--{/if}-->
+									<a class="rpl" w="f" href="javascript:;" uname='{$comment['user']['user_name']}' cid="{$comment['comment_id']}" onclick="$.Reply_Comment(this);">回复</a>
+								</div>
+							</li>
+							<!--{/loop}-->
+						</ul>
+						<div class="pagination">
+							<!--{subtemplate inc/pages}-->
+						</div>
+					</div>
+					</form>
+				</div>
+				<!--{if count($fav_user_fav_share) > 0}-->
+				<div class="note_all_fav_bao">
+					<div class="title"> 喜欢这个分享的人还喜欢... </div>
+					<ul class="key_all_fav_bao clear_in">
+						<!--{loop $fav_user_fav_share $share}-->
+						<li keys="{$share['share_id']}">
+							<div><a href="{$share['url']}"><img src="{getimg $share['imgs'][0]['img'] 100 100}" /></a></div>
+							<span><!--{getuser $share['uid'] 0 '' 'icard favn'}--></span>
+						</li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+				<!--{/if}-->
+				<!--{if count($user_collect_share) > 0}-->
+				<div class="note_fav_bao">
+					<div class="title">{$user_show_name['name']}喜欢的分享... </div>
+					<ul class="key_fav_bao clear_in">
+						<!--{loop $user_collect_share $share}-->
+						<li keys="{$share['share_id']}">
+							<div><a href="{$share['url']}"><img src="{getimg $share['imgs'][0]['img'] 100 100}" /></a></div>
+							<span><!--{getuser $share['uid'] 0 '' 'icard favn'}--></span>
+						</li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+				<!--{/if}-->
+			</div>
+		</div>
+		<div id="sidebar" class="fr"  style="width:310px;">
+			<div class="user_info psb" style="">
+				<div class="clearfix">
+					<a href="{u u/index uid=$share_user['uid']}"><img class="fl info_avatar"  src="{avatar $share_user['uid'] m $share_user['server_code'] 1}"></a>
+					<div class="clearfix">
+						<a class="n{if $share_user['gender'] == 1} bc{else} gc{/if}" href="{u u/index uid=$share_user['uid']}">{$share_user['user_name']}</a> <span class="send"> <a href="javascript:;" onclick="$.AtMe_Share(this);" class="home_at_ta bc" toname="{$share_user['user_name']}" >@{$user_show_name['short']}</a> </span>
+					</div>
+					<!--{getfollow $share_user['uid'] inc/getfollow/note_index}-->
+				</div>
+				<p class="introduce mt10">
+				<!--{if empty($share_user['introduce'])}-->
+				<!--{if $share_user['uid'] != $_FANWE['uid']}-->
+				<a style="color:#aaa">真懒啊，连自我介绍都不写。</a> 
+				<!--{else}-->
+				<a class="s_d" href="{u settings/personal}" target="_blank">添加自我介绍</a>
+				<!--{/if}-->
+				<!--{else}-->
+				{$share_user['introduce']}
+				<!--{if $share_user['uid'] == $_FANWE['uid']}-->
+				( <a class="s_d" href="{u settings/personal}" target="_blank">修改</a> )
+				<!--{/if}-->
+				<!--{/if}-->
+				</p>
+			</div>
+			<div class="medals psb bt1 bb1">
+				<h2><a>{$user_show_name['short']}的勋章...</a></h2>
+				<ul>
+					<!--{loop $user_medals $medal}-->
+					<li class="medal_f"><a target="_blank" href="{u medal/u uid=$share_detail['uid']}"><img title="{$medal['name']}" alt="{$medal['name']}" src="{$medal['big_img']}" height="39"></a></li>
+					<!--{/loop}-->
+				</ul>
+			</div>
+			<div class="ff_inf psb bb1">
+				<ul style="margin:0px;">
+					<li style="padding-left:0">
+						<a href="{u u/follow uid=$share_user['uid']}">关注</a><br>
+						<a href="{u u/follow uid=$share_user['uid']}"><span>{$share_user['follows']}</span></a>
+					</li>
+					<li>
+						<a href="{u u/fans uid=$share_user['uid']}">粉丝</a><br/>
+						<a href="{u u/fans uid=$share_user['uid']}"><span>{$share_user['fans']}</span></a>
+					</li>
+					<li style="border-right:none;">
+						<a>被喜欢</a><img style="margin-left:5px;" src="./tpl/images/heart_12x11.png"><br/>
+						<a ><span style="color:#ff076a; text-decoration:none;">{$share_user['collects']}</span></a>
+					</li>
+				</ul>
+			</div>
+			<!--{if $current_type == 'bao'}-->
+			<div class="hot_images psb bt1 bb1">
+				<h2><a>{$user_show_name['short']}最被喜欢的宝贝</a></h2>
+				<ul class="fl"> 
+					<!--{loop $best_goods_share $goods_share}-->
+					<li><a target="_blank" href="{$goods_share['url']}"><img src="{getimg $goods_share['img'] 100 100}"></a></li>
+					<!--{/loop}-->
+				</ul> 
+			</div>
+			{$shop_percent_html}
+			<!--{elseif $current_type == 'photo'}-->
+			<div class="hot_images psb bt1 bb1">
+				<h2><a>{$user_show_name['short']}最被喜欢的照片 </a></h2>
+				<ul class="fl">
+					<!--{loop $best_photo_share $photo_share}-->
+					<li><a target="_blank" href="{$photo_share['url']}"><img src="{getimg $photo_share['img'] 100 100}"></a></li>
+					<!--{/loop}-->
+				</ul>
+			</div>
+			<div class="hot_images psb bt1 bb1">
+				<h2><a>{$user_show_name['short']}喜欢的照片 </a></h2>
+				<ul class="fl">
+					<!--{loop $user_fav_photo $photo_share}-->
+					<li><a target="_blank" href="{$photo_share['url']}"><img src="{getimg $photo_share['img'] 100 100}"></a></li>
+					<!--{/loop}-->
+				</ul>
+			</div>
+			<!--{else}-->
+			
+			<!--{/if}-->
+		</div>
+	</div>
+	<div class="home_ft"></div>
+</div>
+<script type="text/javascript">
+function UpdateUserFollow(obj,result)
+{
+	if(result.status == 1)
+	{
+		$(obj).before('<img class="fo_ok" src="./tpl/images/add_ok_03.png">');
+		$(obj).remove();
+	}
+}
+
+jQuery(function(){
+	CommentInit();
+
+	<!--{if getIsManage('share')}-->
+	$('#shareInfobox').hover(function(e){
+		$.GetManageMenu('share',{$share_detail['share_id']},this,e);
+	},function(){});
+	<!--{/if}-->
+
+});
+
+function CommentInit()
+{
+	$(".pagination a").click(function(){
+		var page = $(this).attr('page');
+		$.Get_Share_Comment("{$share_detail['share_id']}",page,'#SHARE_COMMENT_LIST_BOX',CommentInit);
+		return false;
+	});
+}
+</script>
+<!--{template inc/footer}-->

@@ -1,0 +1,73 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="tabs-title">
+	<div class="tt-item active" rel="1"><p><a href="javascript:;">{%TAB_1}</a></p></div>
+	<div class="tt-item" rel="2"><p><a href="javascript:;">{%TAB_2}</a></p></div>
+	<div class="tt-item" rel="3"><p><a href="javascript:;">{%TAB_3}</a></p></div>
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}">
+<div class="tabs-body">
+	<table cellpadding="4" cellspacing="0" border="0" class="table-form tabs-item tabs-active" rel="1">
+		<tr>
+			<td><fanwe:editor id="USER_AGREEMENT" name="settings[USER_AGREEMENT]" type="CKEDITOR" width="96%" height="130px" content="{$settings.USER_AGREEMENT}" /></td>
+		</tr>
+	</table>
+	<table cellpadding="4" cellspacing="0" border="0" class="table-form tabs-item" rel="2">
+		<tr>
+			<th width="200">{%TODAY_MAX_SCORE}</th>
+			<td><input type="text" class="textinput" name="settings[TODAY_MAX_SCORE]" value="{$settings.TODAY_MAX_SCORE}" /></td>
+		</tr>
+		<tr>
+			<th>{%USER_REGISTER_SCORE}</th>
+			<td><input type="text" class="textinput" name="settings[USER_REGISTER_SCORE]" value="{$settings.USER_REGISTER_SCORE}" /></td>
+		</tr>
+		<tr>
+			<th>{%USER_LOGIN_SCORE}</th>
+			<td><input type="text" class="textinput" name="settings[USER_LOGIN_SCORE]" value="{$settings.USER_LOGIN_SCORE}" /></td>
+		</tr>
+		<tr>
+			<th>{%USER_AVATAR_SCORE}</th>
+			<td><input type="text" class="textinput" name="settings[USER_AVATAR_SCORE]" value="{$settings.USER_AVATAR_SCORE}" /></td>
+		</tr>
+		<tr>
+			<th>{%USER_REFERRAL_SCORE}</th>
+			<td><input type="text" class="textinput" name="settings[USER_REFERRAL_SCORE]" value="{$settings.USER_REFERRAL_SCORE}" /></td>
+		</tr>
+		<tr>
+			<th>{%CLEAR_REFERRAL_SCORE}</th>
+			<td><input type="text" class="textinput" name="settings[CLEAR_REFERRAL_SCORE]" value="{$settings.CLEAR_REFERRAL_SCORE}" /></td>
+		</tr>
+		<tr>
+			<th>{%SHARE_DEFAULT_SCORE}</th>
+			<td><input type="text" class="textinput" name="settings[SHARE_DEFAULT_SCORE]" value="{$settings.SHARE_DEFAULT_SCORE}" /></td>
+		</tr>
+		<tr>
+			<th>{%SHARE_IMAGE_SCORE}</th>
+			<td><input type="text" class="textinput" name="settings[SHARE_IMAGE_SCORE]" value="{$settings.SHARE_IMAGE_SCORE}" /></td>
+		</tr>
+		<tr>
+			<th>{%DELETE_SHARE_DEFAULT_SCORE}</th>
+			<td><input type="text" class="textinput" name="settings[DELETE_SHARE_DEFAULT_SCORE]" value="{$settings.DELETE_SHARE_DEFAULT_SCORE}" /></td>
+		</tr>
+		<tr>
+			<th>{%DELETE_SHARE_IMAGE_SCORE}</th>
+			<td><input type="text" class="textinput" name="settings[DELETE_SHARE_IMAGE_SCORE]" value="{$settings.DELETE_SHARE_IMAGE_SCORE}" /></td>
+		</tr>
+	</table>
+	<table cellpadding="4" cellspacing="0" border="0" class="table-form tabs-item" rel="3">
+		<tr>
+			<td><fanwe:editor id="USER_SORE_RULE" name="settings[USER_SORE_RULE]" type="CKEDITOR" width="96%" height="130px" content="{$settings.USER_SORE_RULE}" /></td>
+		</tr>
+	</table>
+</div>
+<table cellpadding="4" cellspacing="0" border="0" class="table-form" style="border-top:none;">
+	<tr class="act">
+		<th width="200">&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

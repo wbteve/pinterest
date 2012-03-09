@@ -1,0 +1,5 @@
+<!--{if $is_follow == 1}-->
+<img src="./tpl/images/best_follow_ok.gif" class="ufollow">
+<!--{elseif $is_follow == 0}-->
+<a onclick="$.User_Follow({$uid},this,UpdateUserFollow);" href="javascript:;" class="ufollow"><img src="./tpl/images/best_follow.gif"></a>
+<!--{/if}-->

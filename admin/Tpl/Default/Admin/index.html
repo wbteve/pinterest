@@ -1,0 +1,13 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="addAdmin" name="addAdmin" value="{%ADD}" click="addData()" />
+	<fanwe:imageBtn id="editAdmin" name="editAdmin" value="{%EDIT}" click="editData(this,'checkList')" />
+	<fanwe:imageBtn id="removeAdmin" name="removeAdmin" value="{%REMOVE}" click="removeData(this,'checkList')" />
+</div>
+<div class="search-box">
+</div>
+<fanwe:list id="checkList" style="list" name="admin" checkbox="true" action="true" datasource="list" show="id:{%ID}|50,admin_name:{%ADMIN_NAME}|~left:textEdit|id,role_id|getRoleName:{%ROLE_ID}|100,last_login_time|toDate:{%LAST_LOGIN_TIME}|140,last_login_ip:{%LAST_LOGIN_IP}|100,login_count:{%LOGIN_COUNT}|80,create_time|toDate:{%CREATE_TIME}|140,update_time|toDate:{%UPDATE_TIME}|140,status|getStatusImg:{%STATUS}|60:toggleStatus|id" actionlist="editData:{%EDIT}:id,removeData:{%REMOVE}:id" action_width="100" />
+<div class="pager">{$page}</div>
+<include file="Public:footer" />

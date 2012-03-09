@@ -1,0 +1,26 @@
+<script>
+function CateUpdateUserFollow(obj,result)
+{
+if(result.status == 1)
+{
+$(obj).before('<img src="./tpl/images/flow_ok.gif" />');
+$(obj).remove();
+}
+else{
+$(obj).before('<img src="./tpl/images/to_flow.gif" />');
+$(obj).remove();
+}
+}
+
+jQuery(function(){
+$('.cate_share_box li').hover(function(){
+$(this).children('.trsp_bg').stop().animate( { height: "80px" }, 300 );
+$(this).children('.trsp_bg').find('h4 .f12').stop().animate({ fontSize: "18px" }, 50);
+},
+function(){
+$(this).children('.trsp_bg').stop().animate( { height: "30px" }, 300 );
+$(this).children('.trsp_bg').find('h4 .f12').stop().animate({ fontSize: "12px" }, 50);
+});
+});
+
+</script>

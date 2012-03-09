@@ -1,0 +1,42 @@
+<div class="blank9"></div>
+<div id="SHARE_TAGS_{$share_tags_share_id}" class="fashion">
+	<!--{if $is_eidt_tag}-->
+	<div class="ed_fashion SHARE_TAG_EDIT_BOX">
+		<div class="fa_title">
+			<div class="fsl"><span>时尚元素</span>&nbsp;&nbsp;{sprintf share_tag_tip $_FANWE['setting']['share_tag_count']}</div>
+			<div class="fsr"><a onclick="$.ShareTagClose('{$share_tags_share_id}',this)" href="javascript:;">关闭</a></div>
+		</div>
+		<div class="fa_inp">
+            <?php
+                $tags_val = array();
+                foreach($share_tags as $share_tag)
+                {
+                    $tags_val[] = $share_tag['tag_name'];
+                }
+                $tags_val = implode(' ',$tags_val);
+            ?>
+			<input type="text" value="{$tags_val}" class="SHARE_TAG text">
+			<a onclick="$.ShareTagSave('{$share_tags_share_id}',this)" href="javascript:;" style="text-align:center; line-height:30px; font-size:14px; color:#fff;">提交</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!--{/if}-->
+	<div class="sw_fashion SHARE_TAG_SHOW_LIST">
+		<span>时尚元素：</span>
+		<!--{if empty($share_item['tags']['user'])}-->
+		<!--{if $is_eidt_tag}-->
+        <span class="SHARE_TAG_LIST"></span>
+		<span class="edit"><a onclick="$.ShareTagEdit('{$share_tags_share_id}',this)" href="javascript:;">添加</a></span>
+		<!--{/if}-->
+		<!--{else}-->
+        <span class="SHARE_TAG_LIST">
+		<!--{loop $share_tags $share_tag}-->
+		<a href="{$share_tag['url']}" target="_blank">$share_tag['tag_name']</a>
+		<!--{/loop}-->
+        </span>
+		<!--{if $is_eidt_tag}-->
+		<span class="edit"><a onclick="$.ShareTagEdit('{$share_tags_share_id}',this)" href="javascript:;">编辑</a></span>
+		<!--{/if}-->
+		<!--{/if}-->
+	</div>
+</div>

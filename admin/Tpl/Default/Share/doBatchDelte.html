@@ -1,0 +1,31 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div style="width:100%; text-align:center;">
+	<form method='post' id="formBatchDel" name="formBatchDel" action="{:U(MODULE_NAME.'/doBatchDelte')}">
+	<div style="width:600px; border:solid 2px #3d97c0; background:#dae7ed; margin:80px auto 0 auto;">
+		<div style="margin:10px; border:solid 1px #F00; background:#FFC; line-height:24px;">
+			{%CUSTOM_TIPS1}
+		</div>
+		<div style="background:url(__TMPL__Static/Images/loading_e.gif) no-repeat center 50px; padding:60px 20px 80px 20px;">
+			<div id="notice" style="padding:20px 20px 0 20px;">
+				<input type="hidden" name="keywords" id="keywords" value="{$keywords}" />
+				<input type="hidden" name="user_name" id="user_name" value="{$user_name}" />
+				<input type="hidden" name="email" id="email" value="{$email}" />
+				<input type="hidden" name="ip" id="ip" value="{$ip}" />
+				<input type="hidden" name="start_time" id="start_time" value="{$start_time}" />
+				<input type="hidden" name="end_time" id="end_time" value="{$end_time}" />
+				<input type="hidden" name="type" id="type" value="{$type}" />
+				<input type="hidden" name="share_data" id="share_data" value="{$share_data}" />
+				<input type="hidden" name="status" id="status" value="{$status}" />
+				<input type="hidden" name="share_cates" id="share_cates" value="{$share_cates}" />
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+<script>
+	function submiform(){
+		$('#formBatchDel').submit();
+	}
+</script>
+<include file="Public:footer" />

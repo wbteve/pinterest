@@ -1,0 +1,144 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/album.css';
+	$js_list[0] = './tpl/js/album.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960"> 
+	<div class="album_subnav">
+		<!--{loop $_FANWE['cache']['albums']['category'] $category}-->
+		<!--{if $category['id'] == $album_cate['id']}-->
+		<a href="{$category['url']}" title="{$category['name']}"><img src="{$category['img_hover']}" /></a>
+		<!--{else}-->
+		<a href="{$category['url']}" title="{$category['name']}"><img src="{$category['img']}" /></a>
+		<!--{/if}-->
+		<!--{/loop}-->
+	</div>
+	<div class="imagewall_sort">
+		<div class="fl" style="margin-left:0" >
+			<a>排序：</a>
+			<a href="{u album/category id=$album_cate['id'],sort=new}"{if $sort == 'new'} class="c"{/if}>最新</a>
+			<a href="{u album/category id=$album_cate['id'],sort=hot}"{if $sort == 'hot'} class="c"{/if}>最热</a>
+		</div>
+	</div>
+	<div class="blank12"></div>
+	<div id="album_container" class="albumwall album_td">
+		<!--{eval $col_index = 0;}-->
+		<!--{loop $share_display $share_col}-->
+		<!--{eval $col_index++;}-->
+		<div class="col{$col_index} col share_col">
+			<!--{loop $share_col $share}-->
+			<div class="album_list_t" shareID="{$share['share_id']}" id="SHARE_LIST_{$share['share_id']}">
+				<div class="hd"></div>
+				<div class="bd">
+					<ul class="pic">
+						<!--{loop $share['imgs'] $share_img}-->
+						<li>
+							<a href="{u album/show id=$share['rec_id'],sid=$share['share_id']}" target="_blank"><img class="lazyload" original="{getimg $share_img['img'] 200 999}" src="./tpl/images/lazyload.gif"></a>
+							<!--{if $share_img['type'] == 'g'}-->
+							<span class="p">
+								<span>
+									<b>{$share_img['price_format']}</b>
+								</span>
+								<i></i>
+							</span>
+							<!--{/if}-->
+						</li>
+						<!--{/loop}-->
+					</ul>
+					<!-- 喜欢 -->
+					<div class="favorite">
+						<a href="javascript:;" class="favaImg" onclick="$.Fav_Share({$share['share_id']},this,32,'#SHARE_LIST_{$share['share_id']}');">喜欢</a>
+						<div class="favDiv"> <a target="_blank" class="favCount SHARE_FAV_COUNT" href="{$share['url']}">{$share['collect_count']}</a><i></i></div>
+						<span class="creply_n"> (<a href="{$share['url']}" target="_blank">{$share['comment_count']}</a>)</span>
+						<a href="{$share['url']}" class="creply">评论</a>
+					</div>
+					<!-- 原推内容 -->
+					<div class="who_share">
+						<div class="tk clearfix">
+							<!--{if !empty($share['content']) && $share['content'] != $share['empty_content']}-->
+							<p>{cutstr $share['content'] 96}</p>
+							<!--{/if}-->
+							<span class="share_mf"> </span>
+						</div>
+						<div class="ws_bd clearfix">
+							<!--{getuser $share['uid'] 0 'm,48' ',icard avt fl r3 lazyload'}-->
+							<div class="user_info">
+								<!--{getuser $share['uid'] 0 '' 'n icard'}--> <span class="add_album_u">加入{lang common/album}</span><br />
+								<a target="_blank" href="{u album/show id=$share['rec_id']}" class="share_album_n">《{cutstr $share['title'] 16}》</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 评论 -->
+				<!--{if !empty($share['comments'])}-->
+				<ul class="rep_list">
+					<!--{loop $share['comments'] $comment}-->
+					{if $comment['uid']}
+					<li class="rep_f">
+						<!--{getuser $comment['uid'] 0 's,24' ',avt icard fl r3 lazyload'}-->
+						<p class="colg">
+							<!--{getuser $comment['uid'] 0 '' 'n icard fl'}-->：{$comment['content']}
+						</p>
+					</li>
+					{/if}
+					<!--{/loop}-->
+				</ul>
+				<!--{/if}-->
+				<div class="ws_ft"></div>
+			</div>
+			<!--{/loop}-->
+		</div>
+		<!--{/loop}-->
+	</div>
+	<div class="blank12"></div>
+	<!--{if $pager['page_count'] > 1}-->
+	<div class="pagination"> 
+		<!--{subtemplate inc/pages}--> 
+	</div>
+	<!--{/if}-->
+</div>
+<script type="text/javascript">
+FANWE.NO_COUNTER = true;
+var colHeight = 0;
+var colIndex = 0;
+var rowHtml = '<div class="album_list_t empty_row"><div class="hd"></div><div class="bd"></div><div class="ws_ft"></div></div>';
+jQuery(function(){
+	
+	<!--{if getIsManage('album')}-->
+	$('.album_list_t').hover(function(){
+		var shareID = this.getAttribute('shareID');
+		if(shareID)
+			$.GetManageMenu('album',shareID,this);
+	},function(){});
+	<!--{/if}-->
+	
+	if($.browser.msie&&($.browser.version == "6.0")&&!$.support.style)
+	{
+		return ;
+	}
+	else{
+	
+		$(".share_col").each(function(i){
+			$(this).append(rowHtml);
+		});
+		$(window).scroll(function(){
+			$(".share_col").each(function(i){
+				$('.empty_row .bd',this).height(0);
+				if($(this).height() > colHeight)
+				{
+					colIndex = i;
+					colHeight = $(this).height();
+				}
+			});
+			
+			$(".share_col").each(function(i){
+				if(i != colIndex)
+				{
+					$('.empty_row .bd',this).height(colHeight - $(this).height());
+				}
+			});
+		});
+	}
+});
+</script>
+<!--{template inc/footer}-->

@@ -1,0 +1,61 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/setting.css';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd clearfix">
+			<div id="content" style="width:960px;">
+				<!--{template inc/settings/settings_menu}-->
+				<div id="setting_box" class="fl" style="width:680px;">
+					<div id="user_auth" class="buyer_auth fl">
+						<!--{if $taobao_user && $_FANWE['user']['is_buyer'] == 1}-->
+						<p>恭喜，您已通过买家认证。</p>
+						<div class="auth_success">
+							您认证的是淘宝买家帐号：<b>{$taobao_user['user']['nick']}</b>
+							<span>（<a style="color:#688C00" href="{u settings/unbuyerverifier}" onclick="if(confirm('取消后会失去认证用户的权利，你真的要取消买家认证吗？')){return true;}else{return false;}" >取消买家认证</a>）</span>
+						</div>
+						*你可以用此淘宝帐号登录{$_FANWE['setting']['site_name']}，同时我们也会定期更新您的淘宝信用等级，并重新评估您的认证资质。
+						<!--{else}-->
+						<h1>为什么要进行买家认证？</h1>
+						<p>
+							{$_FANWE['setting']['site_name']}是一个面向消费者的购物分享社区，为了创造更加真实、有序的街道环境，居委会号召大家申请买家认证。获得认证之后，<span>您可以用通过买家认证的淘宝帐号来登录{$_FANWE['setting']['site_name']}</span>，同时您的会员名将挂上红心图标，如：<span>牙牙</span> <img src="./tpl/images/buyer_icon.png" alt=""><br />
+							<br />
+						<h1>如何认证？</h1>
+						<p>请确认您的淘宝帐号<span>买家信用</span>已有"二心"及以上等级，然后点击下面按钮。</p>
+						<div class="buyer_auth_step">
+							<a href="{u settings/bindbuyerverifier}"><img src="./tpl/images/go_to_verifier.png" /></a><br />
+							<p class="notice">注：买家认证过程都是在淘宝网完成，{$_FANWE['setting']['site_name']}不会获悉你的密码等私密信息。</p>
+							<!--{if $taobao_user && $_FANWE['user']['is_buyer'] == 0}-->
+							<form id="v_form" action="" method="POST">
+								<dl>
+									<div class="pink_alert_m">
+										<span>出错了：</span>
+										<!--{if $taobao_user['buyer_credit']['level'] < 2}-->
+										您的买家信用不到10（两颗心）<br/>
+										<!--{elseif $taobao_user['seller_credit']['level'] > 6}-->
+										您的卖家信用过高<br/>
+										<!--{/if}-->
+										如果您想更换认证的淘宝账号，可取消后重新绑定，点击(<a href="{u settings/bind}">取消绑定</a>)。
+									</div>
+								</dl>
+							</form>
+							<!--{/if}-->
+						</div>
+						<br />
+						<br />
+						<h1>无法认证？</h1>
+						<p>1：<span>你的买家帐号已经被认证过了</span>。你是否用淘宝帐号登录过{$_FANWE['setting']['site_name']}？用淘宝登录时会自动将登录的淘宝帐号作为买家认证，你可以先去取消那个帐号的买家认证，然后再回来认证此帐号。</p>
+						<p>2：你的买家信用过低，买家认证需要"二心"及以上等级的买家信用</p>
+						<p>3：你的卖家信用过高，暂不对等级过高的卖家帐号进行认证</p>
+						<br />
+						<!--{/if}-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<!--{template inc/footer}-->

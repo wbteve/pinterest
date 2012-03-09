@@ -1,0 +1,118 @@
+<!--{subtemplate manage/header}-->
+<link type="text/css" rel="stylesheet" href="./tpl/css/weebox.css" />
+<div class="manage_edit">
+	<div class="manage_title">
+		<span>编辑杂志社：{$album['title']}</span>
+	</div>
+	<div class="manage_unlock">
+		<span>当前已锁定此杂志社，其他管理员将不能对其进行操作，解锁请占击</span>
+		<a href="javascript:;" onclick="$.UnManageLock('album',{$album['id']},this)">【取消锁定】</a>
+		<span>，解锁后将关闭编辑页面</span>
+	</div>
+	<form method='post' id="form" name="form" action="{$_FANWE[site_root]}manage/manage.php" enctype="multipart/form-data" >
+	<table class="table-form">
+		<tr>
+			<th width="100">名称</th>
+			<td><input type="text" size="80" class="textinput requireinput" name="title" value="{$album['title']}" /></td>
+		</tr>
+		<tr>
+			<th>相关分享</th>
+			<td>
+				<a href="{$_FANWE['site_root']}manage/manage.php?m=share&a=edit&id={$album['share_id']}" target="_blank">编辑分享</a>
+			</td>
+		</tr>
+		<tr>
+			<th>所属分类</th>
+			<td>
+				<select name="cid">
+				<!--{loop $_FANWE['cache']['albums']['category'] $category}-->
+				<option value="{$category['id']}"{if $category['id'] == $album['cid']} selected="selected"{/if}>{$category['name']}</option>
+				<!--{/loop}-->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>展现方式</th>
+			<td>
+				<select name="show_type">
+					<option value="1"{if 1 == $album['show_type']} selected="selected"{/if}>小图</option>
+					<option value="2"{if 2 == $album['show_type']} selected="selected"{/if}>中图</option>
+					<option value="3"{if 3 == $album['show_type']} selected="selected"{/if}>大图</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>轮播</th>
+			<td>
+				<input type="checkbox" id="flashCheck" name="is_flash" value="1"{if $album['is_flash'] == 1} checked="checked"{/if}/>(取消轮播将同时删除上传的轮播图片)
+			</td>
+		</tr>
+		<tr class="flash_img"{if $album['is_flash'] != 1} style="display:none;"{/if}>
+			<th>轮播图片</th>
+			<td>
+				<input type="file" class="manage_fileinput" name="flash_img" size="30" />
+				{if $album['flash_img'] <> ''}
+				<span><a href="{$album['flash_img']}" target="_blank" >浏览</a>
+				{/if}
+			</td>
+		</tr>
+		<tr>
+			<th>推荐</th>
+			<td>
+				<input type="checkbox" id="bestCheck" name="is_best" value="1"{if $album['is_best'] == 1} checked="checked"{/if}/>(取消推荐将同时删除上传的推荐图片)
+			</td>
+		</tr>
+		<tr class="best_img"{if $album['is_best'] != 1} style="display:none;"{/if}>
+			<th>推荐图片</th>
+			<td>
+				<input type="file" class="manage_fileinput" name="best_img" size="30" />
+				{if $album['best_img'] <> ''}
+				<span><a href="{$album['best_img']}" target="_blank" >浏览</a>
+				{/if}
+			</td>
+		</tr>
+		<tr>
+			<th>时尚元素</th>
+			<td><input type="text" class="textinput" name="tags" value="{$album['tags_str']}" size="60" /></td>
+		</tr>
+		<tr>
+			<th>介绍</th>
+			<td>
+				<textarea name="content" class="pub_txt PUB_TXT" length="140" position="0">{$album['content']}</textarea>
+				<input type="hidden" id="position_count" class="pub_count" value="0" />
+				<div style="padding:10px 0 0 0;">
+					<a w="pub" href="javascript:;" class="add_face" id="add_face" onclick="$.Show_Expression(this);">{lang face}</a>
+				</div>
+			</td>
+		</tr>
+		<tr class="act">
+			<th>&nbsp;</th>
+			<td>
+				<input type="hidden" name="id" value="{$album['id']}" />
+				<input type="hidden" name="m" value="album" />
+				<input type="hidden" name="a" value="update" />
+				<input type="submit" class="formbutton" value="提交" />
+			</td>
+		</tr>
+	</table>
+	</form>
+</div>
+<script type="text/javascript"> 
+jQuery(function($){
+	$("#flashCheck").change(function(){
+		if(this.checked)
+			$(".flash_img").show();
+		else
+			$(".flash_img").hide();
+	});
+	
+	$("#bestCheck").change(function(){
+		if(this.checked)
+			$(".best_img").show();
+		else
+			$(".best_img").hide();
+	});
+});
+</script>
+
+<!--{subtemplate manage/footer}-->

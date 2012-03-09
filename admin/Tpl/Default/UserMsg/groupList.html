@@ -1,0 +1,22 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%ADD}" href="{:U(MODULE_NAME.'/groupSend')}" />
+	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList')" />
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />
+</div>
+<fanwe:list id="checkList" style="list" name="sysmsg" pk="mid" checkbox="true" action="true" datasource="list" show="mid:{%ID}|60,title:{%TITLE}|~left,end_time|toDate:{%END_TIME}|140,create_time|toDate:{%CREATE_TIME}|140,status|getStatusImg:{%STATUS}|60:toggleStatus|mid" actionlist="editMsg:{%EDIT}:mid,removeData:{%REMOVE}:mid" action_width="100" />
+<div class="pager">{$page}</div>
+<script type="text/javascript">
+function editMsg(obj,mid,pk)
+{
+	var fun = function(){
+		var url = "{:U('UserMsg/groupEdit',array('mid'=>'111111'))}";
+		location.href = url.replace("111111",mid);
+	};
+	
+	setTimeout(fun,1);
+}
+</script>
+<include file="Public:footer" />

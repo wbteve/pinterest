@@ -1,0 +1,5 @@
+SCWS PHP 组件下载地址
+http://www.ftphp.com/scws/download.php
+
+安装方法
+http://www.ftphp.com/scws/docs.php

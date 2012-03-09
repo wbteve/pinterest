@@ -1,0 +1,20 @@
+<div id="lb_goods">
+	<div class="goods_box GOODS_BOX">
+		<span>{lang pub_goods_tip}</span>
+		<div style="overflow:hidden;zoom:1">
+			<input class="g_url fl rl3 GOODS_URL" type="text" />
+			<input class="g_s fl rr3 GOODS_COLLECT" value="{lang submit1}" type="button" />
+		</div>
+		<div class="support">
+			{lang pub_goods_tip1}（<a class="in" href="mailto:{$_FANWE['setting']['site_service_email']}">{lang pub_goods_tip2}</a>）：
+			<p>
+				<!--{loop $business $key $item}-->
+				<a href="{$item['url']}" target="_blank" title="{$item['name']}" style="background-image:url({$item['icon']});">{$item['name']}</a>
+				<!--{/loop}-->
+			</p>
+		</div>
+	</div>
+	<div class="lb_loading PUB_LOADING">
+		<img class="fl" src="./tpl/images/loading.gif">&nbsp;&nbsp;{lang please_wait}......</a>
+	</div>
+</div>

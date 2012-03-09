@@ -1,0 +1,41 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%SHOPCATE_NAME}</th>
+		<td><input type="text" class="textinput" name="name" id="name" value="{$vo.name}" /></td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td>
+			<input type="text" class="textinput" name="sort" id="sort" value="{$vo.sort}" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%PARENT_CATE}</th>
+		<td>
+			<select name="parent_id">
+				<option value="0">{%TOP_CATE}</option>
+				<foreach name="cate_tree" item="cate_item">
+				<option value="{$cate_item.id}" <if condition="$vo['parent_id'] eq $cate_item['id']">selected="selected"</if>>{$cate_item.name}</option>
+				</foreach>
+			</select>
+		</td>
+	</tr>
+	
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+
+<include file="Public:footer" />

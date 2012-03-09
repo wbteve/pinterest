@@ -1,0 +1,56 @@
+<div id="lb_addalbum">
+	<div class="lb_hd">
+		<span class="lb_title">加入{lang common/album}<a class="to_see_see" href="{u u/album uid=$_FANWE['uid']}">(查看我的{lang common/album})</a></span><a class="lb_close" href="javascript:;" onclick="$.weeboxs.close()"></a>
+	</div>
+	<div class="lb_bd">
+		<div class="album_bd clearfix">
+			<div class="album_img">
+				<img src="{getimg $rec_img 100 100}">
+			</div>
+			<div class="album_add_content">
+				<div class="album_pr">
+					<div class="my_album_list">
+						<ul class="album_ul">
+							<!--{loop $album_list $album}-->
+							<li album="{$album['id']}"><input type="radio" name="album_box" class="m_i" aid="{$album['id']}"{if $album['id'] == $select_aid} checked="checked"{/if}><label class="m_a">{$album['title']}</label></li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+					<div class="create">
+						<a class="create_small" href="javascript:;">创建{lang common/album}</a>
+						<div class="create_new">
+							<input type="text" value="{lang new_album_name}" class="album_name" albumName="{lang new_album_name}">
+							<select class="album_cid">
+								<!--{loop $_FANWE['cache']['albums']['category'] $category}-->
+								<option value="{$category['id']}">{$category['name']}</option>
+								<!--{/loop}-->
+							</select>
+							<a class="blue_button to_create" href="javascript:;" onclick="$.Save_Album(this,FANWE.CREATE_ALBUM_FUN);">创建</a>
+						</div>
+					</div>
+					<div class="page_slide">
+						<!--{if $pager['page_count'] > 1}-->
+						<span class="cu_page">$pager['page']</span>/<span class="all_page">{$pager['page_count']}</span>
+						<a class="left r3" href="javascript:;">&lt;</a>
+						<a class="right r3" href="javascript:;">&gt;</a>
+						<!--{/if}-->
+					</div>
+				</div>
+				<form>
+				<textarea class="album_text" default="{lang add_album_default}" name="content">{lang add_album_default}</textarea>
+				<input type="hidden" name="rec_data" value="{$rec_data}" />
+				<input type="hidden" name="albumid" class="PUB_ALBUM_ID" value="0" />
+				<input type="hidden" class="albumMaxPage" value="{$pager['page_count']}" />
+				<div class="btm_sub">
+					<a class="submit r3" href="javascript:;" onclick="$.Save_Rel_Album(this);">确定</a>
+					<div class="sub_loading fl r3">保存中</div>
+				</div>
+				<div class="pub_out fl">
+					<input type="checkbox" checked="checked" name="pub_out_check" value="1" id="box_share">
+					<label class="share_lab" for="box_share">{lang sync}<a href="{u settings/bind}" target="_blank">（{lang settings}）</a></label>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

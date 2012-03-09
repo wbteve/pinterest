@@ -1,0 +1,1 @@
+ALTER TABLE `%DB_PREFIX%adv` ADD COLUMN `small` varchar(255) DEFAULT '';

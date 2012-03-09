@@ -1,0 +1,48 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:Cookie::get('returnUrl')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="180">{%TAG_NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="tag_name" value="{$vo.tag_name}"/></td>
+	</tr>
+	<tr>
+		<th>{%IS_HOT}</th>
+		<td>
+			<label><input type="radio" name="is_hot" value="1" <if condition='$vo.is_hot eq 1'>checked="checked"</if> /><span>{%YES}</span></label>
+			<label><input type="radio" name="is_hot" value="0" <if condition='$vo.is_hot eq 0'>checked="checked"</if> /><span>{%NO}</span></label>
+		</td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td><input type="text" class="textinput" size="5" name="sort" value="{$vo.sort}"/></td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="tag_id" value="{$vo.tag_id}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+function dblTag(obj)
+{
+	if(obj.getAttribute('rel') == 0)
+	{
+		obj.setAttribute('rel',1);
+		$(obj).prependTo($("#category_tag_list"));
+	}
+	else
+	{
+		obj.setAttribute('rel',0);
+		document.getElementById("tag_list").appendChild(obj);
+	}
+}
+</script>
+<include file="Public:footer" />

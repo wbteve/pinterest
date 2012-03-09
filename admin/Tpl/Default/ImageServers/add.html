@@ -1,0 +1,33 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%CODE}</th>
+		<td><input type="text" class="textinput" name="code" value="" /></td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td><p>{%CODE_TIPS}</p></td>
+	</tr>
+	<tr>
+		<th>{%URL}</th>
+		<td><input type="text" class="textinput" name="url" size="60" value="" /></td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td><p>{%URL_TIPS}</p></td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

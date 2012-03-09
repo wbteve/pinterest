@@ -1,0 +1,39 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="230">{%NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="name" /></td>
+	</tr>
+	<tr style="background:#D2DBEA;">
+		<th>{%ACCESS}</th>
+		<td>&nbsp;</td>
+	</tr>
+	<foreach name="authoritys" key='mkey' item="module" >
+	<tr class="access-item">
+		<th class="first tr">
+			<p><span>&nbsp;{$module.name}&nbsp;</span></p>
+		</th>
+		<td>
+			<p>
+				<foreach name="module.actions" item="action">
+				<label><input class="action-item" type="checkbox" name="access_node[{$mkey}][]" value="{$action}" /><span>&nbsp;{:L('ACTION_'.$action)}</span></label>&nbsp;&nbsp;
+				</foreach>&nbsp;
+			</p>
+		</td>
+	</tr>
+	</foreach>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

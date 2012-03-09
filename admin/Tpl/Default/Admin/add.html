@@ -1,0 +1,63 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript">
+var ADMIN_NAME_REQUIRE = "{%ADMIN_NAME_REQUIRE}";
+var ADMIN_PWD_REQUIRE = "{%ADMIN_PWD_REQUIRE}";
+var CONFIRM_ERROR = "{%CONFIRM_ERROR}";
+</script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="200">{%ADMIN_NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="admin_name" id="admin_name" /></td>
+	</tr>
+	<tr>
+		<th>{%ADMIN_PWD}</th>
+		<td><input type="password" class="textinput requireinput" name="admin_pwd" id="admin_pwd" /></td>
+	</tr>
+	<tr>
+		<th>{%CONFIRM_PWD}</th>
+		<td><input type="password" class="textinput requireinput" name="confirm_pwd" id="confirm_pwd" /></td>
+	</tr>
+	<tr>
+		<th>{%ROLE_ID}</th>
+		<td>
+			<fanwe:select options="role_list" name="role_id" id="role_id" />
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+jQuery(function($){
+	$("#form").submit(function(){
+		if(!$.checkRequire($("#admin_name").val()))
+		{
+			alert(ADMIN_NAME_REQUIRE);
+			return false;
+		}
+		
+		if(!$.checkRequire($("#admin_pwd").val()))
+		{
+			alert(ADMIN_PWD_REQUIRE);
+			return false;
+		}
+		
+		if($("#admin_pwd").val() != $("#confirm_pwd").val())
+		{
+			alert(CONFIRM_ERROR);
+			return false;
+		}
+	});
+});
+</script>
+<include file="Public:footer" />

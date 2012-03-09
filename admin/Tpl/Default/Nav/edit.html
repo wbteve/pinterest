@@ -1,0 +1,43 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="200">{%NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="name" value="{$vo.name}" /></td>
+	</tr>
+	<tr>
+		<th>{%CID}</th>
+		<td>
+			<fanwe:select id='cid' name='cid' textfield='name' valuefield='id' selected="vo['cid']" options='cate_list' />
+		</td>
+	</tr>
+	<tr>
+		<th>{%URL}</th>
+		<td><input type="text" class="textinput requireinput" name="url" value="{$vo.url}"/></td>
+	</tr>
+	<tr>
+		<th>{%SORT}</th>
+		<td><input type="text" class="textinput" name="sort" size="4" value="{$vo.sort}"/></td>
+	</tr>
+	<tr>
+		<th>{%TARGET}</th>
+		<td>
+			<label><input type="radio" name="target" value="0" <if condition="$vo['target'] eq 0">checked="checked"</if> /> {%TARGET_0}</label>&nbsp;&nbsp;
+			<label><input type="radio" name="target" value="1" <if condition="$vo['target'] eq 1">checked="checked"</if> /> {%TARGET_1}</label>
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

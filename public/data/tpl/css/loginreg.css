@@ -1,0 +1,135 @@
+#body { margin-top:30px; }
+#content { min-height:600px; _height:600px; }
+.title { font-size:12px; color:#75a707; margin-left:58px; margin-top:30px; display:block; }
+.mode { margin-left:58px; margin-top:30px; }
+.tle { position:relative; height:21px; line-height:21px; padding-left:28px; font-weight:bold; font-size:14px; }
+.tle span { position:absolute; background:url(/tpl/pink2/images/spot_21x21_b.png) no-repeat left center; width:21px; height:21px; color:#fff; font-size:14px; line-height:21px; text-align:center; vertical-align:middle; display:block; left:0; _top:-1px; }
+.more_login { line-height:16px; margin-top:22px; margin-left:50px; }
+.m_icon { background:url(/tpl/pink2/images/icon_sina.png) no-repeat left center; height:16px; line-height:16px; display:block; padding-left:20px; margin-top:12px; padding-top:2px; width:52px; *padding-top:5px;
+padding-top:5px\9; _padding-top:7px; }
+.modetwo { margin-top:45px; margin-bottom:180px; height:150px; }
+.check_phone { margin-top:30px; margin-left:35px; line-height:30px; }
+.check_phone .check { margin-left:65px; visibility:hidden; }
+.info { height:30px; }
+.info .sp { width:63px; text-align:right; font-size:14px; }
+.info input { background:url(/tpl/pink2/images/register_text.png) no-repeat top center; color:#999; border:0; width:250px; height:30px; padding-left:4px; line-height:30px; }
+.getcheck { background:url(/tpl/pink2/images/getcheck.png) no-repeat left center; width:124px; height:30px; display:block; clear:both; margin-left:65px; margin-top:18px; }
+.sure { background:url(/tpl/pink2/images/register_sure.png) no-repeat left center; width:87px; height:30px; display:block; clear:both; margin-left:65px; margin-top:18px; float:left; *margin-left:32px;
+}
+.cktime { color:#999; float:left; margin-top:20px; margin-left:10px; }
+.cktime em { color:#999; }
+.rsck { color:#09e; float:left; margin-top:20px; margin-left:10px; }
+#get_password_box { padding-top:20px; width:700px; padding-left:120px; }
+#get_password_box p { color:#000; font-size:14px; line-height:200%; padding-bottom:12px; }
+#get_password_box p span { color:#74a708; font-size:18px; }
+#get_password_form { width:690px; height:170px; padding:42px 0 0 10px; background-color:#f5f5f5; font-size:14px; }
+#get_password_form dd { float:left; width:160px; text-align:right; line-height:26px; padding-right:10px; }
+#get_password_form dt { height:26px; margin-bottom:22px; }
+#get_password_form .text { height:24px; border:1px solid #999; padding:0 5px; color:#999; float:left;}
+#get_password_name,
+#get_password_password,
+#get_password_password_confirm { width:155px; }
+#get_password_mail { width:296px; }
+#get_password_checkcode { width:76px; }
+#img_checkcode { height:26px; vertical-align:middle; margin-top:-3px; }
+#get_password_form a { color:#09f; }
+#get_password_form .green_button { width:209px; height:26px; font-size:14px; }
+#get_password_form .get_password_fail { width:190px; height:24px; line-height:24px; padding-left:24px; border:1px solid #ff8080; background:#fff2f2 url(/tpl/pink2/images/error.png) no-repeat; margin:0 0 15px 20px; float:left; display:none;display:none;}
+#get_password_result { width:505px; height:130px; padding:80px 0 0 195px; background-color:#f5f5f5; line-height:200%; color:#666; }
+#get_password_result span { font-size:14px; color:#000; }
+#get_password_result a { color:#09f; line-height:60px; }
+.lg_left { width:670px; float:left; border-right:1px solid #e5e5e5; height:442px; }
+.lg_left h1 { font-size:24px; font-weight:bold; color:#000; margin-top:26px; margin-left:80px; }
+.lg_form { margin-top:32px; margin-left:100px; }
+.lg_name { float:left; }
+.lg_name span { font-size:14px; float:left; margin-top:2px; line-height:29px; }
+.lg_name .text { width:226px; height:30px; line-height:30px; background:url(/tpl/pink2/images/register_text_02.png) no-repeat 0 0; border:0; padding-left:8px; margin-left:8px; }
+.lg_name .activetext{ background:url(/tpl/pink2/images/register_text_02.png) no-repeat 0 -30px;}
+.lg_pass { margin-top:20px; float:left; }
+.lg_pass .text { width:226px; height:30px; line-height:30px; background:url(/tpl/pink2/images/register_text_02.png) no-repeat 0 0; border:0; padding-left:8px; margin-left:8px; }
+.lg_pass .activetext{ background:url(/tpl/pink2/images/register_text_02.png) no-repeat 0 -30px;}
+.lg_pass span { font-size:14px; float:left; margin-top:2px; line-height:29px; }
+.lg_chk { margin-top:20px; float:left; }
+.lg_chk .text { width:106px; height:30px; line-height:30px; background:url(/tpl/pink2/images/register_text_01.png) no-repeat top center; border:0; padding-left:8px; margin-left:8px; vertical-align:middle; }
+.lg_chk span { font-size:14px; float:left; margin-top:2px; line-height:29px; }
+.lg_chk img { margin-left:5px; *padding-top:2px;
+}
+.lg_chk a { margin-left:5px; color:#09E; }
+.err_name { float:left; margin-top:9px; margin-left:12px; display:none; *margin-top:0;
+_margin-top:0; }
+.err_name span { background:url(/tpl/pink2/images/error_01.png) no-repeat left center; margin-left:4px; color:#f00; padding-left:21px; *padding:5px 0 2px 21px;*line-height:30px;_padding:5px 0 2px 21px; _line-height:30px; }
+.err_pass { float:left; margin-top:28px; margin-left:12px; display:none; *margin-top:21px;
+_margin-top:21px; }
+.err_pass span { background:url(/tpl/pink2/images/error_01.png) no-repeat left center; margin-left:4px; color:#f00; padding-left:21px; *padding:5px 0 2px 21px;*line-height:30px;_padding:5px 0 2px 21px; _line-height:30px; }
+.err_chk { float:left; margin-top:25px; margin-left:12px; display:none; *margin-top:21px;_margin-top:21px; }
+.err_chk span { background:url(/tpl/pink2/images/error_01.png) no-repeat left center; margin-left:4px; color:#f00; padding-left:21px; *padding:5px 0 2px 21px;*line-height:30px;_padding:5px 0 2px 21px; _line-height:30px; }
+.lg_remember { margin-top:20px; margin-left:60px; }
+.lg_remember .check { vertical-align:middle; text-align:center; _margin-top:-3px; margin-right:2px; }
+.lg_remember span { color:#666; cursor:pointer; }
+.lg_login_loading{line-height:26px;background:url(/tpl/pink2/images/loading_blue1.gif) no-repeat left center; padding:0 0 0 20px; margin:20px 0 0 60px; display:none;}
+.lg_login { margin-top:15px; margin-left:60px; }
+.lg_login .sub { border:0; background:url(/tpl/pink2/images/login_btn3.png) no-repeat left center; width:84px; height:30px; cursor:pointer; }
+.lg_login a { color:#09e; text-decoration:underline; margin-left:12px; }
+.ot_login { margin-left:60px; margin-top:40px; }
+.ot_login span { color:#999; }
+.ot_btn { margin-top:15px;}
+.ot_btn a { margin-right:10px; }
+.lg_right { width:280px; float:left; }
+.lg_right h1 { font-size:24px; font-weight:bold; color:#000; margin-left:65px; margin-top:26px; margin-bottom:36px; }
+.lg_right span { margin-top:36px; margin-left:85px; color:#000; font-size:14px; }
+.lg_right a { background:url(/tpl/pink2/images/easy_regsiter.png) no-repeat left center; width:113px; height:30px; display:block; margin-top:10px; margin-left:85px; }
+.iserror { background:url(/tpl/pink2/images/error_login.png) no-repeat left center; width:250px; height:132px; position:absolute; margin-left:304px; margin-top:-86px; *margin-left:246px;*margin-top:-90px; display:none;}
+.iserror .war { margin-top:10px; margin-left:25px; }
+.iserror .war img { vertical-align:middle; text-align:center; _margin-top:-3px; }
+.iserror .war span { margin-left:6px; color:#f00; font-weight:bold; }
+.iserror .content { margin-left:25px; margin-top:14px; }
+#register_box { padding-left:55px; }
+#register_left { width:645px; height:574px; border-right:1px solid #e5e5e5; float:left; }
+#register_left h1 { margin-top:18px; font-size:24px; color:#000; display:block; }
+#register_left span { color:#999; font-size:12px; display:block; }
+#register_center { width:644px; }
+#register_form { width:360px; float:left; _overflow:hidden;}
+#register_form span { color:#000; font-size:14px; float:left; vertical-align:middle; text-align:center; }
+#register_form .text { background:url(/tpl/pink2/images/register_text.png) no-repeat top center; border:0; float:left; width:244px; height:30px; margin-left:5px; line-height:30px; padding-left:5px; padding-right:5px;}
+#register_form .activetext{ background:url(/tpl/pink2/images/register_text.png) no-repeat 0 -30px;}
+#register_form .check { background:url(/tpl/pink2/images/register_text_01.png) no-repeat top center; border:0; float:left; width:114px; height:30px; margin-left:5px; line-height:30px; }
+#register_form .ipt_box span { font-size:12px; margin-top:0; display:inline; line-height:12px; line-height:14px\9; }
+.ipt_mail { margin-top:32px; margin-left:20px; overflow:hidden; room:1; _width:334px; line-height:30px; }
+.ipt_ulike { margin-left:48px; margin-top:20px; overflow:hidden; room:1; _width:334px; line-height:30px; }
+.ipt_sex { margin-left:48px; height:30px; margin-top:20px; overflow:hidden; room:1; _width:300px; line-height:30px; }
+.ipt_sex .rdo .ck { vertical-align:middle; text-align:center; margin-top:-3px; }
+.ipt_password { margin-left:48px; margin-top:20px; overflow:hidden; room:1; _width:334px; line-height:30px; }
+.ipt_respassword { margin-left:20px; margin-top:20px; overflow:hidden; room:1; _width:334px; line-height:30px; }
+.ipt_check { margin-left:34px; margin-top:20px; overflow:hidden; room:1; _width:334px; line-height:30px; }
+.ipt_check #img_checkcode { width:78px; height:26px; margin-top:2px; float:left; margin-left:4px; vertical-align:middle; text-align:center; *margin-top:2px;
+}
+.ipt_check a { color:#09e; float:left; margin-left:6px; }
+.ipt_box { margin-left:91px; margin-top:20px; overflow:hidden; room:1; _width:290px; }
+.ipt_box a:hover { text-decoration:underline; }
+.ipt_box .box { margin-right:2px; }
+.ipt_sub { margin-left:92px; margin-top:20px; overflow:hidden; room:1; *margin-left:48px;width:430px; }
+.ipt_sub .sub { border:0; background:url(/tpl/pink2/images/login_register.png) no-repeat left center; width:154px; height:40px; display:block; cursor:pointer; float:left;}
+#register_error { float:left; width:280px;  }
+#register_error img { float:left; vertical-align:middle; text-align:center; }
+.err_email { font-size:12px; color:#999; margin-top:30px; line-height:150%; height:36px; visibility:hidden; }
+.err_email div{float:left; padding:10px 0 0 0;}
+.err_ulike { font-size:12px; color:#999; margin-top:15px; line-height:150%; height:36px; visibility:hidden; _margin-top:14px; }
+.err_ulike div{float:left; padding:10px 0 0 0;}
+.err_password { font-size:12px; color:#999; margin-top:60px; line-height:150%; height:26px; padding-top:10px; visibility:hidden; _margin-top:60px; }
+.err_password div{float:left;}
+.err_rstpassword { font-size:12px; color:#999; margin-top:15px; line-height:150%; height:26px; padding-top:10px; visibility:hidden; _margin-top:14px; }
+.err_rstpassword div{float:left;}
+.err_check { font-size:12px; color:#999; margin-top:14px; line-height:150%; height:26px; padding-top:10px; visibility:hidden; _margin-top:14px; }
+#register_right { float:left; width:250px; }
+.rst_login { margin-left:32px; margin-top:20px; }
+.rst_login span { color:#999; }
+.rst_login a { background:url(/tpl/pink2/images/login_btn3.png) no-repeat left center; width:84px; height:30px; display:block; margin-top:12px; }
+.other_login { margin-top:65px; margin-left:32px; }
+.other_login span { color:#999; margin-bottom:2px; }
+.o_icon { background:url(/tpl/pink2/images/icon_sina.png) no-repeat left center; height:16px; line-height:16px; display:block; padding-left:20px; margin-top:12px; padding-top:2px; width:100px; *padding-top:5px;
+padding-top:5px\9; _padding-top:7px; }
+.agr_h { text-align:center; margin-bottom:50px; font-size:26px; font-weight:bold; }
+pre { white-space:pre-wrap; white-space:-moz-pre-wrap!important; white-space:-pre-wrap; white-space:-o-pre-wrap; word-wrap:break-word; width:99%; }
+.agreement { padding-left:40px; padding-right:40px; width:880px; _width:880px; }
+.lg_reg_loading{float:left; line-height:26px;background:url(/tpl/pink2/images/loading_blue1.gif) no-repeat left center; padding:0 0 0 20px; margin:8px 0 0 20px; display:none;}
+.lg_reg_check{float:left; line-height:26px;background:url(/tpl/pink2/images/error_02.png) no-repeat left center; padding:0 0 0 20px; margin:8px 0 0 20px; display:none;}

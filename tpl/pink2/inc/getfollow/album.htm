@@ -1,0 +1,5 @@
+<!--{if $is_follow == 0}-->
+<a class="addfo" href="javascript:;" onclick="$.User_Follow({$uid},this,AlbumUpdateUserFollow);"></a>
+<!--{elseif $is_follow == 1}-->
+<span class="followed">已关注</span>
+<!--{/if}-->

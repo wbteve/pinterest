@@ -1,0 +1,27 @@
+<!--{subtemplate manage/header}-->
+<div class="manage_tooltip">
+	<p><span>{$msg}</span>，将在 <span id="timeHtml">3</span> 秒后，自动关闭页面。</p>
+</div>
+<script type="text/javascript">
+var time = 3;
+jQuery(function($){
+	setTimeout('CloseTimer()',1000);
+});
+
+function CloseTimer()
+{
+	if(time == 1)
+	{
+		window.opener=null;
+        window.open('','_self');
+        window.close();	
+	}
+	else
+	{
+		--time;
+		$("#timeHtml").text(time);
+		setTimeout('CloseTimer()',1000);
+	}
+}
+</script>
+<!--{subtemplate manage/footer}-->

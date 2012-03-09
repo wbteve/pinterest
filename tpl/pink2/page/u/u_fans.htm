@@ -1,0 +1,88 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/tweetlist.css';
+	$css_list[0]['url'][] = './tpl/css/zone.css';
+	$js_list[0] = './tpl/js/zone.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="homews_hd"></div>
+		<div class="homews_bd clearfix">
+			<div id="content" class="fl" style="width:730px;">
+			<!--{template inc/u/u_menu}-->
+			<div class="content fr" style="width:595px;">
+				<div class="follow_fans_info clearfix">
+					<h1 class="fl">{$_FANWE['home_user_names']['short']}的粉丝</h1>
+				</div>
+				<ul class="zone_tab clearfix" style="margin-left:20px;">
+					<li class="zt_f"><a href="{u u/follow uid=$home_uid}">{$_FANWE['home_user_names']['short']}的关注</a></li>
+					<li class="zt_f c"><a href="{u u/fans uid=$home_uid}">{$_FANWE['home_user_names']['short']}的粉丝</a></li>
+				</ul>
+				<ul class="people_list clearfix" ptype="follow">
+					<!--{loop $user_list $follow_user}-->
+					<li class="clearfix PEOPLE_ID_BOX" id="people_id_{$follow_user['uid']}">
+						<a href="{u u/index uid=$follow_user['uid']}"><img class="avt icard GUID" uid="{$follow_user['uid']}" src="{avatar $follow_user['uid'] m $follow_user['server_code'] 1}" alt="{$follow_user['user_name']}" width="48"></a>
+						<div class="people_info">
+							<a class="n icard bc GUID" uid="{$follow_user['uid']}" href="{u u/index uid=$follow_user['uid']}">{$follow_user['user_name']}</a><br>
+							<!--{if !empty($follow_user['reside_province'])}-->
+							<span>{$follow_user['reside_province']} {$follow_user['reside_city']}</span>
+							<!--{/if}-->
+							<span>粉丝{$follow_user['fans']}人</span>
+							<!--{if !empty($follow_user['share'])}-->
+							<p>{cutstr $follow_user['share']['content'] 100}({$follow_user['share']['time']})</p>
+							<!--{/if}-->
+						</div>
+						<div class="people_toolbar">
+							<!--{if $home_uid == $_FANWE['uid']}-->
+							<div class="follow1"{if !$follow_user['is_follow']} style="display:none;"{/if}>
+							<span>已互相关注</span>
+							<br>
+							<a class="unFollow" href="javascript:void(0);" onclick="$.User_Follow($follow_user['uid'],this,MeUpdateUserFollow);">取消关注</a>
+							<br>
+							</div>
+							<a class="addfo follow0" href="javascript:;" onclick="$.User_Follow($follow_user['uid'],this,MeUpdateUserFollow);"{if $follow_user['is_follow']} style="display:none;"{/if}>+加关注</a>
+							<a class="delFans" href="javascript:void(0);" onclick="$.Remove_Fans($follow_user['uid'],this,DeleteUserFans);">移除粉丝</a>
+							<!--{else}-->
+							<div class="follow1"{if !$follow_user['is_follow']} style="display:none;"{/if}>
+							<span>已关注</span>
+							<br>
+							<a class="unFollow" href="javascript:void(0);" onclick="$.User_Follow($follow_user['uid'],this,MeUpdateUserFollow);">取消关注</a>
+							</div>
+							<a class="addfo follow0" href="javascript:;" onclick="$.User_Follow($follow_user['uid'],this,MeUpdateUserFollow);"{if $follow_user['is_follow']} style="display:none;"{/if}>+加关注</a>
+							<!--{/if}-->
+						</div>
+					</li>
+					<!--{/loop}-->
+				</ul>
+				<div class="pagination">
+					<!--{subtemplate inc/pages}-->
+				</div>
+			</div>
+		</div>
+		<div id="sidebar" class="fr pl15" style="width:215px;">
+			
+		</div>
+	</div>
+	<div class="homews_ft"></div>
+</div>
+<script type="text/javascript">
+function MeUpdateUserFollow(obj,result)
+{
+	var parent = $(obj).parent();
+	if(result.status == 1)
+	{
+		$('.follow0',parent).hide();
+		$('.follow1',parent).show();
+	}
+	else
+	{
+		$('.follow0',parent.parent()).show();
+		$(obj).parent().hide();
+	}
+}
+
+function DeleteUserFans(obj,result)
+{
+	$(obj).parents('.PEOPLE_ID_BOX').slideUp("slow");
+}
+</script>
+<!--{template inc/footer}-->

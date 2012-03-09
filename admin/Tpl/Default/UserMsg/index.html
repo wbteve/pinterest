@@ -1,0 +1,107 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<link href="__TMPL__Static/Js/DatePicker/jquery.ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/jquery.ui.core.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/lang/jquery.ui.datepicker-{$default_lang}.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="removeMlid" name="removeMlid" value="{%REMOVE}" click="delByMlid(this,'checkList')" />
+	<form action="__APP__">
+		<span>{%AUTHOR_ID}</span>
+		<input class="textinput" type="text" value="{$user_name}" name="user_name" size="10" />
+		<small></small>
+		<span>{%TIME}</span>
+		<input class="textinput" type="text" value="{$time}" name="time" id="time" size="10" />
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<fanwe:list id="checkList" style="list" name="msg" pk='mlid' checkbox="true" action="true" datasource="list" show="mlid:{%ID}|80,min_max:{%USERS},message:{%CONTENT}|~left,last_dateline|toDate:{%TIME}|140" actionlist="showData:{%SHOW}:mlid,delByMlid:{%REMOVE}:mlid" action_width="100" nosort="message" />
+<div class="pager">{$page}</div>
+<script type="text/javascript">
+jQuery(function($){
+	$("#time").datepicker();
+});
+
+function showData(obj,mlid,pk)
+{
+	var fun = function(){
+		var url = "{:U('UserMsg/show',array('mlid'=>'111111'))}";
+		location.href = url.replace("111111",mlid);
+	};
+	
+	setTimeout(fun,1);
+}
+
+function delByMlid(obj,id,pk)
+{
+	var ids =  new Array();
+	
+	if(isNaN(id))
+	{
+		$("#" + id + " input:checked[name='key']").each(function(){
+			ids.push(this.value);
+		});
+	}
+	else
+	{
+		ids.push(id);
+		var parent = $(obj).parent().parent();
+		id = parent.parent().parent().attr('id');
+	}
+	
+	ids = ids.join(',');
+	if(ids == '')
+		return false;
+	
+	if(!window.confirm(CONFIRM_DELETE))
+		return false;
+	
+	var query = new Object();
+	query.id = ids;
+	
+	$.ajax({
+		url: APP + '?' + VAR_MODULE + '=' + CURR_MODULE + '&' + VAR_ACTION + '=delByMlid',
+		type:"POST",
+		cache: false,
+		data:query,
+		dataType:"json",
+		success: function(result){
+			if(result.isErr == 0)
+			{
+				$("#" + id + " tbody tr input[name='key']").each(function(){
+					if((',' + ids + ',').indexOf(',' + this.value + ',') != -1)
+					{
+						parent = $(this).parent().parent();
+						this.checked = false;
+						$('td span,td a',parent).each(function(){
+							if (typeof(this.onclick) == 'function' && this.onclick.toString() != '')
+							{
+								if(this.onclick.toString().indexOf('toggleStatus') != -1)
+								{
+									var img = $('img',this).get(0);
+									img.src = img.src.replace('status','disabled');
+								}
+								
+								this.onclick = '';
+							}
+						});
+						
+						parent.attr({"disabled":true,"title":ALREADY_REMOVE});
+						$("td",parent).attr({"disabled":true}).addClass('disabled');
+						$("td *",parent).attr({"disabled":true}).addClass('disabled');
+					}
+					
+					if($("#" + id + " tbody tr:not([disabled])").length == 0)
+						location.reload(true);
+				});
+			}
+			else
+				$.ajaxError(result.content);
+		}
+	});
+}
+</script>
+<include file="Public:footer" />

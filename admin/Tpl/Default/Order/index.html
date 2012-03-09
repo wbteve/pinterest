@@ -1,0 +1,42 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<form action="__APP__">
+		<span>{%DATA_NAME}</span>
+		<input class="textinput" type="text" value="{$name}" name="name" size="10" />
+		<small></small>
+		<span>{%SN}</span>
+		<input class="textinput" type="text" value="{$sn}" name="sn" size="10" />
+		<small></small>
+		<span>{%USER_NANE}</span>
+		<input class="textinput" type="text" value="{$user_name}" name="user_name" size="10" />
+		<small></small>
+		<select name="goods_status">
+			<option value="-1" <if condition="$goods_status eq -1">selected</if>>{%GOODS_STATUS}</option>
+			<option value="0" <if condition="$goods_status eq 0">selected</if>>{%ORDER_GOODS_STATUS_0}</option> 
+			<option value="1" <if condition="$goods_status eq 1">selected</if>>{%ORDER_GOODS_STATUS_1}</option>
+			<option value="2" <if condition="$goods_status eq 2">selected</if>>{%ORDER_GOODS_STATUS_2}</option>
+		</select>
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="order" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50,sn:{%SN}|160,data_name:{%DATA_NAME}|~left,data_num:{%DATA_NUM}|70,order_score:{%ORDER_SCORE}|70,user_name:{%USER_NANE}|100,goods_status|getOrderGoodsStatus:{%GOODS_STATUS}|70:,create_time|toDate:{%CREATE_TIME}|130" 
+	actionlist="id|getOrderEdit=$order['goods_status']" action_width="80" />
+<div class="pager">{$page}</div>
+<script type="text/javascript">
+function showOrder(id)
+{
+	window.open("__APP__?m=Order&a=show&id=" + id);
+}
+</script>
+<include file="Public:footer" />

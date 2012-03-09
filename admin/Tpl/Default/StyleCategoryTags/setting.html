@@ -1,0 +1,139 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="tabs-title">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:U(MODULE_NAME.'/index')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/insert')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<td class="border tc" width="40%">
+			分类关联标签(双击删除关联标签)
+		</td>
+		<td class="border tc" width="10%">
+			操作
+		</td>
+		<td class="tc" width="40%">
+			添加标签(双击添加到关联标签)
+		</td>
+	</tr>
+	<tr>
+		<td class="border" rowspan="2" style="vertical-align:top;">
+			<ul id="category_tag_list" class="tag_list" style="height:300px; padding:0 0 5px 0;">
+				
+			</ul>
+			<div class="clear"></div>
+			<div style="line-height:18px; padding:5px 0;">
+			直接添加关联标签，可输入多个标签，以,号分隔，格式为：<br/>
+			标签|排序(如 衬衫|1,短T|10,条纹|100)
+			</div>
+			<textarea id="custom_tags" name="custom_tags" class="textinput areainput" style="width:99%; height:58px;"></textarea>
+			<input type="hidden" name="category_tags" id="category_tags" />
+		</td>
+		<td class="border tc" rowspan="2">
+			<p><input type="button" id="right_all" class="formbutton" value="{%RIGHT_ALL}" /></p>
+			<br/><br/>
+			<p><input type="button" id="left_all" class="formbutton" value="{%LEFT_ALL}" /></p>
+		</td>
+		<td class="tc">
+			<span>搜索标签：</span>
+			<input type="text" class="textinput" id="tag_key" />
+			<input type="button" id="searchTag" class="formbutton" value="{%SEARCH}" />
+		</td>
+	</tr>
+	<tr>
+		<td style="vertical-align:top;">
+			<ul id="tag_list" class="tag_list" style="height:370px; width:97%;">
+				
+			</ul>
+		</td>
+	</tr>
+</table>
+<table cellpadding="4" cellspacing="0" border="0" class="table-form" style="border-top:none;">
+	<tr class="act">
+		<th width="180">&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+jQuery(function($){
+	$("#searchTag").click(function(){
+		var query = new Object();
+		query.sid = "{@style_category_tags_cate_id}";
+		query.key = $("#tag_key").val();
+		query.tag_name = getCategoryTagList();
+		query.custom_tags = $("#custom_tags").val();
+		
+		$.ajax({
+			url: APP + '?' + VAR_MODULE + '=GoodsTags&' + VAR_ACTION + '=search',
+			type:"POST",
+			cache: false,
+			data:query,
+			dataType:"html",
+			success: function(html){
+				$("#tag_list").html(html);
+			}
+		});
+	});
+	
+	$("#right_all").click(function(){
+		$("#tag_list li").each(function(){
+			dblTag(this);
+		});
+	});
+	
+	$("#left_all").click(function(){
+		$("#category_tag_list li").each(function(){
+			dblTag(this);
+		});
+	});
+	
+	$("#form").submit(function(){
+		$("#category_tags").val(getCategoryTagAndWeightList());
+	});
+});
+
+function getCategoryTagList()
+{
+	var tags = '';
+	var jg = '';
+	$("#category_tag_list li span").each(function(){
+		tags += jg + $(this).text();
+		jg = '   ';
+	});
+	
+	return tags;
+}
+
+function getCategoryTagAndWeightList()
+{
+	var tags = '';
+	var jg = '';
+	$("#category_tag_list li span").each(function(){
+		tags += jg + encodeURI($(this).text()) + '|' + $('input',$(this).parent()).val();
+		jg = '   ';
+	});
+	
+	return tags;
+}
+
+function dblTag(obj)
+{
+	if(obj.getAttribute('rel') == 0)
+	{
+		obj.setAttribute('rel',1);
+		$('input',obj).show();
+		$(obj).prependTo($("#category_tag_list"));
+	}
+	else
+	{
+		obj.setAttribute('rel',0);
+		$('input',obj).hide();
+		document.getElementById("tag_list").appendChild(obj);
+	}
+}
+</script>
+<include file="Public:footer" />

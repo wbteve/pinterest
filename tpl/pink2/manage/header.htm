@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" />
+		<title>$_FANWE['setting']['site_title']</title>
+		<?php
+			$default_js[] = './public/js/jquery.js';
+			$default_js[] = './public/js/base.js';
+			$default_js[] = './public/js/jquery.easing.js';
+			$default_js[] = './public/js/jquery.lazyload.js';
+			$default_js[] = './public/js/lang.js';
+			$default_js[] = './public/js/setting.js';
+			$default_js[] = './public/js/jquery.bgiframe.js';
+			$default_js[] = './public/js/jquery.weebox.js';
+			$default_js[] = './public/js/ajaxfileupload.js';
+			$default_js[] = './public/js/jquery.dragsort.js';
+			$default_js[] = './public/js/swfobject.js';
+		?>
+		<script type="text/javascript" src="{script $default_js}"></script>
+		<?php
+			$current_css[] = './tpl/css/reset.css';
+			$current_css[] = './tpl/css/base.css';
+			$current_css[] = './tpl/css/globe.css';
+			$current_css[] = './tpl/css/publishbox.css';
+			$current_css[] = './tpl/css/lightbox.css';
+			$current_css[] = './tpl/css/addfav.css';
+			$current_css[] = './tpl/css/manage.css';
+		?>
+		<link rel="stylesheet" type="text/css" href="{css $current_css}" media="all"/>
+		<script type="text/javascript">
+			var SITE_PATH = '$_FANWE[site_root]';
+			var SITE_URL = '$_FANWE[site_url]';
+			var TPL_PATH = '{TPL_PATH}';
+			var PUBLIC_PATH	 = '{PUBLIC_PATH}';
+			var MODULE_NAME	 = '{MODULE_NAME}';
+			var ACTION_NAME	 = '{ACTION_NAME}';
+			var COOKIE_PRE = "$_FANWE['config']['cookie']['cookie_pre']";
+		</script>
+	</head>
+	<body>
+ 	

@@ -1,0 +1,3 @@
+<!--{loop $list $album}-->
+<li album="{$album['id']}"><input type="radio" name="album_box" class="m_i" aid="{$album['id']}"{if $album['id'] == $select_aid} checked="checked"{/if}><label class="m_a">{$album['title']}</label></li>
+<!--{/loop}-->

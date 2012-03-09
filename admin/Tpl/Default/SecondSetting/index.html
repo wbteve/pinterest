@@ -1,0 +1,33 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}" enctype="multipart/form-data">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%SECOND_STATUS}</th>
+		<td>
+			<label><input type="radio" name="SECOND_STATUS" value="1" <if condition='$settings.SECOND_STATUS eq 1'>checked="checked"</if> /><span>{%YES}</span></label>
+			<label><input type="radio" name="SECOND_STATUS" value="0" <if condition='$settings.SECOND_STATUS eq 0'>checked="checked"</if> /><span>{%NO}</span></label>
+		</td>
+	</tr>
+	<tr>
+		<th>{%SECOND_TAOBAO_FORUMID}</th>
+		<td><input type="text" class="textinput" name="SECOND_TAOBAO_FORUMID" size="60" value="{$settings.SECOND_TAOBAO_FORUMID}" /></td>
+	</tr>
+	<tr>
+		<th>{%SECOND_TAOBAO_SIGN}</th>
+		<td><input type="text" class="textinput" name="SECOND_TAOBAO_SIGN" size="100" value="{$settings.SECOND_TAOBAO_SIGN}" /></td>
+	</tr>
+	<tr>
+		<th>{%SECOND_ARTICLES}</th>
+		<td><textarea class="areainput" rows="16" name="SECOND_ARTICLES">{$settings.SECOND_ARTICLES}</textarea></td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

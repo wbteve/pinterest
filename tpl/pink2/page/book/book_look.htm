@@ -1,0 +1,155 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/general.css';
+	$css_list[0]['url'][] = './tpl/css/book.css';
+	$css_list[0]['url'][] = './tpl/css/categories.css';
+?>
+<!--{template inc/header}-->
+<div id="body" class="container_16">
+	<div class="top_tags" id="cms308"> 
+		<ul style="min-height:180px;" class="top_tags_bd clearfix"> 
+			<li class="style_link">
+				<a href="{u book/dapei}">搭配秀</a>
+				<a class="c" href="{u book/look}">晒&nbsp;&nbsp;&nbsp;&nbsp;货</a>
+				<a href="{u style}">精选搭配</a>
+			</li>
+			<!--{eval $tag_index = 1;}-->
+			<!--{loop $category_tags $key $cate}-->
+			<li{if $tag_index == 4} class="w17"{/if}>
+				<span>$cate['cate_name']</span>
+				<p>
+					<!--{loop $cate['tags'] $k $tag}--> 
+					<a href="$tag['url']" {if $tag['is_hot'] == 1}class="h"{/if}>$tag['tag_name']</a> 
+					<!--{/loop}-->
+				</p>
+			</li>
+			<!--{eval $tag_index++;}-->
+			<!--{/loop}-->
+			<li style="right:40px;" class="share"> 
+				<div class="show_style new_shop">
+					<a href="{u u/me}"><img src="./tpl/images/my_shaihuo.png"></a>
+				</div>
+			</li> 
+		</ul> 
+		<div class="top_tags_ft"></div> 
+	</div>
+	<div class="imagewall_nav">
+		<div class="imagewall_sort">
+			<h1 class="fl">{$title}</h1>
+			<div style="margin-left:20px;" class="fl">
+				<a>{lang sort_by}：</a>
+				<a {if $pop_url['act'] == 1}class="c"{/if} href="$pop_url['url']">{lang sort_pop}</a>
+				<a {if $new_url['act'] == 1}class="c"{/if} href="$new_url['url']">{lang sort_new}</a>
+				<a {if $hot7_url['act'] == 1}class="cc"{/if} href="$hot7_url['url']" style="width:68px;">{lang sort_7hot}</a>
+				<a {if $hot30_url['act'] == 1}class="cc"{/if} href="$hot30_url['url']" style="width:68px;">{lang sort_30hot}</a>
+			</div>
+		</div>
+		<div class="imagewall" id="imagewall_container">
+			<!--{eval $col_index = 0;}-->
+			<!--{loop $share_display $share_col}-->
+			<!--{eval $col_index++;}-->
+			<div class="col{$col_index} clear_in share_col">
+				<!--{loop $share_col $share}-->
+				<div class="i_w_f" shareID="{$share['share_id']}" id="share_item_{$share['share_id']}">
+					<div class="hd"></div>
+					<div class="bd">
+						<ul class="pic">
+							<!--{loop $share['look_imgs'] $share_img}-->
+							<li>
+								<a style="width:200px;" href="{$share_img['url']}" target="_blank">
+									<img class="book_img lazyload" original="{getimg $share_img['img'] 200 999)}" src="./tpl/images/lazyload.gif" width=200 />
+								</a>
+							</li>
+							<!--{/loop}-->
+						</ul>
+						<div class="favorite">
+							<a href="javascript:;" class="favaImg" onclick="$.Fav_Share({$share['share_id']},this,32,'#share_item_{$share['share_id']}');"></a>
+							<div class="favDiv"><a target="_blank" class="favCount SHARE_FAV_COUNT" href="{$share['url']}"  >$share['collect_count']</a></div>
+							<a target="_blank" href="{$share['url']}" class="creply"><b>{$share['comment_count']}</b>评论</a>
+						</div>
+					</div>
+					<div class="who_share">
+						<div class="ws_bd clearfix">
+							<!--{getuser $share['uid'] 0 's,24' ',icard avt fl lazyload'}-->
+							<p class="fr clearfix">
+								<span class="fl"><!--{getuser $share['uid'] 0 '' 'n icard'}--></span>
+								<span class="t fr">{$share['time']}</span>
+								<span class="tkinfo clearfix">
+									{cutstr $share['content'] 200}
+								</span>
+							</p>
+						</div>
+						
+						<div class="ws_ft"></div>
+					</div>
+				</div>
+				<!--{/loop}-->
+			</div>
+			<!--{/loop}-->
+		</div>
+		<!--{if $pager['page_count'] > 1}-->
+		<div style="padding-top:30px" class="clr">
+			<div class="pagination pd_tb"> 
+				<!--{subtemplate inc/pages}--> 
+			</div>
+		</div>
+		<!--{/if}-->
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+FANWE.NO_COUNTER = true;
+var colHeight = 0;
+var colIndex = 0;
+var rowHtml = '<div class="i_w_f_f empty_row"><div class="hd"></div><div class="bd"></div><div class="ft"></div></div>';
+jQuery(function(){
+	<!--{dynamic getShareByUserClickShareID}-->
+	<!--{dynamic getManageDynamic args=book_look}-->
+	if($.browser.msie&&($.browser.version == "6.0")&&!$.support.style)
+	{
+		return ;
+	}
+	else{
+		$(".share_col").each(function(i){
+			$(this).append(rowHtml);
+		});
+		$(window).scroll(function(){
+			$(".share_col").each(function(i){
+				$('.empty_row .bd',this).height(0);
+				if($(this).height() > colHeight)
+				{
+					colIndex = i;
+					colHeight = $(this).height();
+				}
+			});
+			
+			$(".share_col").each(function(i){
+				if(i != colIndex)
+				{
+					$('.empty_row .bd',this).height(colHeight - $(this).height());
+				}
+			});
+		});
+	}
+});
+
+function ShowUserClickShare(result)
+{
+	if($("#share_item_" + result.share_id).length > 0)
+	{
+		var thisshare = $("#share_item_" + result.share_id);
+		var preshare = thisshare.prev();
+		var parentcol = thisshare.parent();
+		$(".col1").prepend(thisshare);
+		if(!parentcol.hasClass("col1") && $(".col1 .i_w_f").length > 1)
+		{
+			if(preshare.get(0))
+				preshare.after($(".col1 .i_w_f").eq(1));
+			else
+				parentcol.prepend($(".col1 .i_w_f").eq(1));
+		}
+	}
+	else
+		$(".col1").prepend(result.html);
+}
+</script>
+<!--{template inc/footer}-->

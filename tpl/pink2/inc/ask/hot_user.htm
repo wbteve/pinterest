@@ -1,0 +1,9 @@
+<!--{loop $hot_users $user}-->
+<li>
+	<a href="{u u/index uid=$user['uid']}"><img class="fl u_name r3 GUID" src="{avatar $user['uid'] s $user['server_code'] 1}" uid="{$user['uid']}" height="24" width="24" alt="{$user['user_name']}"></a>
+	<div class="answer_name">
+		<a class="gc GUID" href="{u u/index uid=$user['uid']}" uid="{$user['uid']}">{$user['user_name']}</a>
+	</div>
+	<span>{$user['ask_best_posts']}</span>
+</li>
+<!--{/loop}-->

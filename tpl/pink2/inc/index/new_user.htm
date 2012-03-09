@@ -1,0 +1,14 @@
+<div class="new_user">
+	<div class="nu_head">
+		<strong>{lang uu_new_user}</strong>&nbsp;<span class="usernum">已经有 <b>{$user_count}</b> 位爱分享MM加入~</span>
+	</div>
+	<div class="list">
+		<ul>
+			<!--{loop $users $user}-->
+			<li>
+				<a name="{$user['user_name']}" href="{u u/index uid=$user['uid']}" target="_blank"><img class="GUID" uid="{$user['uid']}" src="{avatar $user['uid'] s $user['server_code'] 1}" width="32"  alt="{$user['user_name']}"/></a>
+			</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+</div>

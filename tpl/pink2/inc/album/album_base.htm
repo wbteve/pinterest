@@ -1,0 +1,93 @@
+<div class="now_hot">
+	<div class="now_left">
+		<div class="now_hd"></div>
+		<div class="now_bd">
+			<h1>今日推荐</h1>
+			<ul>
+				<!--{loop $best_album $album}-->
+				<li>
+					<a class="now_pic" target="_blank" href="{$album['url']}"><img original="{getimg $album['img']['img'] 200 999}" width="200" src="./tpl/images/lazyload.gif" class="lazyload"/></a>
+					<div class="now_like">
+						<span><em>{$album['collect_count']}</em>喜欢</span>
+						<span><em>{$album['best_count']}</em>推荐</span>
+						<span><em>{$album['share_count']}</em>分享</span>
+					</div>
+					<div class="blank15"></div>
+					<div class="now_user">
+						<!--{getuser $album['uid'] 0 'm,48' ',icard fl r3'}-->
+						<div class="now_u_r">
+							<span>{cutstr $album['title'] 18}</span>
+							<!--{getuser $album['uid'] 0 '' 'n icard'}-->
+							<div class="followdiv">
+								<!--{getfollow $album['uid'] inc/getfollow/album}-->
+							</div>
+						</div>
+					</div>
+				</li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+		<div class="now_ft"></div>
+	</div>
+	<div class="now_right">
+		<div class="hd"></div>
+		<div class="bd" id="albumIndexHotNew">
+			<div class="book_daren_nav">
+				<span>热门作者</span>
+				<a class="album_tab c" rel="0" href="javascript:;" title="热门作者">HOT</a>
+				<a class="album_tab" rel="1" href="javascript:;" title="最新作者">NEW</a>
+			</div>
+			<ul class="album_daren_list">
+				<!--{loop $hot_users $user}-->
+				<li>
+					<a target="_blank" href="{u u/album uid=$user['uid']}">
+						<img alt="{$user['user']['user_name']}" src="{avatar $user['uid'] b $user['server_code'] 1}" uid="{$user['uid']}" width="100" height="100" class="fl avatar icard GUID">
+					</a>
+					<div class="daren_info">
+						<a target="_balnk" class="uname icard GUID" href="{u u/album uid=$user['uid']}" uid="{$user['uid']}">{$user['user']['user_name']}</a>
+						<div class="followdiv">
+							<!--{getfollow $user['uid'] inc/getfollow/album}-->
+						</div>
+						<p class="share_info">
+							<a style="color:#999;" target="_blank" href="{u u/album uid=$user['uid']}">分享了<span class="colp">{$user['user']['albums']}</span>个{lang common/album}</a><br>
+							收获了<span class="colp">{$user['user']['collects']}</span>个喜欢<br>
+						</p>
+					</div>
+				</li>
+				<!--{/loop}-->
+			</ul>
+			<ul class="album_daren_list" style="display:none;">
+				<!--{loop $new_users $user}-->
+				<li>
+					<a target="_blank" href="{u u/album uid=$user['uid']}">
+						<img alt="{$user['user']['user_name']}" src="{avatar $user['uid'] b $user['server_code'] 1}" uid="{$user['uid']}" width="100" height="100" class="fl avatar icard GUID">
+					</a>
+					<div class="daren_info">
+						<a target="_balnk" class="uname icard GUID" href="{u u/album uid=$user['uid']}" uid="{$user['uid']}">{$user['user']['user_name']}</a>
+						<div class="followdiv">
+							<!--{getfollow $user['uid'] inc/getfollow/album}-->
+						</div>
+						<p class="share_info">
+							<a style="color:#999;" target="_blank" href="{u u/album uid=$user['uid']}">分享了<span class="colp">{$user['user']['albums']}</span>个{lang common/album}</a><br>
+							收获了<span class="colp">{$user['user']['collects']}</span>个喜欢<br>
+						</p>
+					</div>
+				</li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+		<div class="ft"></div>
+	</div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+	$("#albumIndexHotNew .album_tab").click(function(){
+		var rel = this.getAttribute('rel');
+		$("#albumIndexHotNew .book_daren_nav span").html(this.title);
+		$("#albumIndexHotNew .album_tab").removeClass('c');
+		$(this).addClass('c');
+		$("#albumIndexHotNew .album_daren_list").hide();
+		$("#albumIndexHotNew .album_daren_list").eq(rel).show();
+	});
+});
+</script>

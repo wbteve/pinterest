@@ -1,0 +1,219 @@
+<?php
+	$css_list[0]['url'][] = './tpl/css/zone.css';
+	$js_list[0] = './tpl/js/zone.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="homens_hd"></div>
+	<div class="homens_bd clearfix">
+		<div id="content" class="clearfix" style="width:960px;">
+			<!--{template inc/u/u_menu}-->
+			<div class="content fr" style="width:820px;">
+				<div class="zone_head" style="margin:0 20px 20px 20px; height:auto;">
+					<div>
+						<h1 class="zone_title">发送信件</h1>
+					</div>
+				</div>
+				<form id="msgForm" name="msgForm">
+				<div class="msg_item">
+					<label>收件人：</label>
+					<input type="text" name="user_name" id="msg_user_name" class="r3" check="0" />
+					<div class="msg_tip" id="msg_user_name_tip"></div>
+					<div class="msg_loading" id="msg_user_name_loading"></div>
+				</div>
+				<div class="msg_item">
+					<label>内　容：</label>
+					<textarea name="message" class="PUB_TXT r3" id="msg_message" rows="6" position="0" check="0"></textarea>
+				</div>
+				<div class="msg_item">
+					<span class="fl" style="margin-left:48px;">{lang add}：</span>
+					<a w="pub" href="javascript:;" onclick="$.Show_Expression(this)" style="background-position:-2px -3px;" class="add_face">表情</a>
+				</div>
+				<div class="msg_item">
+					<div class="msg_tip" id="msg_message_tip" style="margin-left:48px;"></div>
+				</div>
+				<div class="msg_btn">
+					<input type="submit" value="发送" class="r5" id="msg_send_btn" />
+					<div class="msg_loading" id="msg_send_loading" style="width:200px; padding:0 0 0 22px; margin-top:3px;">发送中，请稍候...</div>
+				</div>
+				</form>
+				<div class="clear"></div>
+				<div class="zone_head" style="margin:20px 20px 10px 20px; height:auto;">
+					<div>
+						<h1 class="zone_title fl">我的粉丝</h1>
+						<div style="margin-top:8px;" class="msg_loading" id="msg_fans_loading"></div>
+					</div>
+				</div>
+				<div id="fans_list">
+					<ul class="fans_list">
+						<!--{loop $user_list $user}-->
+						<li uid="{$user['uid']}" uname="{$user['user_name']}" title="{$user['user_name']}">
+							<a href="javascript:;"><img src="{avatar $user['uid'] m $user['server_code'] 1}" /></a>
+							<p>{$user['user_name']}</p>
+						</li>
+						<!--{/loop}-->
+					</ul>
+					<div class="clear"></div>
+					<div class="pagination">
+						<!--{subtemplate inc/pages}--> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="homews_ft"></div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+	$("#fans_list .pagination a").live('click',function(){
+		var page = this.getAttribute('page');
+		if(page != null)
+		{
+			var query = new Object();
+			query.page = page;
+			$("#msg_fans_loading").show();
+			$.ajax({
+				url: SITE_PATH+"services/service.php?m=user&a=getfans",
+				type: "POST",
+				data:query,
+				dataType: "html",
+				success: function(html){
+					$("#fans_list").html(html);
+					$("#msg_fans_loading").hide();
+				},
+				error:function(){
+					$("#msg_fans_loading").hide();
+				}
+			});
+		}
+	});
+	
+	$("#fans_list ul li").live('click',function(){
+		$("#msg_user_name").attr('check',1);
+		$("#msg_user_name_tip").hide();
+		$("#msg_user_name").val(this.getAttribute('uname'));
+	});
+	
+	$("#msg_message").bind("blur change",function(){
+		var message = $.trim(this.value);
+		var len = $.getStringLength(message);
+		if(len < 2 || len >200)
+		{
+			$("#msg_message").attr('check',0);
+			$("#msg_message_tip").show().html('内容由2到200个字符组成，一个汉字两个字符');
+		}
+		else
+		{
+			$("#msg_message").attr('check',1);
+			$("#msg_message_tip").hide();
+		}
+	});
+	
+	$("#msg_user_name").bind('change',function(){
+		checkMsgUser(true);
+	});
+	
+	$("#msgForm").submit(function(){
+		$(".msg_tip").hide();
+		$(".msg_loading").hide();
+		
+		var user_name = $.trim(this.user_name.value);
+		if(user_name == '')
+		{
+			$("#msg_user_name_tip").show().html('请选择或输入你要发信的收件人');
+			return false;	
+		}
+		
+		if($("#msg_user_name").attr('check') == 0)
+		{
+			checkMsgUser(false);
+			if($("#msg_user_name").attr('check') == 0)
+			{
+				$("#msg_user_name_tip").show().html('只能给Fans发私信哦');
+				return false;	
+			}
+		}
+		
+		var message = $.trim(this.message.value);
+		var len = $.getStringLength(message);
+		if(len < 2 || len >200)
+		{
+			$("#msg_message_tip").show().html('内容由2到200个字符组成，一个汉字两个字符');
+			return false;
+		}
+		
+		$("#msg_send_btn").attr('disabled',true);
+		$("#msg_send_loading").show();
+		
+		$.ajax({
+			url: SITE_PATH+"services/service.php?m=user&a=sendmsg",
+			type: "POST",
+			data:$(this).serialize(),
+			dataType: "json",
+			success: function(result){
+				if(result.status > 0)
+				{
+					var fun = function(){
+						location.href = "{u u/message uid=$_FANWE['uid']}";
+					};
+					setTimeout(fun,1);
+				}
+				else if(result.status < 0)
+				{
+					$("#msg_user_name_tip").show().html('只能给Fans发私信哦');
+				}
+				else
+				{
+					alert('发送信息失败，请稍候重新发送');
+				}
+				
+				$("#msg_send_loading").hide();
+				$("#msg_send_btn").attr('disabled',false);
+			},
+			error:function(){
+				alert('发送信息失败，请稍候重新发送');
+				$("#msg_send_loading").hide();
+				$("#msg_send_btn").attr('disabled',false);
+			}
+		});
+		
+		return false;
+	});
+});
+
+function checkMsgUser(async)
+{
+	var user_name = $.trim($("#msg_user_name").val());
+	if(user_name != '')
+	{
+		$("#msg_user_name_loading").show();
+		$("#msg_user_name_tip").hide();
+		$("#msg_user_name").attr('check',0);
+		var query = new Object();
+		query.user_name = user_name;
+		$.ajax({
+			url: SITE_PATH+"services/service.php?m=user&a=smguser",
+			type: "POST",
+			data:query,
+			async:async,
+			dataType: "json",
+			success: function(result){
+				if(result.status == 1)
+				{
+					$("#msg_user_name").attr('check',1);
+					$("#msg_user_name").val(result.user.user_name);
+				}
+				else
+				{
+					$("#msg_user_name_tip").show().html('只能给Fans发私信哦');
+				}
+				$("#msg_user_name_loading").hide();
+			},
+			error:function(){
+				$("#msg_user_name_loading").hide();
+			}
+		});
+	}
+}
+</script>
+<!--{template inc/footer}-->

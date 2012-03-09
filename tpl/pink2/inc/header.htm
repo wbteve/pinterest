@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title><!--{if !empty($_FANWE['nav_title'])}-->{$_FANWE['nav_title']} - <!--{/if}--><!--{if empty($no_site_name)}-->{$_FANWE['setting']['site_title']}<!--{/if}--></title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta name="keywords" content="{$_FANWE['seo_keywords']}{$_FANWE['setting']['site_keywords']}" />
+	<meta name="description" content="{$_FANWE['seo_description']}{$_FANWE['setting']['site_description']}" />
+	<link rel="icon" href="{$_FANWE['site_root']}favicon.ico" type="image/x-icon" />
+	<?php
+		$default_js[] = './public/js/jquery.js';
+		$default_js[] = './public/js/base.js';
+        $default_js[] = './public/js/jquery.easing.js';
+		$default_js[] = './public/js/jquery.lazyload.js';
+	?>
+	<script type="text/javascript" src="{script $default_js}"></script>
+	<?php
+		$current_css[] = './tpl/css/reset.css';
+		$current_css[] = './tpl/css/base.css';
+		$current_css[] = './tpl/css/globe.css';
+		$current_css[] = './tpl/css/publishbox.css';
+		$current_css[] = './tpl/css/lightbox.css';
+		$current_css[] = './tpl/css/addfav.css';
+	?>
+	<link rel="stylesheet" type="text/css" href="{css $current_css}" media="all"/>
+	<!--{loop $css_list $css}-->
+	<link rel="stylesheet" type="text/css" href="{css $css['url']}"{if !empty($css['media'])} media="{$css['media']}"{/if} />
+	<!--{/loop}-->
+	<script type="text/javascript">
+		var SITE_PATH = '$_FANWE[site_root]';
+		var SITE_URL = '$_FANWE[site_url]';
+		var TPL_PATH = '{TPL_PATH}';
+		var PUBLIC_PATH	 = '{PUBLIC_PATH}';
+		var MODULE_NAME	 = '{MODULE_NAME}';
+		var ACTION_NAME	 = '{ACTION_NAME}';
+		var COOKIE_PRE = "$_FANWE['config']['cookie']['cookie_pre']";
+	</script>
+</head>
+<body>
+	<div id="head">
+		<div id="info_bar">
+			<div class="fm960">
+				<div class="fl">
+					<a href="{u index}"><img class="logo fl" src="{$_FANWE['site_root']}{$_FANWE['setting']['site_logo']}" /></a>
+				</div>
+				<!--{dynamic getUserInfo}-->
+			</div>
+		</div>
+		<div id="nav_bar">
+			<div class="fm960">
+				<ul class="fl">
+					<li class="f"><a href="{u index}"{if MODULE_NAME == 'Index'} class="c"{/if}>{lang page_index}</a></li>
+					<?php
+						$g_r_cate = $_FANWE['cache']['goods_category']['root'];
+						$g_r_cate = &$_FANWE['cache']['goods_category']['all'][$g_r_cate];
+					?>
+					<li><a href="{u book/shopping}"{if MODULE_NAME == 'Book' && !defined('IS_DAPAI')} class="c"{/if}>{$g_r_cate['cate_name']}</a></li>
+					<li><a href="{u album}"{if MODULE_NAME == 'Album'} class="c"{/if}>{lang common/album}</a></li>
+					<li><a href="{u book/dapei}"{if defined('IS_DAPAI')} class="c"{/if}>{lang dapei}</a></li>
+					<li>
+						<a href="{u club/index}"{if MODULE_NAME == 'Club'} class="c"{/if}>{lang club}</a>
+						<a class="cat{if MODULE_NAME == 'Ask'} c{/if}" href="{u ask/index}">{lang ask}</a>
+					</li>
+					<li><a href="{u daren/index}"{if MODULE_NAME == 'Daren'} class="c"{/if}>{lang daren}</a></li>
+					<!--{if $_FANWE['setting']['second_status'] == 1}-->
+					<li><a href="{u second}"{if MODULE_NAME == 'Second'} class="c"{/if}>闲置</a></li>
+					<!--{/if}-->
+					<li><a href="{u shop}"{if MODULE_NAME == 'Shop'} class="c"{/if}>好店</a></li>
+					<li><a href="{u exchange}"{if MODULE_NAME == 'Exchange'} class="c"{/if}>积分兑换</a></li>
+				</ul>
+				
+				<div class="fr top_search r5">
+					<form action="{u book/search}" method="post">
+						<input type="text" name="tag" class="ts_txt" value="" tooltip="{lang search_share}"/>
+						<input type="submit" value=" " class="ts_btn" />
+						<input type="hidden" name="action" value="search" />
+						<div class="ts_type fl" style="display:none;">
+							<input type="radio" name="t" value="8" id="s_h" checked="">
+							<label for="s_h">{lang search_goods}</label>
+							<input type="radio" value="2" name="t" id="s_p">
+							<label for="s_p">{lang search_user}</label>
+						</div>
+					</form>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div style="margin:0 auto;width:960px">{advlayout name='头部广告位'}</div>
+	<div id="body_wrap">

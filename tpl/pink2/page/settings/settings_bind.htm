@@ -1,0 +1,87 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/setting.css';
+?>
+<!--{template inc/header}-->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".addSync").bind("click",function(){
+			var ajaxurl = SITE_PATH+"settings.php?action=setsyn";
+			var query = new Object();
+			var cls = $(this).attr("rel");
+			query.syn_weibo = $("form[name='syn_"+cls+"']").find("input[name='syn_weibo']").attr("checked")?1:0;
+			query.syn_topic = $("form[name='syn_"+cls+"']").find("input[name='syn_topic']").attr("checked")?1:0;
+			query.cls = cls;
+			$.ajax({
+				url: ajaxurl,
+				data:query,
+				type: "POST",
+				success: function(msg){
+//					alert(msg);
+					location.reload(true);
+				},
+				error:function(ajaxobj)
+				{
+	
+				}
+			});
+		});
+	});	
+</script>
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd clearfix">
+			<div id="content" style="width:960px;">
+				<!--{template inc/settings/settings_menu}-->
+				<div id="setting_box" class="fl">
+					<div id="setting_form" class="account_bind">
+						<p>绑定帐号可以把您的购物乐趣同步给更多好友。</p>
+						<ul class="bind_logo">
+							<!--{loop $login_modules $key $module}-->
+							<li>
+								<img alt="{$module['name']}" src="{$module['bind_img']}">
+								<div class="bind_web">
+									<!--{if isset($bind_list[$key])}-->
+									<span>您已绑定 $module['name']</span><a href="$module['unbind_url']">取消绑定</a>
+									<!--{if $module['is_syn']}-->
+									<br>
+									<form class="checkType" name="syn_{$key}">							
+										<input type="checkbox" name="syn_topic" {if $bind_list[$key]['sync']['topic'] == 1}checked="checked"{/if}>发主题或提问
+										<input type="checkbox" name="syn_weibo" {if $bind_list[$key]['sync']['weibo'] == 1}checked="checked"{/if}>发微博或商品
+									</form>
+									<a rel="{$key}" class="addSync" href="javascript:;"></a>
+									<!--{/if}-->
+									<!--{else}-->
+									<span class="unbind">你还未绑定$module['name']</span><br>
+									<a href="$module['bind_url']">点击绑定</a>
+									<!--{/if}-->
+								</div>
+							</li>
+							<!--{/loop}--> 
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<!--{if !empty($bind_exists)}-->
+<script type="text/javascript">
+jQuery(function($){
+	var query = new Object();
+	query.is_bind = confirm("{$bind_exists}");
+	$.ajax({
+		url: SITE_PATH+"services/service.php?m=user&a=bind",
+		type: "POST",
+		data:query,
+		dataType: "json",
+		success: function(result){
+			if(result.status == 1)
+				location.reload(true);
+		}
+	});
+});
+</script>
+<!--{/if}-->
+<!--{template inc/footer}-->

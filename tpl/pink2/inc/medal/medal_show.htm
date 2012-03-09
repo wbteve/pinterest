@@ -1,0 +1,33 @@
+<div class="medal_pop_top">
+	<p class="medal_pop_img"><img height="60" align="absmiddle" width="60" src="{$medal['big_img']}"></p>
+	<p class="medal_pop_desc">
+		<strong class="tit">{$medal['name']}</strong>
+		<span class="cont">{nl2br $medal['desc']}</span>
+	</p>
+</div>
+<!--{if $_FANWE['uid'] > 0 && $medal['is_allow'] == 1}-->
+<div class="medal_pop_bot">
+<!--{if !empty($medal['tips1'])}-->
+<p class="medal_pop_tips">{$medal['tips1']}</p>
+<!--{/if}-->
+<!--{if !empty($medal['tips2'])}-->
+<p class="gray">{$medal['tips2']}</p>
+<!--{/if}-->
+<!--{if $medal['is_award'] == 1}-->
+	<!--{if $medal['give_type'] == 1}-->
+	<p>获得时间：$medal['award_time']</p>
+	<!--{if !empty($medal['end_time'])}-->
+	<p>有效期至：{$medal['end_time']}</p>
+	<!--{/if}-->
+	<!--{/if}-->
+<!--{else}-->
+	<!--{if $medal['give_type'] == 1}-->
+		<!--{if $medal['is_apply'] == 1}-->
+		<a class="medal_pop_bt fr" href="javascript:">已申请</a>
+		<!--{else}-->
+		<a class="medal_pop_btn fr" href="{u medal/apply mid=$medal['mid']}" target="_blank">申请勋章</a>
+		<!--{/if}-->
+	<!--{/if}-->
+<!--{/if}-->
+</div>
+<!--{/if}-->

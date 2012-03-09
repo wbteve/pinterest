@@ -1,0 +1,44 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/user.js"></script>
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:Cookie::get('returnUrl')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/award')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%USER}</th>
+		<td>
+			<select name="uid" id="userSelect">
+				<option value="">{:getLang('SEARCH_USER','User')}</option>
+			</select>&nbsp;
+			<input type="text" class="textinput" size="8" id="userName" />&nbsp;
+			<input class="submit_btn" type="button" value="{%SEARCH}" onclick="searchUser('#userSelect','#userName');" />
+		</td>
+	</tr>
+	<tr>
+		<th>{%NAME}</th>
+		<td>
+			<select name="mid">
+				<foreach name="medal_list" item="medal_item">
+				<option value="{$medal_item.mid}">{$medal_item.name}</option>
+				</foreach>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>{%DESC}</th>
+		<td>
+			<textarea name="desc" class="areainput" rows="3"></textarea>
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

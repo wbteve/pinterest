@@ -1,0 +1,42 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<link href="__TMPL__Static/Js/DatePicker/jquery.ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/jquery.ui.core.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/DatePicker/lang/jquery.ui.datepicker-{$default_lang}.js"></script>
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="addData" name="addData" value="{%ADD}" click="addData(this,'checkList')" />
+	<fanwe:imageBtn id="editData" name="editData" value="{%EDIT}" click="editData(this,'checkList','id')" />
+	<fanwe:imageBtn id="removeData" name="removeData" value="{%REMOVE}" click="removeData(this,'checkList')" />
+	<form action="__APP__">
+		<span>{%NAME}</span>
+		<input class="textinput" type="text" value="{$name}" name="name" size="10" />
+		<small></small>
+		<span>{%DAY_TIME}</span>
+		<input class="textinput" type="text" value="{$begin_time}" name="begin_time" id="begin_time" size="10" />
+		<span>-</span>
+		<input class="textinput" type="text" value="{$end_time}" name="end_time" id="end_time" size="10" />
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<fanwe:list 
+	id="checkList" 
+	style="list" 
+	name="forum" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50,name:{%NAME}|~left:textEdit|id,goods_type|getTypeName:{%GOODS_TYPE}|70,integral:{%INTEGRAL}|70:numberEdit|id,stock:{%STOCK}|70:numberEdit|id,buy_count:{%BUY_COUNT}|80,user_num:{%USER_NUM}|70:numberEdit|id,is_best|getStatusImg:{%IS_BEST}|50:toggleStatus|id,status|getStatusImg:{%STATUS}|50:toggleStatus|id,sort:{%SORT}|70:numberEdit|id,begin_time|toDate:{%BEGIN_TIME}|80,end_time|toDate:{%END_TIME}|80" 
+	actionlist="editData:{%EDIT}:id,removeData:{%REMOVE}:id" action_width="80" />
+<div class="pager">{$page}</div>
+<script type="text/javascript">
+jQuery(function($){
+	$("#begin_time").datepicker();
+	$("#end_time").datepicker();
+});
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,57 @@
+.f14 { font-size:14px; font-weight:bold; }
+.red,
+.red a:link,
+.red a:visited,
+.red:active { color:#f69; text-decoration:none; }
+.red a:hover { color:#f69; text-decoration:underline; }
+
+.mTuan { background:#fff; *border:1px solid #ddd;
+box-shadow:0 1px 3px rgba(34, 25, 25, 0.2); -webkit-box-shadow:rgba(34, 25, 25, 0.2) 0px 1px 3px; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; width:315px; float:left; margin:14px 10px 1px 6px; _display:inline; padding:10px; position:relative; }
+.mTuan h3 { font-size:18px; font-weight:bold; line-height:20px; overflow:hidden; height:40px;}
+.mTuan .h40 { height:40px; }
+.mTuan .pic { width:315px; height:220px; text-align:center; overflow:hidden; }
+.mTuan dl { height:63px; }
+.mTuan dl a:hover { text-decoration:none; }
+.mTuan dl dt {width:212px; height:58px; background:url(../images/tuan_ico.png) no-repeat 0 -62px; float:left; position:absolute; left: -10px; cursor:pointer;}
+.mTuan dl dt p { padding:5px 0 0 35px; font-size:12px; color:#fff; }
+.mTuan dl dt p span { font-size:22px; line-height:43px;color:#fff; }
+.mTuan dl dd { width:120px; line-height:18px; float:left; font-size:13px; position:absolute; left:210px; line-height:19px; }
+.mTuan dl dd b { font-size:14px; color:#f69; margin-left:5px }
+.mTuan dl dd span { font-size:14px; margin-left:5px; text-decoration:line-through; font-weight:bold }
+.mTuan h4 { font-size:14px; font-weight:normal; text-align:right; padding:10px 0 0 20px; }
+.mTuan h4 .time { font-weight:bold; }
+.mTuan h4 .buy { padding-left:15px }
+
+.p_navNew { height:32px; line-height:32px }
+.p_navNew ul li { width:150px; background:url("http://img.meilishuo.net/css/images/person/person_bg.gif") no-repeat 150px -55px; font-size:15px; font-weight:bold; font-family: "Microsoft Yahei"; float:left; padding-right:2px; text-align:center; }
+.p_navNew ul li a:hover { text-decoration:none; }
+.exchange_right{float:right;width:253px; margin:20px 0 0 0;}
+.exchange_right dl{float:left; width:253px; background:#fff; *border:1px solid #ddd;
+box-shadow:0 1px 3px rgba(34, 25, 25, 0.2); -webkit-box-shadow:rgba(34, 25, 25, 0.2) 0px 1px 3px; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;}
+.exchange_right dl dt{background:url(../images/b20.gif) repeat-x 0 0; height:30px; overflow:hidden;border-bottom:1px solid #D5D5D5; line-height:34px; float:left; width:100%;}
+.exchange_right dl dt strong{float:left; padding:0 0 0 8px; font-size:14px; color:#333;}
+.exchange_right dl dd{float:left; width:100%;}
+.exchange_right dl dd .empty{padding:20px; font-size:14px; color:#C00;}
+.exchange_right dl dd.content{line-height:1.5em; padding:10px; width:226px;}
+
+.exchange_right dl dd.text-list ul{float:left; padding:2px 10px 8px 10px;}
+.exchange_right dl dd.text-list ul li{float:left;line-height:18px; border-bottom:dashed 1px #eee; width:227px; padding:6px 3px;}
+.exchange_right dl dd.text-list ul li span a{color:#F30; font-family:Arial;}
+
+.exchange_right dl dd.top ul{float:left; padding:2px 8px 8px 8px;}
+.exchange_right dl dd.top ul li{float:left;line-height:18px; border-bottom:dashed 1px #eee; width:231px; padding:6px 3px;}
+.exchange_right dl dd.top ul li span{float:left; display:block;font-family:Arial; height:18px; line-height:18px;}
+.exchange_right dl dd.top ul li span.i{font-weight:bold; font-size:16px;width:28px;}
+.exchange_right dl dd.top ul li span.t{color:#F30;}
+.exchange_right dl dd.top ul li span.u{width:100px;}
+.exchange_right dl dd.top ul li span.j{width:80px; background:url(../images/money.jpg) no-repeat 0 -11px; padding:0 0 0 13px;}
+.exchange_right dl dd.top ul li span.u1{width:90px;}
+.exchange_right dl dd.top ul li span.j1{width:90px;}
+.er_link{padding:6px; text-align:center;}
+.er_rule{padding:6px; text-align:center;}
+.er_info{float:left; padding:10px 0; width:100%;}
+
+#consignee table{background:#ccc;}
+#consignee td{padding:6px; background:#fff;}
+#consignee td.l{background:#f6f6f6; padding-right:0;  white-space:nowrap; word-wrap:normal; word-break:normal;}
+#consignee .finput{border:1px solid #c8c8c8; padding:4px;}

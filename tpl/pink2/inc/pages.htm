@@ -1,0 +1,19 @@
+<!--{if $pager['page_count'] > 1}-->
+<div class="pages">
+	<!--{if $pager['page'] > 1}-->
+	<a href="$pager[page_prev]" class="page_prev" page="$pager[prev_page]">{lang page_prev}</a>
+	<!--{/if}-->
+	<!--{loop $pager['page_nums'] $page_num}-->
+	<!--{if $pager['page'] == $page_num['name']}-->
+	<a class="c">$page_num[name]</a>
+	<!--{elseif $page_num['name'] == '...'}-->
+	<i>...</i>
+	<!--{else}-->
+	<a href="$page_num[url]" page="$page_num[name]">$page_num[name]</a>
+	<!--{/if}-->
+	<!--{/loop}-->
+	<!--{if $pager['page'] < $pager['page_count']}-->
+	<a href="$pager[page_next]" class="page_next" page="$pager[next_page]">{lang page_next}</a>
+	<!--{/if}-->
+</div>
+<!--{/if}-->

@@ -1,0 +1,38 @@
+<div class="piece3">
+	<div class="piece3_hd"></div>
+	<div id="topic_hot_sidebar" class="piece3_bd topic_list_sidebar">
+		<h2 class="clearfix"><span>{lang hot_event}...</span><a href="{u event/list type=hot}" class="fr">更多</a></h2>
+		<ul>
+			<!--{loop $hot_event_list $hot_topic}-->
+			<li><a target="_blank" href="{u event/detail id=$hot_topic['id']}">{cutstr $hot_topic['title'] 40}</a></li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="piece3_ft"></div>
+</div>
+{if intval($_FANWE['uid'])>0}
+<div class="piece3 mt20">
+	<div class="piece3_hd"></div>
+	<div class="piece3_bd me_event_list">
+		<h2 class="clearfix"><span class="fl">{lang me_event}...</span><a href="{u event/list type=me}" class="fr">更多</a></h2>
+		<ul>
+			<!--{loop $me_event_list $m_pic}-->
+			<li><a target="_blank" href="{u event/detail id=$m_pic['id']}">{cutstr $m_pic['title'] 40}</a></li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="piece3_ft"></div>
+</div>
+<div class="piece3 mt20">
+	<div class="piece3_hd"></div>
+	<div class="piece3_bd me_join_event">
+		<h2 class="clearfix"><span>{lang me_join_event}...</span><a href="{u event/list type=reply}" class="fr">更多</a></h2>
+		<ul>
+			<!--{loop $me_join_event_list $mj_pic}-->
+			<li><a target="_blank" href="{u event/detail id=$mj_pic['id']}">{cutstr $mj_pic['title'] 40}</a></li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="piece3_ft"></div>
+</div>
+{/if}

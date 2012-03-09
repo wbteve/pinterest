@@ -1,0 +1,78 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="tabs-title">
+	<volist name="conf_list" id="vo">
+		<div class="tt-item <if condition='$i eq 1'>active</if>" rel="{$key}"><p><a href="javascript:;">{$key}</a></p></div>
+	</volist>
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}" enctype="multipart/form-data">
+<div class="tabs-body">
+<volist name="conf_list" id="vo" >
+<table cellpadding="4" cellspacing="0" border="0" class="table-form tabs-item <if condition='$i eq 1'>tabs-active</if>" rel="{$key}">
+	<foreach name="vo" item="vo_item" >
+		<tr>
+			<th width="190">{:L('TITLE_'.$vo_item['name'])}：</th>
+			<td>
+				<if condition="$vo_item['list_type'] eq 0"><!-- 手动输入 -->
+					<input type="text" class="textinput" name="{$vo_item.name}" value="{$vo_item.val}" />
+				<elseif condition="$vo_item['list_type'] eq 1"/>
+					<foreach name="vo_item['val_arr']" item="val_item" ><!-- 单选 -->
+					<label><input type="radio" name="{$vo_item.name}" value="{$val_item}" <if condition="$val_item eq $vo_item['val']">checked="checked" </if> />&nbsp;{:L("TITLE_".$vo_item['name']."_".$val_item)}</label>
+					</foreach>
+				<elseif condition="$vo_item['list_type'] eq 2"/><!-- 下拉 -->
+					<if condition="in_array($vo_item['name'],array('DEFAULT_LANG','SITE_TMPL'))">
+					<select name="{$vo_item.name}">
+						<foreach name="vo_item['val_arr']" item="val_item" >
+						<option value="{$val_item}" <if condition="$val_item eq $vo_item['val']">selected="selected"</if>>{$val_item}</option>
+						</foreach>
+					</select>
+					<else />
+					<select name="{$vo_item.name}">
+						<foreach name="vo_item['val_arr']" item="val_item" >
+						<option value="{$val_item}" <if condition="$val_item eq $vo_item['val']">selected="selected"</if>>{:L("TITLE_".$vo_item['name']."_".$val_item)}</option>
+						</foreach>
+					</select>
+					</if>
+				<elseif condition="$vo_item['list_type'] eq 3"/><!-- 文本域 -->
+					<textarea class="areainput" rows="3" name="{$vo_item.name}">{$vo_item.val}</textarea>
+				<elseif condition="$vo_item['list_type'] eq 5"/><!-- 编辑器 -->
+					<fanwe:editor id="{$vo_item.name}" name="{$vo_item.name}" type="CKEDITOR" width="96%" height="130px" content="{$vo_item.val}" />
+				<elseif condition="$vo_item['list_type'] eq 4"/><!-- 图片域 -->
+					<input type="file" class="fileinput" name="{$vo_item.name}" /> 
+					<if condition="$vo_item['val'] neq ''">
+						<a href="__ROOT__/{$vo_item.val}" target="_blank" >{%VIEW}</a>
+					</if>
+				</if>
+			</td>
+		</tr>
+        <?php
+            $title_key = 'TITLE_'.$vo_item['name'].'_TIPS';
+            $tips_lang = L($title_key);
+            if($tips_lang == $title_key)
+                $show_tips = false;
+            else
+                $show_tips = true;
+        ?>
+        <if condition="$show_tips">
+        <tr>
+            <th>&nbsp;</th>
+            <td>
+                {$tips_lang}
+            </td>
+        </tr>
+        </if>
+	</foreach>
+</table>
+</volist>
+</div>
+<table cellpadding="4" cellspacing="0" border="0" class="table-form" style="border-top:none;">
+	<tr class="act">
+		<th width="200">&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Public:footer" />

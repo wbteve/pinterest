@@ -1,0 +1,9 @@
+<li>
+	<div class="pic_n">
+		<!--{getuser $comment['uid'] 0 's,24' ',avt icard fl r3'}-->
+	</div>
+	<p>
+		<!--{getuser $comment['uid'] 0 '' 'n icard fl'}-->：{$comment['content']}
+	</p>
+	<a class="rpl fr" href="javascript:;" uname="{$comment['user']['user_name']}" cid="{$comment['comment_id']}" onclick="$.Reply_Comment(this);">回复</a>
+</li>

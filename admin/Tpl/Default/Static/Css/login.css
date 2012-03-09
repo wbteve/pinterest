@@ -1,0 +1,23 @@
+@charset "utf-8";
+body{font-family:Arial,"宋体";background:#ffffff;font-size:12px; background:url(../Images/loginbg.png) repeat-x;}
+body,div{font-size:12px; padding:0; margin:0; vertical-align:top;}
+li{list-style-type:none;}
+table{margin:0 auto;}
+img{vertical-align:top;border:0;}
+ol,ul {list-style:none;}   
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6 {font-size:12px;font-weight:normal;}   
+q:before,q:after {content:'';}   
+abbr,acronym {border:0;}
+address,caption,cite,code,dfn,em,th,var {font-weight:normal; font-style:normal;}   
+a{color:#000;text-decoration:none;}
+a:hover{color:#C00; text-decoration:underline;}
+#login-box{margin:118px auto 0 auto; width:700px; height:337px; background:url(../Images/login.gif) no-repeat; position:relative;}
+#admin_name{position:absolute; border:none; height:18px; width:153px; left:385px; top:103px; background:transparent;}
+#admin_pwd{position:absolute; border:none; height:18px; width:153px; left:385px; top:142px; background:transparent;}
+#verify{position:absolute; border:none; height:18px; width:93px; left:385px; top:182px; background:transparent;}
+#verifyImg{position:absolute; left:493px; top:181px; cursor:pointer;}
+#loginBtn{position:absolute; left:382px; top:219px;}
+#resultMsg{height:26px; line-height:26px; position:absolute; left:382px; top:58px; padding:0 0 0 24px;}
+.loading{background:url(../images/ajaxloading1.gif) no-repeat 0 2px; color:#0e6cd4;}
+.error{background:url(../images/ajaxerror.gif) no-repeat 0 3px; color:#f30;}

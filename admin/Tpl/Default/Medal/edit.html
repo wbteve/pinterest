@@ -1,0 +1,117 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:Cookie::get('returnUrl')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%NAME}</th>
+		<td><input type="text" class="textinput requireinput" name="name" value="{$vo.name}" /></td>
+	</tr>
+	<tr>
+		<th>{%IMAGE}</th>
+		<td><input type="text" class="textinput requireinput" name="image" value="{$vo.image}" /></td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td><p>{%IMAGE_TIPS}</p></td>
+	</tr>
+	<tr>
+		<th>{%DESC}</th>
+		<td>
+			<textarea name="desc" class="areainput" rows="3">{$vo.desc}</textarea>
+		</td>
+	</tr>
+	<tr>
+		<th>{%GIVE_TYPE}</th>
+		<td>
+			<p>
+			<if condition="$vo['give_type'] eq 0">
+			{%GIVE_TYPE_0}
+			<elseif condition="$vo['give_type'] eq 1"/>
+			{%GIVE_TYPE_1}
+			</if>
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<th>{%ALLOW_GROUP}</th>
+		<td class="label_box">
+			<foreach name="user_groups" item="group">
+			<label <if condition="in_array($group['gid'],$vo['allow_group'])">class="active"</if>><input type="checkbox" name="allow_gid[]" value="{$group.gid}" <if condition="in_array($group['gid'],$vo['allow_group'])">checked="checked"</if>/><span>{$group.name}</span></label>
+			</foreach>
+		</td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td><p>{%ALLOW_GROUP_TIPS}</p></td>
+	</tr>
+	<tr class="auto_type_tr" <if condition="$vo['give_type'] eq 1">style="display:none;"</if>>
+		<th>{%CONDITIONS}</th>
+		<td>
+			<select name="conditions" id="conditions" disabled="disabled">
+				<option value="continue_login" <if condition="$vo['conditions'] eq 'continue_login'">selected="selected"</if> isContinue='1'>{%CONDITIONS_CONTINUE_LOGIN}</option>
+				<option value="continue_share" <if condition="$vo['conditions'] eq 'continue_share'">selected="selected"</if> isContinue='1'>{%CONDITIONS_CONTINUE_SHARE}</option>
+				<option value="continue_goods" <if condition="$vo['conditions'] eq 'continue_goods'">selected="selected"</if> isContinue='1'>{%CONDITIONS_CONTINUE_GOODS}</option>
+				<option value="continue_photo" <if condition="$vo['conditions'] eq 'continue_photo'">selected="selected"</if> isContinue='1'>{%CONDITIONS_CONTINUE_PHOTO}</option>
+				<option value="continue_forum" <if condition="$vo['conditions'] eq 'continue_forum'">selected="selected"</if> isContinue='1'>{%CONDITIONS_CONTINUE_FORUM}</option>
+				<option value="continue_ask" <if condition="$vo['conditions'] eq 'continue_ask'">selected="selected"</if> isContinue='1'>{%CONDITIONS_CONTINUE_ASK}</option>
+				<option value="shares" <if condition="$vo['conditions'] eq 'shares'">selected="selected"</if>>{%CONDITIONS_SHARE_COUNT}</option>
+				<option value="goods" <if condition="$vo['conditions'] eq 'goods'">selected="selected"</if>>{%CONDITIONS_GOODS_COUNT}</option>
+				<option value="photos" <if condition="$vo['conditions'] eq 'photos'">selected="selected"</if>>{%CONDITIONS_PHOTO_COUNT}</option>
+				<option value="forums" <if condition="$vo['conditions'] eq 'forums'">selected="selected"</if>>{%CONDITIONS_FORUM_COUNT}</option>
+				<option value="ask" <if condition="$vo['conditions'] eq 'ask'">selected="selected"</if>>{%CONDITIONS_ASK_COUNT}</option>
+				<option value="forum_posts" <if condition="$vo['conditions'] eq 'forum_posts'">selected="selected"</if>>{%CONDITIONS_FORUM_POST_COUNT}</option>
+				<option value="ask_posts" <if condition="$vo['conditions'] eq 'ask_posts'">selected="selected"</if>>{%CONDITIONS_ASK_POST_COUNT}</option>
+				<option value="fans" <if condition="$vo['conditions'] eq 'fans'">selected="selected"</if>>{%CONDITIONS_FANS_COUNT}</option>
+				<option value="collects" <if condition="$vo['conditions'] eq 'collects'">selected="selected"</if>>{%CONDITIONS_COLLECTS_COUNT}</option>
+				<option value="referrals" <if condition="$vo['conditions'] eq 'referrals'">selected="selected"</if>>{%CONDITIONS_REFERRALS_COUNT}</option>
+			</select>
+			<span style=" font-family:Simsun;margin:0 5px 0 8px; font-weight:700;">>&nbsp;= </span>
+			<input type="text" class="textinput" name="confine" size="6" value="{$vo.confine}"/>
+		</td>
+	</tr>
+	<tr class="auto_type_tr" <if condition="$vo['give_type'] eq 1">style="display:none;"</if>>
+		<th>&nbsp;</th>
+		<td><p>{%CONDITIONS_TIPS}</p></td>
+	</tr>
+	<tr <if condition="$vo['give_type'] eq 0">style="display:none;"</if>>
+		<th>{%EXPIRATION}</th>
+		<td>
+			<input type="text" class="textinput" name="expiration" size="6" value="{$vo.expiration}" />&nbsp;{%DAY}&nbsp;{%EXPIRATION_TIPS}
+		</td>
+	</tr>
+	<!--<tr class="auto_type_tr continue_tr" <if condition="$vo['give_type'] eq 1 or !in_array($vo['conditions'],$continues)">style="display:none;"</if>>
+		<th>{%EXPIRATION}</th>
+		<td>
+			<input type="text" class="textinput" name="expiration" size="6" value="{$vo.expiration}" />&nbsp;{%DAY}&nbsp;{%EXPIRATION_TIPS}
+		</td>
+	</tr>-->
+	<tr>
+		<th>{%SORT}</th>
+		<td>
+			<input type="text" class="textinput" name="sort" value="{$vo.sort}" />
+		</td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="mid" value="{$vo.mid}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+jQuery(function(){
+	$(".give_type").change(function(){
+		if(this.value == 0 && this.checked)
+			$(".auto_type_tr").show();
+		else
+			$(".auto_type_tr").hide();
+	});
+});
+</script>
+<include file="Public:footer" />

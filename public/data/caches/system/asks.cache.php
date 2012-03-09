@@ -1,0 +1,173 @@
+<?php
+$data['asks'] = array (
+  1 => 
+  array (
+    'aid' => '1',
+    'name' => '服装搭配',
+    'sort' => '100',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '1',
+    'url' => '/ask.php?action=forum&aid=1',
+  ),
+  2 => 
+  array (
+    'aid' => '2',
+    'name' => '美容美妆',
+    'sort' => '99',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=2',
+  ),
+  3 => 
+  array (
+    'aid' => '3',
+    'name' => '配件饰品',
+    'sort' => '98',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=3',
+  ),
+  4 => 
+  array (
+    'aid' => '4',
+    'name' => '塑身美体',
+    'sort' => '97',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=4',
+  ),
+  5 => 
+  array (
+    'aid' => '5',
+    'name' => '鞋帽箱包',
+    'sort' => '96',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=5',
+  ),
+  6 => 
+  array (
+    'aid' => '6',
+    'name' => '礼物推荐',
+    'sort' => '95',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=6',
+  ),
+  7 => 
+  array (
+    'aid' => '7',
+    'name' => '家居母婴',
+    'sort' => '94',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=7',
+  ),
+  8 => 
+  array (
+    'aid' => '8',
+    'name' => '食品保健',
+    'sort' => '93',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=8',
+  ),
+  9 => 
+  array (
+    'aid' => '9',
+    'name' => '数码家电',
+    'sort' => '92',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=9',
+  ),
+  10 => 
+  array (
+    'aid' => '10',
+    'name' => '真假鉴别',
+    'sort' => '91',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=10',
+  ),
+  11 => 
+  array (
+    'aid' => '11',
+    'name' => '方维答疑',
+    'sort' => '90',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=11',
+  ),
+  12 => 
+  array (
+    'aid' => '12',
+    'name' => '五六折答疑',
+    'sort' => '89',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=12',
+  ),
+  13 => 
+  array (
+    'aid' => '13',
+    'name' => '淘宝答疑',
+    'sort' => '88',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=13',
+  ),
+  14 => 
+  array (
+    'aid' => '14',
+    'name' => '其他',
+    'sort' => '87',
+    'uid' => '0',
+    'user_name' => '',
+    'create_time' => '1308802605',
+    'status' => '1',
+    'thread_count' => '0',
+    'url' => '/ask.php?action=forum&aid=14',
+  ),
+);
+
+?>

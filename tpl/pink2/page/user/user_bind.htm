@@ -1,0 +1,74 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/loginreg.css';
+	$js_list[0] = './tpl/js/user_bind.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd clearfix">
+			<div id="content" style="width:960px;">
+				<div id="register_box">
+					<div id="register_left" style="border-right:none;">
+						<h1>欢迎入住{$_FANWE['setting']['site_name']}</h1>
+						<span><b style="color:red;margin-right:5px;">*</b>请先补充必要的个人信息，只有补充完这些信息才能真正入住{$_FANWE['setting']['site_name']}哦</span>
+						<div id="register_center">
+							<div id="register_form">
+								<form action="{u user/savebind}" method="post" id="registerForm">
+									<div class="ipt_mail">
+										<span>{lang email}：</span>
+										<input type="text" maxlength="36" name="email" id="reg_email" class="text" value="{$bind_info['user_email']}" istip="0" rel=".err_email" check="{if empty($bind_info['user_email'])}0{else}1{/if}"/>
+									</div>
+									<div class="ipt_ulike">
+										<span>{lang nickname}：</span>
+										<input style="*margin-left:-1px;" maxlength="36" type="text" name="user_name" id="reg_user_name" class="text" value="{$bind_info['user_name']}" istip="0" rel=".err_ulike" check="1"/>
+									</div>
+									<div class="ipt_sex">
+										<span>{lang gender}：</span>
+										<div class="rdo">
+											<input type="radio" name="gender" value="0" checked="checked" class="ck">{lang user/gender_0}
+											<input style="margin-left:10px" type="radio" name="gender" value="1" class="ck">{lang user/gender_1}
+										</div>
+									</div>
+									<div class="ipt_password">
+										<span>{lang password}：</span>
+										<input style="*margin-left:-1px;" maxlength="36" type="password" name="password" id="reg_password" class="text" istip="0" rel=".err_password" check="0"/>
+									</div>
+									<div class="ipt_respassword">
+										<span>{lang cpassword}：</span>
+										<input type="password" maxlength="36" name="confirm_password" id="reg_cpassword" class="text" istip="0" rel=".err_rstpassword" check="0"/>
+									</div>
+									<div class="ipt_box">
+										<input class="box fl" type="checkbox" name="agreement" id="reg_agreement" checked="checked" value="1" />
+										<!--{eval $agreement_url = FU('user/agreement');}-->
+										<span class="fl">{sprintf reg_tip_3 $agreement_url,$_FANWE['setting']['site_name']}</span>
+									</div>
+									<div class="ipt_sub">
+										<input type="submit" class="sub" id="reg_submit" value=" "/>
+										<div class="lg_reg_loading">
+											<span style="font-size:13px;">{lang reg_loading}</span>
+										</div>
+										<div class="lg_reg_check">
+											<span style="font-size:13px; color:#f00;">请先完善个人信息</span>
+										</div>
+									</div>
+									<input name="refer" value="{u u/index}" type="hidden"/>
+									<input name="action" value="savebind" type="hidden"/>
+								</form>
+							</div>
+							<div id="register_error">
+								<div class="err_email">{lang reg_tip_5}</div>
+								<div class="err_ulike">{lang reg_tip_6}</div>
+								<div class="err_password">{lang reg_tip_7}</div>
+								<div class="err_rstpassword">{lang reg_tip_8}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<!--{template inc/footer}-->

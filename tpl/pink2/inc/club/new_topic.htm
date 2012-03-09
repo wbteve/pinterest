@@ -1,0 +1,134 @@
+<div class="piece1_bd">
+	<div class="fl" style="width:340px;margin:0 10px">
+		<div class="piece_title" style="margin-left:0"></div>
+		<div id="pic_tpk" class="pic_tpk">
+			<ul>
+				<!--{loop $flash_list $topic}-->
+				<li class="pic_tpk_f">
+					<a target="_blank" href="{$topic['url']}"><img alt="" width="340" src="$topic['imgs'][0]['img']"></a>
+					<div class="title">
+						<a href="{$topic['url']}" target="_blank">{cutstr $topic['title'] 40}</a>
+					</div>
+				</li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+		<div id="pic_tpk_btn" class="pic_tpk_btn">
+			<div></div>
+		</div>
+		<div class="new_event"> <span class="title"></span><a href="{u event}" target="_blank" class="more">{lang more}...</a>
+			<ul>
+				<!--{loop $event_list $topic}-->
+				<li> <span></span><a target="_blank" href="{$topic['url']}">&nbsp;{cutstr $topic['title'] 50}</a></li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+	jQuery(function($){
+		$("#pic_tpk ul").carouFredSel({
+			curcular: false,
+			infinite: false,
+			auto : true,
+			pauseDuration:3000,
+			pagination: "#pic_tpk_btn div",
+			scroll: {
+				pauseOnHover: true
+			}
+		});
+	});
+	</script>
+	<div class="fl r_top" style="width:580px;margin:0 10px">
+		<div class="arr">
+			<a class="c_arr aleft alstop"  href="javascript:;"></a>
+			<a class="c_arr aright" href="javascript:;"></a>
+		</div >
+		<div class="f_i">
+			<ul id="new_topic_box" class="tr_in ">
+				<!--{loop $best_list $best_item}-->
+				<li class="f_ili">
+					<!--{loop $best_item $topic_list}-->
+					<!--{eval $topic_first = true;}-->
+					<!--{eval $topic_index = 0;}-->
+					<!--{loop $topic_list $topic}-->
+					<!--{if $topic_index == 0}-->
+					<div class="f_i_d">
+						<div class="f_i_t">
+							<p><a href="{$topic['url']}" class="s_t" target="_blank">{cutstr $topic['title'] 44}</a></p>
+							<p><span class="s_t2">{cutstr $topic['content'] 56}</span></p>
+						</div>
+						<div class="f_i_img">
+							<a href="{$topic['url']}" target="_blank"><img src="{getimg $topic['imgs'][0]['img'] 90 70 1}" class="r10"/></a>
+						</div>
+					</div>
+					<ul class="f_i_ll">
+					<!--{else}-->
+						<li>
+							<span></span>
+							<a href="{$topic['url']}" target="_blank">{cutstr $topic['title'] 40}</a>
+						</li>
+					<!--{/if}-->
+					<!--{eval $topic_index++;}-->
+					<!--{/loop}-->
+					<!--{if count($topic_list) > 0}-->
+					</ul>
+					<!--{/if}-->
+					<!--{if $topic_first}-->
+					<div style="height:40px;"></div>
+					<!--{eval $topic_first = false;}-->
+					<!--{/if}-->
+					<!--{/loop}-->
+				</li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+var topTopicIndex = 1;
+jQuery(function($){
+	$('.aleft').click(function(){
+		if(!$(this).hasClass('alstop'))
+		{
+			topTopicIndex--;
+			getNewTopics();
+		}
+	});
+	
+	$('.aright').click(function(){
+		if(!$(this).hasClass('arstop'))
+		{
+			topTopicIndex++;
+			getNewTopics();
+		}
+	});
+});
+
+function getNewTopics()
+{
+	$.ajax({ 
+		url: SITE_PATH+"services/service.php?m=topic&a=news",
+		type: "POST",
+		data:{"page":topTopicIndex},
+		dataType: "json",
+		success: function(result){
+			if(result.status == 1)
+			{
+				$("#new_topic_box").html(result.html);
+			}
+			
+			$(".c_arr").removeClass('alstop').removeClass('arstop');
+			if(topTopicIndex >= 6)
+			{
+				topTopicIndex = 6;
+				$(".aright").addClass('arstop');
+			}
+			else if(topTopicIndex <= 1)
+			{
+				topTopicIndex = 1;
+				$(".aleft").addClass('alstop');
+			}
+		}
+	});
+}
+</script>

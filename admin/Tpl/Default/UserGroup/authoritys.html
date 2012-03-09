@@ -1,0 +1,15 @@
+<tagLib name="fanwe" />
+<foreach name="authoritys" key='mkey' item="module" >
+<tr class="access-item">
+	<th width="200">
+		{$module.name}
+	</th>
+	<td>
+		<p>
+			<foreach name="module.actions" item="action">
+			<label><input class="action-item" type="checkbox" name="access_node[{$mkey}][]" value="{$action}" <if condition="$uga_list[$mkey][$action]">checked="checked"</if>/><span>&nbsp;{:L('ACTION_'.$action)}</span></label>&nbsp;&nbsp;
+			</foreach>&nbsp;
+		</p>
+	</td>
+</tr>
+</foreach>

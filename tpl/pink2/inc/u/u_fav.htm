@@ -1,0 +1,21 @@
+<div class="mb25 s_hot_pic">
+	<h3 class="mb10">她们的喜欢</h3>
+	<ul class="mr20 nb">
+		<!--{loop $fav_list $fav_item}-->
+		<li>
+			<!--{getuser $fav_item['uid'] 0 '' 'n gc'}-->
+			<a href="{$fav_item['url']}" class="time">{$fav_item['time']}</a>
+			<div class="shp_img mt5 clearfix">
+				<!--{eval $fav_img_index=0;}-->
+				<!--{loop $fav_item['imgs'] $fav_img}-->
+				<!--{if $fav_img_index > 2}-->
+				<!--{eval break;}-->
+				<!--{/if}-->
+				<a href="{$fav_img['url']}"><img src="{getimg $fav_img['img'] 100 100}"></a>
+				<!--{eval $fav_img_index++;}-->
+				<!--{/loop}-->
+			</div>
+		</li>
+		<!--{/loop}-->
+	</ul>
+</div>

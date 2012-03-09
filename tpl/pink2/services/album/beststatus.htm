@@ -1,0 +1,8 @@
+<!--{if $is_best == 1}-->
+<span class="followed r3">已推荐</span>
+<span class="num">{$best_count}人</span>
+<a class="follow_del" href="javascript:void(0);" onclick="$.Remove_Best_Album({$album_id},this,UpdateAlbumHandler);">取消</a>
+<!--{else}-->
+<a class="follow_add fl" href="javascript:;" onclick="$.Best_Album({$album_id},UpdateAlbumHandler);">推荐专辑</a>
+<span class="num ml10">{$best_count}人</span>
+<!--{/if}-->

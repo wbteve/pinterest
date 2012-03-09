@@ -1,0 +1,33 @@
+<ul class="nav_1" id="home_nav">
+    <li class="nav_f f{if $active == '' || $active == 'index'} h{/if}">
+    	<span class="lt"></span>
+		<div class="md"><a href="{u u/index uid=$uid}"></a></div>
+		<span class="rt"></span>
+	</li>
+	<li{if $active == 'topic'} class="h"{/if}>
+		<span class="lt"></span>
+		<div class="md"><a href="{u u/topic uid=$uid}">{lang home_nav_topic}<br><span class="c">$user['threads']</span></a></div>
+		<span class="rt"></span>
+	</li>
+	<li{if $active == 'photo'} class="h"{/if}>
+		<span class="lt"></span>
+		<div class="md"><a href="{u u/photo uid=$uid}">{lang home_nav_photo}<br><span class="c">$user['photos']</span></a></div>
+		<span class="rt"></span>
+	</li>
+	<li{if $active == 'bao'} class="h"{/if}>
+		<span class="lt"></span>
+		<div class="md"><a href="{u u/bao uid=$uid}">{lang home_nav_bao}<br><span class="c">$user['goods']</span></a></div>
+		<span class="rt"></span>
+	</li>
+	<li{if $active == 'fav'} class="h"{/if}>
+		<span class="lt"></span>
+		<div class="md"><a href="{u u/fav uid=$uid}">{lang home_nav_fav}<br><span class="c">$user['favs']</span></a></div>
+		<span class="rt"></span>
+	</li>
+	<li class="hb">
+		<div class="home_user_hb">
+			<img src="{avatar $uid s $user['server_code'] 1}" class="huh_avt" width="24" height="24" /><!--[if IE 6]><div></div><![endif]--><span class="n"><a href="{u u/book uid=$uid}" target="_blank">
+            {sprintf home_nav_book $user['user_name']}</a></span><!--[if IE 6]><div></div><![endif]--><i></i>
+        </div>
+	</li>
+</ul>

@@ -1,0 +1,54 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<div class="handle-btns">
+	<fanwe:linkBtn text="{%RETURN_LIST}" href="{:Cookie::get('returnUrl')}" />
+</div>
+<form method='post' id="form" name="form" action="{:U(MODULE_NAME.'/update')}">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tr>
+		<th width="150">{%WORD}</th>
+		<td><input type="text" class="textinput requireinput" name="word" value="{$vo.word}" /></td>
+	</tr>
+	<tr>
+		<th>{%TYPE}</th>
+		<td>
+			<select name="type" onchange="replaceToggle(this);">
+				<option value="1" <if condition="$vo['type'] eq 1">selected="selected"</if>>{%TYPE_1}</option>
+				<option value="2" <if condition="$vo['type'] eq 2">selected="selected"</if>>{%TYPE_2}</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>&nbsp;</th>
+		<td><p>{%TYPE_TIPS}</p></td>
+	</tr>
+	<tr>
+		<th>{%CID}</th>
+		<td>
+			<fanwe:select options="type_list" name="cid" id="cid" first="{%CID_DEFAULT}" firstvalue="0" textfield="name" valuefield="id" selected="vo['cid']"/>
+		</td>
+	</tr>
+	<tr id="replaceTr" <if condition="$vo['type'] neq 3">style="display:none;"</if>>
+		<th>{%REPLACEMENT}</th>
+		<td><input type="text" class="textinput" name="replacement" value="{$vo.replacement}" /></td>
+	</tr>
+	<tr class="act">
+		<th>&nbsp;</th>
+		<td>
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<input type="submit" class="submit_btn" value="{%SUBMIT}" />
+			<input type="reset" class="reset_btn" value="{%RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+function replaceToggle(obj)
+{
+	if(obj.value == 2)
+		$("#replaceTr").show();
+	else
+		$("#replaceTr").hide();
+}
+</script>
+<include file="Public:footer" />

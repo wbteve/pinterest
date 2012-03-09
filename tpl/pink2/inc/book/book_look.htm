@@ -1,0 +1,32 @@
+<div class="i_w_f" id="share_item_{$share['share_id']}">
+	<div class="hd"></div>
+	<div class="bd">
+		<ul class="pic">
+			<!--{loop $share['look_imgs'] $share_img}-->
+			<li>
+				<a style="width:200px;" href="{$share_img['url']}" target="_blank">
+					<img class="book_img" src="{getimg $share_img['img'] 200 999)}" width=200 />
+				</a>
+			</li>
+			<!--{/loop}-->
+		</ul>
+		<div class="favorite">
+			<a href="javascript:;" class="favaImg" onclick="$.Fav_Share({$share['share_id']},this,32,'#share_item_{$share['share_id']}');"></a>
+			<div class="favDiv"><a target="_blank" class="favCount SHARE_FAV_COUNT" href="{$share['url']}"  >$share['collect_count']</a><i></i></div>
+			<a target="_blank" href="{$share['url']}" class="creply">{$share['comment_count']}评论</a>
+		</div>
+	</div>
+	<div class="who_share">
+		<div class="ws_bd">
+			<!--{getuser $share['uid'] 0 's,24' ',icard avt fl'}-->
+			<p>
+				由<!--{getuser $share['uid'] 0 '' 'n icard'}--> <span style="font-weight:bold;color:#e8876d;">分享</span><br>
+				<span class="t">{$share['time']}</span>
+			</p>
+		</div>
+		<div class="tk clearfix">
+			<p>{cutstr $share['content'] 200}</p>
+		</div>
+		<div class="ws_ft"></div>
+	</div>
+</div>

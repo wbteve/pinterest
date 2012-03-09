@@ -1,0 +1,141 @@
+<?php
+	$css_list[0]['url'] = './tpl/css/setting.css';
+	$js_list[0] = './public/js/city.js';
+?>
+<!--{template inc/header}-->
+<div id="body" class="fm960">
+	<div class="piece1">
+		<div class="piece1_hd"></div>
+		<div class="piece1_bd clearfix">
+			<div id="content" style="width:960px;">
+				<!--{template inc/settings/settings_menu}-->
+				<div id="setting_box" class="fl">
+					<div id="setting_form" class="setting_basic">
+						<form id="avartarForm" method="POST" action="{u settings/saveavatar}">
+							<input type="hidden" name="action" value="avatar" />
+							<dl>
+								<dd>当前头像：</dd>
+								<dt><img class="head_bd r3" width="100" src="{avatar $_FANWE['uid'] b $_FANWE['user']['server_code'] 1}?{TIME_UTC}" alt=""></dt>
+								<dd>上传新头像：</dd>
+								<dt style="position:relative;">
+									<!--{if FS('Image')->getIsServer()}-->
+									<div id="UPLOAD_AVATAR_FLASH_BOX"></div>
+									<input name="avatar_info" id="avatarInfo" type="hidden" value="" />
+									<!--{else}-->
+									<input type="hidden" id="viewAvartar" name="user_avartar" />
+									<input type="file" class="tfile" id="uploadAvartar" name="avatar" onchange="UploadAvartar();" style="border:solid 1px #999; font-size:16px; padding:3px;"/>
+									<!--{/if}-->
+								</dt>
+								<dd class="msg">&nbsp;</dd>
+								<dt class="msg" id="avatarmsg">建议使用正方形的图片，支持JPG、GIF、JPG格式，100K以内。</dt>
+								<dd class="preview hide">预览：</dd>
+								<dt class="preview hide">
+									<img class="head_bd round" width="100"/>
+									<img class="head_bd round" width="64"/>
+									<img class="head_bd round" width="32"/>
+								</dt>
+								<dd class="avartar_confirm hide">&nbsp;</dd>
+								<dt class="avartar_confirm hide">
+									<input type="hidden" name="action" value="saveavatar" />
+									<input type="submit" value="确定" class="green_button"/>
+								</dt>
+							</dl>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="piece1_ft"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--{if !FS('Image')->getIsServer()}-->
+var isUpload = false;
+function UploadAvartar()
+{
+	if(isUpload)
+		return;
+	else
+		isUpload = true;
+	
+	$("#avatarmsg").html("正在上传，请稍后……");
+	$.ajaxFileUpload({
+		url:SITE_PATH + "services/service.php?m=user&a=avatar",
+		secureuri:false,
+		fileElementId:'uploadAvartar',
+		dataType:'json',
+		success:function(result)
+		{
+			if(result.src != '')
+			{
+				$("#viewAvartar").val(result.src);
+				$(".preview").show();
+				$(".avartar_confirm").show();
+				$(".preview img").attr("src",SITE_PATH + result.src);
+				$(".msg").hide();
+			}
+			else
+			{
+				$(".preview").hide();
+				$(".avartar_confirm").hide();
+				$(".msg").show();
+				$("#avatarmsg").html("上传头像失败");
+			}
+			
+			isUpload = false;
+		},
+		error:function (data, status, e)
+		{
+			$(".preview").hide();
+			$(".avartar_confirm").hide();
+			isUpload = false;
+			$("#avatarmsg").html("上传头像失败");
+		}
+	});
+}
+<!--{else}-->
+jQuery(function($){
+	var flashvars = {
+		siteUrl:SITE_URL,
+		btnUrl:TPL_PATH + "images/uploadpic.png",
+		imageServer:'',
+		type:"uploadavatar"
+	};
+
+	var params = {
+		wmode: "transparent",
+		allowScriptAccess: "always"
+	};
+	var data = new Date();
+	swfobject.embedSWF(PUBLIC_PATH + "swf/upload.swf?" + data.toGMTString(), "UPLOAD_AVATAR_FLASH_BOX", "181", "28", "9.0.0", null, flashvars, params);
+});
+
+function UploadAvartarLoading()
+{
+	$("#avatarmsg").html("正在上传，请稍后……");
+	$(".preview").hide();
+	$(".avartar_confirm").hide();
+	$(".msg").show();
+}
+
+function UploadAvartarComplete(status,img,info)
+{
+	if(status == 1 && img != '')
+	{
+		$("#avatarInfo").val(info);
+		$(".preview").show();
+		$(".avartar_confirm").show();
+		$(".preview img").attr("src",img);
+		$(".msg").hide();
+	}
+	else
+	{
+		$(".preview").hide();
+		$(".avartar_confirm").hide();
+		$(".msg").show();
+		$("#avatarmsg").html("上传头像失败");
+	}
+}
+<!--{/if}-->
+</script>
+<!--{template inc/footer}-->

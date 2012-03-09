@@ -1,0 +1,62 @@
+<tagLib name="fanwe" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Static/Js/dataList.js"></script>
+<div class="handle-btns">
+	<fanwe:imageBtn id="addAdmin" name="addAdmin" value="{%ADD}" click="addData()" />
+	<fanwe:imageBtn id="editAdmin" name="editAdmin" value="{%EDIT}" click="editData(this,'checkList','uid')" />
+	<fanwe:imageBtn id="removeAdmin" name="removeAdmin" value="{%REMOVE}" click="removeUser(this,'checkList')" />
+	<form action="__APP__">
+		<span>{%GID}</span>
+		<select name="gid">
+			<option value="">{%SELECT_GROUP}</option>
+			<foreach name="group_list" key="groupid" item="gname">
+			<option value="{$groupid}" <if condition="$gid eq $groupid">selected="selected"</if>>{$gname}</option>
+			</foreach>
+		</select>
+		<span>{%USER_NAME}</span>
+		<input class="textinput" type="text" value="{$user_name}" name="user_name" size="10" />
+		<small></small>
+		<span>{%EMAIL}</span>
+		<input class="textinput" type="text" value="{$email}" name="email" size="10" />
+		<input class="submit_btn" type="submit" value="{%SEARCH}" />
+		<input type="hidden" name="{:c('VAR_MODULE')}" value="{$module_name}" />
+		<input type="hidden" name="{:c('VAR_ACTION')}" value="index" />
+	</form>
+</div>
+<fanwe:list id="checkList" pk='uid' style="list" name="admin" checkbox="true" action="true" datasource="list" show="uid:{%ID}|80,user_name:{%USER_NAME}|~left:textEdit|uid,email:{%EMAIL}|~left:textEdit|uid,gid|getGroupName:{%GID}|100,credits:{%CREDITS}|70:numberEdit|uid,reg_time|toDate:{%REG_TIME}|140,status|getStatusImg:{%STATUS}|60:toggleStatus|uid" actionlist="editData:{%EDIT}:uid,removeUser:{%REMOVE}:uid" action_width="100" />
+<div class="pager">{$page}</div>
+<script type="text/javascript">
+function removeUser(obj,id,pk)
+{
+	var ids =  new Array();
+	
+	if(isNaN(id))
+	{
+		$("#" + id + " input:checked[name='key']").each(function(){
+			ids.push(this.value);
+		});
+	}
+	else
+	{
+		ids.push(id);
+		var parent = $(obj).parent().parent();
+		id = parent.parent().parent().attr('id');
+	}
+	
+	ids = ids.join(',');
+	if(ids == '')
+		return false;
+	
+	if(!window.confirm(CONFIRM_DELETE))
+		return false;
+
+	var url = APP + '?' + VAR_MODULE + '=' + CURR_MODULE + '&' + VAR_ACTION + '=remove&id='+ids;
+	
+	var fun = function(){
+		location.href = url;
+	};
+	
+	setTimeout(fun,1);
+}
+</script>
+<include file="Public:footer" />

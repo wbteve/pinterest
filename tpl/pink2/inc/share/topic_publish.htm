@@ -1,0 +1,45 @@
+<div id="publish_topic" class="pub_box r10">
+<form method="post">
+	<span class="pub_tit">{lang add_post}...</span>
+	<input type="hidden" name="share_id" value="" />
+	<div class="pub_edit r5">
+		<div>
+			<span class="fw_count">{sprintf char_check 140}</span>
+		</div>
+		<textarea name="content" id="publish_topic_content" class="PUB_TXT pub_txt fl rl5" length="140" position="0">{$post_topic_content}</textarea>
+		<input type="button" class="pub_btn fl rr5" value="{lang publish}" onclick="$.Topic_Post_Save(this)" />
+		<input type="hidden" name="tid" value="{$post_topic_tid}" />
+		<input type="hidden" name="module" value="{$post_topic_module}" />
+		<input type="hidden" name="action" value="{$post_topic_action}" />
+        <div class="fl pub_tags hide PUB_SHARE_TAG_BOX">
+            <span class="fl tag_title">{lang tag}：</span>
+            <input type="text" class="fl tag_txt PUB_SHARE_TAG" name="tags" title="{sprintf share_tag_tip $_FANWE['setting']['share_tag_count']}" />
+            <ul></ul>
+        </div>
+		<div class="pub_ext">
+			<div class="pub_opt fl">
+				<span class="fl">{lang add}：</span>
+				<a class="add_face fl" style="background-position:0 -5px;" href="javascript:;" onclick="$.Show_Expression(this)" w="tpk">{lang face}</a>
+				<a style="background-position:0 -76px;" href="javascript:;" w="tpk" class="add_goods fl" onclick="$.Goods_Add(this)">{lang goods}</a>
+				<a class="add_pic fl" href="javascript:;" style="background-position:0 -28px;" w="tpk" onclick="$.Pic_Add(this)">{lang photo}</a>
+            </div>
+			<div class="pub_out fr">
+				<input type="checkbox" checked="checked" name="pub_out_check" value="1">
+				<label for="pub_out_check">{lang sync}</label>（<a href="{u settings/bind}" target="_blank">{lang settings}</a>）
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<!--存放 分享的数据，图值为图片的地址,商品值为php序列化并加密后的值，提交后解析-->
+	<ul class="pub_img PUB_IMG clearfix"></ul>
+</form>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+jQuery(function($){
+	$.Pub_Count_Bind($("#publish_topic_content").get(0));
+	$('.PUB_IMG li').live('mousedown',function(){
+		$('.PUB_IMG').dragsort();
+	});
+});
+</script>
